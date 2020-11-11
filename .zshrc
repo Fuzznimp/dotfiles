@@ -11,6 +11,6 @@ bindkey '^[[B' down-line-or-search # Arrow down
 
 
 source ${HOME}/.zsh/.aliases.zsh
-source ${HOME}/.zsh/.funtions.zsh
+source ${HOME}/.zsh/.functions.zsh
 
 [[ -r ${HOME}/.asdf/asdf.sh ]] && source ${HOME}/.asdf/asdf.sh
