@@ -31,6 +31,7 @@ cask "docker"
 cask "dropbox"
 cask "figma"
 cask "firefox"
+cask "font-hack-nerd-font"
 cask "google-chrome"
 cask "insomnia"
 cask "iterm2"
@@ -51,6 +52,7 @@ mas "Spark" id: 1176895641
 mas "WhatsApp", id: 1147396723
 
 # Manual
+# asdf https://asdf-vm.com/#/core-manage-asdf
 # DeepL https://www.deepl.com/en/app/
 # Karabiner https://karabiner-elements.pqrs.org/
 # OniVim2 https://v2.onivim.io/early-access-portal

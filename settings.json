@@ -1,0 +1,78 @@
+{
+  "window.zoomLevel": 1,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
+  "emmet.showSuggestionsAsSnippets": true,
+  "editor.snippetSuggestions": "top",
+  "emmet.triggerExpansionOnTab": true,
+  "workbench.colorTheme": "Atom One Dark",
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "editor.suggestSelection": "first",
+  "editor.fontFamily": "Hack Nerd Font",
+  "editor.fontLigatures": false,
+  "editor.fontWeight": "500",
+  "editor.tabSize": 2,
+  "bracket-pair-colorizer-2.colors": [
+    "SaddleBrown",
+    "ForestGreen",
+    "DarkOrange"
+  ],
+  "workbench.startupEditor": "newUntitledFile",
+  "indentRainbow.colors": [
+    "rgba(16,16,16,0.1)",
+    "rgba(16,16,16,0.3)",
+    "rgba(16,16,16,0.6)",
+    "rgba(16,16,16,0.4)",
+    "rgba(16,16,16,0.2)"
+  ],
+  "editor.minimap.enabled": false,
+  "git.enableSmartCommit": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "breadcrumbs.enabled": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "vsicons.dontShowNewVersionMessage": true,
+  "sync.gist": "2fc86075d7de1f36bf90c31556863b0d",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.format.enable": true,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[graphql]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "workbench.iconTheme": "vscode-icons",
+  "window.nativeTabs": true,
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "search.exclude": {
+    "**/.next": true,
+    "yarn.lock": true,
+    "**/node_modules": true
+  },
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  "cSpell.ignoreWords": ["behaviour", "fewlines", "middlewares", "remoteaddr"],
+  "gitlens.mode.active": "zen",
+  "typescript.suggest.paths": false
+}
