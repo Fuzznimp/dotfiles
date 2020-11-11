@@ -26,7 +26,9 @@ alias fwl.account="cd ~/workspace/fewlines/connect-account"
 alias fwl.connect="cd ~/workspace/fewlines/connect"
 alias fwl.web="cd ~/workspace/fewlines/web-node-libraries"
 alias dotfiles="cd ~/workspace/dotfiles"
-alias conf.alias="code ~/.oh-my-zsh/custom/aliases.zsh"
+alias conf.alias="code ~/.zsh/.aliases"
+alias conf.function="code ~/.zsh/.functions"
+alias conf.starship="code ~/.config/starship.toml"
 
 # ls
 alias ll="exa --all --long --header --git"
@@ -49,6 +51,7 @@ alias cpu="sysctl -n machdep.cpu.brand_string"
 alias ram="top -l 1 -s 0 | grep PhysMem"
 
 # Git
+alias gst="git status"
 alias gcb="git checkout -b"
 alias gd="git diff"
 alias ga="git add"

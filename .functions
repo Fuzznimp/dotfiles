@@ -3,6 +3,10 @@ api_key() {
   openssl rand -hex ${size}
 }
 
+gclone() {
+	git clone "$1" && cd "$(basename "$1" .git)"
+}
+
 # Markdown
 md() {
   pandoc $1 | lynx -stdin -dump

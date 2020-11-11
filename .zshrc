@@ -1,3 +1,5 @@
+eval "$(starship init zsh)"
+
 bindkey -e
 autoload -U edit-command-line;
 zle -N edit-command-line;
@@ -9,8 +11,7 @@ bindkey '^[[Z' reverse-menu-complete # Ctrl-r
 bindkey '^[[A' up-line-or-search # Arrow up
 bindkey '^[[B' down-line-or-search # Arrow down
 
-
-source ${HOME}/.zsh/.aliases.zsh
-source ${HOME}/.zsh/.functions.zsh
+source ${HOME}/.zsh/.aliases
+source ${HOME}/.zsh/.functions
 
 [[ -r ${HOME}/.asdf/asdf.sh ]] && source ${HOME}/.asdf/asdf.sh
