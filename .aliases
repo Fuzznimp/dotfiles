@@ -65,9 +65,6 @@ alias gca="git commit --amend"
 alias gb="git rebase"
 alias gbd="git branch -D"
 alias gl="git log --pretty=oneline --abbrev-commit"
-alias	gpof = push --force-with-lease
-alias	gpoff = push --force-with-lease --no-verify
-alias	pr = !open "https://github.com/$(git remote get-url --push origin | sed -e 's/.*://' -e 's/\\.git//')/compare/$(git current)?expand=1"
 alias gbleach="git branch -vv | grep 'gone'] | awk '{ print $1 }' | xargs git branch -D"
 
 # Vim

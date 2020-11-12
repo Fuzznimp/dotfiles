@@ -3,7 +3,7 @@
 	ui = true
 
 [core]
-	editor = nvim
+	editor = vim
 
 [diff]
 	renames = copies
@@ -13,7 +13,7 @@
 	prompt = false
 
 [difftool "vimdiff3"]
-	path = nvim
+	path = vim
 
 [color "diff"]
 	whitespace = red
