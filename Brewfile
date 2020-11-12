@@ -16,11 +16,11 @@ brew "node"
 brew "onyx"
 brew "openssl@1.1"
 brew "overmind"
-brew "starship"
 brew "the_silver_searcher"
 brew "yarn"
-brew "zsh-completions"
 brew "zsh"
+brew "zsh-completions"
+brew "zsh-syntax-highlighting"
 
 cask "1password"
 cask "alacritty"
@@ -57,4 +57,5 @@ mas "WhatsApp", id: 1147396723
 # DeepL https://www.deepl.com/en/app/
 # Karabiner https://karabiner-elements.pqrs.org/
 # OniVim2 https://v2.onivim.io/early-access-portal
+# Pure https://github.com/sindresorhus/pure
 # Shadow https://shadow.tech/fr/shadow-apps

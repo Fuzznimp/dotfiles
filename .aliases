@@ -16,6 +16,7 @@ alias rr="rm -rf"
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias mkdir="mkdir -pv"
+alias sev="source .env_vars"
 
 # Paths
 alias wks="cd ~/workspace"
@@ -24,11 +25,11 @@ alias fwl.courses="cd ~/workspace/fewlines/sparta_courses"
 alias fwl.sparta="cd ~/workspace/fewlines/sparta-monorepo"
 alias fwl.account="cd ~/workspace/fewlines/connect-account"
 alias fwl.connect="cd ~/workspace/fewlines/connect"
-alias fwl.web="cd ~/workspace/fewlines/web-node-libraries"
+alias fwl.web="cd ~/workspace/fewlines/node-web-libraries"
 alias dotfiles="cd ~/workspace/dotfiles"
+alias conf.zsh="code ~/.zshrc"
 alias conf.alias="code ~/.zsh/.aliases"
 alias conf.function="code ~/.zsh/.functions"
-alias conf.starship="code ~/.config/starship.toml"
 
 # ls
 alias ll="exa --all --long --header --git"
@@ -64,6 +65,9 @@ alias gca="git commit --amend"
 alias gb="git rebase"
 alias gbd="git branch -D"
 alias gl="git log --pretty=oneline --abbrev-commit"
+alias	gpof = push --force-with-lease
+alias	gpoff = push --force-with-lease --no-verify
+alias	pr = !open "https://github.com/$(git remote get-url --push origin | sed -e 's/.*://' -e 's/\\.git//')/compare/$(git current)?expand=1"
 alias gbleach="git branch -vv | grep 'gone'] | awk '{ print $1 }' | xargs git branch -D"
 
 # Vim
