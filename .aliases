@@ -60,7 +60,6 @@ alias desktopshow="defaults write com.apple.finder CreateDesktop -bool true && k
 alias desktophide="defaults write com.apple.finder CreateDesktop -bool false && killfinder"
 alias displays="system_profiler SPDisplaysDataType"
 alias cpu="sysctl -n machdep.cpu.brand_string"
-alias ram="top -l 1 -s 0 | grep PhysMem"
 
 # Git
 alias gst="git status"
