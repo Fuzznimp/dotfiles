@@ -1,3 +1,19 @@
+export_dotfiles() {
+  cp.zshrc \
+  && cp.alias \
+  && cp.function \
+  && cp.gitconfig \
+  && cp.gitignore
+}
+
+import_dotfiles() {
+  cp ~/workspace/dotfiles ~/.zshrc \
+  && cp ~/workspace/dotfiles ~/.zsh/.aliases \
+  && cp ~/workspace/dotfiles ~/.zsh/.functions \
+  && cp ~/.gitconfig ~/workspace/dotfiles \
+  && cp ~/.gitignore ~/workspace/dotfiles
+}
+
 api_key() {
   size=${1:-16}
   openssl rand -hex ${size}

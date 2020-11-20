@@ -72,7 +72,17 @@
     "**/node_modules": true
   },
   "terminal.integrated.shell.osx": "/bin/zsh",
-  "cSpell.ignoreWords": ["behaviour", "fewlines", "middlewares", "remoteaddr"],
+  "cSpell.ignoreWords": [
+    "behaviour",
+    "fewlines",
+    "middlewares",
+    "remoteaddr",
+    "lightstep",
+    "opentelemetry",
+    "vercel",
+    "taiko",
+    "dotfiles"
+  ],
   "gitlens.mode.active": "zen",
   "typescript.suggest.paths": false
 }

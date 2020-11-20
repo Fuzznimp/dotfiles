@@ -20,7 +20,7 @@ zstyle ':completion:*' group-name ''
 
 zstyle :prompt:pure:git:stash show yes
 
-zstyle :prompt:pure:path color 26
+zstyle :prompt:pure:path color 242
 zstyle :prompt:pure:prompt:success color 34
 zstyle :prompt:pure:git:branch color 34
 
@@ -38,7 +38,15 @@ bindkey '^[[Z' reverse-menu-complete # Ctrl-r
 bindkey '^[[A' up-line-or-search # Arrow up
 bindkey '^[[B' down-line-or-search # Arrow down
 
-[[ -r ${HOME}/.asdf/asdf.sh ]] && source ${HOME}/.asdf/asdf.sh
 source ${HOME}/.zsh/.aliases
 source ${HOME}/.zsh/.functions
 source /usr/local/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[arg0]=fg=34,bold
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=208,bold
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=208,bold
+ZSH_HIGHLIGHT_STYLES[path]=fg=255,bold
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]=fg=208,bold
+
+[[ -r ${HOME}/.asdf/asdf.sh ]] && source ${HOME}/.asdf/asdf.sh
