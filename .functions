@@ -3,15 +3,17 @@ export_dotfiles() {
   && cp.alias \
   && cp.function \
   && cp.gitconfig \
-  && cp.gitignore
+  && cp.gitignore \
+  && cp.snippet
 }
 
 import_dotfiles() {
-  cp ~/workspace/dotfiles ~/.zshrc \
-  && cp ~/workspace/dotfiles ~/.zsh/.aliases \
-  && cp ~/workspace/dotfiles ~/.zsh/.functions \
-  && cp ~/.gitconfig ~/workspace/dotfiles \
-  && cp ~/.gitignore ~/workspace/dotfiles
+  cp ~/workspace/dotfiles/.zshrc ~/.zshrc \
+  && cp ~/workspace/dotfiles/.aliases ~/.zsh/.aliases \
+  && cp ~/workspace/dotfiles/.functions ~/.zsh \
+  && cp ~/workspace/dotfiles.gitconfig ~/.gitconfig \
+  && cp ~/workspace/dotfiles/.gitignore ~/.gitignore \
+  && cp cp ~/workspace/dotfiles/fuzznimp.code-snippets ~/Library/Application Support/Code/User/snippets/fuzznimp.code-snippets
 }
 
 function find-exec() {

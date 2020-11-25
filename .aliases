@@ -12,6 +12,7 @@ alias cp.alias="cp ~/.zsh/.aliases ~/workspace/dotfiles"
 alias cp.function="cp ~/.zsh/.functions ~/workspace/dotfiles"
 alias cp.gitconfig="cp ~/.gitconfig ~/workspace/dotfiles"
 alias cp.gitignore="cp ~/.gitignore ~/workspace/dotfiles"
+alias cp.snippet="cp ~/Library/Application Support/Code/User/snippets/fuzznimp.code-snippets ~/workspace/dotfiles"
 
 # System
 alias ~="cd ~"
