@@ -4,7 +4,6 @@ export_dotfiles() {
   && cp.function \
   && cp.gitconfig \
   && cp.gitignore \
-  && cp.snippet
 }
 
 import_dotfiles() {
@@ -13,7 +12,6 @@ import_dotfiles() {
   && cp ~/workspace/dotfiles/.functions ~/.zsh \
   && cp ~/workspace/dotfiles.gitconfig ~/.gitconfig \
   && cp ~/workspace/dotfiles/.gitignore ~/.gitignore \
-  && cp cp ~/workspace/dotfiles/fuzznimp.code-snippets ~/Library/Application Support/Code/User/snippets/fuzznimp.code-snippets
 }
 
 function find-exec() {
