@@ -27,17 +27,25 @@ alias mkdir="mkdir -pv"
 alias sev="source .env_vars"
 
 # Paths
-alias wks="cd ~/workspace"
-alias fwl="cd ~/workspace/fewlines"
-alias fwl.courses="cd ~/workspace/fewlines/sparta_courses"
-alias fwl.sparta="cd ~/workspace/fewlines/sparta-monorepo"
-alias fwl.account="cd ~/workspace/fewlines/connect-account"
-alias fwl.connect="cd ~/workspace/fewlines/connect"
-alias fwl.web="cd ~/workspace/fewlines/node-web-libraries"
-alias dotfiles="cd ~/workspace/dotfiles"
-alias conf.zsh="code ~/.zshrc"
 alias conf.alias="code ~/.zsh/.aliases"
 alias conf.function="code ~/.zsh/.functions"
+alias conf.zsh="code ~/.zshrc"
+alias dotfiles="cd ~/workspace/dotfiles"
+alias wks="cd ~/workspace"
+
+# Work
+## Paths
+alias fwl="cd ~/workspace/fewlines"
+alias fwl.account="cd ~/workspace/fewlines/connect-account"
+alias fwl.connect="cd ~/workspace/fewlines/connect"
+alias fwl.courses="cd ~/workspace/fewlines/sparta_courses"
+alias fwl.eslint="cd ~/workspace/fewlines/eslint-config"
+alias fwl.profile="cd ~/workspace/fewlines/connect-profile"
+alias fwl.sparta="cd ~/workspace/fewlines/sparta-monorepo"
+alias fwl.web="cd ~/workspace/fewlines/node-web-libraries"
+
+## Scripts
+alias ytb="yarn db:create-users-table"
 
 # ls
 alias ll="exa --all --long --header --git"

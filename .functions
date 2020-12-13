@@ -52,7 +52,7 @@ port_in_use() {
 }
 
 uuid() {
-  uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '\n'
+  uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '\n' | pbcopy
 }
 
 wth() {
