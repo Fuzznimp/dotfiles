@@ -11,12 +11,10 @@ brew "mas"
 brew "mkcert"
 brew "neovim"
 brew "nginx"
-brew "node"
 brew "onyx"
 brew "openssl@1.1"
 brew "overmind"
 brew "the_silver_searcher"
-brew "yarn"
 brew "zsh"
 brew "zsh-completions"
 brew "zsh-syntax-highlighting"
@@ -49,7 +47,7 @@ cask "whatsapp"
 mas "Bear", id: 1091189122
 mas "Monosnap", id: 540348655
 mas "Paprika Recipe Manager 3", id: 1303222628
-mas "Spark" id: 1176895641
+mas "Spark", id: 1176895641
 mas "WhatsApp", id: 1147396723
 
 # Manual
