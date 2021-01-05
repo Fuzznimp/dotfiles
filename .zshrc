@@ -20,7 +20,7 @@ zstyle ':completion:*' group-name ''
 
 zstyle :prompt:pure:git:stash show yes
 
-zstyle :prompt:pure:path color 242
+zstyle :prompt:pure:path color 242,bold
 zstyle :prompt:pure:prompt:success color 34
 zstyle :prompt:pure:git:branch color 34
 

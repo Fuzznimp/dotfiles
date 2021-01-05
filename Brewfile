@@ -20,22 +20,19 @@ brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 
 cask "1password"
-cask "alacritty"
 cask "alfred"
 cask "background-music"
 cask "bitwarden"
 cask "clickup"
 cask "docker-compose"
 cask "docker"
-cask "dropbox"
 cask "figma"
 cask "firefox"
 cask "font-hack-nerd-font"
 cask "google-chrome"
 cask "guitar-pro"
 cask "insomnia"
-cask "iterm2"
-cask "notion"
+cask "kitty"
 cask "slack"
 cask "spectacle"
 cask "spotify"
@@ -57,3 +54,4 @@ mas "WhatsApp", id: 1147396723
 # OniVim2 https://v2.onivim.io/early-access-portal
 # Pure https://github.com/sindresorhus/pure
 # Shadow https://shadow.tech/fr/shadow-apps
+# Hammerspoon http://www.hammerspoon.org/go/

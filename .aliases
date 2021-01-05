@@ -85,7 +85,7 @@ alias gb="git rebase"
 alias gbd="git branch -D"
 alias gl="git log --pretty=oneline --abbrev-commit"
 alias grh="git reset --hard HEAD"
-alias	gpof="git push origin--force-with-lease"
+alias	gpof="git push origin --force-with-lease"
 alias	gpoff="git push origin --force-with-lease --no-verify"
 alias gbleach="git branch -vv | grep 'gone'] | awk '{ print $1 }' | xargs git branch -D"
 
