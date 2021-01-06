@@ -1,6 +1,6 @@
 autoload -U colors && colors
 
-COMMON_PROMPT_SYMBOL="❯"
+COMMON_PROMPT_SYMBOL="%{%G❯%}"
 COMMON_COLORS_HOST_ME=green
 COMMON_COLORS_HOST_AWS_VAULT=yellow
 COMMON_COLORS_CURRENT_DIR=yellow
@@ -100,7 +100,7 @@ setopt PROMPT_SUBST
 # setopt prompt_subst
 # zstyle ':vcs_info:git:*' formats '%b'
 # PS1="%{$fg[yellow]%}%(5~|%-1~/.../%3~|%4~)%{$fg[red]%} "
-# precmd() { print "" }
+precmd() { print "" }
 PROMPT='$(common_host)$(common_current_dir)$(common_bg_jobs)$(common_return_status)'
 RPROMPT='$(common_git_status)'
 
