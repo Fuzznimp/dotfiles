@@ -138,10 +138,10 @@ source ${HOME}/.zsh/.functions
 source /usr/local/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[arg0]=fg=28,bold
+ZSH_HIGHLIGHT_STYLES[arg0]=fg=green,bold
 ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=208,bold
 ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=208,bold
 ZSH_HIGHLIGHT_STYLES[path]=fg=255,bold
-ZSH_HIGHLIGHT_STYLES[path_pathseparator]=fg=208,bold
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]=fg=yellow,bold
 
 [[ -r ${HOME}/.asdf/asdf.sh ]] && source ${HOME}/.asdf/asdf.sh
