@@ -12,6 +12,8 @@ alias cp.alias="cp ~/.zsh/.aliases ~/workspace/dotfiles"
 alias cp.function="cp ~/.zsh/.functions ~/workspace/dotfiles"
 alias cp.gitconfig="cp ~/.gitconfig ~/workspace/dotfiles"
 alias cp.gitignore="cp ~/.gitignore ~/workspace/dotfiles"
+alias cp.kitty="cp ~/.config/kitty/kitty.conf ~/workspace/dotfiles"
+alias cp.hammerspoon="cp ~/.hammerspoon/init.lua ~/workspace/dotfiles/.hammerspoon/"
 # alias cp.snippet="cp ~/Library/Application Support/Code/User/snippets/fuzznimp.code-snippets ~/workspace/dotfiles"
 
 # System
@@ -26,10 +28,13 @@ alias mv="mv -iv"
 alias mkdir="mkdir -pv"
 alias sev="source .env_vars"
 
-# Paths
+# Confs
 alias conf.alias="code ~/.zsh/.aliases"
 alias conf.function="code ~/.zsh/.functions"
 alias conf.zsh="code ~/.zshrc"
+alias conf.kitty="code ~/.config/kitty/kitty.conf"
+
+# Paths
 alias dotfiles="cd ~/workspace/dotfiles"
 alias wks="cd ~/workspace"
 
@@ -90,8 +95,7 @@ alias	gpoff="git push origin --force-with-lease --no-verify"
 alias gbleach="git branch -vv | grep 'gone'] | awk '{ print $1 }' | xargs git branch -D"
 
 # Vim
-alias vim="nvim"
-alias vi="vim ."
+alias vi="nvim"
 
 # Onivim2
 alias oni="/Applications/Onivim2.App/Contents/MacOS/Oni2"

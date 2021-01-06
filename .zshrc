@@ -1,6 +1,15 @@
-fpath+=$HOME/.zsh/pure
+autoload -U colors && colors
 
-autoload -U promptinit; promptinit
+source ~/.zsh/.git-prompt.sh
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+zstyle ':vcs_info:git:*' formats '%b'
+precmd() { print "" }
+PS1="%{$fg[yellow]%}%(5~|%-1~/.../%3~|%4~)%{$fg[red]%} "
+RPROMPT=\$(__git_ps1 "%s")
+PS2="\$vcs_info_msg_0_'%# "
 
 # Do menu-driven completion.
 zstyle ':completion:*' menu select
@@ -17,14 +26,6 @@ zstyle ':completion:*:messages' format '%d'
 zstyle ':completion:*:warnings' format "$fg[red]No matches for:$reset_color %d"
 zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 zstyle ':completion:*' group-name ''
-
-zstyle :prompt:pure:git:stash show yes
-
-zstyle :prompt:pure:path color 242,bold
-zstyle :prompt:pure:prompt:success color 34
-zstyle :prompt:pure:git:branch color 34
-
-prompt pure
 
 bindkey -e
 autoload -Uz compinit && compinit
@@ -43,7 +44,7 @@ source ${HOME}/.zsh/.functions
 source /usr/local/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[arg0]=fg=34,bold
+ZSH_HIGHLIGHT_STYLES[arg0]=fg=28,bold
 ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=208,bold
 ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=208,bold
 ZSH_HIGHLIGHT_STYLES[path]=fg=255,bold

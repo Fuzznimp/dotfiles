@@ -4,6 +4,8 @@ export_dotfiles() {
   && cp.function \
   && cp.gitconfig \
   && cp.gitignore \
+  && cp.kitty \
+  && cp.hammerspoon \
 }
 
 import_dotfiles() {

@@ -52,6 +52,5 @@ mas "WhatsApp", id: 1147396723
 # DeepL https://www.deepl.com/en/app/
 # Karabiner https://karabiner-elements.pqrs.org/
 # OniVim2 https://v2.onivim.io/early-access-portal
-# Pure https://github.com/sindresorhus/pure
 # Shadow https://shadow.tech/fr/shadow-apps
 # Hammerspoon http://www.hammerspoon.org/go/
