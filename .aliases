@@ -50,9 +50,6 @@ alias fwl.sparta="cd ~/workspace/fewlines/sparta-monorepo"
 alias fwl.sdk="cd ~/workspace/fewlines/connect-js"
 alias fwl.web="cd ~/workspace/fewlines/node-web-libraries"
 
-## Scripts
-alias ytb="yarn db:create-users-table"
-
 # ls
 alias ll="exa --all --long --header --git"
 alias lt="exa -aT --color=always --group-directories-first --ignore-glob='**/node_modules|**/dist|**/.next'"
@@ -61,6 +58,10 @@ alias lt="exa -aT --color=always --group-directories-first --ignore-glob='**/nod
 alias tarr="tar -pczf $1 $2"
 alias untarr="tar -pxzf $1"
 alias starr="sudo tar -pczf $1 $2"
+
+# Docker
+alias dk="docker"
+alias dkc="docker compose"
 
 # Overmind
 alias hv="hivemind"
