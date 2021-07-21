@@ -25,7 +25,7 @@ alias ....="cd ../../.."
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias mkdir="mkdir -pv"
-alias sev="source .env_vars"
+alias src="source .env_vars"
 
 # Confs
 alias conf.alias="code ~/.zsh/.aliases"
@@ -48,7 +48,8 @@ alias fwl.eslint="cd ~/workspace/fewlines/eslint-config"
 alias fwl.profile="cd ~/workspace/fewlines/connect-profile"
 alias fwl.sparta="cd ~/workspace/fewlines/sparta-monorepo"
 alias fwl.sdk="cd ~/workspace/fewlines/connect-js"
-alias fwl.web="cd ~/workspace/fewlines/node-web-libraries"
+alias fwl.fwl="cd ~/workspace/fewlines/node-web-libraries"
+alias fwl.web="cd ~/workspace/fewlines/website"
 
 # ls
 alias ll="exa --all --long --header --git"
@@ -69,7 +70,6 @@ alias ov="overmind"
 
 # Mac
 alias cask="brew cask"
-alias update="brew update && brew upgrade && brew cleanup && asdf update && asdf plugin-update --all && mas upgrade"
 alias delete.ds="find . -type f -name '*.DS_Store' -ls -delete"
 alias delete.ad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
 alias desktopshow="defaults write com.apple.finder CreateDesktop -bool true && killfinder"

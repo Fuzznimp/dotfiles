@@ -16,6 +16,20 @@ import_dotfiles() {
   && cp ~/workspace/dotfiles/.gitignore ~/.gitignore \
 }
 
+stack-update () {
+  brew update \
+    && brew upgrade \
+    && brew cleanup \
+    && brew doctor \
+    && brew bundle check \
+    && brew bundle cleanup
+
+  asdf update
+  asdf plugin-update --all
+
+  mas upgrade  
+}
+
 function find-exec() {
   find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
 }

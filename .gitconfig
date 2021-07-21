@@ -56,4 +56,4 @@
 	insteadOf = "fewlines:"
 	
 [pull]
-	ff = only
+	ff = true
