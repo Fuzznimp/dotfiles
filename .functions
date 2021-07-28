@@ -16,7 +16,7 @@ import_dotfiles() {
   && cp ~/workspace/dotfiles/.gitignore ~/.gitignore \
 }
 
-stack-update () {
+update_stack () {
   brew update \
     && brew upgrade \
     && brew cleanup \

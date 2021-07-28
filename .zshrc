@@ -4,6 +4,7 @@ export HISTSIZE=100000
 setopt INC_APPEND_HISTORY
 export HISTTIMEFORMAT="[%F %T] "
 setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
 
 autoload -U colors && colors
 
