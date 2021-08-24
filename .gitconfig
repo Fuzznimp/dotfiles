@@ -33,7 +33,8 @@
 	path = ~/.gitconfig.local
 
 [init]
-	templatedir = ~/.git_template
+	templateDir = /Users/fuzznimp/.git-templates
+	defaultBranch = main
 
 [merge]
 	tool = vimdiff3

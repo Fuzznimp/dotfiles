@@ -163,3 +163,4 @@ export PATH="$PATH:$(yarn global bin)"
 source ${HOME}/.zsh/.aliases
 source ${HOME}/.zsh/.functions
 source /usr/local/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ${HOME}/.cargo/env
