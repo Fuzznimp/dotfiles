@@ -1,0 +1,53 @@
+[
+  {
+    "key": "cmd+]",
+    "command": "block-travel.jumpDown"
+  },
+  {
+    "key": "cmd+shift+]",
+    "command": "block-travel.selectUp"
+  },
+  {
+    "key": "cmd+[",
+    "command": "block-travel.jumpUp"
+  },
+  {
+    "key": "cmd+shift+[",
+    "command": "block-travel.selectDown"
+  },
+  {
+    "key": "alt+[",
+    "command": "cursorWordPartLeft",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+]",
+    "command": "cursorWordPartRight",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+alt+[",
+    "command": "cursorWordPartLeftSelect",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+alt+]",
+    "command": "cursorWordPartRightSelect",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+down",
+    "command": "-block-travel.jumpDown",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+up",
+    "command": "-block-travel.jumpUp",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "Enter",
+    "command": "rust-analyzer.onEnter",
+    "when": "editorTextFocus && !suggestWidgetVisible && editorLangId == rust"
+  }
+]

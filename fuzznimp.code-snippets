@@ -1,0 +1,88 @@
+{
+  // Modules
+  "import": {
+    "scope": "javascript, jsx, typescript, tsx",
+    "prefix": "imp",
+    "body": "import ${1:moduleName} from '${2:module}'$0"
+  },
+  "importNoModuleName": {
+    "scope": "javascript, jsx, typescript, tsx",
+    "prefix": "imn",
+    "body": "import '${1:module}'$0"
+  },
+  "importDestructing": {
+    "scope": "javascript, jsx, typescript, tsx",
+    "prefix": "imd",
+    "body": "import { $1 } from '${2:module}'$0"
+  },
+  "importEverything": {
+    "scope": "javascript, jsx, typescript, tsx",
+    "prefix": "ime",
+    "body": "import * as ${1:alias} from '${2:module}'$0"
+  },
+  "importAs": {
+    "scope": "javascript, jsx, typescript, tsx",
+    "prefix": "ima",
+    "body": "import { ${1:originalName} as ${2:alias} } from '${3:module}'$0"
+  },
+  "exportDefault": {
+    "scope": "javascript, jsx, typescript, tsx",
+    "prefix": "exp",
+    "body": "export default $1$0"
+  },
+  "exportDestructing": {
+    "scope": "javascript, jsx, typescript, tsx",
+    "prefix": "exd",
+    "body": "export { $2 } from '${2:module}'$0"
+  },
+  "exportAs": {
+    "scope": "javascript, jsx, typescript, tsx",
+    "prefix": "exa",
+    "body": "export { ${1:originalName} as ${2:alias} } from '${3:module}'$0"
+  },
+  // Functions
+  "Typed Function": {
+    "scope": "typescript, tsx",
+    "prefix": "fc",
+    "body": ["function ${1:functionName}(): ${2:type} {${3:body}}", ""],
+    "description": "Log output to console"
+  },
+  "Exported Typed Function": {
+    "scope": "typescript, tsx",
+    "prefix": "fce",
+    "body": ["export function ${1:functionName}(): ${2:type} {${3:body}}", ""],
+    "description": "Export typed function"
+  },
+  "Named Typed Function": {
+    "scope": "typescript, tsx",
+    "prefix": "fcn",
+    "body": ["function ${TM_FILENAME_BASE}(): ${1:type} {${2:body}}", ""],
+    "description": "Log output to console"
+  },
+  "Named Exported Typed Function": {
+    "scope": "typescript, tsx",
+    "prefix": "fcne",
+    "body": [
+      "export function ${TM_FILENAME_BASE}(): ${1:type} {${2:body}}",
+      ""
+    ],
+    "description": "Log output to console"
+  },
+  // Destructuring
+  "Destructing Object": {
+    "prefix": "dob",
+    "body": "const {${1:propertyName}} = ${2:objectToDestruct}",
+    "description": "Creates and assigns a local variable using object destructing"
+  },
+  "Destructing Array": {
+    "prefix": "dar",
+    "body": "const [${1:propertyName}] = ${2:arrayToDestruct}",
+    "description": "Creates and assigns a local variable using array destructing"
+  },
+  // Logs
+  "Log Flag": {
+    "prefix": "lgf",
+    "body": "console.log('FLAG')",
+    "description": "Creates a flag"
+  }
+}

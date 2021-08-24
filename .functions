@@ -2,11 +2,15 @@ export_dotfiles() {
   cp.zshrc \
   && cp.alias \
   && cp.function \
+  && cp.kitty \
   && cp.gitconfig \
   && cp.gitignore \
   && cp.gittemplates \
-  && cp.kitty \
   && cp.hammerspoon \
+  && cp.rustfmt \
+  && cp.vscode.keybindings \
+  && cp.vscode.settings \
+  && cp.vscode.snippet \
 }
 
 import_dotfiles() {
