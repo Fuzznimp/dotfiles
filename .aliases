@@ -8,12 +8,12 @@ alias paths="echo -e ${PATH//:/\\n}"
 
 # Dotfiles
 ## Shell
-alias cp.zshrc="cp -i ~/.zshrc ~/workspace/dotfiles"
-alias cp.alias="cp -i ~/.zsh/.aliases ~/workspace/dotfiles"
-alias cp.kitty="cp -i ~/.config/kitty/kitty.conf ~/workspace/dotfiles"
-alias cp.function="cp -i ~/.zsh/.functions ~/workspace/dotfiles"
+alias cp.zshrc="cp ~/.zshrc ~/workspace/dotfiles"
+alias cp.alias="cp ~/.zsh/.aliases ~/workspace/dotfiles"
+alias cp.kitty="cp ~/.config/kitty/kitty.conf ~/workspace/dotfiles"
+alias cp.function="cp ~/.zsh/.functions ~/workspace/dotfiles"
 ## Git
-alias cp.gitconfig="cp -i ~/.gitconfig ~/workspace/dotfiles"
+alias cp.gitconfig="cp ~/.gitconfig ~/workspace/dotfiles"
 alias cp.gitignore="cp ~/.gitignore ~/workspace/dotfiles"
 alias cp.gittemplates="cp -R ~/.git-templates ~/workspace/dotfiles"
 # Scripts
