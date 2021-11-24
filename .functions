@@ -16,9 +16,14 @@ export_dotfiles() {
 import_dotfiles() {
   cp ~/workspace/dotfiles/.zshrc ~/.zshrc \
   && cp ~/workspace/dotfiles/.aliases ~/.zsh/.aliases \
-  && cp ~/workspace/dotfiles/.functions ~/.zsh \
+  && cp ~/workspace/dotfiles/.functions ~/.zsh/.functions \
+  && cp ~/workspace/dotfiles/kitty.conf ~/.config/kitty/kitty.conf \
   && cp ~/workspace/dotfiles.gitconfig ~/.gitconfig \
   && cp ~/workspace/dotfiles/.gitignore ~/.gitignore \
+  && cp -R ~/workspace/dotfiles/.git-templates ~/.git-templates \
+  && cp ~/workspace/dotfiles/.hammerspoon ~/.hammerspoon/init.lua \
+  && cp ~/workspace/dotfiles/.rustfmt.toml ~/.rustfmt.toml \
+  && cp ~/workspace/dotfiles ~/Library/Application\ Support/Code/User/keybindings.json
 }
 
 update_stack () {
