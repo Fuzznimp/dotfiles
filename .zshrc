@@ -151,16 +151,7 @@ ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=208,bold
 ZSH_HIGHLIGHT_STYLES[path]=fg=255,bold
 ZSH_HIGHLIGHT_STYLES[path_pathseparator]=fg=yellow,bold
 
-PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-PATH="/usr/local/sbin:$PATH"
-PATH="${HOME}/.local/bin:${PATH}"
-PATH="${HOME}/.asdf/shims:${PATH}"
-PATH="${HOME}/.bin:${PATH}"
-[[ -r ${HOME}/.asdf/asdf.sh ]] && source ${HOME}/.asdf/asdf.sh
-
-export PATH="$PATH:$(yarn global bin)"
-
 source ${HOME}/.zsh/.aliases
 source ${HOME}/.zsh/.functions
-source /usr/local/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /Users/fuzznimp/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ${HOME}/.cargo/env

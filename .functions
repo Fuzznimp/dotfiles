@@ -18,12 +18,14 @@ import_dotfiles() {
   && cp ~/workspace/dotfiles/.aliases ~/.zsh/.aliases \
   && cp ~/workspace/dotfiles/.functions ~/.zsh/.functions \
   && cp ~/workspace/dotfiles/kitty.conf ~/.config/kitty/kitty.conf \
-  && cp ~/workspace/dotfiles.gitconfig ~/.gitconfig \
+  && cp ~/workspace/dotfiles/.gitconfig ~/.gitconfig \
   && cp ~/workspace/dotfiles/.gitignore ~/.gitignore \
   && cp -R ~/workspace/dotfiles/.git-templates ~/.git-templates \
-  && cp ~/workspace/dotfiles/.hammerspoon ~/.hammerspoon/init.lua \
+  && cp -R ~/workspace/dotfiles/.hammerspoon ~/.hammerspoon \
   && cp ~/workspace/dotfiles/.rustfmt.toml ~/.rustfmt.toml \
-  && cp ~/workspace/dotfiles ~/Library/Application\ Support/Code/User/keybindings.json
+  && cp ~/workspace/dotfiles/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json \
+  && cp ~/workspace/dotfiles/settings.json ~/Library/Application\ Support/Code/User/settings.json \
+  && cp ~/workspace/dotfiles/fuzznimp.code-snippets ~/Library/Application\ Support/Code/User/snippets/fuzznimp.code-snippets
 }
 
 update_stack () {
