@@ -20,7 +20,7 @@ import_dotfiles() {
   && cp ~/workspace/dotfiles/kitty.conf ~/.config/kitty/kitty.conf \
   && cp ~/workspace/dotfiles/.gitconfig ~/.gitconfig \
   && cp ~/workspace/dotfiles/.gitignore ~/.gitignore \
-  && cp -R ~/workspace/dotfiles/.git-templates ~/.git-templates \
+  && cp -R ~/workspace/dotfiles/.git-templates ~ \
   && cp -R ~/workspace/dotfiles/.hammerspoon ~/.hammerspoon \
   && cp ~/workspace/dotfiles/.rustfmt.toml ~/.rustfmt.toml \
   && cp ~/workspace/dotfiles/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json \
@@ -51,6 +51,10 @@ function ff() {
   find . -iname "*${1:-}*"
 }
 
+uuid() {
+  uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '\n' | pbcopy
+}
+
 api_key() {
   size=${1:-16}
   openssl rand -hex ${size}
@@ -60,16 +64,6 @@ gclone() {
 	git clone "$1" && cd "$(basename "$1" .git)"
 }
 
-# Markdown
-md() {
-  pandoc $1 | lynx -stdin -dump
-}
-
-# Open man page as PDF
-manpdf() {
-  man -t "$1" | open -f -a /Applications/Preview.app/
-}
-
 mk() {
   mkdir -p "$@" && cd "$@"
 }
@@ -77,10 +71,6 @@ mk() {
 port_in_use() {
   local port=${1:?"you should set a port"}
   lsof -n -i:${port} | grep LISTEN
-}
-
-uuid() {
-  uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '\n' | pbcopy
 }
 
 wth() {

@@ -1,11 +1,26 @@
 {
-  "window.zoomLevel": 1,
-  "liveServer.settings.donotShowInfoMsg": true,
-  "liveServer.settings.donotVerifyTags": true,
+  "search.exclude": {
+    "/node_modules": true,
+    "/bower_components": true,
+    "/env": true,
+    "/venv": true,
+    "/.next": true,
+    "yarn.lock": true
+  },
+  "files.watcherExclude": {
+    "/.git/objects/": true,
+    "/.git/subtree-cache/": true,
+    "/node_modules/": true,
+    "/env/": true,
+    "/venv/": true,
+    "env-*": true,
+    "/.next": true,
+    "yarn.lock": true
+  },
   "emmet.showSuggestionsAsSnippets": true,
   "editor.snippetSuggestions": "top",
   "emmet.triggerExpansionOnTab": true,
-  "workbench.colorTheme": "Atom One Dark",
+  "workbench.colorTheme": "Gruvbox Material Dark",
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "editor.suggestSelection": "first",
@@ -13,11 +28,6 @@
   "editor.fontLigatures": false,
   "editor.fontWeight": "500",
   "editor.tabSize": 2,
-  "bracket-pair-colorizer-2.colors": [
-    "SaddleBrown",
-    "ForestGreen",
-    "DarkOrange"
-  ],
   "workbench.startupEditor": "newUntitledFile",
   "indentRainbow.colors": [
     "rgba(16,16,16,0.1)",
@@ -39,7 +49,6 @@
     "source.fixAll.eslint": true
   },
   "eslint.format.enable": true,
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "[javascript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
@@ -59,30 +68,67 @@
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "workbench.iconTheme": "vscode-icons",
-  "window.nativeTabs": true,
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "search.exclude": {
-    "**/.next": true,
-    "yarn.lock": true,
-    "**/node_modules": true
-  },
-  "terminal.integrated.shell.osx": "/bin/zsh",
+  "terminal.integrated.defaultProfile.osx": "zsh",
   "cSpell.ignoreWords": [
+    "algo",
     "behaviour",
-    "fewlines",
-    "middlewares",
-    "remoteaddr",
+    "browserslist",
+    "deduping",
+    "dotfiles",
+    "fadeinout",
+    "fuzznimp",
     "lightstep",
+    "middlewares",
+    "nextjs",
+    "oluane",
+    "openapi",
     "opentelemetry",
-    "vercel",
+    "prefetch",
+    "procfile",
+    "remoteaddr",
+    "roboto",
     "taiko",
-    "dotfiles"
+    "unmarshall",
+    "uuidv",
+    "vercel",
+    "bodyparser",
+    "sencrop",
+    "leafcrop",
+    "sigfox",
+    "fiability",
+    "organisation",
+    "organisations"
   ],
-  "gitlens.mode.active": "zen",
-  "typescript.suggest.paths": false
+  "typescript.suggest.paths": false,
+  "editor.dragAndDrop": false,
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wrappingIndent": "same",
+  "editor.wordWrapColumn": 80,
+  "workbench.editor.revealIfOpen": true,
+  "window.nativeTabs": true,
+  "gitlens.codeLens.recentChange.enabled": false,
+  "gitlens.codeLens.authors.enabled": false,
+  "extensions.ignoreRecommendations": true,
+  "gruvboxMaterial.darkContrast": "hard",
+  "security.workspace.trust.untrustedFiles": "open",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.inlineSuggest.enabled": true,
+  "typescript.disableAutomaticTypeAcquisition": true,
+  "editor.bracketPairColorization.enabled": true,
+  "workbench.colorCustomizations": {
+    "editorBracketHighlight.foreground1": "#8b4513",
+    "editorBracketHighlight.foreground2": "#228b22",
+    "editorBracketHighlight.foreground3": "#cc7722"
+  },
+  "window.zoomLevel": 1,
+  "errorLens.excludeBySource": [
+    "cSpell"
+  ],
+  "errorLens.delay": 2000
 }

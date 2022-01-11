@@ -34,7 +34,7 @@ alias ....="cd ../../.."
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias mkdir="mkdir -pv"
-alias src="source .env_vars"
+alias src="source .env.development"
 
 # Confs
 alias conf.alias="code ~/.zsh/.aliases"
@@ -47,7 +47,7 @@ alias dotfiles="cd ~/workspace/dotfiles"
 alias wks="cd ~/workspace"
 
 # Work
-## Paths
+## Fewlines
 alias fwl="cd ~/workspace/fewlines"
 alias fwl.account="cd ~/workspace/fewlines/connect-account"
 alias fwl.connect="cd ~/workspace/fewlines/connect"
@@ -59,6 +59,16 @@ alias fwl.sparta="cd ~/workspace/fewlines/sparta-monorepo"
 alias fwl.sdk="cd ~/workspace/fewlines/connect-js"
 alias fwl.fwl="cd ~/workspace/fewlines/node-web-libraries"
 alias fwl.web="cd ~/workspace/fewlines/website"
+## Sencrop
+alias sen="cd ~/workspace/sencrop"
+alias sen.app="cd ~/workspace/sencrop/sencrop-app"
+alias sen.bo="cd ~/workspace/sencrop/sencrop-backoffice"
+alias sen.bali="cd ~/workspace/sencrop/sencrop-bali-api"
+alias sen.factory="cd ~/workspace/sencrop/sencrop-factory"
+alias sen.infra="cd ~/workspace/sencrop/infrastructure-sencrop"
+alias sen.map="cd ~/workspace/sencrop/sencrop-map"
+alias sen.quo="cd ~/workspace/sencrop/sencrop-quotator"
+alias sen.ui="cd ~/workspace/sencrop/sencrop-ui"
 
 # ls
 alias ll="exa --all --long --header --git"
@@ -76,6 +86,9 @@ alias dkc="docker compose"
 # Overmind
 alias hv="hivemind"
 alias ov="overmind"
+
+# AWS
+alias ddb="aws dynamodb"
 
 # Mac
 alias cask="brew cask"
@@ -103,6 +116,9 @@ alias gl="git log --pretty=oneline --abbrev-commit"
 alias	gpof="git push origin --force-with-lease"
 alias	gpoff="git push origin --force-with-lease --no-verify"
 alias gbleach="git branch -vv | grep 'gone'] | awk '{ print $1 }' | xargs git branch -D"
+
+# kitty
+alias update_kitty="curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin"
 
 # Vim
 alias vi="nvim"

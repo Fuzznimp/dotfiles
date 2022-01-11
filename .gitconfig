@@ -3,7 +3,7 @@
 	ui = true
 
 [core]
-	editor = vim
+	editor = nvim
 
 [diff]
 	renames = copies
