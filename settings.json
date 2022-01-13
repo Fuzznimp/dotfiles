@@ -103,7 +103,8 @@
     "sigfox",
     "fiability",
     "organisation",
-    "organisations"
+    "organisations",
+    "chargebee"
   ],
   "typescript.suggest.paths": false,
   "editor.dragAndDrop": false,
@@ -127,8 +128,9 @@
     "editorBracketHighlight.foreground3": "#cc7722"
   },
   "window.zoomLevel": 1,
-  "errorLens.excludeBySource": [
-    "cSpell"
-  ],
-  "errorLens.delay": 2000
+  "errorLens.excludeBySource": ["cSpell"],
+  "errorLens.delay": 2000,
+  "http.systemCertificates": false,
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true
 }

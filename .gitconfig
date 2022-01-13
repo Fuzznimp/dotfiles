@@ -1,22 +1,44 @@
+[user]
+	email = montaigne.anthony.dev@gmail.com
+	name = Fuzznimp
+	useconfigonly = true
+
+[url "git@github.com:fuzznimp/"]
+	insteadOf = "fuzznimp:"
+
+[alias]
+  tags = tag -l
+  branches = branch -a
+  remotes = remote -v
+  hist = log --graph --pretty=format:'%Cred%h%Creset %s%C(yellow)%d%Creset %Cgreen(%cr)%Creset [%an]' --abbrev-commit --date=relative
+
 [color]
 	diff = true
-	ui = true
+	ui = auto
+
+[color "diff"]
+	whitespace = red
 
 [core]
 	editor = nvim
 
 [diff]
-	renames = copies
-	tool = vimdiff3
+  mnemonicPrefix = true
+	renames = true
+	submodule = log
+  tool = vscode
 
 [difftool]
 	prompt = false
+	editor = code --wait
 
-[difftool "vimdiff3"]
-	path = vim
+[difftool "vscode"]
+  cmd = code --wait --diff $LOCAL $REMOTE
 
-[color "diff"]
-	whitespace = red
+[log]
+  abbrevCommit = true
+  follow = true
+  decorate = false
 
 [core]
 	excludesfile = ~/.gitignore
@@ -26,35 +48,41 @@
 	prune = true
 
 [grep]
+  break = true
+  heading = true
 	extendRegexp = true
 	lineNumber = true
-
-  [include]
-	path = ~/.gitconfig.local
 
 [init]
 	templateDir = /Users/fuzznimp/.git-templates
 	defaultBranch = main
 
 [merge]
-	tool = vimdiff3
+  ff = false
 
-[mergetool "vimdiff3"]
-	path = nvim
+[mergetool]
+  keepBackup = false
+  keepTemporaries = false
+  writeToTemp = true
+  prompt = false
 
 [push]
 	default = current
-
-[user]
-	email = montaigne.anthony.dev@gmail.com
-	name = Fuzznimp
-	useconfigonly = true
-
-[url "git@github.com:fuzznimp/"]
-	insteadOf = "fuzznimp:"
-
-[url "git@github.com:fewlinesco/"]
-	insteadOf = "fewlines:"
 	
 [pull]
 	ff = true
+
+[status]
+  submoduleSummary = true
+  showUntrackedFiles = all
+
+[tag]
+  sort = version:refname
+
+[versionsort]
+  prereleaseSuffix = -pre
+  prereleaseSuffix = .pre
+  prereleaseSuffix = -beta
+  prereleaseSuffix = .beta
+  prereleaseSuffix = -rc
+  prereleaseSuffix = .rc
