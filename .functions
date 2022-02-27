@@ -39,7 +39,7 @@ update_stack () {
   asdf update
   asdf plugin-update --all
 
-  mas upgrade  
+  mas upgrade
 }
 
 function find-exec() {

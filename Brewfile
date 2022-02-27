@@ -1,3 +1,4 @@
+brew "act"
 brew "cowsay"
 brew "ctop"
 brew "exa"
@@ -30,19 +31,15 @@ cask "slack"
 cask "spectacle"
 cask "spotify"
 cask "tableplus"
+cask "typora"
 cask "vlc"
 cask "whatsapp"
 
-mas "Bear", id: 1091189122
 mas "Monosnap", id: 540348655
 mas "Paprika Recipe Manager 3", id: 1303222628
 mas "Spark", id: 1176895641
-mas "WhatsApp", id: 1147396723
 
 # Manual
-# asdf https://asdf-vm.com/#/core-manage-asdf
-# DeepL https://www.deepl.com/en/app/
-# Karabiner https://karabiner-elements.pqrs.org/
 # OniVim2 https://v2.onivim.io/early-access-portal
 # Shadow https://shadow.tech/fr/shadow-apps
 # Hammerspoon http://www.hammerspoon.org/go/
