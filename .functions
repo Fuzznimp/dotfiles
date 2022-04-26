@@ -11,6 +11,7 @@ export_dotfiles() {
   && cp.vscode.keybindings \
   && cp.vscode.settings \
   && cp.vscode.snippet \
+  && cp.lfrc \
 }
 
 import_dotfiles() {
@@ -25,7 +26,8 @@ import_dotfiles() {
   && cp ~/workspace/dotfiles/.rustfmt.toml ~/.rustfmt.toml \
   && cp ~/workspace/dotfiles/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json \
   && cp ~/workspace/dotfiles/settings.json ~/Library/Application\ Support/Code/User/settings.json \
-  && cp ~/workspace/dotfiles/fuzznimp.code-snippets ~/Library/Application\ Support/Code/User/snippets/fuzznimp.code-snippets
+  && cp ~/workspace/dotfiles/fuzznimp.code-snippets ~/Library/Application\ Support/Code/User/snippets/fuzznimp.code-snippets \
+  && cp ~/workspace/dotfiles/lfrc && ~/.config/lf/lfrc
 }
 
 update_stack () {
@@ -40,6 +42,20 @@ update_stack () {
   asdf plugin-update --all
 
   mas upgrade
+}
+
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir"
+            fi
+        fi
+    fi
 }
 
 function find-exec() {

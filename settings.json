@@ -1,34 +1,44 @@
 {
-  "search.exclude": {
-    "/node_modules": true,
-    "/bower_components": true,
-    "/env": true,
-    "/venv": true,
-    "/.next": true,
-    "yarn.lock": true
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
   },
-  "files.watcherExclude": {
-    "/.git/objects/": true,
-    "/.git/subtree-cache/": true,
-    "/node_modules/": true,
-    "/env/": true,
-    "/venv/": true,
-    "env-*": true,
-    "/.next": true,
-    "yarn.lock": true
-  },
-  "emmet.showSuggestionsAsSnippets": true,
+  "workbench.editor.revealIfOpen": true,
+  "typescript.suggest.paths": false,
+  "sync.gist": "2fc86075d7de1f36bf90c31556863b0d",
+  "editor.wordWrapColumn": 80,
   "editor.snippetSuggestions": "top",
-  "emmet.triggerExpansionOnTab": true,
   "workbench.colorTheme": "Gruvbox Material Dark",
-  "explorer.confirmDelete": false,
+  "workbench.iconTheme": "vscode-icons",
+  "typescript.disableAutomaticTypeAcquisition": true,
+  "editor.bracketPairColorization.enabled": true,
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "security.workspace.trust.untrustedFiles": "open",
+  "gitlens.codeLens.authors.enabled": false,
+  "zenMode.hideTabs": false,
+  "editor.formatOnSave": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "errorLens.enabled": false,
+  "vsicons.dontShowNewVersionMessage": true,
+  "emmet.triggerExpansionOnTab": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.format.enable": true,
+  "files.insertFinalNewline": true,
+  "window.nativeTabs": true,
+  "editor.accessibilitySupport": "off",
   "explorer.confirmDragAndDrop": false,
-  "editor.suggestSelection": "first",
-  "editor.fontFamily": "Hack Nerd Font",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "workbench.colorCustomizations": {
+    "editorBracketHighlight.foreground2": "#228b22",
+    "editorBracketHighlight.foreground1": "#8b4513",
+    "editorBracketHighlight.foreground3": "#cc7722"
+  },
   "editor.fontLigatures": false,
-  "editor.fontWeight": "500",
-  "editor.tabSize": 2,
   "workbench.startupEditor": "newUntitledFile",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "breadcrumbs.enabled": true,
+  "gitlens.codeLens.recentChange.enabled": false,
+  "editor.formatOnPaste": false,
+  "editor.suggestSelection": "first",
   "indentRainbow.colors": [
     "rgba(16,16,16,0.1)",
     "rgba(16,16,16,0.3)",
@@ -36,101 +46,81 @@
     "rgba(16,16,16,0.4)",
     "rgba(16,16,16,0.2)"
   ],
-  "editor.minimap.enabled": false,
+  "errorLens.delay": 2000,
+  "errorLens.excludeBySource": ["cSpell"],
+  "editor.fontWeight": "500",
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.tabSize": 2,
+  "vscodeGoogleTranslate.preferredLanguage": "French",
+  "search.exclude": {
+    "/env": true,
+    "/venv": true,
+    "yarn.lock": true,
+    "/.next": true,
+    "/node_modules": true,
+    "/bower_components": true
+  },
+  "editor.fontFamily": "Hack Nerd Font",
   "git.enableSmartCommit": true,
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
-  "breadcrumbs.enabled": true,
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "vsicons.dontShowNewVersionMessage": true,
-  "sync.gist": "2fc86075d7de1f36bf90c31556863b0d",
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+  "files.watcherExclude": {
+    "/venv/": true,
+    "/.next": true,
+    "/.git/subtree-cache/": true,
+    "env-*": true,
+    "/node_modules/": true,
+    "yarn.lock": true,
+    "/.git/objects/": true,
+    "/env/": true
   },
-  "eslint.format.enable": true,
-  "[javascript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "[graphql]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "workbench.iconTheme": "vscode-icons",
-  "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "terminal.integrated.defaultProfile.osx": "zsh",
-  "cSpell.ignoreWords": [
+  "explorer.confirmDelete": false,
+  "extensions.ignoreRecommendations": true,
+  "cSpell.userWords": [
+    "meteoblue",
+    "multimodel",
     "algo",
     "behaviour",
+    "bodyparser",
     "browserslist",
+    "chargebee",
     "deduping",
     "dotfiles",
     "fadeinout",
+    "fiability",
+    "formik",
     "fuzznimp",
+    "leafcrop",
     "lightstep",
     "middlewares",
+    "neighbour",
+    "neighbours",
     "nextjs",
     "oluane",
     "openapi",
     "opentelemetry",
+    "organisation",
+    "organisations",
     "prefetch",
     "procfile",
     "remoteaddr",
     "roboto",
+    "sencrop",
+    "sigfox",
     "taiko",
     "unmarshall",
     "uuidv",
-    "vercel",
-    "bodyparser",
-    "sencrop",
-    "leafcrop",
-    "sigfox",
-    "fiability",
-    "organisation",
-    "organisations",
-    "chargebee"
+    "vercel"
   ],
-  "typescript.suggest.paths": false,
-  "editor.dragAndDrop": false,
-  "editor.wordWrap": "wordWrapColumn",
   "editor.wrappingIndent": "same",
-  "editor.wordWrapColumn": 80,
-  "workbench.editor.revealIfOpen": true,
-  "window.nativeTabs": true,
-  "gitlens.codeLens.recentChange.enabled": false,
-  "gitlens.codeLens.authors.enabled": false,
-  "extensions.ignoreRecommendations": true,
-  "gruvboxMaterial.darkContrast": "hard",
-  "security.workspace.trust.untrustedFiles": "open",
-  "diffEditor.ignoreTrimWhitespace": false,
+  "emmet.showSuggestionsAsSnippets": true,
   "editor.inlineSuggest.enabled": true,
-  "typescript.disableAutomaticTypeAcquisition": true,
-  "editor.bracketPairColorization.enabled": true,
-  "workbench.colorCustomizations": {
-    "editorBracketHighlight.foreground1": "#8b4513",
-    "editorBracketHighlight.foreground2": "#228b22",
-    "editorBracketHighlight.foreground3": "#cc7722"
+  "editor.dragAndDrop": false,
+  "files.trimTrailingWhitespace": true,
+  "editor.minimap.enabled": false,
+  "gruvboxMaterial.darkContrast": "hard",
+  "http.systemCertificates": false,
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1"
   },
   "window.zoomLevel": 1,
-  "errorLens.excludeBySource": ["cSpell"],
-  "errorLens.delay": 2000,
-  "http.systemCertificates": false,
-  "files.insertFinalNewline": true,
-  "files.trimTrailingWhitespace": true
+  "turboConsoleLog.addSemicolonInTheEnd": true
 }

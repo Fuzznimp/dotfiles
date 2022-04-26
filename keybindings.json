@@ -49,5 +49,17 @@
     "key": "Enter",
     "command": "rust-analyzer.onEnter",
     "when": "editorTextFocus && !suggestWidgetVisible && editorLangId == rust"
+  },
+  {
+    "key": "cmd+k `",
+    "command": "editor.action.insertSnippet"
+  },
+  {
+    "key": "ctrl+i",
+    "command": "editor.emmet.action.balanceIn"
+  },
+  {
+    "key": "ctrl+o",
+    "command": "editor.emmet.action.balanceOut"
   }
 ]

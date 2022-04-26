@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+. "$HOME/.fig/shell/zshrc.pre.zsh"
 export HISTFILE=~/.zsh_history
 export HISTFILESIZE=100000
 export HISTSIZE=100000
@@ -34,6 +36,8 @@ common_host() {
     echo "%{$fg[$COMMON_COLORS_HOST_AWS_VAULT]%}$AWS_VAULT%{$reset_color%} "
   fi
 }
+
+precmd () {print -Pn "\e]0;%~\a"}
 
 # Current directory
 common_current_dir() {
@@ -157,7 +161,17 @@ source /Users/fuzznimp/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ${HOME}/.cargo/env
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+eval "$(atuin init zsh)"
+
+eval "$(atuin init zsh)"
+
+# Fig post block. Keep at the bottom of this file.
+. "$HOME/.fig/shell/zshrc.post.zsh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

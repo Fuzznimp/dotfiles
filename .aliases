@@ -24,6 +24,7 @@ alias cp.rustfmt="cp ~/.rustfmt.toml ~/workspace/dotfiles"
 alias cp.vscode.keybindings="cp ~/Library/Application\ Support/Code/User/keybindings.json ~/workspace/dotfiles"
 alias cp.vscode.settings="cp ~/Library/Application\ Support/Code/User/settings.json ~/workspace/dotfiles"
 alias cp.vscode.snippet="cp ~/Library/Application\ Support/Code/User/snippets/fuzznimp.code-snippets ~/workspace/dotfiles"
+alias cp.lfrc="cp ~/.config/lf/lfrc ~/workspace/dotfiles"
 
 # System
 alias ~="cd ~"
@@ -31,6 +32,7 @@ alias /="cd /"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+alias c="clear"
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias mkdir="mkdir -pv"
@@ -41,6 +43,8 @@ alias conf.alias="code ~/.zsh/.aliases"
 alias conf.function="code ~/.zsh/.functions"
 alias conf.zsh="code ~/.zshrc"
 alias conf.kitty="code ~/.config/kitty/kitty.conf"
+alias conf.tmux="code ~/.tmux.conf"
+alias conf.lf="code ~/.config/lf/lfrc"
 
 # Paths
 alias dotfiles="cd ~/workspace/dotfiles"
@@ -64,6 +68,7 @@ alias sen="cd ~/workspace/sencrop"
 alias sen.app="cd ~/workspace/sencrop/sencrop-app"
 alias sen.bo="cd ~/workspace/sencrop/sencrop-backoffice"
 alias sen.bali="cd ~/workspace/sencrop/sencrop-bali-api"
+alias sen.demeter="cd ~/workspace/sencrop/sencrop-demeter-api"
 alias sen.e2e="cd ~/workspace/sencrop/sencrop-e2e"
 alias sen.factory="cd ~/workspace/sencrop/sencrop-factory"
 alias sen.infra="cd ~/workspace/sencrop/infrastructure-sencrop"
@@ -80,6 +85,9 @@ alias lt="exa -aT --color=always --group-directories-first --ignore-glob='**/nod
 alias tarr="tar -pczf $1 $2"
 alias untarr="tar -pxzf $1"
 alias starr="sudo tar -pczf $1 $2"
+
+# fzf
+alias f="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 
 # Docker
 alias dk="docker"

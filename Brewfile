@@ -1,7 +1,9 @@
 brew "act"
+brew "bat"
 brew "cowsay"
 brew "ctop"
 brew "exa"
+brew "fzf"
 brew "htop"
 brew "jq"
 brew "kubectl"
@@ -14,11 +16,13 @@ brew "openssl@1.1"
 brew "overmind"
 brew "rustup"
 brew "the_silver_searcher"
+brew "tmux"
 brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 brew "zsh"
 
 cask "1password"
+cask "alacritty"
 cask "alfred"
 cask "background-music"
 cask "docker"
@@ -33,7 +37,6 @@ cask "spotify"
 cask "tableplus"
 cask "typora"
 cask "vlc"
-cask "whatsapp"
 
 mas "Monosnap", id: 540348655
 mas "Paprika Recipe Manager 3", id: 1303222628
@@ -43,3 +46,4 @@ mas "Spark", id: 1176895641
 # OniVim2 https://v2.onivim.io/early-access-portal
 # Shadow https://shadow.tech/fr/shadow-apps
 # Hammerspoon http://www.hammerspoon.org/go/
+# Atuin https://github.com/ellie/atuin
