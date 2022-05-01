@@ -1,15 +1,15 @@
 hs.hotkey.bind({"⌥"}, "space", function()
-    local app = hs.application.get("kitty")
+    local app = hs.application.get("Alacritty")
     if app then
         if not app:mainWindow() then
-            app:selectMenuItem({"kitty", "New OS window"})
+            app:selectMenuItem({"Alacritty", "New OS window"})
         elseif app:isFrontmost() then
             app:hide()
         else
             app:activate()
         end
     else
-        hs.application.launchOrFocus("kitty")
+        hs.application.launchOrFocus("Alacritty")
     end
 end)
 

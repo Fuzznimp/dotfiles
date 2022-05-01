@@ -48,8 +48,6 @@ cmd zip ${{
     rm -rf $1
 }}
 
-
-
 # Bindings
 # Remove some defaults
 map m
@@ -78,10 +76,8 @@ map md mkdir
 map C clear
 
 # Movement
-map gd cd ~/documents
-map gD cd ~/downloads
-map gp cd ~/pictures
+map gw cd ~/workspaces
+map gd cd ~/Documents
+map gD cd ~/Downloads
+map gp cd ~/.local/bin
 map gc cd ~/.config
-map gr cd ~/repos
-map gv cd ~/videos/recordings
-map gs cd ~/.local/bin

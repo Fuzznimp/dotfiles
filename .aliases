@@ -1,5 +1,6 @@
 # Source Shell
-alias reload.zsh="source ~/.zshrc"
+alias source.zsh="source ~/.zshrc"
+alias source.tmux="tmux source-file ~/.tmux.conf"
 
 # List declared aliases, functions, path
 alias aliases="alias | sed 's/=.*//'"
@@ -45,6 +46,7 @@ alias conf.zsh="code ~/.zshrc"
 alias conf.kitty="code ~/.config/kitty/kitty.conf"
 alias conf.tmux="code ~/.tmux.conf"
 alias conf.lf="code ~/.config/lf/lfrc"
+alias conf.alacritty="code ~/.config/alacritty/alacritty.yml"
 
 # Paths
 alias dotfiles="cd ~/workspace/dotfiles"
@@ -87,7 +89,7 @@ alias untarr="tar -pxzf $1"
 alias starr="sudo tar -pczf $1 $2"
 
 # fzf
-alias f="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+alias f="fzf --preview 'bat --style=numbers --theme=gruvbox-dark --color=always --line-range :500 {}'"
 
 # Docker
 alias dk="docker"
