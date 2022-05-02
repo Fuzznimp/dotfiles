@@ -121,6 +121,6 @@
   "terminal.integrated.env.osx": {
     "FIG_NEW_SESSION": "1"
   },
-  "window.zoomLevel": 1,
-  "turboConsoleLog.addSemicolonInTheEnd": true
+  "turboConsoleLog.addSemicolonInTheEnd": true,
+  "window.zoomLevel": 1
 }

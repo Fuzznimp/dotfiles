@@ -25,6 +25,7 @@ cask "1password"
 cask "alacritty"
 cask "alfred"
 cask "background-music"
+cask "copyq"
 cask "docker"
 cask "font-hack-nerd-font"
 cask "google-chrome"
@@ -47,3 +48,6 @@ mas "Spark", id: 1176895641
 # Shadow https://shadow.tech/fr/shadow-apps
 # Hammerspoon http://www.hammerspoon.org/go/
 # Atuin https://github.com/ellie/atuin
+# go https://go.dev/dl/
+# smug https://github.com/ivaaaan/smug
+# fig https://fig.io/

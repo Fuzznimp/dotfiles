@@ -1,0 +1,191 @@
+colors:
+  primary:
+    background: "0x202020"
+    foreground: "0xdfbf8e"
+
+  normal:
+    black: "0x665c54"
+    red: "0xea6962"
+    green: "0xa9b665"
+    yellow: "0xffb347"
+    blue: "0x7daea3"
+    magenta: "0xd3869b"
+    cyan: "0x89b482"
+    white: "0xdfbf8e"
+
+  bright:
+    black: "0x928374"
+    red: "0xea6962"
+    green: "0xa9b665"
+    yellow: "0xe3a84e"
+    blue: "0x7daea3"
+    magenta: "0xd3869b"
+    cyan: "0x89b482"
+    white: "0xdfbf8e"
+
+window:
+  padding:
+    x: 10
+    y: 10
+  dynamic_padding: true
+  decorations: transparent
+  startup_mode: SimpleFullscreen
+  opacity: 1
+
+dynamic_title: true
+
+scrolling:
+  history: 10000
+  multiplier: 3
+
+font:
+  size: 14.0
+  normal:
+    family: Hack Nerd Font
+  bold:
+    family: Hack Nerd Font
+
+cursor:
+  shape: Block
+  unfocused_hollow: true
+
+shell:
+  program: /bin/zsh
+  args:
+    - -l
+
+key_bindings:
+  # Rename the current tmux window.
+  - { key: Comma, mods: Command, chars: "\x02\x2c" }
+  # Select a new tmux session for the attached client interactively.
+  - { key: K, mods: Command, chars: "\x02\x73" }
+  # Change to the next tmux window.
+  - { key: K, mods: Command|Shift, chars: "\x02\x46" }
+    # Change to the next tmux window.
+  - { key: F, mods: Command|Shift, chars: "\x02\x3f" }
+  # Select window 1-9
+  - { key: Key1, mods: Command, chars: "\x02\x31" }
+  - { key: Key2, mods: Command, chars: "\x02\x32" }
+  - { key: Key3, mods: Command, chars: "\x02\x33" }
+  - { key: Key4, mods: Command, chars: "\x02\x34" }
+  - { key: Key5, mods: Command, chars: "\x02\x35" }
+  - { key: Key6, mods: Command, chars: "\x02\x36" }
+  - { key: Key7, mods: Command, chars: "\x02\x37" }
+  - { key: Key8, mods: Command, chars: "\x02\x38" }
+  - { key: Key9, mods: Command, chars: "\x02\x39" }
+  # Move window x axis.
+  - { key: Left, mods: Command|Shift, chars: "\x02\x70" }
+  - { key: Right, mods: Command|Shift, chars: "\x02\x6e" }
+  # Create a new tmux window.
+  - { key: T, mods: Command, chars: "\x02\x63" }
+  # Break the current tmux pane out of the tmux window.
+  - { key: T, mods: Command|Shift, chars: "\x02\x21" }
+  # Kill the current tmux pane (and window if last pane).
+  - { key: W, mods: Command, chars: "\x02\x78" }
+  # Toggle the zoom state of the current tmux pane.
+  - { key: Z, mods: Command, chars: "\x02\x7a" }
+  # Switch to last tmux session.
+  - { key: L, mods: Command, chars: "\x02\x4c" }
+  - { key: LBracket, mods: Command, chars: "\x02\x5b" }
+  # Change to the previous tmux window.
+  - { key: LBracket, mods: Command|Shift, chars: "\x02\x70" }
+  # Split the current pane into two, left and right.
+  - { key: D, mods: Command, chars: "\x02\x25" }
+  # Split the current pane into two, top and bottom.
+  - { key: D, mods: Command|Shift, chars: "\x02\x22" }
+  # Move between panes.
+  - { key: Left, mods: Command, chars: "\x02\x1b\x5b\x44" }
+  - { key: Right, mods: Command, chars: "\x02\x1b\x5b\x43" }
+  - { key: Up, mods: Command, chars: "\x02\x1b\x5b\x41" }
+  - { key: Down, mods: Command, chars: "\x02\x1b\x5b\x42" }
+  - { key: Left, mods: Control|Command, chars: "\x02\x70" }
+  - { key: Right, mods: Control|Command, chars: "\x02\x6e" }
+  # Detach the current tmux client.
+  - { key: Q, mods: Command, chars: "\x02\x64" }
+  # Change to the next tmux window.
+  - { key: RBracket, mods: Command|Shift, chars: "\x02\x6e" }
+  # Reload tmux.
+  - { key: R, mods: Command|Shift, chars: "\x02\x49" }
+  # Restore tmux.
+  - { key: R, mods: Command, chars: "\x02\x52" }
+  # Save tmux.
+  - { key: S, mods: Command, chars: "\x02\x53" }
+# Key HEX Value
+# • Esc                 1B
+# • F1- F12             F1-FC
+# • Prnt. Scr           00
+# • Scrl Lck            Null
+# • P/B                 00
+# --------------------------------------------------------------------------------
+# • ` ~                 60 75 (60 on capslock)
+# • 1 !                 31 21
+# • 2 @                 32 40
+# • 3 #                 33 23
+# • 4 $                 34 24
+# • 5 %                 35 25
+# • 6 ^                 36 5E
+# • 7 &                 37 26
+# • 8 *                 38 2A
+# • 9 (                 39 28
+# • 0 )                 30 29
+# • - _                 2D 5F
+# • = +                 3D 2B
+# • Insert              E9 (00 on Num lock)
+# • Pgup                E6 (00 on Num lock)
+# • Num Lock            Null
+# • /                   2F
+# • *                   2A
+# • -                   2D
+# --------------------------------------------------------------------------------
+# • Tab                 09
+# • Q q                 51 71
+# • W w                 57 77
+# • E e                 45 65
+# • R r                 52 72
+# • T t                 54 74
+# • Y y                 59 79
+# • U u                 55 75
+# • I i                 49 69
+# • O o                 4F 6F
+# • P p                 50 70
+# • { [                 7B 5B
+# • } ]                 7D 5D
+# • | \                 7C 5C
+# • Del                 7F (00 on Num lock)
+# • End                 E8 (00 on Num lock)
+# • Pg dn               E4 (00 on Num lock)
+# --------------------------------------------------------------------------------
+# • Caps Null
+# • A a                 41 61
+# • S s                 53 73
+# • D d                 44 64
+# • F f                 46 66
+# • G g                 47 67
+# • H h                 48 68
+# • J j                 4A 6A
+# • K k                 4B 6B
+# • L l                 4C 6C
+# • : ;                 3A 3B
+# • " '                 22 27
+# • Enter               0A
+# --------------------------------------------------------------------------------
+# • Shift Null
+# • Z z                 5A 7A
+# • X x                 58 78
+# • C c                 43 63
+# • V v                 56 76
+# • B b                 42 62
+# • N n                 4E 6E
+# • M m                 4D 6D
+# • < ,                 3C 2C
+# • > .                 3E 2E
+# • ? /                 3F 2F
+# • Up-arrow            E5
+# --------------------------------------------------------------------------------
+# 1. Ctrl               C1
+# • Alt                 C2
+# • Space               20
+# • Left arrow          E1
+# • Dwn                 E3
+# • Right               E2
+# • .                   2E

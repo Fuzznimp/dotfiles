@@ -1,6 +1,5 @@
 # Source Shell
 alias source.zsh="source ~/.zshrc"
-alias source.tmux="tmux source-file ~/.tmux.conf"
 
 # List declared aliases, functions, path
 alias aliases="alias | sed 's/=.*//'"
@@ -26,6 +25,8 @@ alias cp.vscode.keybindings="cp ~/Library/Application\ Support/Code/User/keybind
 alias cp.vscode.settings="cp ~/Library/Application\ Support/Code/User/settings.json ~/workspace/dotfiles"
 alias cp.vscode.snippet="cp ~/Library/Application\ Support/Code/User/snippets/fuzznimp.code-snippets ~/workspace/dotfiles"
 alias cp.lfrc="cp ~/.config/lf/lfrc ~/workspace/dotfiles"
+alias cp.alacritty="cp ~/.config/alacritty/alacritty.yml ~/workspace/dotfiles"
+alias cp.tmux="cp ~/.tmux.conf ~/workspace/dotfiles"
 
 # System
 alias ~="cd ~"
@@ -47,6 +48,7 @@ alias conf.kitty="code ~/.config/kitty/kitty.conf"
 alias conf.tmux="code ~/.tmux.conf"
 alias conf.lf="code ~/.config/lf/lfrc"
 alias conf.alacritty="code ~/.config/alacritty/alacritty.yml"
+alias conf.smug="code ~/.config/smug"
 
 # Paths
 alias dotfiles="cd ~/workspace/dotfiles"
@@ -89,7 +91,10 @@ alias untarr="tar -pxzf $1"
 alias starr="sudo tar -pczf $1 $2"
 
 # fzf
-alias f="fzf --preview 'bat --style=numbers --theme=gruvbox-dark --color=always --line-range :500 {}'"
+alias f="fzf --preview 'bat --style=numbers --theme=gruvbox-dark --color=always --line-range :500 {}' | pbcopy | echo `pbpaste`"
+
+# tmux
+alias t="tmux attach-session -t 🌳"
 
 # Docker
 alias dk="docker"

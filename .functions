@@ -2,7 +2,6 @@ export_dotfiles() {
   cp.zshrc \
   && cp.alias \
   && cp.function \
-  && cp.kitty \
   && cp.gitconfig \
   && cp.gitignore \
   && cp.gittemplates \
@@ -12,7 +11,10 @@ export_dotfiles() {
   && cp.vscode.settings \
   && cp.vscode.snippet \
   && cp.lfrc \
+  && cp.alacritty \
+  && cp.tmux \
 }
+  # && cp.kitty \
 
 import_dotfiles() {
   cp ~/workspace/dotfiles/.zshrc ~/.zshrc \
@@ -27,7 +29,9 @@ import_dotfiles() {
   && cp ~/workspace/dotfiles/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json \
   && cp ~/workspace/dotfiles/settings.json ~/Library/Application\ Support/Code/User/settings.json \
   && cp ~/workspace/dotfiles/fuzznimp.code-snippets ~/Library/Application\ Support/Code/User/snippets/fuzznimp.code-snippets \
-  && cp ~/workspace/dotfiles/lfrc && ~/.config/lf/lfrc
+  && cp ~/workspace/dotfiles/lfrc ~/.config/lf/lfrc \
+  && cp ~/workspace/dotfiles/alacritty ~/.config/alacritty/alacritty.yml \
+  && cp ~/workspace/dotfiles/.tmux.conf ~/.tmux.conf \
 }
 
 update_stack () {
