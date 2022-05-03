@@ -13,8 +13,9 @@ export_dotfiles() {
   && cp.lfrc \
   && cp.alacritty \
   && cp.tmux \
+  && cp.kitty \
+  && cp.fig \
 }
-  # && cp.kitty \
 
 import_dotfiles() {
   cp ~/workspace/dotfiles/.zshrc ~/.zshrc \

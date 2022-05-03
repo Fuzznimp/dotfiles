@@ -1,4 +1,5 @@
 brew "act"
+brew "ansifilter"
 brew "bat"
 brew "cowsay"
 brew "ctop"

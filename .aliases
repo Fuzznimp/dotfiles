@@ -27,6 +27,7 @@ alias cp.vscode.snippet="cp ~/Library/Application\ Support/Code/User/snippets/fu
 alias cp.lfrc="cp ~/.config/lf/lfrc ~/workspace/dotfiles"
 alias cp.alacritty="cp ~/.config/alacritty/alacritty.yml ~/workspace/dotfiles"
 alias cp.tmux="cp ~/.tmux.conf ~/workspace/dotfiles"
+alias cp.fig="cp ~/.fig/settings.json ~/workspace/dotfiles/.fig"
 
 # System
 alias ~="cd ~"

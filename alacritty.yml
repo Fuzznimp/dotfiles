@@ -84,6 +84,8 @@ key_bindings:
   - { key: W, mods: Command, chars: "\x02\x78" }
   # Toggle the zoom state of the current tmux pane.
   - { key: Z, mods: Command, chars: "\x02\x7a" }
+  # # Clear buffer.
+  - { key: L, mods: Command|Shift, chars: "\x0c" }
   # Switch to last tmux session.
   - { key: L, mods: Command, chars: "\x02\x4c" }
   - { key: LBracket, mods: Command, chars: "\x02\x5b" }
@@ -110,6 +112,8 @@ key_bindings:
   - { key: R, mods: Command, chars: "\x02\x52" }
   # Save tmux.
   - { key: S, mods: Command, chars: "\x02\x53" }
+    # Start/stop log mode.
+  - { key: P, mods: Command, chars: "\x02\x1b\x50" }
 # Key HEX Value
 # • Esc                 1B
 # • F1- F12             F1-FC
@@ -169,7 +173,7 @@ key_bindings:
 # • " '                 22 27
 # • Enter               0A
 # --------------------------------------------------------------------------------
-# • Shift Null
+# • Shift               Null
 # • Z z                 5A 7A
 # • X x                 58 78
 # • C c                 43 63
@@ -182,7 +186,7 @@ key_bindings:
 # • ? /                 3F 2F
 # • Up-arrow            E5
 # --------------------------------------------------------------------------------
-# 1. Ctrl               C1
+# • Ctrl                C1
 # • Alt                 C2
 # • Space               20
 # • Left arrow          E1
