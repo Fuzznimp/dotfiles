@@ -112,8 +112,15 @@ key_bindings:
   - { key: R, mods: Command, chars: "\x02\x52" }
   # Save tmux.
   - { key: S, mods: Command, chars: "\x02\x53" }
-    # Start/stop log mode.
+  # Start/stop log mode.
   - { key: P, mods: Command, chars: "\x02\x1b\x50" }
+  # Jump whole word.
+  - { key: Right, mods: Alt, chars: "\x1BF" }
+  - { key: Left, mods: Alt, chars: "\x1BB" }
+  # Open urlview.
+  - { key: U, mods: Command, chars: "\x02\x75" }
+  # Open file with IDE.
+  - { key: O, mods: Command, chars: "\x02\x6F" }
 # Key HEX Value
 # • Esc                 1B
 # • F1- F12             F1-FC

@@ -155,6 +155,7 @@ ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=208,bold
 ZSH_HIGHLIGHT_STYLES[path]=fg=255,bold
 ZSH_HIGHLIGHT_STYLES[path_pathseparator]=fg=yellow,bold
 
+source ${HOME}/.env.zsh
 source ${HOME}/.zsh/.aliases
 source ${HOME}/.zsh/.functions
 source /Users/fuzznimp/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
