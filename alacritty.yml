@@ -7,7 +7,7 @@ colors:
     black: "0x665c54"
     red: "0xea6962"
     green: "0xa9b665"
-    yellow: "0xffb347"
+    yellow: "0xe78a4e"
     blue: "0x7daea3"
     magenta: "0xd3869b"
     cyan: "0x89b482"
@@ -56,71 +56,71 @@ shell:
 
 key_bindings:
   # Rename the current tmux window.
-  - { key: Comma, mods: Command, chars: "\x02\x2c" }
+  - { key: Comma, mods: Command, chars: "\x02," }
   # Select a new tmux session for the attached client interactively.
-  - { key: K, mods: Command, chars: "\x02\x73" }
+  - { key: K, mods: Command, chars: "\x02s" }
   # Change to the next tmux window.
-  - { key: K, mods: Command|Shift, chars: "\x02\x46" }
-    # Change to the next tmux window.
-  - { key: F, mods: Command|Shift, chars: "\x02\x3f" }
+  - { key: K, mods: Command|Shift, chars: "\x02F" }
+  # Change to the next tmux window.
+  - { key: F, mods: Command|Shift, chars: "\x02?" }
   # Select window 1-9
-  - { key: Key1, mods: Command, chars: "\x02\x31" }
-  - { key: Key2, mods: Command, chars: "\x02\x32" }
-  - { key: Key3, mods: Command, chars: "\x02\x33" }
-  - { key: Key4, mods: Command, chars: "\x02\x34" }
-  - { key: Key5, mods: Command, chars: "\x02\x35" }
-  - { key: Key6, mods: Command, chars: "\x02\x36" }
-  - { key: Key7, mods: Command, chars: "\x02\x37" }
-  - { key: Key8, mods: Command, chars: "\x02\x38" }
-  - { key: Key9, mods: Command, chars: "\x02\x39" }
+  - { key: Key1, mods: Command, chars: "\x021" }
+  - { key: Key2, mods: Command, chars: "\x022" }
+  - { key: Key3, mods: Command, chars: "\x023" }
+  - { key: Key4, mods: Command, chars: "\x024" }
+  - { key: Key5, mods: Command, chars: "\x025" }
+  - { key: Key6, mods: Command, chars: "\x026" }
+  - { key: Key7, mods: Command, chars: "\x027" }
+  - { key: Key8, mods: Command, chars: "\x028" }
+  - { key: Key9, mods: Command, chars: "\x029" }
   # Move window x axis.
-  - { key: Left, mods: Command|Shift, chars: "\x02\x70" }
-  - { key: Right, mods: Command|Shift, chars: "\x02\x6e" }
+  - { key: Left, mods: Command|Shift, chars: "\x02p" }
+  - { key: Right, mods: Command|Shift, chars: "\x02n" }
   # Create a new tmux window.
-  - { key: T, mods: Command, chars: "\x02\x63" }
+  - { key: T, mods: Command, chars: "\x02c" }
   # Break the current tmux pane out of the tmux window.
-  - { key: T, mods: Command|Shift, chars: "\x02\x21" }
+  - { key: T, mods: Command|Shift, chars: "\x02!" }
   # Kill the current tmux pane (and window if last pane).
-  - { key: W, mods: Command, chars: "\x02\x78" }
+  - { key: W, mods: Command, chars: "\x02x" }
   # Toggle the zoom state of the current tmux pane.
-  - { key: Z, mods: Command, chars: "\x02\x7a" }
-  # # Clear buffer.
-  - { key: L, mods: Command|Shift, chars: "\x0c" }
+  - { key: Z, mods: Command, chars: "\x02z" }
+  # Clear buffer.
+  - { key: L, mods: Command|Shift, chars: "\f" }
   # Switch to last tmux session.
-  - { key: L, mods: Command, chars: "\x02\x4c" }
-  - { key: LBracket, mods: Command, chars: "\x02\x5b" }
+  - { key: L, mods: Command, chars: "\x02L" }
+  - { key: LBracket, mods: Command, chars: "\x02[" }
   # Change to the previous tmux window.
-  - { key: LBracket, mods: Command|Shift, chars: "\x02\x70" }
+  - { key: LBracket, mods: Command|Shift, chars: "\x02p" }
   # Split the current pane into two, left and right.
-  - { key: D, mods: Command, chars: "\x02\x25" }
+  - { key: D, mods: Command, chars: "\x02%" }
   # Split the current pane into two, top and bottom.
-  - { key: D, mods: Command|Shift, chars: "\x02\x22" }
+  - { key: D, mods: Command|Shift, chars: "\x02\"" }
   # Move between panes.
-  - { key: Left, mods: Command, chars: "\x02\x1b\x5b\x44" }
-  - { key: Right, mods: Command, chars: "\x02\x1b\x5b\x43" }
-  - { key: Up, mods: Command, chars: "\x02\x1b\x5b\x41" }
-  - { key: Down, mods: Command, chars: "\x02\x1b\x5b\x42" }
-  - { key: Left, mods: Control|Command, chars: "\x02\x70" }
-  - { key: Right, mods: Control|Command, chars: "\x02\x6e" }
+  - { key: Left, mods: Command, chars: "\x02\e[D" }
+  - { key: Right, mods: Command, chars: "\x02\e[C" }
+  - { key: Up, mods: Command, chars: "\x02\e[A" }
+  - { key: Down, mods: Command, chars: "\x02\e[B" }
+  - { key: Left, mods: Control|Command, chars: "\x02p" }
+  - { key: Right, mods: Control|Command, chars: "\x02n" }
   # Detach the current tmux client.
-  - { key: Q, mods: Command, chars: "\x02\x64" }
+  - { key: Q, mods: Command, chars: "\x02d" }
   # Change to the next tmux window.
-  - { key: RBracket, mods: Command|Shift, chars: "\x02\x6e" }
+  - { key: RBracket, mods: Command|Shift, chars: "\x02n" }
   # Reload tmux.
-  - { key: R, mods: Command|Shift, chars: "\x02\x49" }
+  - { key: R, mods: Command|Shift, chars: "\x02I" }
   # Restore tmux.
-  - { key: R, mods: Command, chars: "\x02\x52" }
+  - { key: R, mods: Command, chars: "\x02R" }
   # Save tmux.
-  - { key: S, mods: Command, chars: "\x02\x53" }
+  - { key: S, mods: Command, chars: "\x02S" }
   # Start/stop log mode.
-  - { key: P, mods: Command, chars: "\x02\x1b\x50" }
+  - { key: P, mods: Command, chars: "\x02\eP" }
   # Jump whole word.
-  - { key: Right, mods: Alt, chars: "\x1BF" }
-  - { key: Left, mods: Alt, chars: "\x1BB" }
+  - { key: Right, mods: Alt, chars: "\eF" }
+  - { key: Left, mods: Alt, chars: "\eB" }
   # Open urlview.
-  - { key: U, mods: Command, chars: "\x02\x75" }
+  - { key: U, mods: Command, chars: "\x02u" }
   # Open file with IDE.
-  - { key: O, mods: Command, chars: "\x02\x6F" }
+  - { key: O, mods: Command, chars: "\x02\x06" }
 # Key HEX Value
 # • Esc                 1B
 # • F1- F12             F1-FC
