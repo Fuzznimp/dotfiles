@@ -118,6 +118,7 @@ alias displays="system_profiler SPDisplaysDataType"
 alias cpu="sysctl -n machdep.cpu.brand_string"
 
 # Git
+alias lg="lazygit"
 alias gst="git status"
 alias gcb="git checkout -b"
 alias gd="git diff"
