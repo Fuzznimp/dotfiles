@@ -6,7 +6,6 @@
   "typescript.suggest.paths": false,
   "sync.gist": "2fc86075d7de1f36bf90c31556863b0d",
   "editor.wordWrapColumn": 80,
-  "editor.snippetSuggestions": "top",
   "workbench.colorTheme": "Gruvbox Material Dark",
   "workbench.iconTheme": "vscode-icons",
   "typescript.disableAutomaticTypeAcquisition": true,

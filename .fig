@@ -1,7 +1,7 @@
 {
   "autocomplete.devCompletionsFolder" : "\/Users\/fuzznimp\/workspace\/fig-autocomplete\/build",
   "autocomplete.developerMode" : false,
-  "autocomplete.developerModeNPM" : true,
+  "autocomplete.developerModeNPM" : false,
   "autocomplete.developerModeNPMInvalidateCache" : false,
   "autocomplete.disable" : false,
   "autocomplete.disableForCommands" : [
