@@ -1,5 +1,6 @@
 # Fig pre block. Keep at the top of this file.
 . "$HOME/.fig/shell/zshrc.pre.zsh"
+export TERM=xterm-256color
 export HISTFILE=~/.zsh_history
 export HISTFILESIZE=100000
 export HISTSIZE=100000
@@ -113,7 +114,7 @@ PROMPT='$(common_host)$(common_current_dir)$(common_bg_jobs)$(common_git_status)
 
 autoload -Uz compinit && compinit
 # Completion for kitty
-kitty + complete setup zsh | source /dev/stdin
+# kitty + complete setup zsh | source /dev/stdin
 
 # Do menu-driven completion.
 zstyle ':completion:*' menu select
@@ -155,11 +156,11 @@ ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=208,bold
 ZSH_HIGHLIGHT_STYLES[path]=fg=255,bold
 ZSH_HIGHLIGHT_STYLES[path_pathseparator]=fg=yellow,bold
 
-source ${HOME}/.env.zsh
 source ${HOME}/.zsh/.aliases
 source ${HOME}/.zsh/.functions
-source /Users/fuzznimp/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ${HOME}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ${HOME}/.cargo/env
+export PATH=/opt/homebrew/bin:$PATH
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'
@@ -168,11 +169,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-eval "$(atuin init zsh)"
-
-eval "$(atuin init zsh)"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval "$(atuin init zsh)"
 
 # Fig post block. Keep at the bottom of this file.
 . "$HOME/.fig/shell/zshrc.post.zsh"
+source /Users/anthonymontaigne/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

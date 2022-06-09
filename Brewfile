@@ -1,3 +1,6 @@
+tap "jesseduffield/lazygit"
+tap "homebrew/cask-fonts"
+
 brew "act"
 brew "ansifilter"
 brew "bat"
@@ -15,7 +18,6 @@ brew "mas"
 brew "mkcert"
 brew "neovim"
 brew "nginx"
-brew "onyx"
 brew "openssl@1.1"
 brew "overmind"
 brew "ripgrep"
@@ -34,17 +36,20 @@ cask "background-music"
 cask "bartender"
 cask "copyq"
 cask "docker"
+cask "dropbox"
 cask "font-hack-nerd-font"
 cask "google-chrome"
 cask "guitar-pro"
 cask "insomnia"
 cask "kitty"
+cask "onyx"
 cask "slack"
 cask "spectacle"
 cask "spotify"
 cask "tableplus"
 cask "typora"
 cask "vlc"
+cask "vscodium"
 
 mas "Monosnap", id: 540348655
 mas "Paprika Recipe Manager 3", id: 1303222628
@@ -58,3 +63,4 @@ mas "Spark", id: 1176895641
 # go https://go.dev/dl/
 # smug https://github.com/ivaaaan/smug
 # fig https://fig.io/
+# iStatMenus https://bjango.com/mac/istatmenus/

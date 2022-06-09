@@ -1,14 +1,4 @@
 {
-  "autocomplete.devCompletionsFolder" : "\/Users\/fuzznimp\/workspace\/fig-autocomplete\/build",
-  "autocomplete.developerMode" : false,
-  "autocomplete.developerModeNPM" : false,
-  "autocomplete.developerModeNPMInvalidateCache" : false,
   "autocomplete.disable" : false,
-  "autocomplete.disableForCommands" : [
-    "npm",
-    "git"
-  ],
-  "autocomplete.fontFamily" : "Nerf Font Hack",
-  "autocomplete.theme" : "gruvbox",
   "integrations.experimental" : true
 }
