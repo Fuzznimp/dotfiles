@@ -1,5 +1,6 @@
 {
-  // Modules
+  /* TypeScript */
+  // Modules.
   "import": {
     "scope": "javascript, jsx, typescript, tsx",
     "prefix": "imp",
@@ -40,7 +41,7 @@
     "prefix": "exa",
     "body": "export { ${1:originalName} as ${2:alias} } from '${3:module}'$0"
   },
-  // Functions
+  // Functions.
   "Typed Function": {
     "scope": "typescript, tsx",
     "prefix": "fc",
@@ -57,7 +58,7 @@
     "scope": "typescript, tsx",
     "prefix": "fcn",
     "body": ["function ${TM_FILENAME_BASE}(): ${1:type} {${2:body}}", ""],
-    "description": "Log output to console"
+    "description": "Named Typed Function"
   },
   "Named Exported Typed Function": {
     "scope": "typescript, tsx",
@@ -66,7 +67,7 @@
       "export function ${TM_FILENAME_BASE}(): ${1:type} {${2:body}}",
       ""
     ],
-    "description": "Log output to console"
+    "description": "Named Exported Typed Function"
   },
   // Destructuring
   "Destructing Object": {

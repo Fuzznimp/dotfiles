@@ -13,8 +13,8 @@ export_dotfiles() {
   && cp.lfrc \
   && cp.alacritty \
   && cp.tmux \
-  && cp.kitty \
-  && cp.fig \
+  # && cp.kitty \
+  # && cp.fig \
 }
 
 import_dotfiles() {
@@ -43,8 +43,8 @@ update_stack () {
     && brew bundle check \
     && brew bundle cleanup
 
-  asdf update
-  asdf plugin-update --all
+  # asdf update
+  # asdf plugin-update --all
 
   mas upgrade
 }

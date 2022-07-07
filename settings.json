@@ -121,5 +121,6 @@
   },
   "explorer.confirmDragAndDrop": false,
   "editor.wordWrap": "wordWrapColumn",
-  "git.enableSmartCommit": true
+  "git.enableSmartCommit": true,
+  "reactSnippets.settings.languageScopes": "typescript,typescriptreact,javascript"
 }

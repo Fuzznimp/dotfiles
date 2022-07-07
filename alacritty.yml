@@ -49,6 +49,9 @@ cursor:
   shape: Block
   unfocused_hollow: true
 
+env:
+  TERM: xterm-256color
+
 shell:
   program: /bin/zsh
   args:
@@ -118,7 +121,7 @@ key_bindings:
   - { key: Right, mods: Alt, chars: "\eF" }
   - { key: Left, mods: Alt, chars: "\eB" }
   # Open urlview.
-  - { key: U, mods: Command, chars: "\x02u" }
+  # - { key: U, mods: Command, chars: "\x02u" }
   # Open file with IDE.
   - { key: O, mods: Command, chars: "\x02\x06" }
 # Key HEX Value

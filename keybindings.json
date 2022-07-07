@@ -61,5 +61,10 @@
   {
     "key": "ctrl+o",
     "command": "editor.emmet.action.balanceOut"
+  },
+  {
+    "key": "shift+cmd+enter",
+    "command": "-editor.action.insertLineBefore",
+    "when": "editorTextFocus && !editorReadonly"
   }
 ]

@@ -92,10 +92,10 @@ alias untarr="tar -pxzf $1"
 alias starr="sudo tar -pczf $1 $2"
 
 # fzf
-alias f="fzf --preview 'bat --style=numbers --theme=gruvbox-dark --color=always --line-range :500 {}' | pbcopy | echo `pbpaste`"
+alias f="fzf --preview 'bat --style=numbers --theme=ansi --color=always --line-range :500 {}' | pbcopy | echo `pbpaste`"
 
 # tmux
-alias t="tmux attach-session -t 🌳"
+alias t="tmux"
 
 # Docker
 alias dk="docker"
