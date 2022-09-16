@@ -18,7 +18,6 @@
   "workbench.startupEditor": "newUntitledFile",
   "editor.wordWrapColumn": 80,
   "editor.dragAndDrop": false,
-  "window.zoomLevel": 1,
   "indentRainbow.colors": [
     "rgba(16,16,16,0.1)",
     "rgba(16,16,16,0.3)",
@@ -102,11 +101,11 @@
     "sencrop",
     "sigfox",
     "taiko",
+    "timeseries",
     "unmarshall",
     "uuidv",
     "vercel"
   ],
-  "sync.gist": "2fc86075d7de1f36bf90c31556863b0d",
   "turboConsoleLog.addSemicolonInTheEnd": true,
   "extensions.ignoreRecommendations": true,
   "workbench.colorCustomizations": {
@@ -117,10 +116,19 @@
   "http.systemCertificates": false,
   "explorer.confirmDelete": false,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.sortImports": true
   },
   "explorer.confirmDragAndDrop": false,
   "editor.wordWrap": "wordWrapColumn",
   "git.enableSmartCommit": true,
-  "reactSnippets.settings.languageScopes": "typescript,typescriptreact,javascript"
+  "git.mergeEditor": true,
+  "window.commandCenter": true,
+  "editor.renderWhitespace": "all",
+  "Lua.telemetry.enable": true,
+  "window.zoomLevel": 1,
+  "editor.cursorStyle": "block",
+  "diffEditor.codeLens": true,
+  "editor.mouseWheelZoom": true,
+  "editor.linkedEditing": true
 }

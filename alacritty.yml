@@ -44,6 +44,8 @@ font:
     family: Hack Nerd Font
   bold:
     family: Hack Nerd Font
+  italic:
+    family: Hack Nerd Font
 
 cursor:
   shape: Block
@@ -57,6 +59,7 @@ shell:
   args:
     - -l
 
+# TODO add tmux-fuzzback
 key_bindings:
   # Rename the current tmux window.
   - { key: Comma, mods: Command, chars: "\x02," }

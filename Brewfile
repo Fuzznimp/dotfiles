@@ -1,5 +1,6 @@
 tap "jesseduffield/lazygit"
 tap "homebrew/cask-fonts"
+tap "FelixKratz/formulae"
 
 brew "act"
 brew "ansifilter"
@@ -22,9 +23,10 @@ brew "openssl@1.1"
 brew "overmind"
 brew "ripgrep"
 brew "rustup"
+brew "sketchybar"
 brew "the_silver_searcher"
 brew "tmux"
-brew "urlview"
+brew "koekeishiya/formulae/yabai"
 brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 brew "zsh"
@@ -64,3 +66,4 @@ mas "Spark", id: 1176895641
 # smug https://github.com/ivaaaan/smug
 # fig https://fig.io/
 # iStatMenus https://bjango.com/mac/istatmenus/
+# sketchybar https://felixkratz.github.io/SketchyBar/setup

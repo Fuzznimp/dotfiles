@@ -40,6 +40,7 @@ alias cp="cp -iv"
 alias mv="mv -iv"
 alias mkdir="mkdir -pv"
 alias src="source .env.development"
+# alias lf="tmux display-popup 'lf'"
 
 # Confs
 alias conf.alias="code ~/.zsh/.aliases"
@@ -50,6 +51,7 @@ alias conf.tmux="code ~/.tmux.conf"
 alias conf.lf="code ~/.config/lf/lfrc"
 alias conf.alacritty="code ~/.config/alacritty/alacritty.yml"
 alias conf.smug="code ~/.config/smug"
+alias conf.lg="code ~/Library/Application\ Support/lazygit/config.yml"
 
 # Paths
 alias dotfiles="cd ~/workspace/dotfiles"
@@ -83,6 +85,7 @@ alias sen.quote="cd ~/workspace/sencrop/sencrop-quotator"
 alias sen.ui="cd ~/workspace/sencrop/sencrop-ui"
 
 # ls
+# alias ll="tmux display-popup 'exa --all --long --header --git'"
 alias ll="exa --all --long --header --git"
 alias lt="exa -aT --color=always --group-directories-first --ignore-glob='**/node_modules|**/dist|**/.next'"
 
@@ -95,7 +98,7 @@ alias starr="sudo tar -pczf $1 $2"
 alias f="fzf --preview 'bat --style=numbers --theme=ansi --color=always --line-range :500 {}' | pbcopy | echo `pbpaste`"
 
 # tmux
-alias t="tmux"
+alias t="env TERM=screen-256color tmux"
 
 # Docker
 alias dk="docker"
@@ -118,7 +121,8 @@ alias displays="system_profiler SPDisplaysDataType"
 alias cpu="sysctl -n machdep.cpu.brand_string"
 
 # Git
-alias lg="lazygit"
+alias lg="tmux display-popup -w 80% -h 80% 'lazygit'"
+alias ghb="gh browse"
 alias gst="git status"
 alias gcb="git checkout -b"
 alias gd="git diff"

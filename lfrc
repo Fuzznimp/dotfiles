@@ -52,6 +52,16 @@ cmd zip ${{
 cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
 map r push :rename<space>
 
+# Zoxide
+cmd z %{{
+    result="$(zoxide query --exclude "${PWD}" -- "$@")"
+    lf -remote "send ${id} cd '${result}'"
+}}
+cmd zi ${{
+    result="$(zoxide query -i -- "$@")"
+    lf -remote "send ${id} cd '${result}'"
+}}
+
 # Bindings
 # Remove some defaults
 map m
