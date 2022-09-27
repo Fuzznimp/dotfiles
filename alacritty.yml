@@ -117,7 +117,9 @@ key_bindings:
   # Restore tmux.
   - { key: R, mods: Command, chars: "\x02R" }
   # Save tmux.
-  - { key: S, mods: Command, chars: "\x02S" }
+  # - { key: S, mods: Command, chars: "\x02S" }
+  # Sync panes
+  - { key: S, mods: Command, chars: "\x02\x13" }
   # Start/stop log mode.
   - { key: P, mods: Command, chars: "\x02\eP" }
   # Jump whole word.
@@ -127,6 +129,11 @@ key_bindings:
   # - { key: U, mods: Command, chars: "\x02u" }
   # Open file with IDE.
   - { key: O, mods: Command, chars: "\x02\x06" }
+################################################################################
+
+# 02 = ctrl + b
+# 13 = ctrl + s
+
 # Key HEX Value
 # • Esc                 1B
 # • F1- F12             F1-FC

@@ -40,7 +40,7 @@ alias cp="cp -iv"
 alias mv="mv -iv"
 alias mkdir="mkdir -pv"
 alias src="source .env.development"
-# alias lf="tmux display-popup 'lf'"
+alias lf="tmux display-popup -w 80% -h 80% 'lf'"
 
 # Confs
 alias conf.alias="code ~/.zsh/.aliases"
@@ -85,9 +85,9 @@ alias sen.quote="cd ~/workspace/sencrop/sencrop-quotator"
 alias sen.ui="cd ~/workspace/sencrop/sencrop-ui"
 
 # ls
-# alias ll="tmux display-popup 'exa --all --long --header --git'"
+# alias ll="tmux display-popup -w 80% -h 80% 'exa --all --long --header --git'"
 alias ll="exa --all --long --header --git"
-alias lt="exa -aT --color=always --group-directories-first --ignore-glob='**/node_modules|**/dist|**/.next'"
+alias lt="exa -aT --color=always --group-directories-first --ignore-glob=\"**/node_modules|**/dist|**/.next\""
 
 # tar
 alias tarr="tar -pczf $1 $2"
@@ -121,7 +121,7 @@ alias displays="system_profiler SPDisplaysDataType"
 alias cpu="sysctl -n machdep.cpu.brand_string"
 
 # Git
-alias lg="tmux display-popup -w 80% -h 80% 'lazygit'"
+alias lg="tmux display-popup -w 80% -h 80% -d '#{pane_current_path}' 'lazygit'"
 alias ghb="gh browse"
 alias gst="git status"
 alias gcb="git checkout -b"

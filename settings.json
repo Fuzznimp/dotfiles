@@ -129,6 +129,6 @@
   "window.zoomLevel": 1,
   "editor.cursorStyle": "block",
   "diffEditor.codeLens": true,
-  "editor.mouseWheelZoom": true,
-  "editor.linkedEditing": true
+  "editor.linkedEditing": true,
+  "git.autofetch": true
 }

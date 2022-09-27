@@ -1,6 +1,6 @@
 {
   /* TypeScript */
-  // Modules.
+  /* Modules */
   "import": {
     "scope": "javascript, jsx, typescript, tsx",
     "prefix": "imp",
@@ -41,7 +41,8 @@
     "prefix": "exa",
     "body": "export { ${1:originalName} as ${2:alias} } from '${3:module}'$0"
   },
-  // Functions.
+  /* Functions */
+  // Vanilla
   "Typed Function": {
     "scope": "typescript, tsx",
     "prefix": "fc",
@@ -69,7 +70,14 @@
     ],
     "description": "Named Exported Typed Function"
   },
-  // Destructuring
+  // Arrow
+  "Arrow Typed Function": {
+    "scope": "typescript, tsx",
+    "prefix": "fca",
+    "body": ["const ${1:functionName} = (${2:params}) => {${3:body}}", ""],
+    "description": "Log output to console"
+  },
+  /* Destructuring */
   "Destructing Object": {
     "prefix": "dob",
     "body": "const {${1:propertyName}} = ${2:objectToDestruct}",
@@ -80,10 +88,20 @@
     "body": "const [${1:propertyName}] = ${2:arrayToDestruct}",
     "description": "Creates and assigns a local variable using array destructing"
   },
-  // Logs
+  /* Logs */
+  "Log": {
+    "prefix": "lg",
+    "body": "console.log($1)",
+    "description": "Creates a flag"
+  },
   "Log Flag": {
     "prefix": "lgf",
     "body": "console.log('FLAG')",
+    "description": "Creates a flag"
+  },
+  "Log BR": {
+    "prefix": "lgbr",
+    "body": "console.log('========================================'); console.log($1); console.log('========================================');",
     "description": "Creates a flag"
   }
 }
