@@ -20,7 +20,7 @@
 	whitespace = red
 
 [core]
-	editor = nvim
+	editor = helix
 
 [diff]
   mnemonicPrefix = true

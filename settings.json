@@ -116,8 +116,8 @@
   "http.systemCertificates": false,
   "explorer.confirmDelete": false,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.sortImports": true
+    "source.fixAll.eslint": true
+    // "source.sortImports": true
   },
   "explorer.confirmDragAndDrop": false,
   "editor.wordWrap": "wordWrapColumn",
@@ -130,5 +130,9 @@
   "editor.cursorStyle": "block",
   "diffEditor.codeLens": true,
   "editor.linkedEditing": true,
-  "git.autofetch": true
+  "git.autofetch": true,
+  "[sql]": {
+    "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
+  },
+  "svgPreview.autoOpen": false
 }

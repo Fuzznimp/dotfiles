@@ -1,18 +1,18 @@
 [
   {
-    "key": "cmd+]",
+    "key": "cmd+[",
     "command": "block-travel.jumpDown"
   },
   {
-    "key": "cmd+shift+]",
+    "key": "cmd+shift+[",
     "command": "block-travel.selectUp"
   },
   {
-    "key": "cmd+[",
+    "key": "cmd+]",
     "command": "block-travel.jumpUp"
   },
   {
-    "key": "cmd+shift+[",
+    "key": "cmd+shift+]",
     "command": "block-travel.selectDown"
   },
   {

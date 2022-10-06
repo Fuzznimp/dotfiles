@@ -30,7 +30,7 @@ window:
   dynamic_padding: true
   decorations: transparent
   startup_mode: SimpleFullscreen
-  opacity: 1
+  opacity: 0.9
 
 dynamic_title: true
 
@@ -67,8 +67,8 @@ key_bindings:
   - { key: K, mods: Command, chars: "\x02s" }
   # Change to the next tmux window.
   - { key: K, mods: Command|Shift, chars: "\x02F" }
-  # Change to the next tmux window.
-  - { key: F, mods: Command|Shift, chars: "\x02?" }
+  # Search inside current tmux pane.
+  - { key: F, mods: Command, chars: "\x02?" }
   # Select window 1-9
   - { key: Key1, mods: Command, chars: "\x021" }
   - { key: Key2, mods: Command, chars: "\x022" }
@@ -133,6 +133,7 @@ key_bindings:
 
 # 02 = ctrl + b
 # 13 = ctrl + s
+# https://www.physics.udel.edu/~watson/scen103/ascii.html
 
 # Key HEX Value
 # • Esc                 1B

@@ -103,6 +103,7 @@ alias t="env TERM=screen-256color tmux"
 # Docker
 alias dk="docker"
 alias dkc="docker compose"
+alias ldk="lazydocker"
 
 # Overmind
 alias hv="hivemind"
