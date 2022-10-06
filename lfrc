@@ -5,15 +5,15 @@ set icons true
 
 # Custom Functions
 cmd mkdir ${{
-  printf "Directory Name: "
-  read ans
-  mkdir $ans
+    printf "Directory Name: "
+    read ans
+    mkdir $ans
 }}
 
 cmd mkfile ${{
-  printf "File Name: "
-  read ans
-  $EDITOR $ans
+    printf "File Name: "
+    read ans
+    $EDITOR $ans
 }}
 
 # extract the current file with the right command
@@ -62,8 +62,21 @@ cmd zi ${{
     lf -remote "send ${id} cd '${result}'"
 }}
 
+# fzf
+cmd fzf_jump ${{
+    res="$(find . -maxdepth 1 | fzf --reverse --header='Jump to location' | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    if [ -d "$res" ] ; then
+        cmd="cd"
+    elif [ -f "$res" ] ; then
+        cmd="select"
+    else
+        exit 0
+    fi
+    lf -remote "send $id $cmd \"$res\""
+}}
+
 # Bindings
-# Remove some defaults
+## Remove some defaults
 map m
 map o
 map n
@@ -72,12 +85,10 @@ map '"'
 map d
 map f
 
-map f fzf
-
 map au unarchive
 map ae execute
 
-# Basic Functions
+## Basic Functions
 map . set hidden!
 map DD delete
 map p paste
@@ -89,9 +100,20 @@ map mf mkfile
 map md mkdir
 map C clear
 
+## fzf
+map <c-f> :fzf_jump
+map f $vi $(fzf --preview 'bat --style=numbers --theme=ansi --color=always --line-range :500 {}' | pbcopy | echo `pbpaste`)
+
 # Movement
 map gw cd ~/workspaces
 map gd cd ~/Documents
 map gD cd ~/Downloads
 map gp cd ~/.local/bin
 map gc cd ~/.config
+
+# Sencrop
+map gsa cd ~/workspace/sencrop/sencrop-app
+map gsi cd ~/workspace/sencrop/infrastructure-sencrop
+map gsb cd ~/workspace/sencrop/sencrop-bali-api
+
+

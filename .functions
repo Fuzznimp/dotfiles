@@ -4,15 +4,15 @@ export_dotfiles() {
   && cp.function \
   && cp.gitconfig \
   && cp.gitignore \
-  && cp.gittemplates \
   && cp.hammerspoon \
-  && cp.rustfmt \
   && cp.vscode.keybindings \
   && cp.vscode.settings \
   && cp.vscode.snippet \
   && cp.lfrc \
   && cp.alacritty \
   && cp.tmux \
+  # && cp.gittemplates \
+  # && cp.rustfmt \
   # && cp.kitty \
   # && cp.fig \
 }
@@ -24,15 +24,15 @@ import_dotfiles() {
   && cp ~/workspace/dotfiles/kitty.conf ~/.config/kitty/kitty.conf \
   && cp ~/workspace/dotfiles/.gitconfig ~/.gitconfig \
   && cp ~/workspace/dotfiles/.gitignore ~/.gitignore \
-  && cp -R ~/workspace/dotfiles/.git-templates ~ \
   && cp -R ~/workspace/dotfiles/.hammerspoon ~/.hammerspoon \
-  && cp ~/workspace/dotfiles/.rustfmt.toml ~/.rustfmt.toml \
   && cp ~/workspace/dotfiles/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json \
   && cp ~/workspace/dotfiles/settings.json ~/Library/Application\ Support/Code/User/settings.json \
   && cp ~/workspace/dotfiles/fuzznimp.code-snippets ~/Library/Application\ Support/Code/User/snippets/fuzznimp.code-snippets \
   && cp ~/workspace/dotfiles/lfrc ~/.config/lf/lfrc \
   && cp ~/workspace/dotfiles/alacritty ~/.config/alacritty/alacritty.yml \
   && cp ~/workspace/dotfiles/.tmux.conf ~/.tmux.conf \
+  # && cp ~/workspace/dotfiles/.rustfmt.toml ~/.rustfmt.toml \
+  # && cp -R ~/workspace/dotfiles/.git-templates ~ \
 }
 
 update_stack () {
