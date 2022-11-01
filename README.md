@@ -2,7 +2,7 @@
 
 If you are confused: https://dotfiles.github.io/.
 
-Specs:
+## Specs:
 
 - zsh
 - Nvim
@@ -16,7 +16,13 @@ Specs:
 - kitty
 - fig
 
-TODO:
+## Symlinks
+
+```sh
+ln -s ~/workspace/dotfiles/nvim/custom ~/.config/nvim/lua/
+```
+
+## TODO:
 
 - [ ] Add symlinks + regroup in `~/.config`.
 - [ ] Add global theme object.

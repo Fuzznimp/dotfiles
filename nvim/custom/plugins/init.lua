@@ -57,4 +57,15 @@ return {
       require "nvim-treesitter.configs"
     end,
   },
+  ["windwp/nvim-ts-autotag"] = {
+    ft = { "html", "javascriptreact", "jsx", "tsx", "typescriptreact" },
+    after = "nvim-treesitter",
+    config = function()
+      local present, autotag = pcall(require, "nvim-ts-autotag")
+
+      if present then
+        autotag.setup()
+      end
+    end,
+  },
 }

@@ -25,6 +25,7 @@ M.treesitter = {
     module_path = "rainbow.internal",
     termcolors = { "Red", "Green", "Yellow", "Blue", "Magenta", "Cyan", "White" },
   },
+  auto_install = true,
 }
 
 M.mason = {
@@ -40,6 +41,7 @@ M.mason = {
 		"stylua",
 		"eslint_d",
   },
+  auto_install = true,
 }
 
 -- git support in nvimtree
