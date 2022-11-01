@@ -25,7 +25,6 @@ alias cp.vscode.keybindings="cp ~/Library/Application\ Support/Code/User/keybind
 alias cp.vscode.settings="cp ~/Library/Application\ Support/Code/User/settings.json ~/workspace/dotfiles"
 alias cp.vscode.snippet="cp ~/Library/Application\ Support/Code/User/snippets/fuzznimp.code-snippets ~/workspace/dotfiles"
 ## Shell
-alias cp.nvim="cp -r ~/.config/nvim/lua/custom ~/workspace/nvim"
 alias cp.lfrc="cp ~/.config/lf/lfrc ~/workspace/dotfiles"
 alias cp.alacritty="cp ~/.config/alacritty/alacritty.yml ~/workspace/dotfiles"
 alias cp.tmux="cp ~/.tmux.conf ~/workspace/dotfiles"
