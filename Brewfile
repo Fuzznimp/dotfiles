@@ -4,6 +4,7 @@ tap "FelixKratz/formulae"
 
 brew "act"
 brew "ansifilter"
+brew "atuin"
 brew "bat"
 brew "cowsay"
 brew "ctop"
@@ -18,6 +19,7 @@ brew "jesseduffield/lazygit/lazygit"
 brew "jesseduffield/lazydocker/lazydocker"
 brew "lazygit"
 brew "mas"
+brew "mackup"
 brew "mkcert"
 brew "neovim"
 brew "nginx"
@@ -44,6 +46,7 @@ cask "dropbox"
 cask "font-hack-nerd-font"
 cask "google-chrome"
 cask "guitar-pro"
+cark "hammerspoon"
 cask "insomnia"
 cask "kitty"
 cask "onyx"
@@ -60,9 +63,5 @@ mas "Spark", id: 1176895641
 # Manual
 # OniVim2 https://v2.onivim.io/early-access-portal
 # Shadow https://shadow.tech/fr/shadow-apps
-# Hammerspoon http://www.hammerspoon.org/go/
-# Atuin https://github.com/ellie/atuin
-# go https://go.dev/dl/
-# smug https://github.com/ivaaaan/smug
 # fig https://fig.io/
 # sketchybar https://felixkratz.github.io/SketchyBar/setup
