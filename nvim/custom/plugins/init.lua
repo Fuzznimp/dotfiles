@@ -39,6 +39,12 @@ return {
       require("nvim-treesitter.configs").setup()
     end,
   },
+  ["glepnir/lspsaga.nvim"] = {
+    config = function()
+      require "custom.plugins.lspsaga"
+    end,
+  },
+  ["jose-elias-alvarez/typescript.nvim"] = {},
   ["NvChad/ui"] = {
     override_options = {
       statusline = {
@@ -49,6 +55,17 @@ return {
   ["p00f/nvim-ts-rainbow"] = {
     config = function()
       require "nvim-treesitter.configs"
+    end,
+  },
+  ["windwp/nvim-ts-autotag"] = {
+    ft = { "html", "javascriptreact", "jsx", "tsx", "typescriptreact" },
+    after = "nvim-treesitter",
+    config = function()
+      local present, autotag = pcall(require, "nvim-ts-autotag")
+
+      if present then
+        autotag.setup()
+      end
     end,
   },
 }
