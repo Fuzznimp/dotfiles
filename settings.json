@@ -109,8 +109,8 @@
   "turboConsoleLog.addSemicolonInTheEnd": true,
   "extensions.ignoreRecommendations": true,
   "workbench.colorCustomizations": {
-    "editorBracketHighlight.foreground2": "#228b22",
     "editorBracketHighlight.foreground1": "#8b4513",
+    "editorBracketHighlight.foreground2": "#228b22",
     "editorBracketHighlight.foreground3": "#cc7722"
   },
   "http.systemCertificates": false,
