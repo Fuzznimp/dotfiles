@@ -11,6 +11,8 @@ export_dotfiles() {
   && cp.lfrc \
   && cp.alacritty \
   && cp.tmux \
+  && cp.nvim \
+  && cp.lg \
   # && cp.gittemplates \
   # && cp.rustfmt \
   # && cp.kitty \

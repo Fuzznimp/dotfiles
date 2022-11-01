@@ -134,5 +134,9 @@
   "[sql]": {
     "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
   },
-  "svgPreview.autoOpen": false
+  "svgPreview.autoOpen": false,
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  "githubPullRequests.pullBranch": "never"
 }

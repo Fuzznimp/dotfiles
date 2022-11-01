@@ -27,3 +27,33 @@ hs.hotkey.bind({"⌃", "⌥"}, "space", function()
         hs.application.launchOrFocus("Code")
     end
 end)
+
+hs.hotkey.bind({"⌥", "⌘"}, "space", function()
+    local app = hs.appfinder.appFromName("Google Chrome")
+    if app then
+        if not app:mainWindow() then
+            app:selectMenuItem({"Google Chrome", "New OS window"})
+        elseif app:isFrontmost() then
+            app:hide()
+        else
+            app:activate()
+        end
+    else
+        hs.application.launchOrFocus("Google Chrome")
+    end
+end)
+
+hs.hotkey.bind({"⌃", "⌥", "⌘"}, "space", function()
+    local app = hs.appfinder.appFromName("Firefox Developer Edition")
+    if app then
+        if not app:mainWindow() then
+            app:selectMenuItem({"Firefox Developer Edition", "New OS window"})
+        elseif app:isFrontmost() then
+            app:hide()
+        else
+            app:activate()
+        end
+    else
+        hs.application.launchOrFocus("Firefox Developer Edition")
+    end
+end)

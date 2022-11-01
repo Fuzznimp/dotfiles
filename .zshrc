@@ -1,4 +1,4 @@
-export TERM=xterm-256color
+# export TERM=screen-256color
 
 export HISTFILE=~/.zsh_history
 export HISTFILESIZE=100000

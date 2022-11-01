@@ -29,6 +29,7 @@ brew "sketchybar"
 brew "the_silver_searcher"
 brew "tmux"
 brew "koekeishiya/formulae/yabai"
+brew "zoxide"
 brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 brew "zsh"
@@ -38,7 +39,6 @@ cask "alacritty"
 cask "alfred"
 cask "background-music"
 cask "bartender"
-cask "copyq"
 cask "docker"
 cask "dropbox"
 cask "font-hack-nerd-font"
@@ -48,12 +48,10 @@ cask "insomnia"
 cask "kitty"
 cask "onyx"
 cask "slack"
-cask "spectacle"
 cask "spotify"
 cask "tableplus"
 cask "typora"
 cask "vlc"
-cask "vscodium"
 
 mas "Monosnap", id: 540348655
 mas "Paprika Recipe Manager 3", id: 1303222628
@@ -67,5 +65,4 @@ mas "Spark", id: 1176895641
 # go https://go.dev/dl/
 # smug https://github.com/ivaaaan/smug
 # fig https://fig.io/
-# iStatMenus https://bjango.com/mac/istatmenus/
 # sketchybar https://felixkratz.github.io/SketchyBar/setup

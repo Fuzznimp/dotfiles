@@ -15,19 +15,22 @@ alias cp.function="cp ~/.zsh/.functions ~/workspace/dotfiles"
 ## Git
 alias cp.gitconfig="cp ~/.gitconfig ~/workspace/dotfiles"
 alias cp.gitignore="cp ~/.gitignore ~/workspace/dotfiles"
-alias cp.gittemplates="cp -R ~/.git-templates ~/workspace/dotfiles"
-# Scripts
+# alias cp.gittemplates="cp -R ~/.git-templates ~/workspace/dotfiles"
+## Scripts
 alias cp.hammerspoon="cp ~/.hammerspoon/init.lua ~/workspace/dotfiles/.hammerspoon/"
 ## Rust
-alias cp.rustfmt="cp ~/.rustfmt.toml ~/workspace/dotfiles"
+# alias cp.rustfmt="cp ~/.rustfmt.toml ~/workspace/dotfiles"
 ## VSCode
 alias cp.vscode.keybindings="cp ~/Library/Application\ Support/Code/User/keybindings.json ~/workspace/dotfiles"
 alias cp.vscode.settings="cp ~/Library/Application\ Support/Code/User/settings.json ~/workspace/dotfiles"
 alias cp.vscode.snippet="cp ~/Library/Application\ Support/Code/User/snippets/fuzznimp.code-snippets ~/workspace/dotfiles"
+## Shell
+alias cp.nvim="cp -r ~/.config/nvim/lua/custom ~/workspace/nvim"
 alias cp.lfrc="cp ~/.config/lf/lfrc ~/workspace/dotfiles"
 alias cp.alacritty="cp ~/.config/alacritty/alacritty.yml ~/workspace/dotfiles"
 alias cp.tmux="cp ~/.tmux.conf ~/workspace/dotfiles"
-alias cp.fig="cp ~/.fig/settings.json ~/workspace/dotfiles/.fig"
+# alias cp.fig="cp ~/.fig/settings.json ~/workspace/dotfiles/.fig"
+alias cp.lg="cp ~/Library/Application\ Support/lazygit/config.yml ~/workspace/dotfiles/lazygit/"
 
 # System
 alias ~="cd ~"
@@ -43,15 +46,15 @@ alias src="source .env.development"
 alias lf="tmux display-popup -w 80% -h 80% 'lf'"
 
 # Confs
-alias conf.alias="code ~/.zsh/.aliases"
-alias conf.function="code ~/.zsh/.functions"
-alias conf.zsh="code ~/.zshrc"
-alias conf.kitty="code ~/.config/kitty/kitty.conf"
-alias conf.tmux="code ~/.tmux.conf"
-alias conf.lf="code ~/.config/lf/lfrc"
-alias conf.alacritty="code ~/.config/alacritty/alacritty.yml"
-alias conf.smug="code ~/.config/smug"
-alias conf.lg="code ~/Library/Application\ Support/lazygit/config.yml"
+alias conf.alias="nvim ~/.zsh/.aliases"
+alias conf.function="nvim ~/.zsh/.functions"
+alias conf.zsh="nvim ~/.zshrc"
+alias conf.kitty="nvim ~/.config/kitty/kitty.conf"
+alias conf.tmux="nvim ~/.tmux.conf"
+alias conf.lf="nvim ~/.config/lf/lfrc"
+alias conf.alacritty="nvim ~/.config/alacritty/alacritty.yml"
+alias conf.smug="nvim ~/.config/smug"
+alias conf.lg="nvim ~/Library/Application\ Support/lazygit/config.yml"
 
 # Paths
 alias dotfiles="cd ~/workspace/dotfiles"
@@ -98,7 +101,7 @@ alias starr="sudo tar -pczf $1 $2"
 alias f="fzf --preview 'bat --style=numbers --theme=ansi --color=always --line-range :500 {}' | pbcopy | echo `pbpaste`"
 
 # tmux
-alias t="env TERM=screen-256color tmux"
+alias t="tmux"
 
 # Docker
 alias dk="docker"
@@ -146,6 +149,7 @@ alias update_kitty="curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /d
 
 # Vim
 alias vi="nvim"
+# alias vi="~/.local/bin/lvim"
 
 # Onivim2
 alias oni="/Applications/Onivim2.App/Contents/MacOS/Oni2"
