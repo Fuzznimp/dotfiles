@@ -39,6 +39,12 @@ return {
       require("nvim-treesitter.configs").setup()
     end,
   },
+  ["glepnir/lspsaga.nvim"] = {
+    config = function()
+      require "custom.plugins.lspsaga"
+    end,
+  },
+  ["jose-elias-alvarez/typescript.nvim"] = {},
   ["NvChad/ui"] = {
     override_options = {
       statusline = {
