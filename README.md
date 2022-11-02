@@ -18,7 +18,7 @@ If you are confused: https://dotfiles.github.io/.
 
 ## Symlinks
 
-After spending more than two years handling the dotfiles paths myself, I finally chose to switch to [mackup]("https://github.com/lra/mackup"), which is amazing!
+After spending more than two years handling the dotfiles paths myself, I finally chose to switch to [mackup](https://github.com/lra/mackup), which is amazing!
 
 ## TODO:
 
@@ -29,5 +29,14 @@ After spending more than two years handling the dotfiles paths myself, I finally
 
 ### mackup
 
-- [ ] Fix zsh.cfg for `.config/zsh/*`.
+- [ ] Fix `zsh.cfg` for `.config/zsh/*`.
 - [ ] Add nvchad to mackup.
+
+### brew
+
+- [ ] Cleanup.
+- [ ] Add `brew.sh`. <!-- Install brew, then Brewfile. -->
+
+### OS
+
+- [ ] Add `osx.sh`. <!-- Dock, shortcuts, etc. -->
