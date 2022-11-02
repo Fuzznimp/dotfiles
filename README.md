@@ -11,19 +11,23 @@ If you are confused: https://dotfiles.github.io/.
 - hammerspoon
 - lf
 - lazygit
-- Brewfile
+- brew
 - VSCode
 - kitty
 - fig
 
 ## Symlinks
 
-```sh
-ln -s ~/workspace/dotfiles/nvim/custom ~/.config/nvim/lua/
-```
+After spending more than two years handling the dotfiles paths myself, I finally chose to switch to [mackup]("https://github.com/lra/mackup"), which is amazing!
 
 ## TODO:
 
-- [ ] Add symlinks + regroup in `~/.config`.
+### Global
+
 - [ ] Add global theme object.
-- [ ] Use https://github.com/lra/mackup.
+- [ ] Extract cspell hash from vscode to global level.
+
+### mackup
+
+- [ ] Fix zsh.cfg for `.config/zsh/*`.
+- [ ] Add nvchad to mackup.

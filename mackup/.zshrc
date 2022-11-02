@@ -153,8 +153,8 @@ ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=208,bold
 ZSH_HIGHLIGHT_STYLES[path]=fg=255,bold
 ZSH_HIGHLIGHT_STYLES[path_pathseparator]=fg=yellow,bold
 
-source ${HOME}/.zsh/.aliases
-source ${HOME}/.zsh/.functions
+source ${HOME}/.config/zsh/.aliases
+source ${HOME}/.config/zsh/.functions
 source ${HOME}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ${HOME}/.cargo/env
 export PATH=/opt/homebrew/bin:$PATH
