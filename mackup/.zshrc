@@ -1,3 +1,5 @@
+source ~/workspace/dotfiles/zsh/.constants
+
 # export TERM=screen-256color
 
 export HISTFILE=~/.zsh_history
@@ -153,8 +155,9 @@ ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=208,bold
 ZSH_HIGHLIGHT_STYLES[path]=fg=255,bold
 ZSH_HIGHLIGHT_STYLES[path_pathseparator]=fg=yellow,bold
 
-source ${HOME}/.config/zsh/.aliases
-source ${HOME}/.config/zsh/.functions
+# source $DOTFILES_PATH/zsh/.aliases
+source ${HOME}/workspace/dotfiles/zsh/.aliases
+source ${HOME}/workspace/dotfiles/zsh/.functions
 source ${HOME}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ${HOME}/.cargo/env
 export PATH=/opt/homebrew/bin:$PATH

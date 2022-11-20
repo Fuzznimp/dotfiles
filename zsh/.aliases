@@ -1,0 +1,142 @@
+source ${HOME}/workspace/dotfiles/zsh/.constants
+
+# Source Shell
+alias source.zsh="source $DOTFILES_PATH/mackup/.zshrc"
+
+# List declared aliases, functions, path.
+alias aliases="alias | sed 's/=.*//'"
+alias functions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'"
+alias paths="echo -e ${PATH//:/\\n}"
+
+
+# System
+alias ~="cd ~"
+alias /="cd /"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias c="clear"
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias mkdir="mkdir -pv"
+alias src="source .env.development"
+alias lfp="tmux display-popup -w 80% -h 80% 'lf'"
+
+# Confs
+alias conf.alias="vi $DOTFILES_PATH/.aliases"
+alias conf.function="vi $DOTFILES_PATH/.functions"
+alias conf.zsh="vi $DOTFILES_PATH/.zshrc"
+alias conf.kitty="vi $DOTFILES_PATH/kitty.conf"
+alias conf.tmux="vi $DOTFILES_PATH/.tmux.conf"
+alias conf.lf="vi $DOTFILES_PATH/.config/lf/lfrc"
+alias conf.alacritty="vi $DOTFILES_PATH/.config/alacritty/alacritty.yml"
+alias conf.lg="vi  $DOTFILES_PATH/mackup/Library/Application\ Support/lazygit/config.yml"
+alias conf.mackup="vi ~/.mackup.cfg"
+
+# Paths
+alias dotfiles="cd $DOTFILES_PATH"
+alias wks="cd $WORKSPACE_PATH"
+
+# Work
+## Fewlines
+alias fwl="cd $FEWLINES_PATH"
+alias fwl.account="cd $FEWLINES_PATH/connect-account"
+alias fwl.connect="cd $FEWLINES_PATH/connect"
+alias fwl.courses="cd $FEWLINES_PATH/sparta_courses"
+alias fwl.guidelines="cd $FEWLINES_PATH/guidelines"
+alias fwl.eslint="cd $FEWLINES_PATH/eslint-config"
+alias fwl.profile="cd $FEWLINES_PATH/connect-profile"
+alias fwl.sparta="cd $FEWLINES_PATH/sparta-monorepo"
+alias fwl.sdk="cd $FEWLINES_PATH/connect-js"
+alias fwl.fwl="cd $FEWLINES_PATH/node-web-libraries"
+alias fwl.web="cd $FEWLINES_PATH/website"
+## Sencrop
+alias sen="cd $SENCROP_PATH"
+alias sen.app="cd $SENCROP_PATH/sencrop-app"
+alias sen.bo="cd $SENCROP_PATH/sencrop-backoffice"
+alias sen.bali="cd $SENCROP_PATH/sencrop-bali-api"
+alias sen.demeter="cd $SENCROP_PATH/sencrop-demeter-api"
+alias sen.e2e="cd $SENCROP_PATH/sencrop-e2e"
+alias sen.factory="cd $SENCROP_PATH/sencrop-factory"
+alias sen.infra="cd $SENCROP_PATH/infrastructure-sencrop"
+alias sen.map="cd $SENCROP_PATH/sencrop-map"
+alias sen.measure="cd $SENCROP_PATH/sencrop-measures-api"
+alias sen.quote="cd $SENCROP_PATH/sencrop-quotator"
+alias sen.ui="cd $SENCROP_PATH/sencrop-ui"
+
+# ls
+# alias ll="tmux display-popup -w 80% -h 80% 'exa --all --long --header --git'"
+alias ll="exa --all --long --header --git"
+alias lt="exa -aT --color=always --group-directories-first --ignore-glob=\"**/node_modules|**/dist|**/.next\""
+
+# tar
+alias tarr="tar -pczf $1 $2"
+alias untarr="tar -pxzf $1"
+alias starr="sudo tar -pczf $1 $2"
+
+# fzf
+alias f="fzf --preview 'bat --style=numbers --theme=ansi --color=always --line-range :500 {}' | pbcopy | echo `pbpaste`"
+
+# tmux
+alias t="tmux"
+
+# Docker
+alias dk="docker"
+alias dkc="docker compose"
+alias ldk="lazydocker"
+alias docker.cleancontainer="docker ps -a -q | xargs docker rm"
+alias docker.cleanimage="docker images --filter dangling=true -q | xargs docker rmi"
+
+# Overmind
+alias hv="hivemind"
+alias ov="overmind"
+
+# AWS
+alias ddb="aws dynamodb"
+
+# Mac
+alias cask="brew cask"
+alias delete.ds="find . -type f -name '*.DS_Store' -ls -delete"
+alias delete.ad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
+alias desktopshow="defaults write com.apple.finder CreateDesktop -bool true && killfinder"
+alias desktophide="defaults write com.apple.finder CreateDesktop -bool false && killfinder"
+alias displays="system_profiler SPDisplaysDataType"
+alias cpu="sysctl -n machdep.cpu.brand_string"
+
+# Git
+alias lg="tmux display-popup -w 80% -h 80% -d '#{pane_current_path}' 'lazygit'"
+alias ghb="gh browse"
+alias gst="git status"
+alias gd="git diff"
+alias ga="git add"
+alias gcm="git commit -m"
+alias gpo="git push -u origin"
+alias gtl="git stash list"
+alias gts="git stash save"
+alias gsd="git stash drop"
+alias gca="git commit --amend"
+alias gcan="git commit --amend --no-edit"
+alias gl="git log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'"
+alias	gpof="git push origin --force-with-lease"
+alias	gpoff="git push origin --force-with-lease --no-verify"
+alias gbleach="git branch -vv | grep 'gone'] | awk '{ print $1 }' | xargs git branch -D"
+
+# kitty
+alias update_kitty="curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin"
+
+# Vim
+alias vi="nvim"
+
+# Onivim2
+alias oni="/Applications/Onivim2.App/Contents/MacOS/Oni2"
+
+# Network
+alias nets="lsof -i"
+alias ip="curl -s ipinfo.io | jq -r '.ip'"
+alias ipl="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
+alias wip="curl ifconfig.co"
+alias speedtest="curl -o /dev/null http://ovh.net/files/100Mio.dat"
+
+# Misc
+alias week="date +%V"
+alias ansic='for code in {000..255}; do print -P -- "$code: %F{$code}Color%f"; done'

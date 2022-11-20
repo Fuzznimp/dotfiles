@@ -11,6 +11,7 @@ If you are confused: https://dotfiles.github.io/.
 - hammerspoon
 - lf
 - lazygit
+- mackup
 - brew
 - VSCode
 - kitty
@@ -26,6 +27,11 @@ After spending more than two years handling the dotfiles paths myself, I finally
 
 - [ ] Add global theme object.
 - [ ] Extract cspell hash from vscode to global level.
+
+### Nvim
+
+- nvim-tree: mapping.
+- nvim-ts-rainbow: remove from tsx.
 
 ### mackup
 
