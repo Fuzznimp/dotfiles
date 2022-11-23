@@ -49,7 +49,6 @@
   "editor.formatOnSave": true,
   "gruvboxMaterial.darkContrast": "hard",
   "errorLens.delay": 2000,
-  "diffEditor.ignoreTrimWhitespace": false,
   "eslint.format.enable": true,
   "files.watcherExclude": {
     "/venv/": true,

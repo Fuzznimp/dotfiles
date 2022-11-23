@@ -1,6 +1,6 @@
 source ${HOME}/workspace/dotfiles/zsh/.constants
 
-# Source Shell
+# Source Shell.
 alias source.zsh="source $DOTFILES_PATH/mackup/.zshrc"
 
 # List declared aliases, functions, path.
