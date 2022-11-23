@@ -23,12 +23,12 @@ lfcd () {
     fi
 }
 
-function find-exec() {
+find-exec() {
   find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
 }
 
 # Better find(1)
-function ff() {
+ff() {
   find . -iname "*${1:-}*"
 }
 
@@ -59,7 +59,7 @@ wth() {
   curl "wttr.in/${city}"
 }
 
-function _calcram() {
+_calcram() {
   local sum
   sum=0
   for i in `ps aux | grep -i "$1" | grep -v "grep" | awk '{print $6}'`; do
@@ -72,7 +72,7 @@ function _calcram() {
 # Show how much RAM application uses.
 # $ ram safari
 # # => safari uses 154.69 MBs of RAM
-function ram() {
+ram() {
   local sum
   local app="$1"
   if [ -z "$app" ]; then
@@ -90,7 +90,7 @@ function ram() {
 
 # Same, but tracks RAM usage in realtime. Will run until you stop it.
 # $ rams safari
-function rams() {
+rams() {
   local sum
   local app="$1"
   if [ -z "$app" ]; then
@@ -110,7 +110,7 @@ function rams() {
 }
 
 # $ size dir1 file2.js
-function size() {
+size() {
   # du -scBM | sort -n
   du -shck "$@" | sort -rn | awk '
       function human(x) {
