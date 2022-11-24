@@ -1,12 +1,16 @@
 update_stack () {
+  echo "🌀 Starting brew maintenance.."
   brew update \
     && brew upgrade \
     && brew cleanup \
     && brew doctor \
     && brew bundle check \
     && brew bundle cleanup
+  echo "🚀 Brew maintenance done!"
 
+  echo "🌀 Starting mas maintenance.."
   mas upgrade
+  echo "🚀 Mas maintenance done!"
 }
 
 lfcd () {

@@ -14,8 +14,7 @@ If you are confused: https://dotfiles.github.io/.
 - mackup
 - brew
 - VSCode
-- kitty
-- fig
+- ..and many more!
 
 ## Symlinks
 
@@ -31,17 +30,16 @@ After spending more than two years handling the dotfiles paths myself, I finally
 ### Nvim
 
 - nvim-tree: mapping.
-- nvim-ts-rainbow: remove from tsx.
+- nvim-ts-rainbow: ~remove from tsx~ create scheme.
 
 ### mackup
 
-- [ ] Fix `zsh.cfg` for `.config/zsh/*`.
 - [ ] Add nvchad to mackup.
 
 ### brew
 
 - [ ] Cleanup.
-- [ ] Add `brew.sh`. <!-- Install brew, then Brewfile. -->
+- [ ] Add `brew.sh`. <!-- Install brew, then Brewfile. -->.
 
 ### OS
 

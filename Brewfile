@@ -57,11 +57,8 @@ cask "typora"
 cask "vlc"
 
 mas "Monosnap", id: 540348655
-mas "Paprika Recipe Manager 3", id: 1303222628
 mas "Spark", id: 1176895641
 
 # Manual
 # OniVim2 https://v2.onivim.io/early-access-portal
 # Shadow https://shadow.tech/fr/shadow-apps
-# fig https://fig.io/
-# sketchybar https://felixkratz.github.io/SketchyBar/setup
