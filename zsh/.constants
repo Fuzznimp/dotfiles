@@ -1,6 +1,10 @@
 # System.
 export WORKSPACE_PATH="~/workspace"
 export DOTFILES_PATH="$WORKSPACE_PATH/dotfiles"
+export DOTFILES_NVIM_PATH="$DOTFILES_PATH/nvim"
+export DOTFILES_MACKUP_PATH="$DOTFILES_PATH/mackup"
+export DOTFILES_MACKUP_CONFIG_PATH="$DOTFILES_MACKUP_PATH/.config"
+export DOTFILES_MACKUP_APP_PATH="$DOTFILES_MACKUP_PATH/Library/Application\ Support"
 
 # Work.
 export FEWLINES_PATH="~/workspace/fewlines"
