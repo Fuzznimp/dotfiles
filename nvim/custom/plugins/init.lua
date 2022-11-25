@@ -68,4 +68,8 @@ return {
       end
     end,
   },
+  ["NvChad/nvterm"] = {
+    disable = true,
+  },
+  ["ThePrimeagen/vim-be-good"] = {},
 }
