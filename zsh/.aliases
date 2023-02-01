@@ -23,8 +23,8 @@ alias src="source .env.development"
 alias lfp="tmux display-popup -w 80% -h 80% 'lf'"
 
 # Confs
-alias conf.alias="vi $DOTFILES_NVIM_PATH/.aliases"
-alias conf.function="vi $DOTFILES_NVIM_PATH/.functions"
+alias conf.alias="vi $DOTFILES_ZSH_PATH/.aliases"
+alias conf.function="vi $DOTFILES_ZSH_PATH/.functions"
 alias conf.zsh="vi $DOTFILES_MACKUP_PATH/.zshrc"
 alias conf.kitty="vi $DOTFILES_MACKUP_CONFIG_PATH/kitty/kitty.conf"
 alias conf.tmux="vi $DOTFILES_MACKUP_PATH/.tmux.conf"
@@ -35,6 +35,8 @@ alias conf.mackup="vi ~/.mackup.cfg"
 alias conf.hammerspoon="vi $DOTFILES_MACKUP_PATH/.hammerspoon"
 
 # Paths
+alias j="z"
+alias ji="zi"
 alias dotfiles="cd $DOTFILES_PATH"
 alias wks="cd $WORKSPACE_PATH"
 
@@ -80,6 +82,7 @@ alias f="fzf --preview 'bat --style=numbers --theme=ansi --color=always --line-r
 
 # tmux
 alias t="tmux"
+alias tkk="tmux kill-session -a -t 🍃 🌳"
 
 # Docker
 alias dk="docker"
@@ -127,6 +130,7 @@ alias update_kitty="curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /d
 
 # Vim
 alias vi="nvim"
+alias delete.packer="rm -rf ~/.local/share/nvim/site/pack/packer"
 
 # Onivim2
 alias oni="/Applications/Onivim2.App/Contents/MacOS/Oni2"

@@ -25,8 +25,8 @@ colors:
 
 window:
   padding:
-    x: 10
-    y: 10
+    x: 2
+    y: 8
   dynamic_padding: true
   decorations: transparent
   startup_mode: SimpleFullscreen
@@ -61,6 +61,7 @@ shell:
 
 # TODO add tmux-fuzzback
 key_bindings:
+  - { key: F11, action: ToggleFullscreen }
   # Rename the current tmux window.
   - { key: Comma, mods: Command, chars: "\x02," }
   # Select a new tmux session for the attached client interactively.

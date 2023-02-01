@@ -48,9 +48,8 @@ cmd zip ${{
     rm -rf $1
 }}
 
-# define a custom 'rename' command without prompt for overwrite
-cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
-map r push :rename<space>
+# Rename file
+map R push r<a-b><c-b> 
 
 # Zoxide
 cmd z %{{
@@ -108,11 +107,13 @@ map f $vi $(fzf --preview 'bat --style=numbers --theme=ansi --color=always --lin
 map gw cd ~/workspaces
 map gd cd ~/Documents
 map gD cd ~/Downloads
-map gp cd ~/.local/bin
+map gb cd ~/.local/bin
 map gc cd ~/.config
+map g. cd ~/workspace/dotfiles
 
 # Sencrop
-map gsa cd ~/workspace/sencrop/sencrop-app
+map gsap cd ~/workspace/sencrop/sencrop-app
+map gsaa cd ~/workspace/sencrop/sencrop-app/src/assets
 map gsi cd ~/workspace/sencrop/infrastructure-sencrop
 map gsb cd ~/workspace/sencrop/sencrop-bali-api
 

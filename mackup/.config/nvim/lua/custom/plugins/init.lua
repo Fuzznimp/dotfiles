@@ -72,4 +72,5 @@ return {
     disable = true,
   },
   ["ThePrimeagen/vim-be-good"] = {},
+  -- ["folke/todo-comments.nvim"] = {},
 }

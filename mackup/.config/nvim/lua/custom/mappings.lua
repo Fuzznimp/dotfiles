@@ -2,7 +2,7 @@ local M = {}
 
 M.general = {
   n = {
-    [";"] = { ":", "command mode", opts = { nowait = true } },
+    -- [";"] = { ":", "command mode", opts = { nowait = true } },
     ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
     ["<C-n>"] = { "<cmd> NvimTreeFocus <CR>", "focus nvimtree" },
     ["<leader>rs"] = { ":LspRestart<CR>", "mapping to restart lsp if necessary" },

@@ -66,7 +66,10 @@ M.mason = {
 M.nvimtree = {
   git = {
     enable = true,
+    ignore = true,
   },
+
+  -- exclude = {},
 
   renderer = {
     highlight_git = true,

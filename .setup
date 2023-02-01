@@ -1,0 +1,19 @@
+#!/bin/bash
+
+bold_input() {
+  bold_output=$(tput bold)
+  normal_output=$(tput sgr0)
+
+  return ${bold_output}$0${normal_output}
+}
+
+# Mackup
+MACKUP_ROOT_PATH="~/.mackup"
+echo "📁 Make dir ${BOLD_OUTPUT}$MACKUP_ROOT_PATH${NORMAL_OUTPUT}."
+echo $MACKUP_ROOT_PATH
+mkdir $($MACKUP_ROOT_PATH)
+echo "🔗 Creating $bold_input  .mackup.cfg symlink."
+ln -s ~/workspace/dotfiles/.mackup/.mackup.cfg ~/
+echo "🔗 Creating ${BOLD_OUTPUT}.mackup/${NORMAL_OUTPUT} symlink."
+ln -s ~/workspace/dotfiles/.mackup/.mackup/ ~/.mackup/
+

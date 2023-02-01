@@ -16,7 +16,7 @@
   "editor.fontWeight": "500",
   "emmet.showSuggestionsAsSnippets": true,
   "workbench.startupEditor": "newUntitledFile",
-  "editor.wordWrapColumn": 80,
+  // "editor.wordWrapColumn": 80,
   "editor.dragAndDrop": false,
   "indentRainbow.colors": [
     "rgba(16,16,16,0.1)",
@@ -67,10 +67,7 @@
   "workbench.iconTheme": "vscode-icons",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "security.workspace.trust.untrustedFiles": "open",
-  "workbench.colorTheme": "Gruvbox Material Dark",
   "cSpell.userWords": [
-    "meteoblue",
-    "multimodel",
     "algo",
     "behaviour",
     "bodyparser",
@@ -82,9 +79,12 @@
     "fiability",
     "formik",
     "fuzznimp",
+    "gruvbox",
     "leafcrop",
     "lightstep",
+    "meteoblue",
     "middlewares",
+    "multimodel",
     "neighbour",
     "neighbours",
     "nextjs",
@@ -96,6 +96,7 @@
     "prefetch",
     "procfile",
     "remoteaddr",
+    "rgba",
     "roboto",
     "sencrop",
     "sigfox",
@@ -103,7 +104,9 @@
     "timeseries",
     "unmarshall",
     "uuidv",
-    "vercel"
+    "vercel",
+    "zstyle",
+    "rgba"
   ],
   "turboConsoleLog.addSemicolonInTheEnd": true,
   "extensions.ignoreRecommendations": true,
@@ -119,13 +122,12 @@
     // "source.sortImports": true
   },
   "explorer.confirmDragAndDrop": false,
-  "editor.wordWrap": "wordWrapColumn",
+  // "editor.wordWrap": "wordWrapColumn",
   "git.enableSmartCommit": true,
   "git.mergeEditor": true,
   "window.commandCenter": true,
   "editor.renderWhitespace": "all",
   "Lua.telemetry.enable": true,
-  "window.zoomLevel": 1,
   "editor.cursorStyle": "block",
   "diffEditor.codeLens": true,
   "editor.linkedEditing": true,
@@ -137,5 +139,8 @@
   "[rust]": {
     "editor.defaultFormatter": "rust-lang.rust-analyzer"
   },
-  "githubPullRequests.pullBranch": "never"
+  "githubPullRequests.pullBranch": "never",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "window.zoomLevel": 1,
+  "workbench.colorTheme": "Gruvbox Material Dark"
 }
