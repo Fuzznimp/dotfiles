@@ -31,11 +31,15 @@ After spending more than two years handling the dotfiles paths myself, I finally
 - [ ] Extract cspell hash from vscode to global level.
 - [ ] .setup
 
-### Nvim
+### Nvchad
 
 - [ ] nvim-tree: improve git symbols.
 - [ ] nvim-tree: mapping.
 - [ ] nvim-ts-rainbow: ~remove from tsx~ create scheme.
+
+### Nvim
+
+- [ ] nav: fix opt + right.
 
 ### brew
 
