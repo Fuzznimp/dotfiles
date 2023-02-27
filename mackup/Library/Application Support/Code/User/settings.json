@@ -127,7 +127,6 @@
   "git.mergeEditor": true,
   "window.commandCenter": true,
   "editor.renderWhitespace": "all",
-  "Lua.telemetry.enable": true,
   "editor.cursorStyle": "block",
   "diffEditor.codeLens": true,
   "editor.linkedEditing": true,
@@ -141,6 +140,9 @@
   },
   "githubPullRequests.pullBranch": "never",
   "diffEditor.ignoreTrimWhitespace": false,
-  "window.zoomLevel": 1,
-  "workbench.colorTheme": "Gruvbox Material Dark"
+  "workbench.colorTheme": "Gruvbox Material Dark",
+  "[lua]": {
+    "editor.defaultFormatter": "sumneko.lua"
+  },
+  "window.zoomLevel": 1
 }

@@ -21,7 +21,7 @@ M.treesitter = {
     colors = { "#8b4513", "#228b22", "#cc7722" },
     disable = { "txt", "md", "jsx", "tsx" },
     enable = true,
-    extended_mode = true,
+    extended_mode = false,
     module_path = "rainbow.internal",
     termcolors = { "Red", "Green", "Yellow", "Blue", "Magenta", "Cyan", "White" },
   },
@@ -68,7 +68,6 @@ M.nvimtree = {
     enable = true,
     ignore = true,
   },
-
   -- exclude = {},
 
   renderer = {
