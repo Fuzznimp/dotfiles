@@ -1,7 +1,9 @@
 source ${HOME}/workspace/dotfiles/zsh/.constants
+source ${HOME}/workspace/dotfiles/zsh/.functions
 
 # Source Shell.
 alias source.zsh="source $DOTFILES_PATH/mackup/.zshrc"
+alias source.tmux="source $DOTFILES_PATH/mackup/.tmux.conf"
 
 # List declared aliases, functions, path.
 alias aliases="alias | sed 's/=.*//'"
@@ -81,8 +83,8 @@ alias starr="sudo tar -pczf $1 $2"
 alias f="fzf --preview 'bat --style=numbers --theme=ansi --color=always --line-range :500 {}' | pbcopy | echo `pbpaste`"
 
 # tmux
-alias t="tmux"
-alias tkk="tmux kill-session -a -t 🍃 🌳"
+alias t="tmux -2"
+alias tks="kill-tmux-garbage-sessions \$(tmux list-sessions)"
 
 # Docker
 alias dk="docker"
