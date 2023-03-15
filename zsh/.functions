@@ -27,6 +27,19 @@ lfcd () {
     fi
 }
 
+function kill-tmux-garbage-sessions() {
+  local garbage_sessions=($(tmux list-sessions | awk -F: '!/🌳|🍃/ {print $1}'))
+
+  if [ ${#garbage_sessions[@]} -eq 0 ]; then
+    echo "No garbage sessions found."
+  else
+    for session in "${garbage_sessions[@]}"; do
+      tmux kill-session -t "$session"
+      echo "Session $session killed."
+    done
+  fi
+}
+
 find-exec() {
   find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
 }
