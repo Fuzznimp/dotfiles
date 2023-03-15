@@ -3,7 +3,7 @@ source ${HOME}/workspace/dotfiles/zsh/.functions
 
 # Source Shell.
 alias source.zsh="source $DOTFILES_PATH/mackup/.zshrc"
-alias source.tmux="source $DOTFILES_PATH/mackup/.tmux.conf"
+alias source.tmux="tmux source-file $DOTFILES_PATH/mackup/.tmux.conf"
 
 # List declared aliases, functions, path.
 alias aliases="alias | sed 's/=.*//'"
