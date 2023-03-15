@@ -45,6 +45,12 @@ function kill-tmux-garbage-sessions() {
   fi
 }
 
+function tmux-bootstrap-sessions() {
+  tmux new-session -d -s 🍃
+  tmux new-session -d -s 🌳
+  tmux attach-session -t 🌳
+}
+
 find-exec() {
   find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
 }
