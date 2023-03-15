@@ -8,8 +8,6 @@ source ${HOME}/workspace/dotfiles/zsh/.functions
 source ${HOME}/.cargo/env
 [ -f ~/.fzf.zsh ] && source  ${HOME}/.zsh
 
-# export TERM=screen-256color
-
 bindkey -e
 autoload -U edit-command-line;
 zle -N edit-command-line;
