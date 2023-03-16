@@ -2,10 +2,12 @@ return {
 	{
 		"nvim-treesitter/playground",
 		cmd = "TSCaptureUnderCursor",
+		lazy = true,
 	},
-	{ "p00f/nvim-ts-rainbow" },
+	{ "p00f/nvim-ts-rainbow", lazy = false, },
 	{
 		"nvim-treesitter/nvim-treesitter",
+		lazy = false,
 		opts = {
 			ensure_installed = {
 				"json",
@@ -23,7 +25,8 @@ return {
 				"dockerfile",
 			},
 			rainbow = {
-				enable = true,
+				enable = false,
+				-- FIXME: Colors are not the one chosen
 				colors = {
 					"#8b4513",
 					"#228b22",
@@ -34,7 +37,7 @@ return {
 			playground = {
 				enable = true,
 				disable = {},
-				updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+				updatetime = 25,     -- Debounced time for highlighting nodes in the playground from source code
 				persist_queries = false, -- Whether the query persists across vim sessions
 				keybindings = {
 					toggle_query_editor = "o",
@@ -53,29 +56,30 @@ return {
 	},
 	{
 		"NvChad/nvim-colorizer.lua",
+		lazy = false,
 		opts = {
-			filetypes = { "*" },
 			user_default_options = {
-				RGB = true, -- #RGB hex codes
-				RRGGBB = true, -- #RRGGBB hex codes
-				names = true, -- "Name" codes like Blue or blue
+				RGB = true,      -- #RGB hex codes
+				RRGGBB = true,   -- #RRGGBB hex codes
+				names = false,   -- "Name" codes like Blue or blue
 				RRGGBBAA = false, -- #RRGGBBAA hex codes
 				AARRGGBB = false, -- 0xAARRGGBB hex codes
-				rgb_fn = false, -- CSS rgb() and rgba() functions
-				hsl_fn = false, -- CSS hsl() and hsla() functions
-				css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-				css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+				rgb_fn = true,   -- CSS rgb() and rgba() functions
+				hsl_fn = true,   -- CSS hsl() and hsla() functions
+				css = true,      -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
 				-- Available modes for `mode`: foreground, background,  virtualtext
 				mode = "background", -- Set the display mode.
 				-- Available methods are false / true / "normal" / "lsp" / "both"
 				-- True is same as normal
-				tailwind = false, -- Enable tailwind colors
-				-- parsers can contain values used in |user_default_options|
-				sass = { enable = false, parsers = { css } }, -- Enable sass colors
-				virtualtext = "■",
+				tailwind = true,
 			},
-			-- all the sub-options of filetypes apply to buftypes
-			buftypes = {},
 		},
 	},
 }
+
+-- {
+-- 	"nvim-lualine/lualine.nvim",
+-- 	opts = {
+-- 		theme = require("colorscheme-lualine").theme(),
+-- 	}
+-- },

@@ -1,6 +1,7 @@
 return {
   {
     "ThePrimeagen/refactoring.nvim",
+    lazy = true,
     keys = {
       {
         "<leader>r",
@@ -15,4 +16,5 @@ return {
     },
     opts = {},
   },
+  { "ThePrimeagen/vim-be-good", lazy = true },
 }
