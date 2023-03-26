@@ -39,3 +39,4 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${HOME}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source /Users/anthonymontaigne/.docker/init-zsh.sh || true # Added by Docker Desktop
+export PATH="${HOME}/.pyenv/shims:${PATH}"
