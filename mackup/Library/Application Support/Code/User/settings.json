@@ -106,9 +106,9 @@
     "uuidv",
     "vercel",
     "zstyle",
-    "rgba"
+    "rgba",
+    "solarcrop"
   ],
-  "turboConsoleLog.addSemicolonInTheEnd": true,
   "extensions.ignoreRecommendations": true,
   "workbench.colorCustomizations": {
     "editorBracketHighlight.foreground1": "#8b4513",
@@ -144,5 +144,12 @@
   "[lua]": {
     "editor.defaultFormatter": "sumneko.lua"
   },
-  "window.zoomLevel": 1
+  "presentationMode.zoomLevel": 4,
+  "window.zoomLevel": 1,
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false
+  }
 }

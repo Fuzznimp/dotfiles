@@ -4,7 +4,7 @@
     "command": "block-travel.jumpDown"
   },
   {
-    "key": "cmd+shift+[",
+    "key": "cmd+shift+]",
     "command": "block-travel.selectUp"
   },
   {
@@ -12,16 +12,16 @@
     "command": "block-travel.jumpUp"
   },
   {
-    "key": "cmd+shift+]",
+    "key": "cmd+shift+[",
     "command": "block-travel.selectDown"
   },
   {
-    "key": "alt+[",
+    "key": "alt+]",
     "command": "cursorWordPartLeft",
     "when": "editorTextFocus"
   },
   {
-    "key": "alt+]",
+    "key": "alt+[",
     "command": "cursorWordPartRight",
     "when": "editorTextFocus"
   },
@@ -90,5 +90,20 @@
     "key": "shift+cmd+backspace",
     "command": "-search.searchEditor.action.deleteFileResults",
     "when": "inSearchEditor"
+  },
+  {
+    "key": "cmd+r",
+    "command": "-workbench.action.reloadWindow",
+    "when": "isDevelopment"
+  },
+  {
+    "key": "cmd+r",
+    "command": "editor.action.rename",
+    "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "f2",
+    "command": "-editor.action.rename",
+    "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
   }
 ]
