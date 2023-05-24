@@ -122,6 +122,7 @@ return {
 				h["@keyword.operator.tsx"] = { fg = c.red }
 				h["@keyword.return.tsx"] = { fg = c.red }
 				h["@keyword"] = { fg = c.orange }
+				h["@keyword.typescript"] = { fg = c.red }
 				h["@method.call.tsx"] = { fg = c.green }
 				h["@number.tsx"] = { fg = c.purple }
 				h["@operator"] = { fg = c.orange }
