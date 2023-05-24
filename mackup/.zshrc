@@ -33,6 +33,7 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'
 
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
+eval "$(direnv hook zsh)"
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Source last
