@@ -1,8 +1,8 @@
-hs.hotkey.bind({"⌥"}, "space", function()
+hs.hotkey.bind({ "⌥" }, "space", function()
     local app = hs.application.get("Alacritty")
     if app then
         if not app:mainWindow() then
-            app:selectMenuItem({"Alacritty", "New OS window"})
+            app:selectMenuItem({ "Alacritty", "New OS window" })
         elseif app:isFrontmost() then
             app:hide()
         else
@@ -13,11 +13,11 @@ hs.hotkey.bind({"⌥"}, "space", function()
     end
 end)
 
-hs.hotkey.bind({"⌃", "⌥"}, "space", function()
+hs.hotkey.bind({ "⌃", "⌥" }, "space", function()
     local app = hs.appfinder.appFromName("Code")
     if app then
         if not app:mainWindow() then
-            app:selectMenuItem({"Code", "New OS window"})
+            app:selectMenuItem({ "Code", "New OS window" })
         elseif app:isFrontmost() then
             app:hide()
         else
@@ -28,11 +28,11 @@ hs.hotkey.bind({"⌃", "⌥"}, "space", function()
     end
 end)
 
-hs.hotkey.bind({"⌥", "⌘"}, "space", function()
-    local app = hs.appfinder.appFromName("Google Chrome")
+hs.hotkey.bind({ "⌥", "⌘" }, "space", function()
+    local app = hs.appfinder.appFromName("Arc")
     if app then
         if not app:mainWindow() then
-            app:selectMenuItem({"Google Chrome", "New OS window"})
+            app:selectMenuItem({ "Arc", "New OS window" })
         elseif app:isFrontmost() then
             app:hide()
         else
@@ -43,11 +43,11 @@ hs.hotkey.bind({"⌥", "⌘"}, "space", function()
     end
 end)
 
-hs.hotkey.bind({"⌃", "⌥", "⌘"}, "space", function()
+hs.hotkey.bind({ "⌃", "⌥", "⌘" }, "space", function()
     local app = hs.appfinder.appFromName("Firefox Developer Edition")
     if app then
         if not app:mainWindow() then
-            app:selectMenuItem({"Firefox Developer Edition", "New OS window"})
+            app:selectMenuItem({ "Firefox Developer Edition", "New OS window" })
         elseif app:isFrontmost() then
             app:hide()
         else
