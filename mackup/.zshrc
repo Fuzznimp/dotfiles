@@ -27,17 +27,20 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 bindkey '^ ' autosuggest-accept
 
 export PATH=/opt/homebrew/bin:$PATH
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'
 
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
+export PATH=$PATH:/Users/anthonymontaigne/.nix-profile/bin/direnv
 eval "$(direnv hook zsh)"
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-# Source last
-source ${HOME}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source /Users/anthonymontaigne/.docker/init-zsh.sh || true # Added by Docker Desktop
-export PATH="${HOME}/.pyenv/shims:${PATH}"
+# Colima + Lazydocker
+# export DOCKER_HOST=unix://$HOME/.colima/docker.sock
+
+# export PATH="${HOME}/.pyenv/shims:${PATH}"
+
+# Source last
+source ${HOME}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
