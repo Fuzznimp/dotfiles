@@ -145,11 +145,25 @@
     "editor.defaultFormatter": "sumneko.lua"
   },
   "presentationMode.zoomLevel": 4,
-  "window.zoomLevel": 1,
   "github.copilot.enable": {
     "*": true,
     "plaintext": false,
     "markdown": true,
     "scminput": false
-  }
+  },
+  "window.zoomLevel": 1,
+  "todo-tree.general.tags": [
+    "BUG",
+    "HACK",
+    "FIXME",
+    "TODO",
+    "XXX",
+    "[ ]",
+    "[x]",
+    "NOTE"
+  ],
+  "window.titleBarStyle": "custom"
+  // "window.titleBarStyle": "custom",
+  // "vscode_vibrancy.opacity": 0.0,
+  // "vscode_vibrancy.theme": "Tokyo Night Storm"
 }

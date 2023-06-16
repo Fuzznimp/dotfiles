@@ -38,9 +38,10 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source /Users/anthonymontaigne/.docker/init-zsh.sh || true # Added by Docker Desktop
 # Colima + Lazydocker
-# export DOCKER_HOST=unix://$HOME/.colima/docker.sock
+export DOCKER_HOST=unix://$HOME/.colima/docker.sock
 
-# export PATH="${HOME}/.pyenv/shims:${PATH}"
+# Nix
+export PATH=$HOME/.nix-profile/bin:$PATH
 
 # Source last
 source ${HOME}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

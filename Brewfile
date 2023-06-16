@@ -6,6 +6,7 @@ brew "act"
 brew "ansifilter"
 brew "atuin"
 brew "bat"
+brew "colima"
 brew "cowsay"
 brew "ctop"
 brew "exa"
@@ -59,5 +60,5 @@ mas "Monosnap", id: 540348655
 mas "Spark", id: 1176895641
 
 # Manual
-# OniVim2 https://v2.onivim.io/early-access-portal
-# Shadow https://shadow.tech/fr/shadow-apps
+## OniVim2 https://v2.onivim.io/early-access-portal
+## Shadow https://shadow.tech/fr/shadow-apps
