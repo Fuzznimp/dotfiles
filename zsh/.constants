@@ -10,3 +10,6 @@ export DOTFILES_MACKUP_APP_PATH="$DOTFILES_MACKUP_PATH/Library/Application\ Supp
 # Work.
 export FEWLINES_PATH="~/workspace/fewlines"
 export SENCROP_PATH="~/workspace/sencrop"
+
+# Use nvim as $EDITOR.
+export VISUAL=nvim
