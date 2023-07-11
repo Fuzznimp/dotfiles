@@ -41,7 +41,8 @@
     "prefix": "exa",
     "body": "export { ${1:originalName} as ${2:alias} } from '${3:module}'$0"
   },
-  // React
+  /* React */
+  // Hooks
   "useState": {
     "prefix": "us",
     "description": "useStateSnippet",
@@ -70,6 +71,41 @@
     "body": ["useMemo(() => ${1:first}, [${2:second}])"],
     "scope": "typescript,typescriptreact,javascript,javascriptreact",
     "description": "useMemoSnippet"
+  },
+  // Components
+  "typescriptReactArrowFunctionExportComponent": {
+    "prefix": "rafce",
+    "body": [
+      // "import React from 'react'",
+      "",
+      "type ${TM_FILENAME_BASE}Props = {}",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = (props: ${TM_FILENAME_BASE}Props) => {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}"
+    ],
+    "description": "Creates a React Arrow Function Component with ES7 module system and TypeScript interface",
+    "scope": "typescript,typescriptreact,javascript,javascriptreact"
+  },
+  "typescriptReactArrowFunctionComponent": {
+    "prefix": "rafc",
+    "body": [
+      // "import React from 'react'",
+      "",
+      "type ${TM_FILENAME_BASE}Props = {}",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = (props: ${TM_FILENAME_BASE}Props) => {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}"
+    ],
+    "description": "Creates a React Arrow Function Component with ES7 module system and TypeScript interface",
+    "scope": "typescript,typescriptreact,javascript,javascriptreact"
   },
   /* Functions */
   // Vanilla

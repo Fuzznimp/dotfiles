@@ -139,7 +139,6 @@
     "editor.defaultFormatter": "rust-lang.rust-analyzer"
   },
   "githubPullRequests.pullBranch": "never",
-  "diffEditor.ignoreTrimWhitespace": false,
   "workbench.colorTheme": "Gruvbox Material Dark",
   "[lua]": {
     "editor.defaultFormatter": "sumneko.lua"
@@ -162,7 +161,8 @@
     "[x]",
     "NOTE"
   ],
-  "window.titleBarStyle": "custom"
+  "window.titleBarStyle": "custom",
+  "diffEditor.ignoreTrimWhitespace": false
   // "window.titleBarStyle": "custom",
   // "vscode_vibrancy.opacity": 0.0,
   // "vscode_vibrancy.theme": "Tokyo Night Storm"
