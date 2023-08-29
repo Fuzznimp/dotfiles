@@ -16,14 +16,12 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
 
-export PATH=$PATH:/Users/anthonymontaigne/.nix-profile/bin/direnv
+export PATH=$HOME/.nix-profile/bin:$PATH
 eval "$(direnv hook zsh)"
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Nix
-export PATH=$HOME/.nix-profile/bin:$PATH
-
 
 # Source last
 source ${HOME}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

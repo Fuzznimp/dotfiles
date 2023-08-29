@@ -37,7 +37,6 @@
   },
   "editor.minimap.enabled": false,
   "editor.formatOnPaste": false,
-  "vscodeGoogleTranslate.preferredLanguage": "French",
   "search.exclude": {
     "/venv": true,
     "/bower_components": true,

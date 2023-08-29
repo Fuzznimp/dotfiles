@@ -91,8 +91,8 @@ key_bindings:
   - { key: W, mods: Command, chars: "\x02x" }
   # Toggle the zoom state of the current tmux pane.
   - { key: Z, mods: Command, chars: "\x02z" }
-  # Clear buffer.
-  - { key: L, mods: Command|Shift, chars: "\f" }
+  # # Clear buffer.
+  # - { key: L, mods: Command|Shift, chars: "\f" }
   # Switch to last tmux session.
   - { key: L, mods: Command, chars: "\x02L" }
   - { key: LBracket, mods: Command, chars: "\x02[" }
@@ -110,7 +110,7 @@ key_bindings:
   - { key: Left, mods: Control|Command, chars: "\x02p" }
   - { key: Right, mods: Control|Command, chars: "\x02n" }
   # Switch window place.
-  # Todo: find the name of the keys.
+  # TODO: find the name of the keys.
   # - { key: "<", mods: Command|Shift, chars: "\x02\x3C" }
   # - { key: ">", mods: Command|Shift, chars: "\x02\x3E" }
   # Detach the current tmux client.
@@ -132,6 +132,7 @@ key_bindings:
   - { key: Left, mods: Alt, chars: "\eB" }
   # Open urlview.
   # - { key: U, mods: Command, chars: "\x02u" }
+  # FIXME: This is not working.
   # Open file with IDE.
   - { key: O, mods: Command, chars: "\x02\x06" }
 ################################################################################
