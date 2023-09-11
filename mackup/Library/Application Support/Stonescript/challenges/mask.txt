@@ -1,0 +1,21 @@
+var F = import utils/functions
+
+F.log([foe.distance, item.GetCooldown("mask") <= 0])
+
+?hp < 10
+  activate potion
+
+?foe.distance > 10
+  equipL trisk
+  equipR compound
+:?foe.distance < 8
+  ?item.GetCooldown("mask") <= 0
+    equip cultist mask
+    activate R
+  :
+    ?item.GetCooldown("mask") > 0 & !foe.debuffs.string = "debuff_feeble"
+      return loc.Leave()
+    :
+      equipR compound+11
+:
+  equipL sword

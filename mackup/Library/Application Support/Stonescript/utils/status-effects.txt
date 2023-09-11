@@ -1,0 +1,39 @@
+func parseStatusEffectCount(statusEffectID, statusEffectsString, statusEffectsCount)
+  ? statusEffectsCount > 0
+    var statusEffectArray
+    statusEffectArray = string.Split(statusEffectsString, ",", ":")
+    ? statusEffectArray.IndexOf(statusEffectID) >= 0
+      return int.Parse(statusEffectArray[statusEffectArray.IndexOf(statusEffectID) + 1])
+  return 0
+
+func getPlayerBuffCount(buffID)
+  return parseStatusEffectCount(buffID, buffs.string, buffs.count)
+
+func getFoeBuffCount(buffID)
+  return parseStatusEffectCount(buffID, foe.buffs.string, foe.buffs.count)
+
+func getPlayerDebuffCount(debuffID)
+  return parseStatusEffectCount(debuffID, debuffs.string, debuffs.count)
+
+func getFoeDebuffCount(debuffID)
+  return parseStatusEffectCount(debuffID, foe.debuffs.string, foe.debuffs.count)
+
+func parseStatusEffectDuration(statusEffectID, statusEffectsString, statusEffectsCount)
+  ? statusEffectsCount > 0
+    var statusEffectArray
+    statusEffectArray = string.Split(statusEffectsString, ",", ":")
+    ? statusEffectArray.IndexOf(statusEffectID) >= 0
+      return int.Parse(statusEffectArray[statusEffectArray.IndexOf(statusEffectID) + 2])
+  return 0
+
+func getPlayerBuffDuration(buffID)
+  return parseStatusEffectDuration(buffID, buffs.string, buffs.count)
+
+func getFoeBuffDuration(buffID)
+  return parseStatusEffectDuration(buffID, foe.buffs.string, foe.buffs.count)
+
+func getPlayerDebuffDuration(debuffID)
+  return parseStatusEffectDuration(debuffID, debuffs.string, debuffs.count)
+
+func getFoeDebuffDuration(debuffID)
+  return parseStatusEffectDuration(debuffID, foe.debuffs.string, foe.debuffs.count)

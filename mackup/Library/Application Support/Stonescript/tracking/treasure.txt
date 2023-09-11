@@ -1,0 +1,115 @@
+// Credit: https://github.com/bcbays/SSRPGScripts/blob/main/Info/Treasure.txt
+
+// Treasure Info v9
+
+// Variables
+var treasure_ui_panel
+var treasure_ui_text_count
+var treasure_ui_text_remaining_time
+
+var treasure_count = 0
+var treasure_remaining_time = 0
+var treasure_cap = 0
+
+var color_grading = [
+  "#22FF22",
+  "#DDDD22",
+  "#FF8822",
+  "#FF2222"
+]
+
+var warning_colors = [
+  "#FF2222",
+  "#880000"
+]
+
+var complete_colors = [
+  "#000000",
+  "#FFFFFF"
+]
+
+?loc.stars >= 1 & !loc.isQuest
+  // Initialization
+  ? loc.begin | loc.loop
+    // UI
+    treasure_ui_panel = ui.AddPanel()
+    treasure_ui_panel.x = screen.w - 15
+    treasure_ui_panel.y = 7
+    treasure_ui_panel.w = 15
+    treasure_ui_panel.h = 4
+    treasure_ui_panel.anchor = top_left
+    treasure_ui_panel.dock = top_left
+
+    treasure_ui_text_count = ui.AddText()
+    treasure_ui_text_count.x = 1
+    treasure_ui_text_count.y = 1
+    treasure_ui_text_count.w = 13
+    treasure_ui_text_count.h = 1
+    treasure_ui_text_count.anchor = top_left
+    treasure_ui_text_count.dock = top_left
+    treasure_ui_panel.Add(treasure_ui_text_count)
+
+    treasure_ui_text_remaining_time = ui.AddText()
+    treasure_ui_text_remaining_time.x = 1
+    treasure_ui_text_remaining_time.y = 2
+    treasure_ui_text_remaining_time.w = 13
+    treasure_ui_text_remaining_time.h = 1
+    treasure_ui_text_remaining_time.anchor = top_left
+    treasure_ui_text_remaining_time.dock = top_left
+    treasure_ui_panel.Add(treasure_ui_text_remaining_time)
+
+  // Treasure Tracking
+  ? loc.loop
+    ? loc.name = caves of fear & loc.stars >= 5
+      treasure_count = treasure_count + 2
+    :
+      treasure_count = treasure_count + 1
+
+  ? loc.begin | loc.loop
+    // Hack to compute level based on health :P
+    treasure_cap = 100 + 5 * math.Min(60, maxhp - 20)
+    // Update text
+    ? treasure_count >= treasure_cap
+      treasure_ui_text_count.text = "Loot MAX/" + treasure_cap
+    :
+      treasure_ui_text_count.text = "Loot " + treasure_count + "/" + treasure_cap
+
+  // Color Grading
+  ? treasure_ui_text_count // Check if intialized
+    ? treasure_count < math.FloorToInt(treasure_cap * 0.25)
+      treasure_ui_text_count.color = color.Lerp(
+      ^ color_grading[0], color_grading[1],
+      ^ treasure_count/math.Floor(treasure_cap * 0.25))
+    : ? treasure_count >= math.FloorToInt(treasure_cap * 0.25) & treasure_count < math.FloorToInt(treasure_cap * 0.5)
+      treasure_ui_text_count.color = color.Lerp(
+      ^ color_grading[1], color_grading[2],
+      ^ (treasure_count - math.Floor(treasure_cap * 0.25))/(math.Floor(treasure_cap * 0.5) - math.Floor(treasure_cap * 0.25)))
+    : ? treasure_count >= math.FloorToInt(treasure_cap * 0.5) & treasure_count < math.FloorToInt(treasure_cap * 0.75)
+      treasure_ui_text_count.color = color.Lerp(
+      ^ color_grading[2], color_grading[3],
+      ^ (treasure_count - math.Floor(treasure_cap * 0.5))/(math.Floor(treasure_cap * 0.75) - math.Floor(treasure_cap * 0.5)))
+    : ? treasure_count >= math.FloorToInt(treasure_cap * 0.75) & treasure_count < math.FloorToInt(treasure_cap * 0.875)
+      treasure_ui_text_count.color = color_grading[3]
+    : ? treasure_count >= math.FloorToInt(treasure_cap * 0.875) & treasure_count < treasure_cap
+      // Blinking
+      ? time % 30 < 15
+        treasure_ui_text_count.color = warning_colors[0]
+      :
+        treasure_ui_text_count.color = warning_colors[1]
+    :
+      treasure_ui_text_count.color = color.Lerp(
+      ^ complete_colors[0], complete_colors[1],
+      ^ 0.5 + 0.5*math.sin(2*math.pi * (time % 90)/89))
+
+
+  // Remaining Time
+  ? loc.name = caves of fear & loc.stars >= 5
+    treasure_remaining_time = (((treasure_cap - treasure_count) / 2) - 1) * (loc.averageTime + 180) + (loc.averageTime - totaltime)
+  :
+    treasure_remaining_time = ((treasure_cap - treasure_count) - 1) * (loc.averageTime + 155) + (loc.averageTime - totaltime)
+
+  ? treasure_ui_text_remaining_time // Check if intialized
+    ? treasure_count >= treasure_cap
+      treasure_ui_text_remaining_time.text = "RemT 0:00:00"
+    :
+      treasure_ui_text_remaining_time.text = "RemT " + time.FormatDigital(treasure_remaining_time)

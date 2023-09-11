@@ -1,0 +1,148 @@
+//SHADOW WIZARD MONEY GANG!
+//We looove casting spells..
+//SPONSORED BY:
+//...The Shadow Government.
+  var swmgg
+  swmgg = #green
+
+   var interval = 3
+   var total_sprites = 4
+   var total_time = total_sprites * interval
+
+//     ?time % total_time < interval
+//      >h-15,-1,@swmgg@,ascii
+// ##__
+// /¯, '
+// `\'-'|
+// #'^¢^/
+// #//|#)
+// /´/###\
+// ¯-¯—/¯
+// asciiend
+
+//     :?time % total_time < interval * 2
+//      >h-15,-1,@swmgg@,ascii
+// ##__
+// /¯, '
+// `\'-'|
+// #'^¢^/
+// #//##)
+// /´####\
+// \_—¯-'
+// asciiend
+
+//     :?time % total_time < interval * 3
+//      >h-15,-1,@swmgg@,ascii
+// ##__
+// /¯, '
+// `\'-'|
+// #'^¢^/
+// #//##)
+// /´#/##\
+// ¯\_-'¯
+// asciiend
+
+//     :?time % total_time < interval * 4
+//      >h-15,-1,@swmgg@,ascii
+// ##__
+// /¯, '
+// `\'-'|
+// #'^¢^/
+// #//\#)
+// /##/##\
+// '-_-¯¯
+// asciiend
+
+
+//LEGALIZE NUCLEAR BOMBS!
+
+//   var swmgy
+//   swmgy = #yellow
+
+//    var interval = 3
+//    var total_sprites = 4
+//    var total_time = total_sprites * interval
+
+//     ?time % total_time < interval
+//      >h-9,-9,@swmgy@,ascii
+// ##__
+// /¯, '
+// `\¬==|
+// #'^†^/
+// ##|||
+// #//|\
+// /´/##)
+// ¯-¯—/
+// asciiend
+
+//     :?time % total_time < interval * 2
+//      >h-9,-9,@swmgy@,ascii
+// ##__
+// /¯, '
+// `\¬==|
+// #'^†^/
+// ##|||
+// #//#\
+// /´##\)
+// \_—¯-'
+// asciiend
+
+//     :?time % total_time < interval * 3
+//      >h-9,-9,@swmgy@,ascii
+// ##__
+// /¯, '
+// `\¬==|
+// #'^†^/
+// ##|||
+// #//#\
+// /´#/#)
+// ¯\_-'
+// asciiend
+
+//     :?time % total_time < interval * 4
+//      >h-9,-9,@swmgy@,ascii
+// ##__
+// /¯, '
+// `\¬==|
+// #'^†^/
+// ##|||
+// #//\\
+// /##/#)
+// '-_-¯
+// asciiend
+
+?1
+ var cloakc
+ cloakc = #rainbow
+
+ var interval = 3
+ var total_sprites = 4
+ var total_time = total_sprites * interval
+
+  ?time % total_time < interval
+    >h-6,3,@cloakc@,-._
+  :?time % total_time < interval * 2
+    >h-6,3,@cloakc@,._.
+  :?time % total_time < interval * 3
+    >h-6,3,@cloakc@,_.-
+  :?time % total_time < interval * 4
+    >h-6,3,@cloakc@,.-.
+
+>h-3,-2,#rainbow,ascii
+##__
+/¯, '
+`\###)
+##^#^
+#/###
+/´###)
+¯###¯
+asciiend
+
+
+>h-4,0,#rainbow,ascii
+☆
+asciiend
+
+>h0,1,#rainbow,ascii
+$
+asciiend

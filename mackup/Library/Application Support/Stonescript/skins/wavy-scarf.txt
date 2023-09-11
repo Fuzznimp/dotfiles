@@ -1,0 +1,30 @@
+// Wavy Scarf animated by electronic
+// Script by Deaymon
+// v1.1.1
+
+// Instructions:
+// To make it work add "import Cosmetics/WavyScarf" to the Mind Stone
+// Make sure you have Mind stone enabled
+
+// Note: Only works if you have big head option enabled on The Moondial Stone
+
+// How to change the Color:
+// To change the color
+// you have to put Hex Color or Color name on where it is written '#red' in scarfColor
+// Examples: #red, #green, #blue, #white, #yellow, #rainbow
+
+var scarfColor
+scarfColor = #rainbow
+
+var interval = 3
+var total_sprites = 4
+var total_time = total_sprites * interval
+
+ ?time % total_time < interval
+   >h-6,1,@scarfColor@,,-._.-=
+ :?time % total_time < interval * 2
+   >h-6,1,@scarfColor@,-._.-.=
+ :?time % total_time < interval * 3
+   >h-6,1,@scarfColor@,._.-._=
+ :?time % total_time < interval * 4
+   >h-6,1,@scarfColor@,_.-._.=

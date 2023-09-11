@@ -106,7 +106,9 @@
     "vercel",
     "zstyle",
     "rgba",
-    "solarcrop"
+    "solarcrop",
+    "DATETIME",
+    "Luxon"
   ],
   "extensions.ignoreRecommendations": true,
   "workbench.colorCustomizations": {

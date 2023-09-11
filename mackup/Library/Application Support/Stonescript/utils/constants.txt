@@ -1,0 +1,44 @@
+// =============== Gear ===============
+
+var elemental_items=[
+  ["hammer",
+    ["aether", "D+12", "D+11"],
+    ["poison", "D+12"],
+    ["default", "aether hammer D+12", "aether hammer D+11"],
+  ],
+  ["wand",
+    ["vigor", "D+11"],
+    ["fire","D+11"],
+    ["default","fire wand D+11", "vigor wand D+11"],
+  ],
+  ["staff",
+    ["default", "The Ghost Slayer dL+11"],
+  ],
+  ["crossbow",
+    // ["aether", "D+11"],
+    // ["poison","dP"],
+    // ["fire","dF"],
+    // ["ice","dI"],
+    ["default","Repeating Crossbow +16","Heavy"],
+  ],
+  ["sword",
+    ["aether","D+11","dU+12", "dU+11"],
+    ["fire", "D+9", "dF+6"],
+    ["ice","dI+11"],
+    ["poison","D+12","dP+12"],
+    ["vigor","dL+11","dL+10"],
+    ["default","vigor sword dL+11","vigor sword dL+7"],
+  ],
+  ["shield",
+    ["vigor", "A"],
+    ["poison", "A"],
+    ["ice", "A"],
+    ["fire", "A"],
+    ["aether", "A+11"],
+    ["default","compound+11"],
+  ],
+]
+var for_melee_single_target=["sword","hammer"]
+var for_melee_aoe = ["arm"]
+var aoe_threshold=4
+var use_mods_for_dmg=true

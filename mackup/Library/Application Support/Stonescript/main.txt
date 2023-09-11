@@ -1,0 +1,27 @@
+// import tracking/treasure
+// import tracking/state
+import tracking/loop-stats
+import tracking/red-nosed-scotty
+
+// import farm/rocky-plateau
+// import farm/deadwood-canyon
+// import farm/caves-of-fear
+// import farm/mushroom-forest
+// import farm/haunted-halls
+// import farm/boiling-mines
+// import farm/icy-ridge
+// import farm/temple
+
+import skins/wavy-scarf
+import skins/shadow
+import skins/pet-skully
+
+import uber/scribble
+
+// NOTE: Safe mean time.
+?loc.averageTime >= 0 & totaltime > loc.averageTime
+  loc.Leave()
+
+// NOTE: Stone farming.
+// ?foe = phase
+//   loc.Leave()

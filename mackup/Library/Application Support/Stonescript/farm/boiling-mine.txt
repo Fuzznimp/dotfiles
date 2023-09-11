@@ -1,0 +1,80 @@
+var F = import utils/functions
+
+?loc = Boiling Mine
+  ?summon.count = 0
+    F.activate_fire_talisman()
+  ?summon.count = 1
+    ?foe = bronze_guardian
+      handle_bronze_guardian()
+      // F.active_cinderwisp()
+    :
+      handle_blade_of_god()
+      ?foe.distance >= 11 & foe.distance <= 16
+        equipR dashing
+      :?foe.distance <= 11
+        equip blade_of_god
+      :?pickup.distance < 10
+        equipR star stone
+        equipL triskelion
+      :?foe.distance >= 24
+        equipL triskelion
+        equipR oboros
+      :
+        equip Repeating Crossbow
+
+
+
+func handle_bronze_guardian()
+  ?foe = bronze_guardian & foe.state = 32 & foe.time = 10
+    equip mind
+  :
+    equip Repeating Crossbow
+
+// var F = import utils/functions
+// var C = import utils/constants
+
+// ?loc = haunted
+//   ?summon.count = 0
+//     F.activate_fire_talisman()
+//   :?hp < 10
+//     activate potion
+//   :
+//     F.handle_blade_of_god()
+//     ?foe = phase
+//       > @foe.armor@
+//       ?ai.paused
+//         equipL trisk
+//         equipR compound
+//       :?foe.distance >= 11 & foe.distance <= 16
+//         F.bash_or_dash()
+//       :
+
+//       :?foe.armor > 0
+//         ?(item.GetCooldown("hammer") <= 0 | item.GetCooldown("hammer") >= 647)
+//           equip heavy hammer
+//           ?item.CanActivate("hammer")
+//             activate R
+//       :?item.GetCooldown("bardiche") <= 0 | item.GetCooldown("bardiche") > 878
+//         equip bardiche +11
+//         ?item.CanActivate("bardiche")
+//           activate R
+//       :
+//         F.bash_or_dash()
+//         F.aac_sword()
+//     :
+//       ?foe.distance <= 5
+//         ?foe = Big Booo | foe = Booo
+//           equip Ghost Slayer
+//         :?foe.count >= C.trigger_aoe_amount
+//           F.aac_blade_of_god()
+//         :
+//           F.aac_sword()
+//       :?foe.distance >= 11 & foe.distance <= 16
+//         F.bash_or_dash()
+//       :?foe.distance >= 17 & foe.distance <= 24
+//         ?foe = Big Booo | foe = Booo
+//           equip Ghost Slayer
+//         :
+//           F.aac_repeating_xbow()
+//       :
+//         F.out_of_combat()

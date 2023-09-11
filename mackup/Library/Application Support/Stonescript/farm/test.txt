@@ -1,0 +1,7 @@
+func lifesteal()
+  equip ghost
+    ?ai.idle
+      equip skeleton arm
+      equip ghost
+
+lifesteal()

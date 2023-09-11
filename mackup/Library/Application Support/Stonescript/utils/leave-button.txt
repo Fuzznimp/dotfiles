@@ -1,0 +1,15 @@
+var leave_button
+
+func leaveLocation()
+  loc.Leave()
+
+?loc.begin | loc.loop
+  leave_button = ui.AddButton()
+  leave_button.x = screen.w - 7
+  leave_button.y = 1
+  leave_button.w = 6
+  leave_button.h = 3
+  leave_button.anchor = top_left
+  leave_button.dock = top_left
+  leave_button.text = "Exit"
+  leave_button.SetPressed(leaveLocation)

@@ -1,0 +1,42 @@
+func activate_fire_talisman()
+  equipL fire_talisman
+  ?item.canactivate("fire_talisman")
+    activate L
+
+func active_cinderwisp()
+  ?summon.GetVar("ignition",0) > 9 & item.GetCooldown("cinderwisp") = 0
+    activate cinderwisp
+
+func handle_blade_of_god()
+  ?item.GetCooldown("blade") <= 0 & foe.count > 0
+    screen.Next()
+  :
+    screen.ResetOffset()
+  ?item.GetCooldown("blade") <= 0 & foe.distance < 25
+    equip blade_of_god
+    activate R
+
+?loc = temple
+  ?summon.count = 0
+    activate_fire_talisman()
+  :?hp < 10
+    activate potion
+  :
+    handle_blade_of_god()
+    ?foe = nagaraja
+      equip blade_of_god
+      // active_cinderwisp()
+    :?foe.distance >= 11 & foe.distance <= 16
+      equipR dashing
+    :?foe = ice_pillar
+      equip blade_of_god
+    :?foe.distance <= 11
+      equip blade_of_god
+    :?pickup.distance < 10
+      equipR star stone
+      equipL triskelion
+    :?foe.distance >= 24
+      equipL triskelion
+      equipR oboros
+    :
+      equip Repeating Crossbow

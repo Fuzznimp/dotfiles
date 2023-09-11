@@ -1,0 +1,604 @@
+//17.6
+var UnmakeHP = 600
+var StrongEnemyHP = 450
+var RangedDistance = 22
+
+var AoeAggroAmount = 4
+var BladeAggroAmount = 10
+var BladeSkillDmg = 90
+
+var SkeletonDmg = 44
+
+var LowHP = maxhp // for lifesteal
+
+var Debuff_Override
+
+?loc.averageTime > 0 | hp < (maxhp-30)
+  ?totaltime > loc.averageTime | hp < (maxhp-30)
+    loc.Leave()
+
+?foe = hrímnir & foe.hp < 1
+  ?hp < maxhp
+    loc.Leave()
+
+?loc = bronze
+  loc.Leave()
+
+var NM = 8
+>`0,22,Time: @totaltime@
+>`0,23,Stop: @loc.averageTime@
+>`0,24,@debuffs.string@
+>`0,25,@foe@
+?foe
+  >`0,@NM+0@,@foe.name@
+:
+  >`0,@NM+0@,No Enemy Detected
+>`0,@NM+1@,Foe DMG: @foe.damage@
+>`0,@NM+2@,Foe Distance: @foe.distance@
+
+var oldstate = 0
+var oldtime = 0
+var nowstate = 0
+var nowtime = 0
+
+func FoeState()
+  ?foe.state!nowstate
+    oldstate = nowstate
+    oldtime = nowtime
+  nowstate = foe.state
+  nowtime = foe.time
+  >`66,22,
+  ^Now State -> @nowstate@:@nowtime@\n
+  ^Old State -> @oldstate@:@oldtime@
+
+?foe = boss
+  FoeState()
+
+//Left swords(For Debuffs):
+var Poison_Sword = dp
+var Chill_Sword = di
+var Burn_Sword = df
+
+//Left hammer(For Stun):
+var Stun_Hammer = socketed hammer
+
+//Lifesteal swords(left/right):
+var LifestealSword_Left = sword dl
+var LifestealSword_Right = lifedrinker //change to the name of 2nd
+
+//
+func ShieldSwitcher_R()
+  ?foe = boss
+    equipR poison shield ap
+
+  :?foe = aether
+    equipR vigor shield A
+  :?foe = fire
+    equipR aether shield A
+  :?foe = ice
+    equipR fire shield A
+  :?foe = poison
+    equipR ice shield A
+  :?foe = vigor
+    equipR poison shield A
+  :
+    equipR compound
+
+//
+func ShieldSwitcher_AAC()
+  equipL quest
+  ShieldSwitcher_R()
+
+//
+func VigorHammer()
+  equipL vigor hammer D +8
+  equipR vigor hammer D +9
+
+func AetherHammer()
+  equipL aether hammer D +7
+  equipR aether hammer D +9
+
+func FireHammer()
+  equipL fire hammer D +8
+  equipR fire hammer D
+
+func IceHammer()
+  equipL ice hammer D +7
+  equipR ice hammer D +9
+
+func PoisonHammer()
+  equipL poison hammer D +7
+  equipR poison hammer D +8
+
+func DefaultHammer()
+  equipL fire hammer D +8
+  equipR aether hammer D +9
+
+//Each loadout demands 2 element D swords that is effective
+//Currently my lifesteal swords have mismatched enchants so they are excluded from idle aac
+func SwordSwitcher()
+  ?Debuff_Override = false
+    ?foe = boss
+      ?hp < LowHP
+        ?buffs.string =＂berserk＂
+          ?debuffs.string = ＂puff_debuff_damage＂
+            SSwitchExtend()
+          :
+            equipL @LifestealSword_Left@
+            equipR @LifestealSword_Right@
+            ?ai.idle
+              equip bardiche
+              equipL @LifestealSword_Left@
+              equipR @LifestealSword_Right@
+        :
+          SSwitchExtend()
+      :
+        SSwitchExtend()
+    :
+      ?(foe.hp + foe.armor) >= UnmakeHP
+        loadout 7
+        ?ai.idle
+          equip bardiche
+          loadout 7
+      :
+        SSwitchExtend()
+
+func SSwitchExtend()
+    ?foe = aether
+      loadout 1
+      ?ai.idle
+        equip bardiche
+        loadout 1
+    :?foe = fire
+      loadout 2
+      ?ai.idle
+        equip bardiche
+        loadout 2
+    :?foe = ice
+      loadout 3
+      ?ai.idle
+        equip bardiche
+        loadout 3
+    :?foe = poison
+      loadout 4
+      ?ai.idle
+        equip bardiche
+        loadout 4
+    :?foe = vigor
+      loadout 5
+      ?ai.idle
+        equip bardiche
+        loadout 5
+    :
+      loadout 2
+      ?ai.idle
+        equip bardiche
+        loadout 2
+
+//There are anti armour hammers! Enchant them with increased DMG to armour
+//Please make sure the enchant tier is different or equip wont work properly
+func HammerSwitcher()
+  ?Debuff_Override = false
+    ?ai.idle
+      equip bardiche
+      ?foe = aether
+        VigorHammer()
+      :?foe = fire
+        AetherHammer()
+      :?foe = ice
+        FireHammer()
+      :?foe = poison
+        IceHammer()
+      :?foe = vigor
+        PoisonHammer()
+      :
+        DefaultHammer()
+
+// Debuff Script
+var Chill = ［0,0］
+var Poison = ［0,0］
+var Fire = ［0,0］
+var FoeHp = 0
+
+func DebuffStatus2(debuff_name)
+  var DebuffList
+  var ReferenceValue
+
+  ?foe.debuffs.string = debuff_name
+    DebuffList = string.Split(foe.debuffs.string, ＂:＂,＂,＂)
+    ReferenceValue =  DebuffList.IndexOf(debuff_name)
+    return ［int.Parse(DebuffList［ReferenceValue + 1］),
+    ^ int.Parse(DebuffList［ReferenceValue + 2］)］
+  :
+    return ［0,0］
+
+func ApplyDebuff(debuff_name2,weapon_name,variable)
+  ?FoeHp - 10 > foe.hp + foe.armor
+    ?variable = 1
+      Chill = DebuffStatus2(debuff_name2)
+    :?variable = 2
+      Poison = DebuffStatus2(debuff_name2)
+    :?variable = 3
+      Fire = DebuffStatus2(debuff_name2)
+  :
+    equipL @weapon_name@
+
+?foe.hp <= 0
+  Chill =  ［0,0］
+  Poison = ［0,0］
+  Fire =   ［0,0］
+:
+  ?Chill［1］>0
+    Chill.Emplace(1,Chill［1］-1)
+  :?Chill［0］>0
+    Chill.Emplace(0,Chill［0］-1)
+  ?Poison［1］>0
+    Poison.Emplace(1,Poison［1］-1)
+  :?Poison［0］>0
+    Poison.Emplace(0,Poison［0］-1)
+  ?Fire［1］>0
+    Fire.Emplace(1,Fire［1］-1)
+  :?Fire［0］>0
+    Fire.Emplace(0,Fire［0］-1)
+
+//
+var PoisonImmunity
+var BurnImmunity
+var ChillImmunity
+
+func Debuff_SwordSwitcher()
+  Debuff_Override = true
+  PoisonImmunity = false
+  BurnImmunity = false
+  ChillImmunity = false
+
+  ?foe = immune_to_debuff_damage
+    PoisonImmunity = true
+  ?foe = immune_to_debuff_dot
+    BurnImmunity = true
+  ?foe = immune_to_debuff_chill
+    ChillImmunity = true
+
+  ?foe = boss
+    ?foe.buffs.string =＂poena_mirror＂| foe.buffs.string =＂buff_protection＂
+      PoisonImmunity = true
+      BurnImmunity = true
+      ChillImmunity = true
+
+  :
+    ?foe = spawner | foe = ice wall
+      PoisonImmunity = true
+      BurnImmunity = true
+      ChillImmunity = true
+
+  ?(foe.hp + foe.armor) > StrongEnemyHP
+    //?buffs.string =＂pick_pocket:3＂
+
+      ?Poison［1］ < 20 & PoisonImmunity = false
+        ApplyDebuff(＂debuff_damage＂,＂poison sword dp＂,2)
+        equipR mask
+      :?Fire［1］ < 20 & BurnImmunity = false
+        ApplyDebuff(＂debuff_dot＂,＂fire sword df＂,3)
+        equipR mask
+      :?Chill［0］ < 6 & ChillImmunity = false
+        ApplyDebuff(＂debuff_chill＂,＂ice sword di＂,1)
+        equipR mask
+      :
+        Debuff_Override = false
+    //:
+      //SkeleAAC()
+  :
+    Debuff_Override = false
+
+//
+func Ranged()
+  ?Antitomb_Ki = res.ki
+    CrossbowAAC(aether)
+  :?foe = immune_to_physical | foe = magic_vulnerability
+    WandAAC()
+  :
+    ?foe = fire
+      CrossbowAAC(fire)
+    :?foe = ice
+      CrossbowAAC(ice)
+    :?foe = aether
+      CrossbowAAC(aether)
+
+//
+var StunImmunity
+StunImmunity = false
+?foe = immune_to_stun | foe.buffs.string =＂poena_mirror＂
+  StunImmunity = true
+
+var ShieldFrames = 0
+
+func BashDash()
+  ?StunImmunity = false & item.GetCooldown (＂bash＂) <= 0
+    equipR bash
+    ShieldFrames++
+  :
+    equipR dash
+    ShieldFrames++
+
+//
+func Out_Of_Combat()
+  ?pickup.distance > 10 & foe.distance > 25
+    equipL trisk
+    equipR compound
+
+  :?pickup.distance < 10
+    equipL star
+    equipR trisk
+
+
+//
+func MindDodge()
+  ?item.GetCooldown(＂mind＂) <= 0
+    equipL mind
+    ShieldSwitcher_R()
+    ShieldFrames = 3
+  :
+    ?item.GetCooldown(＂mask＂) <= 0 & foe.distance <= 10 & foe = boss
+      equip mask
+      activate R
+
+//
+func BardAAC()
+    equip skeleton_arm
+    ?ai.idle
+      ShieldSwitcher_AAC()
+      equip skeleton_arm
+
+//
+func SkeleAAC()
+    equip skeleton_arm
+    ?ai.idle
+      ShieldSwitcher_AAC()
+      equip skeleton_arm
+
+//
+var crossbow_timer = 0
+
+func CrossbowAAC(crossElem)
+  ?buffs.string =＂berserk＂| debuffs.string =＂debuff_yeti_chill＂
+    ?crossElem = fire
+      equip aether crossbow D
+    :?crossElem = ice
+      equip fire crossbow D
+    :?crossElem = aether
+      equip fire crossbow D
+
+  :?crossbow_timer >= 20
+    ShieldSwitcher_AAC()
+    ?crossElem = fire
+      equip aether crossbow D
+    :?crossElem = ice
+      equip fire crossbow D
+    :?crossElem = aether
+      equip vigor crossbow D
+    crossbow_timer = 0
+  :
+    crossbow_timer++
+
+var wand_timer = 0
+
+func WandAAC()
+  loadout 8
+  ?buffs.string =＂berserk＂| debuffs.string =＂debuff_yeti_chill＂
+    loadout 8
+
+  :?wand_timer >= 8
+    equip bardiche
+    loadout 8
+    wand_timer = 0
+  :
+    wand_timer++
+
+//Check Bosses / Enemy
+var Antitomb_Ki
+var FightingStyle = Melee
+?foe = boss
+
+  ?foe = bronze_guardian
+    ?foe.state = 33
+      activate potion
+    ?foe.state=2 & foe.distance > 15
+      FightingStyle = Ranged
+    :
+      FightingStyle = Melee
+
+  :?foe = dysangelos_perfected & item.right = mask
+    activate potion
+
+  :?foe = hrímnir
+    ?foe.state = 133
+      FightingStyle = Ranged
+    :
+      FightingStyle = Melee
+
+    ?foe.state = 33 & debuffs.count <= 0 | foe.state = 32 & debuffs.count <= 0
+      activate potion
+
+  :?foe = ＂pallas, the legless＂
+    ?item.right = mask
+      activate potion
+
+  :?foe = bolesh & item.right = mask
+    activate potion
+
+  :?foe = nagaraja & item.right = mask & foe.state = 108
+    activate potion
+
+  :?foe = ghost_tomb
+    Antitomb_Ki = res.ki
+
+:?foe = immune_to_physical | foe = magic_vulnerability
+  FightingStyle = Ranged
+:
+  FightingStyle = Melee
+
+// Always Passives (Actual running starts here)
+?ai.paused
+  equipL trisk
+  equipR compound
+
+//Check Distance
+:?foe.distance > RangedDistance
+  Out_Of_Combat()
+
+:?foe.distance >= 17 & foe.distance <= RangedDistance
+
+  ?item.GetCooldown(＂blade＂) <= 0 &
+  ^foe.count >= BladeAggroAmount & (foe.hp + foe.armor) <= BladeSkillDmg
+    equip lost blade
+    activate R
+
+  :?FightingStyle = ＂Melee＂
+    ShieldSwitcher_R()
+    ?foe.armor >= 1 // Anti Armour
+      equipL hammer D
+    :
+      equipL sword D
+
+  :
+    Ranged()
+
+:?foe.distance <= 5 // Melee
+
+  ?ShieldFrames > 0
+    ShieldFrames--
+    ShieldSwitcher_R()
+
+  :?FightingStyle = ＂Ranged＂
+    Ranged()
+
+  :?(foe.hp+foe.armor) >= StrongEnemyHP &
+  ^item.GetCooldown(＂bardiche＂) <= 0 | item.GetCooldown(＂bardiche＂) > 878
+    ?foe = ice pillar | foe = elemental | foe = hrímnir & foe.armor > 0
+      SwordSwitcher()
+    :
+      equip bardiche
+      activate R
+
+  :?foe.count >= AoeAggroAmount
+    ?foe = pallas
+      SwordSwitcher()
+    :
+      BardAAC()
+
+  :?foe.armor >= 1 // Anti Armour
+    Debuff_SwordSwitcher()
+    HammerSwitcher()
+  :
+    Debuff_SwordSwitcher()
+    SwordSwitcher()
+
+:?foe.distance >= 6 & foe.distance <= 16 // In between
+
+  ?ShieldFrames > 0
+    ShieldFrames--
+    ShieldSwitcher_R()
+
+  :?FightingStyle = ＂Melee＂ & item.GetCooldown (＂dash＂) <= 0 & item.CanActivate() & foe.distance >=11 & ai.enabled
+  ^| loc = haunted & item.GetCooldown (＂dash＂) <= 0 & item.CanActivate() & foe.distance >=11 & ai.enabled
+    BashDash()
+
+  :?item.GetCooldown (＂quarterstaff＂) <= 0 & item.CanActivate() & ai.enabled
+    equip quarterstaff
+    activate R
+
+  :?FightingStyle = ＂Melee＂
+    equipL sword D
+    ShieldSwitcher_R()
+
+  : // Ranged
+    Ranged()
+
+//Boss Dodgers
+var x
+var y
+x = screen.FromWorldX(pos.x)
+y = screen.FromWorldZ(pos.z - pos.y)
+
+var attack_counter = 0 //dont step over the toes of berserk
+?loc.loop
+  attack_counter = 0
+
+//regret
+?pickup.distance <= 10
+  equipL trisk
+
+?foe = boss
+  ?foe = bronze_guardian
+    ?foe.state = 32 & foe.time = 32
+      attack_counter++
+      ?attack_counter > 1
+        MindDodge()
+      :
+        ShieldFrames = 3
+
+  :?foe = dysangelos
+    ?foe = dysangelos_perfected
+      ?foe.state = 32 & foe.time = 66
+        MindDodge()
+    ?foe.state = 115 & foe.time >= 25 & draw.GetSymbol(x+1,y-8)=＂!＂
+      MindDodge()
+
+  :?foe = bolesh
+    ?foe.state = 142 & foe.time = 58
+      ?attack_counter = 0
+        ShieldFrames = 3
+      :?attack_counter >= 1
+        MindDodge()
+
+      attack_counter++
+
+  :?foe = angry shroom
+    ?foe.state = 32 & foe.time = 86
+      MindDodge()
+      equipR mind
+  :?foe = morel
+    activate potion
+
+  :?foe = ＂pallas, the skinless＂
+    ?foe.state = 32 & foe.time = 67
+      ShieldFrames = 3
+    ?foe.state = 32 & foe.time = 60
+      ?item.GetCooldown(＂mask＂) <= 0 & foe.distance <= 10 & foe = boss
+        equip mask
+        activate R
+
+  :?foe = nagaraja
+    ?foe.state = 112 & foe.time = 59
+      ShieldFrames = 3
+      MindDodge()
+
+  :?foe=explode & foe.distance<5
+    MindDodge()
+
+//
+var totaldmg = 0
+var DPStimerSTARTED = false
+var DPStimer = 0
+
+?FoeHp > (foe.hp + foe.armor)
+  DPStimerSTARTED = true
+  totaldmg = (FoeHp - (foe.hp + foe.armor)) + totaldmg
+:?foe.distance > RangedDistance & foe = boss
+  DPStimerSTARTED = false
+  totaldmg = 0.0
+  DPStimer = 0
+:?foe.distance > RangedDistance
+  DPStimerSTARTED = false
+
+?DPStimerSTARTED = true
+  DPStimer++
+
+>`0,@NM+4@,Total Dmg: @totaldmg@
+?DPStimer > 0
+  >`0,@NM+5@,DPS: @(totaldmg*30) / DPStimer@
+:
+  >`0,@NM+5@,DPS: 0
+
+//Closers
+FoeHp = foe.hp + foe.armor

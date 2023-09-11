@@ -1,0 +1,28 @@
+var F = import utils/functions
+
+?loc = icy
+  ?summon.count = 0
+    F.activate_fire_talisman()
+  :?hp < 10
+    activate potion
+  :
+    F.handle_blade_of_god()
+    ?foe = hrímnir
+      equipR fire wand
+      equipL fire_talisman
+      // F.active_cinderwisp()
+    :?foe.distance >= 11 & foe.distance <= 16
+      equipR dashing
+    :?foe = ice_pillar
+      equip blade_of_god
+    :?foe.distance <= 11
+      equip blade_of_god
+    :?pickup.distance < 10
+      equipR star stone
+      equipL triskelion
+    :?foe.distance >= 24
+      equipL triskelion
+      equipR oboros
+    :
+      equipR fire wand
+      equipL fire_talisman

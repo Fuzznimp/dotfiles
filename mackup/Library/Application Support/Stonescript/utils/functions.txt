@@ -1,0 +1,147 @@
+var C = import utils/constants
+
+/*
+  TODO:
+  - AAC Bardiche.
+  - Heavy Hammer Bardiche.
+  - Compound.
+  - Dodge.
+  - Organise.
+*/
+
+// Lost items.
+func activate_fire_talisman()
+  equipL fire_talisman
+  ?item.canactivate("fire_talisman")
+    activate L
+
+func handle_blade_of_god()
+  ?item.GetCooldown("blade") <= 0 & foe.count > 0
+    screen.Next()
+  :
+    screen.ResetOffset()
+  ?item.GetCooldown("blade") <= 0 & foe.distance < 25
+    equip blade_of_god
+    activate R
+
+func handle_bardiche()
+  ?(foe.hp + foe.armor) >= C.strong_enemy_hp
+    ?foe.distance <= 9
+      ?item.GetCooldown("bardiche") <= 0 | item.GetCooldown("bardiche") > 878
+        equip bardiche +11
+        ?item.CanActivate("bardiche")
+          activate R
+    :
+      bash_or_dash()
+
+func bash_or_dash()
+  var stun_immunity
+  stun_immunity = false
+
+  // NOTE: Uncomment when I'll have bash shield.
+  // ?foe = immune_to_stun | foe.buffs.string ="poena_mirror"
+  //   stun_immunity = true
+  // ?stun_immunity = false & item.GetCooldown ("bash") <= 0
+  //   equipR bash
+  // :
+
+  ?foe ! Big Booo | foe ! Booo
+    equipL vigor sword dL
+    equipR dash
+
+func handle_phys_immune()
+  ?foe = immune_to_physical & foe.distance <= C.GhostSlayerRange
+    equip ghost slayer
+    ?foe.distance <= 6 & item.GetCooldown("mind") <= 0
+      equipL mind
+      equipR compound
+
+func out_of_combat()
+  ?pickup.distance > 10 & foe.distance > 25
+    equipL trisk
+    equipR compound
+
+  :?pickup.distance < 10
+    equipL star
+    equipR trisk
+
+// ======= Shields =======
+
+func shield_switcher_r()
+  ?foe = boss
+    equipR poison shield ap
+
+  :?foe = aether
+    equipR vigor shield A
+  :?foe = fire
+    equipR aether shield A
+  :?foe = ice
+    equipR fire shield A
+  :?foe = poison
+    equipR ice shield A
+  :?foe = vigor
+    equipR poison shield A
+  :
+    equipR compound
+
+func shield_switcher_aac()
+  equipL quest
+  shield_switcher_r()
+
+// =======================
+
+func aac_repeating_xbow()
+  ?time % 2
+    equipR ouro
+    equip Repeating
+
+func aac_bardiche()
+  equip bardiche
+  ?ai.idle
+    equip skeleton_arm
+    equip bardiche
+
+func aac_blade_of_god()
+  equip blade_of_god
+  ?ai.idle
+    equip skeleton_arm
+    equip blade_of_god
+
+func aac_sword()
+  ?foe = aether
+    loadout 1
+    ?ai.idle
+      equip bardiche
+      loadout 1
+  :?foe = fire
+    loadout 2
+    ?ai.idle
+      equip bardiche
+      loadout 2
+  :?foe = ice
+    loadout 3
+    ?ai.idle
+      equip bardiche
+      loadout 3
+  :?foe = poison
+    loadout 4
+    ?ai.idle
+      equip bardiche
+      loadout 4
+  :?foe = vigor
+    loadout 5
+    ?ai.idle
+      equip bardiche
+      loadout 5
+  :
+    loadout 2
+    ?ai.idle
+      equip bardiche
+      loadout 2
+
+func log(args)
+  var i = 0
+  for value : args
+    var row = 15 + i
+    >`1,@row@,Log: @args[i]@
+    i++

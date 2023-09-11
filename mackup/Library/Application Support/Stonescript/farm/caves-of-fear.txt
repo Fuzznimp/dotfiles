@@ -1,0 +1,76 @@
+var F = import utils/functions
+var C = import utils/constants
+
+var x
+var y
+x = screen.FromWorldX(pos.x)
+y = screen.FromWorldZ(pos.z - pos.y)
+
+var attack_counter = 0
+?loc.loop
+  attack_counter = 0
+
+var shield_frames = 0
+
+?loc = caves
+  ?summon.count = 0
+    F.activate_fire_talisman()
+  :?hp < 10
+    activate potion
+  :
+    F.handle_blade_of_god()
+    ?foe = bolesh
+      ?item.GetCooldown("bardiche") <= 0 | item.GetCooldown("bardiche") >= (900 - 28)
+        equip bardiche
+        activate R
+      :?foe.state = 142 & foe.time = 58
+        ?attack_counter = 0
+          shield_frames = 3
+        :?attack_counter >= 1
+          mind_dodge()
+
+          attack_counter++
+      :
+        F.aac_repeating_xbow()
+    :
+      F.handle_blade_of_god()
+      ?foe.distance >= 11 & foe.distance <= 16
+        F.bash_or_dash()
+      :?foe.distance <= 11
+        equip blade_of_god
+      :?pickup.distance < 10
+        equipR star stone
+        equipL triskelion
+      :?foe.distance >= 24
+        equipL triskelion
+        equipR compound
+      :
+        F.aac_repeating_xbow()
+
+func mind_dodge()
+  ?item.GetCooldown("mind") <= 0
+    equipL mind
+    shield_switcher_r()
+    shield_frames = 3
+  // NOTE: Uncomment when I'll have mask.
+  // :
+  //   ?item.GetCooldown("mask") <= 0 & foe.distance <= 10 & foe = boss
+  //     equip mask
+  //     activate R
+
+func shield_switcher_r()
+  ?foe = boss
+    equipR poison shield ap
+
+  :?foe = aether
+    equipR vigor shield A
+  :?foe = fire
+    equipR aether shield A
+  :?foe = ice
+    equipR fire shield A
+  :?foe = poison
+    equipR ice shield A
+  :?foe = vigor
+    equipR poison shield A
+  :
+    equipR compound
