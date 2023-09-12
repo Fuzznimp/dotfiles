@@ -23,6 +23,7 @@ alias mv="mv -iv"
 alias mkdir="mkdir -pv"
 alias src="source .env.development"
 alias lfp="tmux display-popup -w 80% -h 80% 'lf'"
+alias pwde="printf '%q\n' '$(pwd)'"
 
 # Confs
 alias conf.alias="vi $DOTFILES_ZSH_PATH/.aliases"
