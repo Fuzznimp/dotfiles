@@ -12,20 +12,21 @@ List items for the particular element in the
 order from the best to the worst. You can omit
 whole elements and weapon types if you don't
 want the script to use them. */
+var ice_staff_di = "ice staff dI+20"
 var elemental_items=[
   ["hammer",
     ["aether","D+12","D+11"],
     ["poison","D+12"],
     ["default","aether hammer D+12","aether hammer D+11"],
   ],
-  // ["wand",
-  //   ["vigor","D+11"],
-  //   ["fire","D+11"],
-  //   ["default","fire wand D+11", "vigor wand D+11"],
-  // ],
+  ["wand",
+    ["vigor","D+11"],
+    ["fire","D+11"],
+    ["default","fire wand D+11", "vigor wand D+11"],
+  ],
   ["staff",
-    ["ice","dI+11"],
-    ["default","Ice Staff dI+11","The Ghost Slayer! +11"],
+    ["ice","dI+20"],
+    ["default",ice_staff_di,"The Ghost Slayer! +11"],
   ],
   ["crossbow",
     // ["poison","dP"],
@@ -50,8 +51,6 @@ var elemental_items=[
     ["default","compound+11"],
   ],
 ]
-
-var ice_staff = "Ice staff dI+11"
 
 /* Weapon type priority for single targets:
 1. First type + foe's weak element.
@@ -124,9 +123,7 @@ var do_stunlock = [
 ]
 
 // Full names of weapons to use for stunlocking
-var stunlock_weapons = [
-  "ice hammer D+7", "fire hammer dF",
-  "poison hammer D", "aether hammer D"]
+var stunlock_weapons=["aether hammer D+12", "poison hammer d+12"]
 
 /* How much HP a non-boss enemy must have
 to use dU weapons on it instead of other
@@ -652,6 +649,7 @@ func is_snowball_near()
 
 var naga_step = 0
 func fight_nagaraja()
+  disable_r("blade")
   ?fast_potion_bosses.Contains("naga")
     maybe_drink()
   var to_dodge = 1
@@ -996,7 +994,6 @@ func find_dps_weapon(range, aoe, allow_2h)
   trace(""+found)
   return found
 
-// TODO: Ice staff
 func try_equip_debuff(range, aoe)
   trace("try_eq_debuff")
   found = false
@@ -1020,12 +1017,8 @@ func try_equip_debuff(range, aoe)
     return false
   return true
 
-// TODO: Improve ice staff handling.
 func find_debuff_weapon(range, aoe, elem, allow_2h)
   trace("find_debuff_wep")
-  ?elem="ice" & smite_stacks > 6
-    found_type = "staff"
-    return ice_staff
   found = find_weapon(range, aoe, elem, "mod", allow_2h)
   ?!found & range = "melee" & !(foe = immune_to_ranged | foe = ranged)
     found = find_weapon("ranged", aoe, elem, "mod", allow_2h)
@@ -1062,6 +1055,7 @@ func find_unmake_weapon(range, aoe, allow_2h)
   return found
 
 func find_weapon(range, aoe, elem, purpose, allow_2h)
+  trace("find_wep")
   found = false
   found_type = false
   var types = get_preferred_types(range, aoe)
@@ -1412,7 +1406,7 @@ func aac(weapon)
   ?is(lock, "hammer") |
   ^is(lock, "bardiche")
     return true
-  ?weapon = "repeating"
+  ?weapon = "repeating" | weapon = ice_staff_di
     ?!enable_repeating_aac
       return weapon
     aac_tick--
