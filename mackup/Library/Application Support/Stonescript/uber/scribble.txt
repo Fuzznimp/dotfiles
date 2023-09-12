@@ -14,42 +14,44 @@ whole elements and weapon types if you don't
 want the script to use them. */
 var elemental_items=[
   ["hammer",
-    ["aether", "D+12", "D+11"],
-    ["poison", "D+12"],
-    ["default", "aether hammer D+12", "aether hammer D+11"],
+    ["aether","D+12","D+11"],
+    ["poison","D+12"],
+    ["default","aether hammer D+12","aether hammer D+11"],
   ],
-  ["wand",
-    ["vigor", "D+11"],
-    ["fire","D+11"],
-    ["default","fire wand D+11", "vigor wand D+11"],
-  ],
+  // ["wand",
+  //   ["vigor","D+11"],
+  //   ["fire","D+11"],
+  //   ["default","fire wand D+11", "vigor wand D+11"],
+  // ],
   ["staff",
-    ["default", "The Ghost Slayer dL+11"],
+    ["ice","dI+11"],
+    ["default","Ice Staff dI+11","The Ghost Slayer! +11"],
   ],
   ["crossbow",
-    // ["aether", "D+11"],
     // ["poison","dP"],
     // ["fire","dF"],
     // ["ice","dI"],
-    ["default","Repeating Crossbow +16","Heavy"],
+    ["default","Repeating Crossbow +16"],
   ],
   ["sword",
-    ["aether","D+11","dU+12", "dU+11"],
-    ["fire", "D+9", "dF+6"],
+    ["aether","D+14","dU+12","dU+11"],
+    ["fire","D+14","D+12","dF+11"],
     ["ice","dI+11"],
     ["poison","D+12","dP+12"],
-    ["vigor","dL+11","dL+10"],
-    ["default","vigor sword dL+11","vigor sword dL+7"],
+    ["vigor","dL+14","dL+11"],
+    ["default","vigor sword dL+14","vigor sword dL+11"],
   ],
   ["shield",
-    ["vigor", "A"],
-    ["poison", "A"],
-    ["ice", "A"],
-    ["fire", "A"],
-    ["aether", "A+11"],
+    ["vigor","A+11"],
+    ["poison","A+11"],
+    ["ice","A+11"],
+    ["fire","A+11"],
+    ["aether","A+11"],
     ["default","compound+11"],
   ],
 ]
+
+var ice_staff = "Ice staff dI+11"
 
 /* Weapon type priority for single targets:
 1. First type + foe's weak element.
@@ -92,8 +94,9 @@ var must_ranged_foes = ["wasp", "wasp nest",
 
 /* Used for scripted bosses, for `ranged_foes`,
 or when `prefer_ranged` is true. */
-var for_ranged_single_target = ["crossbow",
-"repeating","wand", ]
+var for_ranged_single_target = [
+  "repeating","crossbow","wand"
+]
 
 /* Enable this _only_ if you have 10* repeating
 crossbow without attack speed enchant.
@@ -236,7 +239,7 @@ var ui_show_statuses = true
 
 // Debug (noisy, useful for research)
 var ui_show_debug = true
-var enable_tracing = false
+var enable_tracing = true
 var enable_hit_tracking = false
 
 /*********************
@@ -993,6 +996,7 @@ func find_dps_weapon(range, aoe, allow_2h)
   trace(""+found)
   return found
 
+// TODO: Ice staff
 func try_equip_debuff(range, aoe)
   trace("try_eq_debuff")
   found = false
@@ -1016,15 +1020,15 @@ func try_equip_debuff(range, aoe)
     return false
   return true
 
-func find_debuff_weapon(range, aoe,
-^elem, allow_2h)
+// TODO: Improve ice staff handling.
+func find_debuff_weapon(range, aoe, elem, allow_2h)
   trace("find_debuff_wep")
-  found = find_weapon(range, aoe,
-  ^elem, "mod", allow_2h)
-  ?!found & range = "melee" &
-  ^!(foe = immune_to_ranged | foe = ranged)
-    found = find_weapon("ranged", aoe, elem,
-    ^"mod", allow_2h)
+  ?elem="ice" & smite_stacks > 6
+    found_type = "staff"
+    return ice_staff
+  found = find_weapon(range, aoe, elem, "mod", allow_2h)
+  ?!found & range = "melee" & !(foe = immune_to_ranged | foe = ranged)
+    found = find_weapon("ranged", aoe, elem, "mod", allow_2h)
   return found
 
 func try_equip_unmake(range, aoe)
@@ -1057,15 +1061,13 @@ func find_unmake_weapon(range, aoe, allow_2h)
     ^"aether", "mod", allow_2h)
   return found
 
-func find_weapon(range, aoe, elem,
-^purpose, allow_2h)
+func find_weapon(range, aoe, elem, purpose, allow_2h)
   found = false
   found_type = false
   var types = get_preferred_types(range, aoe)
   for ty : types
     ?allow_2h | !is_2hander(ty)
-      ?!elem_types.Contains(ty) &
-      ^!is(purpose, "mod")
+      ?!elem_types.Contains(ty) & !is(purpose, "mod")
         found_type = ty
         return ty
       found = get_item(ty, elem, purpose)
@@ -1419,7 +1421,6 @@ func aac(weapon)
       equip blade
       equip @weapon@
     return weapon
-  // TODO
   ?weapon = "wand" | weapon = "staff"
     return true
   equip wand
@@ -1858,6 +1859,8 @@ func draw_ui()
     var frame_time = 0
     for ft:frame_times
       frame_time = frame_time + ft
+    ?frame_time = 0
+      return false
     var info = "ms: " + frame_time /
     ^frame_times.Count()
     ?lock
@@ -1865,10 +1868,10 @@ func draw_ui()
       ^" (" + lock_timer + ")"
     >`@x@,@y@,#blue,@info@
     // %end_dev%
-    >`@x@,@y+1@,@gray@,@loc.stars@*
-    ^ @time.FormatDigital(totaltime)@
-    ^/@time.FormatDigital(loc.averageTime)@
-    ^ @foe@
+    // >`@x@,@y+1@,@gray@,@loc.stars@*
+    // ^ @time.FormatDigital(totaltime)@
+    // ^/@time.FormatDigital(loc.averageTime)@
+    >`@x@,@y+1@,@gray@,@foe@
     var _weapon = " (L)"
     x = screen.w - 10
     y = 23
