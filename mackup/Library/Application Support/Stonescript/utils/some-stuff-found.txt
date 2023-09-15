@@ -151,3 +151,39 @@ func findFrames()
   ?foe.count > 0
     ?foe.distance < 10
       findFrames()
+
+// ======================
+
+// try to rush if further away than dist
+// return 1 if rushing, 0 if too close or on CDs
+// May lh -> triskel even if returning 0
+func rush(dist)
+ ?fd <= dist
+  return 0
+ ?fd > 16
+  ?qCD <= 0 & iCanAct
+   h2 = "quarterstaff"
+   doAct=r
+   return 1
+ :?fd > 10  // don't equip within range,
+  lh = "triskelion"  // or it'll sit there attacking
+  ?bashCD <= 0 & iCanAct & autoBash
+   rh = "bashing"
+   return 1
+  :?dashCD <= 0 & iCanAct
+   rh = "dashing"
+   return 1
+
+// ======================
+
+? foe.distance <= 15 & foe.distance >= 11 & item.GetCooldown("bash") <= 0
+  equipR bashing shield
+:? foe.distance <= 15 & foe.distance >= 11 & item.GetCooldown("dash") <= 0
+  equipR dashing shield
+:? foe.distance >= 5 & item.GetCooldown("quarterstaff") <= 0 & item.CanActivate()
+  equip quarterstaff
+  ? item.CanActivate("quarterstaff")
+    activate R
+:
+  equipL triskelion
+  equipR compound shield

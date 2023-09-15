@@ -13,14 +13,14 @@ order from the best to the worst. You can omit
 whole elements and weapon types if you don't
 want the script to use them. */
 var ice_staff_di = "ice staff dI+20"
+var aether_runebow_d = "aether crossbow D+15"
 var elemental_items=[
   ["hammer",
-    ["aether","D+12","D+11"],
-    ["poison","D+12"],
-    ["default","aether hammer D+12","aether hammer D+11"],
+    ["aether","D+14","D+13"],
+    ["poison","D+14"],
+    ["default","aether hammer D+14","poison hammer D+14"],
   ],
   ["wand",
-    ["vigor","D+11"],
     ["fire","D+11"],
     ["default","fire wand D+11", "vigor wand D+11"],
   ],
@@ -29,6 +29,7 @@ var elemental_items=[
     ["default",ice_staff_di,"The Ghost Slayer! +11"],
   ],
   ["crossbow",
+    ["aether","D+15"],
     // ["poison","dP"],
     // ["fire","dF"],
     // ["ice","dI"],
@@ -38,7 +39,7 @@ var elemental_items=[
     ["aether","D+14","dU+12","dU+11"],
     ["fire","D+14","D+12","dF+11"],
     ["ice","dI+11"],
-    ["poison","D+12","dP+12"],
+    ["poison","D+14","dP+12"],
     ["vigor","dL+14","dL+11"],
     ["default","vigor sword dL+14","vigor sword dL+11"],
   ],
@@ -66,7 +67,7 @@ var for_melee_single_target = [
 /* If true, then script can use dX weapons for
 dps purposes if you don't have a D weapon of
 that element. */
-var use_mods_for_dmg = false
+var use_mods_for_dmg = true
 
 /* How many regular enemies are needed to start
 using AoE weapons instead of single target. */
@@ -94,13 +95,8 @@ var must_ranged_foes = ["wasp", "wasp nest",
 /* Used for scripted bosses, for `ranged_foes`,
 or when `prefer_ranged` is true. */
 var for_ranged_single_target = [
-  "repeating","crossbow","wand"
+  "crossbow","repeating","wand"
 ]
-
-/* Enable this _only_ if you have 10* repeating
-crossbow without attack speed enchant.
-Increases effective attack speed. */
-var enable_repeating_aac = true
 
 /* Weapons to use for ranged AoE. Ranged AoE is
 triggered by the same threshold as melee AoE.*/
@@ -123,7 +119,7 @@ var do_stunlock = [
 ]
 
 // Full names of weapons to use for stunlocking
-var stunlock_weapons=["aether hammer D+12", "poison hammer d+12"]
+var stunlock_weapons=["stone hammer +12"]
 
 /* How much HP a non-boss enemy must have
 to use dU weapons on it instead of other
@@ -144,10 +140,10 @@ var debuff_non_bosses = "smite"
 won't be used. Supported: dash, bash,
 bardiche, hammer, blade, skeleton_arm, mask,
 quarterstaff, fire_talisman, cinderwisp. */
-var useable_abilities = ["dash", "bash",
-"mask", "blade", "hammer",
-"fire_talisman", "bardiche", "quarterstaff",
-"cinderwisp"
+var useable_abilities = [
+  "dash","bash","mask","blade","hammer",
+  "fire_talisman","bardiche","quarterstaff",
+  "cinderwisp"
 // "skeleton_arm"
 ]
 
@@ -201,32 +197,14 @@ to use Smite ability. */
 var smite_treshold = 7
 
 // Depends on level/enchants of your BFG.
-var smite_damage = 150
+var smite_damage = 100
 
 // Enable smiting two screens at once
 var long_long_smite = true
 
-/* If you're doing the "kill unique
-foes" step of the Blade of the Fallen God quest,
-fill this array with names of the
-enemies you've already defeated. */
-var bfg_defeated_foes = []
-
-/* Set to true if you're doing Skeleton Arm
-quests. Prioritizes last-hitting foes with the
-Arm ability */
-var pickpocket_quest = false
-
 // These depend on level/enchants of the Arm
 var arm_damage = 56
 var max_pickpocket_stacks = 3
-
-/* Cultist Mask quests.
-"simple" - steps 1 and 3 (uses on CD)
-"prevent" - step 4: do it in Rocky. Script
-will approach the scout, use mask, get hit as
-long as the debuff lasts, and quit the zone. */
-var mask_quest = false
 
 // Show ability cooldowns in UI
 var ui_show_cd = true
@@ -268,10 +246,7 @@ func progress()
   // Now handle bosses and minibosses
 
   trace("boss")
-  ?loc.stars > 5 & !pickpocket_quest
-    /* don't use Arm on bosses unless
-    absolutely necessary */
-    disable_r("skeleton_arm")
+  disable_r("skeleton_arm")
 
   ?loc = rocky
     ?foe.id = "acronian_scout"
@@ -418,18 +393,7 @@ func around(t)
   return foe.time > (t-2) & foe.time < (t+2)
 
 func fight_scout()
-  ?is(mask_quest, "prevent")
-    equip_L("trisk")
-    ?foe.state = 32 & foe.time>11 & can_mask()
-      return mask()
-    ?get_cd("mask") > 0 &
-    ^!foe_debuff("debuff_feeble")
-      return loc.Leave()
-    ?have_dashing
-      equip_R("dashing")
-    return
-  :
-    auto_melee_miniboss()
+  auto_melee_miniboss()
 
 var last_state = 0
 var dysan_step = -1
@@ -589,15 +553,22 @@ func fight_pallas()
 
 func fight_bronze_guardian()
   disable_r("blade")
-  ?fast_potion_bosses.Contains("bronze")
+  ?loc.stars < 14
     maybe_drink()
-  ?foe.state = 32 & foe.time = 33 &
-  ^armor < foe.damage
+  ?foe.state = 32 & foe.time = 33 & armor < foe.damage
     backflip() // dodge the hammer
   :?foe.state = 33 // hammer is down
     maybe_drink()
     auto_melee_boss()
   :
+    // TODO: Improve.
+    // trace("before")
+    // ?foe.distance <= 21 & item.GetCooldown("hammer") <= 0 | item.GetCooldown("hammer") >= 647
+    //   trace("condition true")
+    //   equip heavy hammer
+    //   ? item.CanActivate("hammer")
+    //     trace("activate")
+    //     activate R
     ranged("single")
 
 func fight_hrimnir()
@@ -1055,7 +1026,6 @@ func find_unmake_weapon(range, aoe, allow_2h)
   return found
 
 func find_weapon(range, aoe, elem, purpose, allow_2h)
-  trace("find_wep")
   found = false
   found_type = false
   var types = get_preferred_types(range, aoe)
@@ -1196,6 +1166,9 @@ func use(ability)
   return true
 
 func maybe_drink()
+  ?loc = bronze_guardian & loc.stars < 14
+    trace("drink")
+    activate potion
   ?use_potions_for_bosses &
   ^(item.potion="berserk"|item.potion="lucky")
   ^& foe.distance<=melee_range
@@ -1250,8 +1223,7 @@ func can_slap()
   ^can_activate()
 
 func should_slap()
-  return can_slap() & (!pickpocket_quest |
-  ^foe_ehp <= arm_damage)
+  return can_slap() & foe_ehp <= arm_damage
 
 func slap()
   trace("slap")
@@ -1266,13 +1238,6 @@ func can_smite()
   ^can_activate()
 
 func should_smite()
-  ?bfg_defeated_foes.Count() > 0
-    ?foe_ehp<=smite_damage & can_smite()
-      for e : bfg_defeated_foes
-        ?foe = e
-          return false
-      return true
-    return false
   return (is_boss | foe.count >= smite_treshold
   ^& foe_ehp <= smite_damage) & can_smite()
 
@@ -1327,9 +1292,8 @@ func can_mask()
   ^(foe ! nagaraja) & can_activate()
 
 func should_mask()
-  return can_mask() & (is(mask_quest,"simple")|
-  ^is_boss & foe.distance <= melee_range) &
-  ^!disable_debuffs & can_debuff()
+  return can_mask() & is_boss & foe.distance <= melee_range
+  ^& !disable_debuffs & can_debuff()
 
 func mask()
   trace("mask")
@@ -1376,12 +1340,6 @@ func cinder()
 
 func use_abilities()
   trace("use_abilities")
-  // prioritize quests
-  ?is(mask_quest,"simple") & can_mask()
-    return mask()
-  ?pickpocket_quest & can_slap()
-    return slap()
-  // then use where needed
   ?should_cinder()
     return cinder()
   ?should_mask()
@@ -1396,8 +1354,18 @@ func use_abilities()
     return slap()
   return false
 
-var aac_tick = 1
+var runebow_aac_timer = 0
+func runebow_aac(speed_normal, speed_berserk)
+  ?runebow_aac_timer = 0
+    equipL wand
+    equip crossbow D aether
 
+  ?buffs.string = "berserk"
+    runebow_aac_timer = (runebow_aac_timer + 1) % speed_berserk
+  :
+    runebow_aac_timer = (runebow_aac_timer + 1) % speed_normal
+
+var aac_tick = 1
 func aac(weapon)
   _equip_L = weapon
   equip @weapon@
@@ -1407,14 +1375,15 @@ func aac(weapon)
   ^is(lock, "bardiche")
     return true
   ?weapon = "repeating" | weapon = ice_staff_di
-    ?!enable_repeating_aac
-      return weapon
     aac_tick--
     ?aac_tick = 0
       aac_tick = 2
       equip blade
       equip @weapon@
     return weapon
+  ?weapon = aether_runebow_d
+    trace("runebow_aac")
+    runebow_aac(10, 5)
   ?weapon = "wand" | weapon = "staff"
     return true
   equip wand

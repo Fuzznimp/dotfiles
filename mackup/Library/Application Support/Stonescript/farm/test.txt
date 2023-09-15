@@ -1,7 +1,26 @@
-func lifesteal()
-  equip ghost
-    ?ai.idle
-      equip skeleton arm
-      equip ghost
+var timer = 0
+var frames = 10
 
-lifesteal()
+func foo()
+  ?timer = 0
+    equipL wand
+    equip crossbow D aether
+  timer = (timer + 1) % frames
+
+func bar()
+  ?timer >= frames - 1
+    equip wand
+    equip crossbow D aether
+    timer = 0
+  :
+    timer++
+
+?foe.id = acronian_scout & foe.distance <= 23
+  foo()
+  // bar()
+:?pickup.distance < 10
+  equipL star
+  equipR trisk
+:
+  equipL trisk
+  equipR compound
