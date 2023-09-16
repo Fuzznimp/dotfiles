@@ -22,18 +22,18 @@ var elemental_items=[
   ],
   ["wand",
     ["fire","D+11"],
-    ["default","fire wand D+11", "vigor wand D+11"],
+    ["default","fire wand D+11"],
   ],
   ["staff",
     ["ice","dI+20"],
     ["default",ice_staff_di,"The Ghost Slayer! +11"],
   ],
   ["crossbow",
-    ["aether","D+15"],
+    ["aether","D+18"],
     // ["poison","dP"],
     // ["fire","dF"],
     // ["ice","dI"],
-    ["default","Repeating Crossbow +16"],
+    ["default","aether crossbow D+18","Repeating Crossbow +16"],
   ],
   ["sword",
     ["aether","D+14","dU+12","dU+11"],
@@ -64,17 +64,8 @@ var for_melee_single_target = [
   "sword", "hammer",
 ]
 
-/* If true, then script can use dX weapons for
-dps purposes if you don't have a D weapon of
-that element. */
 var use_mods_for_dmg = true
-
-/* How many regular enemies are needed to start
-using AoE weapons instead of single target. */
 var aoe_threshold = 4
-
-/* Weapons to use for melee AoE, same priority
-logic as the regular melee. */
 var for_melee_aoe = ["arm"]
 
 /* If this is set to `true`, script will prefer
@@ -158,7 +149,6 @@ script won't use the bardiche ability if
 non-boss's HP is lower than twice this damage*/
 var bardiche_dmg = 52 * (10.8+2)
 
-/* Use scripted potions for bosses. */
 var use_potions_for_bosses = true
 
 /* Drink crit/speed potion right at the start
@@ -168,7 +158,7 @@ default logic that prefers to drink during the
 mushrooms, pallas, bronze, naga. The rest
 already drink the potion in phase1. */
 var fast_potion_bosses = [
-  "mushrooms", "pallas",
+  "mushrooms","pallas","bronze"
 ]
 
 /* Fraction of HP to consider low. When on low
@@ -183,7 +173,6 @@ var low_hp_threshold = 1
 when `low_hp_threshold` is reached */
 var use_shield_on_low_hp = false
 
-// Choose amount based on your `dI` weapon
 var max_chill_stacks = 6
 
 /* When to use Cinder ability (if listed in
@@ -192,13 +181,8 @@ or if boss's HP is lower than stacks * dmg. */
 var max_ignition_stacks = 10
 var cinderwisp_dmg = 96
 
-/* At least this many enemies must be present
-to use Smite ability. */
-var smite_treshold = 7
-
-// Depends on level/enchants of your BFG.
+var smite_threshold = 7
 var smite_damage = 100
-
 // Enable smiting two screens at once
 var long_long_smite = true
 
@@ -206,13 +190,8 @@ var long_long_smite = true
 var arm_damage = 56
 var max_pickpocket_stacks = 3
 
-// Show ability cooldowns in UI
 var ui_show_cd = true
-
-// Show your buffs/debuffs in UI
 var ui_show_statuses = true
-
-// Debug (noisy, useful for research)
 var ui_show_debug = true
 var enable_tracing = true
 var enable_hit_tracking = false
@@ -553,7 +532,9 @@ func fight_pallas()
 
 func fight_bronze_guardian()
   disable_r("blade")
-  ?loc.stars < 14
+  disable_r("bardiche")
+
+  ?fast_potion_bosses.Contains("bronze")
     maybe_drink()
   ?foe.state = 32 & foe.time = 33 & armor < foe.damage
     backflip() // dodge the hammer
@@ -771,6 +752,11 @@ func dash_closer()
 
 func auto_ranged()
   trace("auto_r")
+
+  ?for_ranged_single_target.Count() > 0 & smite_stacks > 6
+    // NOTE: Will be an issue when multiple staves
+    return ranged("staff")
+
   ?use_abilities()
     return true
   :?can_aoe & for_ranged_aoe.Count() > 0 &
@@ -780,13 +766,15 @@ func auto_ranged()
     return ranged("single")
   return auto_melee()
 
-// mode: aoe | single
+// mode: aoe | single | staff
 func ranged(mode)
   trace("r_" + mode)
   var aoe = is(mode, "aoe")
-  ?!aoe & must_ranged_foe() &
-  ^for_ranged_single_target.
-  ^Contains("repeating")
+  // NOTE: Will be an issue when multiple staves
+  ?is(mode,"staff")
+    return equip_L("staff")
+
+  ?!aoe & must_ranged_foe() & for_ranged_single_target.Contains("repeating")
     return equip_L("repeating")
   ?should_unmake()
     ?try_equip_unmake("melee", aoe)
@@ -897,6 +885,9 @@ func equip_R(it)
   // for debug
   _equip_R = it
   ?is_2hander(it) | is_2hander(found_type)
+    // NOTE: Will be an issue when multiple staves
+    ?is(found_type, "staff")
+      return aac(ice_staff_di)
     return aac(it)
   equipR @it@
   return it
@@ -1166,7 +1157,7 @@ func use(ability)
   return true
 
 func maybe_drink()
-  ?loc = bronze_guardian & loc.stars < 14
+  ?loc = bronze_guardian
     trace("drink")
     activate potion
   ?use_potions_for_bosses &
@@ -1238,7 +1229,7 @@ func can_smite()
   ^can_activate()
 
 func should_smite()
-  return (is_boss | foe.count >= smite_treshold
+  return (is_boss | foe.count >= smite_threshold
   ^& foe_ehp <= smite_damage) & can_smite()
 
 func smite()
@@ -1367,6 +1358,7 @@ func runebow_aac(speed_normal, speed_berserk)
 
 var aac_tick = 1
 func aac(weapon)
+  trace("aac_" + weapon)
   _equip_L = weapon
   equip @weapon@
   ?!ai.idle
@@ -1383,7 +1375,7 @@ func aac(weapon)
     return weapon
   ?weapon = aether_runebow_d
     trace("runebow_aac")
-    runebow_aac(10, 5)
+    runebow_aac(21, 12)
   ?weapon = "wand" | weapon = "staff"
     return true
   equip wand
@@ -1899,12 +1891,12 @@ func track_hits()
 // %end_dev%
 
 func brew_pot()
-  ?loc = Mushroom | loc = mine |
-  ^loc = halls | loc = rocky | loc = deadwood |
-  ^loc = icy_ridge
-    brew wood + bronze // berserk
+  ?loc = mine
+    brew stone // Strength
+  ?loc = Mushroom|loc = halls|loc=rocky|loc=deadwood|loc=icy_ridge
+    brew wood + bronze // Berserk
   :?loc = caves | loc = temple
-    brew stone + bronze // lucky
+    brew stone + bronze // Lucky
 
 func reset_loop()
   lock = false
