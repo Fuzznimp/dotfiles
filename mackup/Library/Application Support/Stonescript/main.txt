@@ -17,7 +17,7 @@ import Stonescript/skins/shadow
 import Stonescript/skins/pet-skully
 
 import Stonescript/uber/scribble
-// import Stonescript/farm/test
+// import Stonescript/uber/scribble.test
 
 // NOTE: Safe mean time.
 ?loc.averageTime >= 0 & totaltime > loc.averageTime
