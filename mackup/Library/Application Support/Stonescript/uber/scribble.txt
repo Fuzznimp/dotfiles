@@ -190,10 +190,11 @@ var long_long_smite = true
 var arm_damage = 56
 var max_pickpocket_stacks = 3
 
-var ui_show_cd = true
-var ui_show_statuses = true
-var ui_show_debug = true
-var enable_tracing = true
+var debug = false
+var ui_show_cd = debug
+var ui_show_statuses = debug
+var ui_show_debug = debug
+var enable_tracing = debug
 var enable_hit_tracking = false
 
 /*********************
@@ -534,23 +535,19 @@ func fight_bronze_guardian()
   disable_r("blade")
   disable_r("bardiche")
 
-  ?fast_potion_bosses.Contains("bronze")
-    maybe_drink()
   ?foe.state = 32 & foe.time = 33 & armor < foe.damage
     backflip() // dodge the hammer
   :?foe.state = 33 // hammer is down
     maybe_drink()
     auto_melee_boss()
   :
-    // TODO: Improve.
-    // trace("before")
-    // ?foe.distance <= 21 & item.GetCooldown("hammer") <= 0 | item.GetCooldown("hammer") >= 647
-    //   trace("condition true")
-    //   equip heavy hammer
-    //   ? item.CanActivate("hammer")
-    //     trace("activate")
-    //     activate R
-    ranged("single")
+    ?foe.armor > 0 & foe.distance <= 21 & item.GetCooldown("hammer") <= 0 | item.GetCooldown("hammer") >= 647
+      equip heavy hammer
+      ?item.CanActivate()
+        activate R
+    :
+      maybe_drink()
+      ranged("single")
 
 func fight_hrimnir()
   at_boss = true
@@ -1157,7 +1154,7 @@ func use(ability)
   return true
 
 func maybe_drink()
-  ?loc = bronze_guardian
+  ?loc = bronze_guardian & item.potion="strength"
     trace("drink")
     activate potion
   ?use_potions_for_bosses &
@@ -1472,6 +1469,7 @@ var all_statuses = [
   ["vampiric", "Vamp", "+"],
   ["lucky_crit", "CritUp", "+"],
   ["lucky_mult", "CritMultUp", "+"],
+  ["strenght", "Str", "+"],
   ["invisibility", "Invis", "+"],
   ["debuff_damage", "DmgDown", "-"],
   ["debuff_duration_damage", "DmgDown", "-"],

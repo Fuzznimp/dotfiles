@@ -23,6 +23,3 @@ import Stonescript/uber/scribble
 ?loc.averageTime >= 0 & totaltime > loc.averageTime
   loc.Leave()
 
-// NOTE: Stone farming.
-// ?foe = phase
-//   loc.Leave()
