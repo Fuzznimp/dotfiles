@@ -36,12 +36,12 @@ var elemental_items=[
     ["default","aether crossbow D+18","Repeating Crossbow +16"],
   ],
   ["sword",
-    ["aether","D+14","dU+12","dU+11"],
-    ["fire","D+14","D+12","dF+11"],
-    ["ice","dI+11"],
-    ["poison","D+14","dP+12"],
-    ["vigor","dL+14","dL+11"],
-    ["default","vigor sword dL+14","vigor sword dL+11"],
+    ["aether","D+14","dU+13","dU+11"],
+    ["fire","D+16","D+14","dF+13"],
+    ["ice","dI+13"],
+    ["poison","D+16","D+13"],
+    ["vigor","dL+14","dL+13"],
+    ["default","vigor sword dL+14","vigor sword dL+13"],
   ],
   ["shield",
     ["vigor","A+11"],
@@ -115,7 +115,7 @@ var stunlock_weapons=["stone hammer +12"]
 /* How much HP a non-boss enemy must have
 to use dU weapons on it instead of other
 tactics. If 0, will not specifically unmake. */
-var unmaking_threshold = 600
+var unmaking_threshold = 800
 
 /* When to debuff bosses:
 "never", "always", or "smite" (only if Smite
@@ -190,7 +190,7 @@ var long_long_smite = true
 var arm_damage = 56
 var max_pickpocket_stacks = 3
 
-var debug = false
+var debug = true
 var ui_show_cd = debug
 var ui_show_statuses = debug
 var ui_show_debug = debug
@@ -1847,7 +1847,7 @@ func draw_ui()
 
     ?enable_tracing
       var tr = string.Break(string.Join(
-      ^",", traces), 50)
+      ^",", traces), 40) // TODO: Fine tune.
       ey = 2
       for t : tr
         >`20,@ey@,#blue,@t@
