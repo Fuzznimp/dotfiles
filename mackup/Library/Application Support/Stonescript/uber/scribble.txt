@@ -1167,7 +1167,7 @@ func maybe_drink()
 func can_dash()
   return can_activate() & (can_use("dash") |
   ^can_use("bash") & !disable_debuffs)
-  ^& foe.distance > 10 & foe.distance < 17
+  ^& foe.distance > 10 & foe.distance < 16
 
 func dash()
   trace("dash")
