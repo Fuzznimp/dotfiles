@@ -1,0 +1,16 @@
+var enable_tracer = true
+var block_width = 45
+
+var spans = []
+
+func span(tag)
+  ?enable_tracer
+    spans.Add(tag)
+
+func display_trace()
+  var trace = string.Break(string.Join(",", spans), block_width)
+  var trace_y = 2
+
+  for current_span : trace
+    >`20,@trace_y@,#blue,@current_span@
+    trace_y++

@@ -43,3 +43,4 @@ var for_melee_single_target = ["sword", "hammer"]
 var use_mods_for_dmg = true
 var aoe_threshold = 4
 var for_melee_aoe = ["arm"]
+var melee_range = 5
