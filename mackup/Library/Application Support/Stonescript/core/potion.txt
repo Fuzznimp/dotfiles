@@ -1,0 +1,27 @@
+var C = import Stonescript/core/constants
+var Tracer = import Stonescript/observability/tracer
+
+var should_use = true
+// TODO: Should probably remove this one.
+var fast_potion_bosses = ["mushrooms","pallas","bronze"]
+
+// NOTE: `brew` is a reserved keyword :(.
+func create()
+  ?should_use
+    ?loc = Mine
+      brew stone // Strength.
+    :?loc = Mushroom | loc = Halls | loc = Rocky | loc = Deadwood | loc = Ridge
+      brew wood + bronze // Berserk.
+    :?loc = Caves | loc = Temple
+      brew stone + bronze // Lucky.
+  :?item.potion = empty
+    brew tar + bronze // Vampiric.
+
+func try_drink()
+  ?loc = bronze_guardian & item.potion = "strength"
+    Tracer.span("drink")
+    activate potion
+  ?should_use & (item.potion="berserk" | item.potion="lucky") & foe.distance <= C.melee_range
+    Tracer.span("drink")
+    activate potion
+  return true
