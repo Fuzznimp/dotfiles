@@ -1,23 +1,11 @@
-// import Stonescript/tracking/treasure
-// import Stonescript/tracking/state
-import Stonescript/tracking/loop-stats
+import Stonescript/tracking/loop-time
 import Stonescript/tracking/red-nosed-scotty
-
-// import Stonescript/farm/rocky-plateau
-// import Stonescript/farm/deadwood-canyon
-// import Stonescript/farm/caves-of-fear
-// import Stonescript/farm/mushroom-forest
-// import Stonescript/farm/haunted-halls
-// import Stonescript/farm/boiling-mines
-// import Stonescript/farm/icy-ridge
-// import Stonescript/farm/temple
 
 import Stonescript/skins/wavy-scarf
 import Stonescript/skins/shadow
 import Stonescript/skins/pet-skully
 
-import Stonescript/uber/scribble
-// import Stonescript/uber/scribble.test
+import Stonescript/core/main
 
 // NOTE: Safe mean time.
 ?loc.averageTime >= 0 & totaltime > loc.averageTime

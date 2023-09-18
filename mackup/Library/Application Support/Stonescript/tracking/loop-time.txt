@@ -1,24 +1,20 @@
-// Credit: https://github.com/bcbays/SSRPGScripts/blob/main/Info/LoopTime.txt
-
-// Loop Time Info v5
-
-// Variables
-var loop_time_ui_panel
-var loop_time_ui_text_location
-var loop_time_ui_text_best
-var loop_time_ui_text_mean
-var loop_time_ui_text_prev
-var loop_time_ui_text_current
-
-var prev_time = -1
-var current_time = -1
+// Heavily based on fruloo's script:
+// https://github.com/bcbays/SSRPGScripts/blob/main/Info/LoopTime.txt
 
 var color_grading = [
+  "#rainbow",
   "#22FF22",
-  "#DDDD22",
   "#FF8822",
-  "#FF2222"
+  "#FF2222",
+  "#white",
+  "#7A8F93"
 ]
+
+var x = screen.w - 23
+
+// ====== Time tracking ======
+var prev_time = -1
+var current_time = -1
 
 var location_colors = [
   "#white",
@@ -30,98 +26,59 @@ var location_colors = [
 ]
 
 ?loc.stars >= 1 & !loc.isQuest
-  // Initialization
-  ? loc.begin | loc.loop
-    // Update previous time
+  ?loc.begin | loc.loop
     prev_time = current_time + 1
     current_time = -1
-    // UI
-    loop_time_ui_panel = ui.AddPanel()
-    // loop_time_ui_panel.x = screen.w - 49
-    // loop_time_ui_panel.x = 24
-    loop_time_ui_panel.x = screen.w - 21
-    loop_time_ui_panel.y = 0
-    loop_time_ui_panel.w = 21
-    loop_time_ui_panel.h = 7
-    loop_time_ui_panel.anchor = top_left
-    loop_time_ui_panel.dock = top_left
 
-    loop_time_ui_text_location = ui.AddText()
-    loop_time_ui_text_location.x = 1
-    loop_time_ui_text_location.y = 1
-    loop_time_ui_text_location.w = 19
-    loop_time_ui_text_location.h = 1
-    loop_time_ui_text_location.anchor = top_left
-    loop_time_ui_text_location.dock = top_left
-    loop_time_ui_text_location.text = loc.name + " " + loc.stars + "*"
-    loop_time_ui_text_location.color = location_colors[math.FloorToInt((loc.stars - 1)/5.0)]
-    loop_time_ui_panel.Add(loop_time_ui_text_location)
+  // Location
+  var locationColor = location_colors[math.FloorToInt((loc.stars - 1)/5.0)]
+  >`@x@,1,@locationColor@,@loc.name@ @loc.stars@*
 
-    loop_time_ui_text_best = ui.AddText()
-    loop_time_ui_text_best.x = 1
-    loop_time_ui_text_best.y = 2
-    loop_time_ui_text_best.w = 19
-    loop_time_ui_text_best.h = 1
-    loop_time_ui_text_best.anchor = top_left
-    loop_time_ui_text_best.dock = top_left
-    ? loc.bestTime >= 0
-      loop_time_ui_text_best.text = "Best " + time.FormatCasual(loc.bestTime,true)
-    :
-      loop_time_ui_text_best.text = "Best N\A"
-    loop_time_ui_panel.Add(loop_time_ui_text_best)
+  // Best
+  ?loc.bestTime >= 0
+    >`@x@,2,@color_grading[0]@,Best @time.FormatCasual(loc.bestTime,true)@ (@loc.bestTime@f)
+  :
+    >`@x@,2,@color_grading[5]@,Best -
 
-    loop_time_ui_text_mean = ui.AddText()
-    loop_time_ui_text_mean.x = 1
-    loop_time_ui_text_mean.y = 3
-    loop_time_ui_text_mean.w = 19
-    loop_time_ui_text_mean.h = 1
-    loop_time_ui_text_mean.anchor = top_left
-    loop_time_ui_text_mean.dock = top_left
-    ? loc.averageTime >= 0
-      loop_time_ui_text_mean.text = "Mean " + time.FormatCasual(loc.averageTime,true)
-    :
-      loop_time_ui_text_mean.text = "Mean N\A"
-    loop_time_ui_panel.Add(loop_time_ui_text_mean)
+  // Mean
+  ?loc.averageTime >= 0
+    >`@x@,3,@color_grading[4]@,Mean @time.FormatCasual(loc.averageTime,true)@ (@loc.averageTime@f)
+  :
+    >`@x@,3,@color_grading[5]@,Mean -
 
-    loop_time_ui_text_prev = ui.AddText()
-    loop_time_ui_text_prev.x = 1
-    loop_time_ui_text_prev.y = 4
-    loop_time_ui_text_prev.w = 19
-    loop_time_ui_text_prev.h = 1
-    loop_time_ui_text_prev.anchor = top_left
-    loop_time_ui_text_prev.dock = top_left
-    ? prev_time > 0
-      loop_time_ui_text_prev.text = "Prev " + time.FormatCasual(prev_time,true)
-    :
-      loop_time_ui_text_prev.text = "Prev N\A"
-    loop_time_ui_panel.Add(loop_time_ui_text_prev)
+  // Previous
+  ?prev_time > 0
+    >`@x@,4,@color_grading[4]@,Prev @time.FormatCasual(prev_time,true)@ (@prev_time@f)
+  :
+    >`@x@,4,@color_grading[5]@,Prev -
 
-    loop_time_ui_text_current = ui.AddText()
-    loop_time_ui_text_current.x = 1
-    loop_time_ui_text_current.y = 5
-    loop_time_ui_text_current.w = 19
-    loop_time_ui_text_current.h = 1
-    loop_time_ui_text_current.anchor = top_left
-    loop_time_ui_text_current.dock = top_left
-    loop_time_ui_panel.Add(loop_time_ui_text_current)
+  // Current
+  ?totaltime < loc.bestTime | loc.bestTime <= 0
+    >`@x@,5,@color_grading[0]@,Time @time.FormatCasual(totaltime,true)@ (@totaltime@f)
+  :?totaltime < loc.averageTime
+    >`@x@,5,@color_grading[1]@,Time @time.FormatCasual(totaltime,true)@ (@totaltime@f)
+  :?totaltime < loc.averageTime + 150
+    >`@x@,5,@color_grading[2]@,Time @time.FormatCasual(totaltime,true)@ (@totaltime@f)
+  :
+    >`@x@,5,@color_grading[3]@,Time @time.FormatCasual(totaltime,true)@ (@totaltime@f)
 
-  ? loop_time_ui_text_current // Check if intialized
-    // Update Time
-    loop_time_ui_text_current.text = "Time " + time.FormatCasual(totaltime,true)
-    // Color Grading
-    ? totaltime < loc.bestTime | loc.bestTime <= 0
-      // Faster than best
-      loop_time_ui_text_current.color = color_grading[0]
-    : ? totaltime < loc.averageTime
-      // Faster than average
-      loop_time_ui_text_current.color = color_grading[1]
-    : ? totaltime < loc.averageTime + 150
-      // Less than 5 seconds slower than average
-      loop_time_ui_text_current.color = color_grading[2]
-    :
-      // Greater than 5 seconds slower than average
-      loop_time_ui_text_current.color = color_grading[3]
-
-  // Tracking for previous time
-  ? current_time < totaltime
+  ?current_time < totaltime
     current_time = totaltime
+
+// ====== Treasure tracking ======
+// var treasure_count = 0
+// var treasure_remaining_time = 0
+// var treasure_cap = 400
+
+// var event_location = "boiling"
+
+// ?loc.stars >= 1 & !loc.isQuest
+//   ?loc.loop
+//     ?loc.stars >= 5 & (loc.name = caves of fear | loc.name = event_location)
+//       treasure_count = treasure_count + 2
+//     :
+//       treasure_count++
+
+//   ?loc.begin | loc.loop
+//     ?treasure_count < math.FloorToInt(treasure_cap * 0.25)
+//       >`Loot @treasure_count@/@treasure_cap@
