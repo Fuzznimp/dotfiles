@@ -1,0 +1,4 @@
+var threshold = 800
+
+func should_unmake()
+  return threshold > 0 & !is_boss & foe.maxhp >= threshold

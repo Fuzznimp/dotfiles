@@ -1,7 +1,7 @@
 var C = import Stonescript/core/constants
 var Potion = import Stonescript/core/potion
 var Tracer = import Stonescript/observability/tracer
-
+var Unmake = import Stonescript/core/utils/unmake
 
 var for_melee_aoe = ["arm"]
 
@@ -48,11 +48,6 @@ var do_stunlock = [
 
 // Full names of weapons to use for stunlocking
 var stunlock_weapons=["stone hammer +12"]
-
-/* How much HP a non-boss enemy must have
-to use dU weapons on it instead of other
-tactics. If 0, will not specifically unmake. */
-var unmaking_threshold = 800
 
 /* When to debuff bosses:
 "never", "always", or "smite" (only if Smite
@@ -634,7 +629,7 @@ func melee(mode)
   ?dash_closer()
     return true
   var aoe = is(mode, "aoe")
-  ?should_unmake()
+  ?Unmake.should_unmake()
     ?try_equip_unmake("melee", aoe)
       Tracer.span("unmaking")
       mode = "unmake"
@@ -698,7 +693,7 @@ func ranged(mode)
 
   ?!aoe & must_ranged_foe() & for_ranged_single_target.Contains("repeating")
     return equip_L("repeating")
-  ?should_unmake()
+  ?Unmake.should_unmake()
     ?try_equip_unmake("melee", aoe)
       Tracer.span("unmaking")
       mode = "unmake"
@@ -711,7 +706,7 @@ func auto_melee_boss()
   Tracer.span("auto_m_boss")
   ?use_abilities() | dash_closer()
     return true
-  ?should_unmake() &
+  ?Unmake.should_unmake() &
   ^try_equip_unmake("melee", false)
     Tracer.span("unmaking")
     return approach()
@@ -777,7 +772,7 @@ func stunlock()
   :
     equip_L(stunlock_weapons[0])
   found = false
-  ?should_unmake()
+  ?Unmake.should_unmake()
     found = find_unmake_weapon("melee",
     ^false, false)
   :?should_debuff()
@@ -994,9 +989,7 @@ func get_item(ty, elem, purpose)
       return it
   return false
 
-func should_unmake()
-  return unmaking_threshold > 0 & !is_boss &
-  ^foe.maxhp >= unmaking_threshold
+
 
 var only_dot = false
 func can_debuff()
@@ -1714,9 +1707,6 @@ func draw_ui()
       info = info + ", L: " + lock + " (" + lock_timer + ")"
     >`@x@,@y@,#blue,@info@
     // %end_dev%
-    // >`@x@,@y+1@,@gray@,@loc.stars@*
-    // ^ @time.FormatDigital(totaltime)@
-    // ^/@time.FormatDigital(loc.averageTime)@
     >`@x@,@y+1@,@gray@,@foe@
     var _weapon = " (L)"
     x = screen.w - 10
