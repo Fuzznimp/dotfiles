@@ -5,7 +5,8 @@ import Stonescript/skins/wavy-scarf
 import Stonescript/skins/shadow
 import Stonescript/skins/pet-skully
 
-import Stonescript/core/main
+import Stonescript/core/main-deprecated
+// import Stonescript/core/main
 
 // NOTE: Safe mean time.
 ?loc.averageTime >= 0 & totaltime > loc.averageTime

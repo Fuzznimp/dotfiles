@@ -56,3 +56,12 @@ func DebuffApplier()
 
 ?pickup.distance <= 10
   equipL star
+
+//This only lets you use the ice weapon if no adaptive defence for ice exists, and so on for each element
+//No point in using more than 2 or 3 elements, as it loses stacks when swapping type.
+// ?!(foe.buffs.string = _ice)
+//     equipR sword ice D
+// :?!(foe.buffs.string = _fire)
+//     equipR sword fire D
+// :?!(foe.buffs.string = _aether)
+//     equipR sword aether D

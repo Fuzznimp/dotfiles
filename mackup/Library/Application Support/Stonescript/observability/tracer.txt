@@ -8,6 +8,8 @@ func span(tag)
     spans.Add(tag)
 
 func display_trace()
+  ?!enable_tracer
+    return
   var trace = string.Break(string.Join(",", spans), block_width)
   var trace_y = 2
 

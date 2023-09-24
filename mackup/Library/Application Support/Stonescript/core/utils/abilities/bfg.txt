@@ -1,0 +1,34 @@
+var Tracer = import Stonescript/observability/tracer
+var GS = import Stonescript/core/variables/game-state
+
+var smite_threshold = 3
+var scrolling = 0
+
+var is_ready = item.GetCooldown("blade") <= 0
+// var is_target_allowed =  GS.foe_ehp < 600 & GS.foe_ehp > 0 & is_ready & foe.distance < 25 & (foe.count > 5 | scrolling > 15)
+
+func is_target_allowed()
+  return GS.foe_ehp < 600 & GS.foe_ehp > 0 & is_ready & foe.distance < 25 & (foe.count > 5 | scrolling > 15)
+
+func update()
+  is_ready = item.GetCooldown("blade") <= 0
+  // is_target_allowed =  GS.foe_ehp < 600 & GS.foe_ehp > 0 & is_ready & foe.distance < 25 & (foe.count > 5 | scrolling > 15)
+  return
+
+func handle()
+  Tracer.span("handle_smite")
+  ?is_ready & foe.count > smite_threshold
+    scrolling++
+    screen.Next()
+  :
+    scrolling = 0
+    screen.ResetOffset()
+  ?is_target_allowed()
+    Tracer.span("smite")
+    equip blade_of_god
+    ?item.CanActivate("blade")
+      activate R
+    return
+  return scrolling > 0
+
+update()

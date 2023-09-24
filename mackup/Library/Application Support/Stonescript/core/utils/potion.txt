@@ -1,8 +1,8 @@
-var C = import Stonescript/core/constants
+var C = import Stonescript/core/variables/constants
 var Tracer = import Stonescript/observability/tracer
 
 var should_use = true
-// TODO: Should probably remove this one.
+// TODO: Remove this when done.
 var fast_potion_bosses = ["mushrooms","pallas","bronze"]
 
 // NOTE: `brew` is a reserved keyword :(.
