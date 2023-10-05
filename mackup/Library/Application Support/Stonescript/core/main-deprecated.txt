@@ -2,8 +2,7 @@ var C = import Stonescript/core/variables/constants
 var Tracer = import Stonescript/observability/tracer
 var Potion = import Stonescript/core/utils/potion
 var Unmake = import Stonescript/core/utils/unmake
-
-var for_melee_aoe = ["arm"]
+var SafeMean = import Stonescript/core/utils/safe-mean
 
 /* If this is set to `true`, script will prefer
 to use ranged items from lists below instead of
@@ -43,7 +42,7 @@ var evade_shield = "vigor shield ah"
 instead of using any other tactics. Supported:
 poena, ceiling decorator, ice elemental. */
 var do_stunlock = [
-  "poena", "ceiling decorator", "ice elemental"
+  "poena", "ceiling decorator"
 ]
 
 // Full names of weapons to use for stunlocking
@@ -52,7 +51,7 @@ var stunlock_weapons=["socketed stone hammer +12"]
 /* When to debuff bosses:
 "never", "always", or "smite" (only if Smite
 buff is active). */
-var debuff_bosses = "smite"
+var debuff_bosses = "never"
 
 /* When to debuff regular enemies:
 "never", "always", or "smite" (only if Smite
@@ -73,8 +72,8 @@ var useable_abilities = [
 /* Advanced: these are default values, change
 them accordingly if you have speed enchants on
 these weapons. */
-var hammer_frames = 15
-var bardiche_frames = 30
+var hammer_frames = 14
+var bardiche_frames = 22
 
 /* `dmg * (crit_mult + base_crit_mult)`,
 script won't use the bardiche ability if
@@ -116,6 +115,10 @@ var ui_show_cd = debug
 var ui_show_statuses = debug
 var ui_show_debug = debug
 var enable_hit_tracking = false
+
+// TODO: Move.
+// If true, will use hatchet and shovel
+var harvesting = false
 
 /*********************
 **     #Progress    **
@@ -194,20 +197,18 @@ func progress()
     ?foe.id = "ice_elemental_elite"
       ?!at_boss
         Tracer.span("miniboss")
-        ?can_stunlock &
-        ^do_stunlock.Contains("ice elemental")
+        ?can_stunlock & do_stunlock.Contains("ice elemental")
           disable_r("mask")
           disable_r("blade")
           disable_r("hammer")
           return stunlock()
         :
-        return auto_melee_miniboss()
+          return auto_melee_miniboss()
       :
         return ranged("aoe")
     return fight_hrimnir()
 
-  :?loc = temple &
-  ^is(foe.id, "acronian_cultist")
+  :?loc = temple & is(foe.id, "acronian_cultist")
     Tracer.span("miniboss")
     excluded_items = "vigor"
     return auto_melee_miniboss()
@@ -222,11 +223,11 @@ func progress()
 func healwalk()
   Tracer.span("healwalk")
   ?foe & (foe.distance < 23)
-    ?hp < (maxhp / 4) & item.potion ! empty &
-    ^(item.potion = "healing" |
-    ^item.potion = "vampiric")
+    ?hp < (maxhp / 4) & item.potion ! empty & (item.potion = "healing" | item.potion = "vampiric")
       activate potion
     return false // start combat instead
+  :?harvesting & harvest.distance < 3 & _harvest()
+    return true
   :?should_summon()
     return equip_L("trisk") & summon()
   :?can_qs_dash()
@@ -236,12 +237,21 @@ func healwalk()
     return equip_L("ouroboros")
   return equip_L("trisk")
 
+func _harvest()
+  ?loc = Rocky
+    return equip_L("shovel")
+  :?loc = Deadwood
+    equip_R("hatchet")
+    ?harvest.distance < 2
+      use("hatchet")
+    return true
+  return false
+
 func avoid_explosion()
   Tracer.span("explode")
   ?foe.distance < 5
     return try_evade()
-  return auto_equip_L("melee", false) &
-  ^equip_R("dashing")
+  return auto_equip_L("melee", false) & equip_R("dashing")
 
 var scrolling = 0
 func smite_two_screens()
@@ -252,9 +262,7 @@ func smite_two_screens()
   :
     scrolling = 0
     screen.ResetOffset()
-  ?foe_ehp < 600 & foe_ehp > 0 & cd_ok &
-  ^foe.distance < 25 &
-  ^(foe.count > 5 | scrolling > 15)
+  ?foe_ehp < 600 & foe_ehp > 0 & cd_ok & foe.distance < 25 & (foe.count > 5 | scrolling > 15)
     return smite()
   return scrolling > 0
 
@@ -271,8 +279,7 @@ func try_evade()
 
 func hard_block()
   Tracer.span("hard_block")
-  return equip_L("quest") &
-  ^equip_R(evade_shield)
+  return equip_L("quest") & equip_R(evade_shield)
 
 func evade_at(t)
   Tracer.span("evade_at")
@@ -313,12 +320,10 @@ func fight_dysan()
     ^(foe.state = 32 & around(hit + delay))
       return soft_block()
   :?foe = phase2
-    ?smite_at_exact() | dash_closer() |
-    ^(foe.state = 33 & use_abilities())
+    ?smite_at_exact() | dash_closer() | (foe.state = 33 & use_abilities())
       return true
     Tracer.span("match_element")
-    found = find_weapon("melee",false,
-    ^weak_elem,"stats","false")
+    found = find_weapon("melee",false,weak_elem,"stats","false")
     ?found
       equip_L(found)
     ?foe.state = 32 & around(58 + delay)
@@ -331,11 +336,11 @@ func fight_dysan()
       return equip_R(found)
     return auto_equip_R("melee", false)
   :?foe = phase3
+    disable_r("blade")
     weak_elem = "default"
     hit = 20 + math.Max(0, delay-6)
     // hammer him right as he gets armor
-    ?foe.state=32 & foe.time>hit & dysan_step=0
-    ^& foe.distance > 10 & can_hammer()
+    ?foe.state=32 & foe.time>hit & dysan_step=0 & foe.distance > 10 & can_hammer()
       return hammer()
     // don't use element he's guarding against
     var resist = foe_buff("adaptive_defense")
@@ -343,32 +348,25 @@ func fight_dysan()
       excluded_items = resist
     /* his attack order is cyclical, so we can
     dodge both the stun and the ray */
-    ?(last_state = 32 & foe.state = 33) |
-    ^(last_state = 33 & foe.state = 2) |
-    ^(last_state = 2 & foe.state = 32)
+    ?(last_state = 32 & foe.state = 33) | (last_state = 33 & foe.state = 2) | (last_state = 2 & foe.state = 32)
       dysan_step++
-    :?(foe.state!32) & (foe.state!33) &
-    ^(foe.state!2)
+    :?(foe.state!32) & (foe.state!33) & (foe.state!2)
       dysan_step = 0
     last_state = foe.state
-    ?foe.state = 32 & dysan_step >= 6 &
-    ^evade_at(hit)
+    ?foe.state = 32 & dysan_step >= 6 & evade_at(hit)
       // dodge the stun
       dysan_step = 0
       return
-    :?foe.state=115 & foe.time<=70 &
-    ^evade_at(70)
+    :?foe.state=115 & foe.time<=70 & evade_at(70)
       // dodge the ray, don't dash back into it
       return set_lock("boss", 7)
-    :?foe.state = 32 & (dysan_step < 7) &
-    ^around(48 + delay)
+    :?foe.state = 32 & (dysan_step < 7) & around(48 + delay)
       return soft_block()
   auto_melee_boss()
 
 func fight_xyloalgia()
   disable_r("skeleton_arm")
-  var stunlock_poena = loc.stars > 5 &
-  ^can_stunlock & do_stunlock.Contains("poena")
+  var stunlock_poena = loc.stars > 5 & can_stunlock & do_stunlock.Contains("poena")
   ?foe = phase1
     ?Potion.fast_potion_bosses.Contains("xylo")
       Potion.try_drink()
@@ -379,22 +377,19 @@ func fight_xyloalgia()
       disable_r("blade")
       disable_r("bardiche")
 
-    ?foe.state = 32 &
-    ^evade_at(31 + chill_delay())
+    ?foe.state = 32 & evade_at(31 + chill_delay())
       return
 
     auto_melee_boss()
   :?foe = phase2
     ?unsummon()
       return
-    ?disable_debuffs
-      excluded_items = "dU"
+    excluded_items = "dU"
     ?stunlock_poena
       stunlock()
 
     // no stunlocking, avoid hitting the mirror
-    :?(disable_debuffs & foe.hp>(foe.maxhp/4))|
-    ^(foe.state = 32 & foe.time = 41)
+    :?(disable_debuffs & foe.hp>(foe.maxhp/4)) | (foe.state = 32 & foe.time = 41)
       hard_block()
     :
       auto_melee_boss()
@@ -411,16 +406,12 @@ func fight_bolesh()
     // evade melee bite
     return
 
-  :?can_mind &
-  ^!foe_buff("spider_buff_damage")
+  :?can_mind & !foe_buff("spider_buff_damage")
     Potion.try_drink()
-    return use_abilities() |
-    ^auto_melee_boss()
+    return use_abilities() | auto_melee_boss()
   :
-    ?for_ranged_single_target.
-    ^Contains("repeating")
-      return equip_L("repeating")
-    ranged("single")
+    auto_melee_boss()
+    // ranged("single")
 
 func fight_mushrooms()
   // thanks to user `fruloo` from the discord!
@@ -474,15 +465,12 @@ func fight_bronze_guardian()
 
 func fight_hrimnir()
   at_boss = true
-  ?is_snowball_near() |
-  ^(is_boss & foe.distance <= 6 &
-  ^foe.state = 32 & around(23 + chill_delay()))
+  ?is_snowball_near() | (is_boss & foe.distance <= 6 & foe.state = 32 & around(23 + chill_delay()))
     // snowballs
     ?useable_abilities.Contains("fire_talisman")
       equip_L("fire talisman")
     soft_block()
-  :?draw.GetSymbol(56, 13) = "o" | is_boss &
-  ^foe.state = 133 // blowing
+  :?draw.GetSymbol(56, 13) = "o" | is_boss & foe.state = 133 // blowing
     ?foe.count > 1
       ranged("aoe")
     :
@@ -513,9 +501,7 @@ func is_snowball_near()
   var x = screen.FromWorldX(pos.x)
   var y = screen.FromWorldZ(pos.z)
   for dist : dists
-    ?draw.GetSymbol(x+dist, y-3) = "(" &
-    ^draw.GetSymbol(x+dist+1, y-3) = "_" &
-    ^draw.GetSymbol(x+dist+2, y-3) = ")"
+    ?draw.GetSymbol(x+dist, y-3) = "(" & draw.GetSymbol(x+dist+1, y-3) = "_" & draw.GetSymbol(x+dist+2, y-3) = ")"
       return true
   return false
 
@@ -544,8 +530,7 @@ func fight_nagaraja()
       // now we're in melee
       evade_naga()
   // boulder
-  :?foe.state = 112 & foe.time = 59 &
-  ^foe.distance < 10
+  :?foe.state = 112 & foe.time = 59 & foe.distance < 10
     evade_naga()
   :?naga_step <= to_dodge
     /* to split-frame dash with quarterstaff,
@@ -554,9 +539,7 @@ func fight_nagaraja()
     possible. */
     ?use_abilities()
       return
-    ?foe.state = 32 | foe.state = 33 |
-    ^((foe.state = 101 | foe.state = 112)
-    ^& foe.time < 20)
+    ?foe.state = 32 | foe.state = 33 | ((foe.state = 101 | foe.state = 112) & foe.time < 20)
       excluded_items = "wand"
       found =find_dps_weapon("ranged",false,true)
       ?found
@@ -595,13 +578,11 @@ func regular_fight()
   ?foe = immune_to_ranged | foe = ranged
     return auto_melee()
 
-  ?prefer_ranged_foe() & can_aoe &
-  ^foe.distance > melee_aoe_range
+  ?prefer_ranged_foe() & can_aoe & foe.distance > melee_aoe_range
     return auto_ranged()
 
   ?prefer_ranged
-    return (can_backflip() & backflip()) |
-    ^auto_ranged()
+    return (can_backflip() & backflip()) | auto_ranged()
 
   // by default, use melee
   return auto_melee()
@@ -679,8 +660,7 @@ func auto_ranged()
 
   ?use_abilities()
     return true
-  :?can_aoe & for_ranged_aoe.Count() > 0 &
-  ^foe.distance <= ranged_range
+  :?can_aoe & for_ranged_aoe.Count() > 0 & foe.distance <= ranged_range
     return ranged("aoe")
   :?for_ranged_single_target.Count() > 0
     return ranged("single")
@@ -708,8 +688,7 @@ func auto_melee_boss()
   Tracer.span("auto_m_boss")
   ?use_abilities() | dash_closer()
     return true
-  ?Unmake.should_unmake() &
-  ^try_equip_unmake("melee", false)
+  ?Unmake.should_unmake() & try_equip_unmake("melee", false)
     Tracer.span("unmaking")
     return approach()
   :?should_debuff()
@@ -721,16 +700,12 @@ func auto_melee_boss()
 
 func auto_melee_miniboss()
   Tracer.span("auto_m_miniboss")
-  return disable_r("blade") &
-  ^disable_r("mask")&disable_r("cinderwisp") &
-  ^auto_melee()
+  return disable_r("blade") & disable_r("mask") & disable_r("cinderwisp") & auto_melee()
 
-var can_stunlock = do_stunlock.Count() > 0 &
-^stunlock_weapons.Count() > 0
+var can_stunlock = do_stunlock.Count() > 0 & stunlock_weapons.Count() > 0
 
 func check_stunlock()
-  ?can_stunlock & foe.id ! "cool_bat" &
-  ^do_stunlock.Contains("ceiling decorator")
+  ?can_stunlock & foe.id ! "cool_bat" & do_stunlock.Contains("ceiling decorator")
     // save the stun for the bat
     disable_r("hammer")
 
@@ -744,11 +719,9 @@ func stunlock()
   /* Now stunlock, and use abilities when
   it's safe */
   var stunned = foe_debuff("stun")
-  ?(can_hammer() & foe.distance <= 17) |
-  ^is(lock, "hammer")
+  ?(can_hammer() & foe.distance <= 17) | is(lock, "hammer")
     return hammer() // long stun
-  :?(stunned > bardiche_frames + 10) &
-  ^should_bard() | is(lock, "bardiche")
+  :?(stunned > bardiche_frames + 10) & should_bard() | is(lock, "bardiche")
     return bardiche()
   :?stunned > 10
     ?should_cinder()
@@ -758,16 +731,14 @@ func stunlock()
     ?should_mask()
       return mask()
   :?stunned <= 3
-    ?get_cd("bash") <= 0 & foe.distance < 10 &
-    ^foe_ehp > 100 & can_backflip()
+    ?get_cd("bash") <= 0 & foe.distance < 10 & foe_ehp > 100 & can_backflip()
       return backflip()
     ?can_qs_dash()
       return qs_dash()
   // default stunlock action
   found = false
   for it : stunlock_weapons
-    ?!found & !(it = excluded_items) &
-    ^!(it = foe_elem)
+    ?!found & !(it = excluded_items) & !(it = foe_elem)
       found = it
   ?found
     equip_L(found)
@@ -846,8 +817,7 @@ func auto_equip_shield()
     return equip_R(found)
   return false
 
-// range: "melee" | "ranged"
-// aoe: true/false
+// range: "melee" | "ranged" ; aoe: true/false
 func auto_equip_dps(range, aoe)
   Tracer.span("auto_eq_dps")
   found = find_dps_weapon(range, aoe, true)
@@ -967,7 +937,7 @@ func get_preferred_types(range, aoe)
       :
         types = aa_st_types
     :?aoe
-      types = for_melee_aoe
+      types = C.for_melee_aoe
   :
     ?aoe
       types = for_ranged_aoe
@@ -1324,7 +1294,7 @@ func _prepare_items()
           _categorize_item(ty, suffixes)
   for a : [
   ^[C.for_melee_single_target, aa_st_types],
-  ^[for_melee_aoe, aa_aoe_types]]
+  ^[C.for_melee_aoe, aa_aoe_types]]
     var source = a[0]
     var dest = a[1]
     ?source.Contains("heavy hammer")
@@ -1583,7 +1553,7 @@ func _prepare_ranges()
   var a = C.for_melee_single_target
   ?a.Count() > 0
     C.melee_range = get(weapon_ranges, a[0])+1
-  a = for_melee_aoe
+  a = C.for_melee_aoe
   ?a.Count() > 0
     melee_aoe_range = get(weapon_ranges,a[0])+1
   a = for_ranged_aoe
@@ -1636,6 +1606,7 @@ func _update_game_state()
 
 func prelude()
   // reset/update dynamic global vars
+  SafeMean.handle()
   _update_game_state()
   _update_my_effects()
   _update_abilities()
@@ -1778,6 +1749,14 @@ func reset_loop()
   last_state = 0
   dysan_step = -1
 
+
+func handle_aac()
+  Tracer.span("handle_aac")
+  ?item.left.state = 3
+    equipL ouroboros
+  ?item.right.state = 3
+    equipR stone
+
 // %start_dev%
 var start_t = 0
 var frame_times = []
@@ -1798,6 +1777,7 @@ start_t = time.ms
 prelude()
 ?ai.enabled & !ai.paused
   progress()
+  handle_aac()
 :
   healwalk()
 draw_ui()

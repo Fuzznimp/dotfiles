@@ -1,0 +1,11 @@
+func handle()
+  ?pickup.distance > 10 & foe.distance > 25
+    equipL trisk
+    equipR compound
+    return
+  :?pickup.distance < 10
+    equipL star
+    equipR trisk
+    return
+  :
+    return

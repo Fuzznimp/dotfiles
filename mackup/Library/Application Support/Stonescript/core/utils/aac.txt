@@ -1,0 +1,7 @@
+// TODO: AAC shovel + moondial for speed.
+
+func handle()
+  ?item.left.state = 3
+    equipL stone
+  ?item.right.state = 3
+    equipR stone

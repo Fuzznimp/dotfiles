@@ -4,31 +4,32 @@ var GS = import Stonescript/core/variables/game-state
 var smite_threshold = 3
 var scrolling = 0
 
-var is_ready = item.GetCooldown("blade") <= 0
-// var is_target_allowed =  GS.foe_ehp < 600 & GS.foe_ehp > 0 & is_ready & foe.distance < 25 & (foe.count > 5 | scrolling > 15)
-
-func is_target_allowed()
-  return GS.foe_ehp < 600 & GS.foe_ehp > 0 & is_ready & foe.distance < 25 & (foe.count > 5 | scrolling > 15)
-
-func update()
-  is_ready = item.GetCooldown("blade") <= 0
-  // is_target_allowed =  GS.foe_ehp < 600 & GS.foe_ehp > 0 & is_ready & foe.distance < 25 & (foe.count > 5 | scrolling > 15)
-  return
-
+var is_ready
+is_ready = item.GetCooldown("blade") <= 0
+var is_target_allowed
+is_target_allowed =  GS.foe_ehp < 600 & GS.foe_ehp > 0 & is_ready & foe.distance < 25 & (foe.count > 5 | scrolling > 15)
+>@is_target_allowed@
 func handle()
   Tracer.span("handle_smite")
   ?is_ready & foe.count > smite_threshold
+    Tracer.span("smite_allowed")
     scrolling++
     screen.Next()
   :
+    Tracer.span("smite_disallowed")
     scrolling = 0
     screen.ResetOffset()
-  ?is_target_allowed()
+  ?is_target_allowed
     Tracer.span("smite")
-    equip blade_of_god
-    ?item.CanActivate("blade")
-      activate R
-    return
+    equip blade
+    return use("blade")
   return scrolling > 0
 
-update()
+func use(ability)
+  ?item.CanActivate(ability)
+    activate R
+  return true
+
+func should_smite()
+  return (is_boss | foe.count >= smite_threshold
+  ^& foe_ehp <= smite_damage) & can_smite()

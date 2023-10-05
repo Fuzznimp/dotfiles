@@ -1,12 +1,13 @@
 var ice_staff_di = "ice staff dI+20"
 var aether_runebow_d = "aether crossbow D+18"
-var fire_runebow_d = "fire crossbow D+13"
+var fire_runebow_d = "fire crossbow D+16"
 var elemental_items=[
   ["hammer",
     ["aether","D+14","D+13"],
-    ["poison","D+14"],
-    ["vigor","D+11"],
+    ["poison","D+14","D+11"],
+    ["vigor","D+12","D+11"],
     ["fire","D+12","D+11"],
+    ["ice","D+12","D+11"],
     ["default","aether hammer D+14","poison hammer D+14"],
   ],
   ["wand",
@@ -19,17 +20,19 @@ var elemental_items=[
   ],
   ["crossbow",
     ["aether","D+18"],
-    ["fire","D+14"],
+    ["fire","D+16"],
+    ["ice","D+11"],
+    ["poison","D+11"],
+    ["vigor","D+11"],
     ["default","aether crossbow D+18","Repeating Crossbow +16"],
   ],
   ["sword",
-    ["aether","D+14","dU+13","dU+11"],
-    ["fire","D+16","D+14","dF+13"],
+    ["aether","D+16", "D+13","dU+13","dU+11"],
+    ["fire","D+20","D+16","dF+13"],
     ["ice","D+16","D+13","dI+13"],
     ["poison","D+16","D+13"],
-    ["vigor","D+16","dL+14","dL+13"],
-    // NOTE: Increase vigor D before putting it here.
-    ["default","fire sword D+16","fire sword D+14"],
+    ["vigor","D+16","D+13","dL+14","dL+13"],
+    ["default","fire sword D+20","ice sword D+16","aether sword D+16","poison sword D+16","vigor sword D+16"],
     // ["default","vigor sword dL+14","vigor sword dL+13"],
   ],
   ["shield",

@@ -1,0 +1,5 @@
+var speedrun = true
+func handle()
+  ?speedrun
+    ?(loc.averageTime < totaltime & pickup.distance > 20) & loc.averageTime > 0
+      loc.Leave()

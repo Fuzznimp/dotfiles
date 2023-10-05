@@ -1,23 +1,41 @@
 var C = import Stonescript/core/variables/constants
 var Tracer = import Stonescript/observability/tracer
 var Potion = import Stonescript/core/utils/potion
+var AAC = import Stonescript/core/utils/aac
+var Passive = import Stonescript/core/utils/stances/passive
 var Abilities = import Stonescript/core/utils/abilities/abilities
 var GS = import Stonescript/core/variables/game-state
+var SafeMean = import Stonescript/core/utils/safe-mean
 
 ?loc.begin | loc.loop
   Potion.create()
 
-Abilities.handle()
+// func _harvest()
+//   ?loc = Rocky
+//     equip shovel
+//   :?loc = Deadwood
+//     equipR hatchet
+//     ?harvest.distance < 2 & item.GetCooldown("hatchet") <= 0 & item.CanActivate()
+//       activate R
+//     return true
+//   return false
+// _harvest()
 
-// NOTE: UI stuff.
+?loc = rocky
+  ?foe.id = "acronian_scout"
+    equipL fire sword D+16
+    equipR ice sword D+16
+
+SafeMean.handle()
+Abilities.handle()
+Passive.handle()
 Tracer.display_trace()
 
 // NOTE: Update dynamic variables, and clear lists if needed.
 func update_game_state()
   Tracer.spans.Clear()
-  GS.update()
-  // NOTE: For some reason, having the return will break the tracing.
-  // Need to investigate.
-  // return
+  // GS.update()
 
 update_game_state()
+// NOTE: Put at the bottom.
+AAC.handle()

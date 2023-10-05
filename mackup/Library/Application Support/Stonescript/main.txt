@@ -9,6 +9,5 @@ import Stonescript/core/main-deprecated
 // import Stonescript/core/main
 
 // NOTE: Safe mean time.
-?loc.averageTime >= 0 & totaltime > loc.averageTime
-  loc.Leave()
-
+// ?loc.averageTime >= 0 & totaltime > loc.averageTime
+//   loc.Leave()

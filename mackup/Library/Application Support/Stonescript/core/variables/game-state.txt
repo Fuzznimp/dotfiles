@@ -1,4 +1,5 @@
-var foe_ehp = foe.armor + foe.hp
+var foe_ehp
+foe_ehp = foe.armor + foe.hp
 
-func update()
-  foe_ehp = foe.armor + foe.hp
+// func update()
+//   foe_ehp = foe.armor + foe.hp
