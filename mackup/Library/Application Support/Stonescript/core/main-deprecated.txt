@@ -4,97 +4,6 @@ var Potion = import Stonescript/core/utils/potion
 var Unmake = import Stonescript/core/utils/unmake
 var SafeMean = import Stonescript/core/utils/safe-mean
 
-/* Will exclusively use single-target ranged
-against these enemies */
-var must_ranged_foes = ["wasp", "wasp nest",
-"mosquito", "huge mosquito"]
-
-/* Used for scripted bosses, for `ranged_foes`,
-or when `prefer_ranged` is true. */
-var for_ranged_single_target = [
-  "crossbow","repeating","wand"
-]
-
-/* Weapons to use for ranged AoE. Ranged AoE is
-triggered by the same threshold as melee AoE.*/
-var for_ranged_aoe = ["staff", "wand"]
-
-/* Weapons to use against `immune_to_physical`
-enemies. */
-var for_phys_immune = ["staff", "wand"]
-
-/* Full name of the shield with the highest
-evade%, will be used to block big boss attacks
-*/
-var evade_shield = "vigor shield ah"
-
-/* Script will try to stunlock these enemies
-instead of using any other tactics. Supported:
-poena, ceiling decorator, ice elemental. */
-var do_stunlock = [
-  "poena", "ceiling decorator"
-]
-
-// Full names of weapons to use for stunlocking
-var stunlock_weapons=["socketed stone hammer +12"]
-
-/* When to debuff bosses:
-"never", "always", or "smite" (only if Smite
-buff is active). */
-var debuff_bosses = "never"
-
-/* When to debuff regular enemies:
-"never", "always", or "smite" (only if Smite
-buff is active). */
-var debuff_non_bosses = "smite"
-
-/* If item is not listed here, its `R` ability
-won't be used. Supported: dash, bash,
-bardiche, hammer, blade, skeleton_arm, mask,
-quarterstaff, fire_talisman, cinderwisp. */
-var useable_abilities = [
-  "dash","bash","mask","blade","hammer",
-  "fire_talisman","bardiche","quarterstaff",
-  "cinderwisp"
-// "skeleton_arm"
-]
-
-/* Advanced: these are default values, change
-them accordingly if you have speed enchants on
-these weapons. */
-var hammer_frames = 14
-var bardiche_frames = 22
-
-/* `dmg * (crit_mult + base_crit_mult)`,
-script won't use the bardiche ability if
-non-boss's HP is lower than twice this damage*/
-var bardiche_dmg = 52 * (10.8+2)
-
-/* Fraction of HP to consider low. When on low
-HP, will prioritize `ah` shield and `dL` weapon
-over foe's elemental weakness.
-If 1, will always try to lifesteal to max
-  (useful for clearing zones with full HP).
-If 0, will never force lifesteal. */
-var low_hp_threshold = 1
-
-/* Switch to 1h+shield against non-boss foes
-when `low_hp_threshold` is reached */
-var use_shield_on_low_hp = false
-
-var max_chill_stacks = 6
-
-/* When to use Cinder ability (if listed in
-`useable_abilities`). Will use at max_stacks,
-or if boss's HP is lower than stacks * dmg. */
-var max_ignition_stacks = 10
-var cinderwisp_dmg = 96
-
-var smite_threshold = 7
-var smite_damage = 100
-// Enable smiting two screens at once
-var long_long_smite = true
-
 // TODO: Move debug stuff into its own file.
 var debug = true
 var ui_show_cd = debug
@@ -102,23 +11,17 @@ var ui_show_statuses = debug
 var ui_show_debug = debug
 var enable_hit_tracking = false
 
-// TODO: Move.
-// If true, will use hatchet and shovel
-var harvesting = false
-
-/*********************
-**     #Progress    **
-*********************/
+/*===================== PROGRESS =====================*/
 func progress()
   ?pickup.distance < 9
-    // pick resources from the ground
+    // NOTE: Pick resources from the ground.
     return equip_L("star") & equip_R("trisk")
 
-  ?long_long_smite & smite_two_screens()
+  ?C.long_long_smite & smite_two_screens()
     return true
 
   ?healwalk()
-    // no enemies nearby
+    // NOTE: No enemies nearby.
     return true
 
   ?foe = explode
@@ -127,13 +30,12 @@ func progress()
   ?loc = caves
     check_stunlock()
 
+  // NOTE: Regular enemies.
   ?!is_boss & !at_boss
-    // regular enemies
     free_mind = true
     return regular_fight()
 
-  // Now handle bosses and minibosses
-
+  // NOTE: Now handle bosses and minibosses.
   Tracer.span("boss")
   disable_r("skeleton_arm")
 
@@ -150,8 +52,7 @@ func progress()
   :?loc = caves
     ?is(foe.id, "cool_bat")
       Tracer.span("miniboss")
-      ?can_stunlock &
-      ^do_stunlock.Contains("ceiling decorator")
+      ?can_stunlock & C.do_stunlock.Contains("ceiling decorator")
         disable_r("mask")
         disable_r("blade")
         disable_r("bardiche")
@@ -184,7 +85,7 @@ func progress()
     ?foe.id = "ice_elemental_elite"
       ?!at_boss
         Tracer.span("miniboss")
-        ?can_stunlock & do_stunlock.Contains("ice elemental")
+        ?can_stunlock & C.do_stunlock.Contains("ice elemental")
           disable_r("mask")
           disable_r("blade")
           disable_r("hammer")
@@ -253,9 +154,7 @@ func smite_two_screens()
     return smite()
   return scrolling > 0
 
-/*****************
-**    #Bosses   **
-*****************/
+/*===================== BOSSES =====================*/
 
 func try_evade()
   Tracer.span("try_evade")
@@ -266,25 +165,25 @@ func try_evade()
 
 func hard_block()
   Tracer.span("hard_block")
-  return equip_L("quest") & equip_R(evade_shield)
+  return equip_L("quest") & equip_R(C.evade_shield)
 
 func evade_at(t)
   Tracer.span("evade_at")
   ?foe.time >= t
     return try_evade()
   ?foe.time < t & get_cd("mind")<=(t-foe.time)
-    // abilities that would be interrupted
-    ?foe.time > (t - bardiche_frames)
+    // NOTE: Abilities that would be interrupted.
+    ?foe.time > (t - C.bardiche_frames)
       disable_r("bardiche")
-    ?foe.time > (t - hammer_frames)
+    ?foe.time > (t - C.heavy_hammer_frames)
       disable_r("hammer")
   return false
 
 func soft_block()
   Tracer.span("soft_block")
-  ?lock // don't interrupt abilities
+  ?lock //NOTE: Don't interrupt abilities.
     return false
-  return equip_R(evade_shield)
+  return equip_R(C.evade_shield)
 
 func around(t)
   return foe.time > (t-2) & foe.time < (t+2)
@@ -353,7 +252,7 @@ func fight_dysan()
 
 func fight_xyloalgia()
   disable_r("skeleton_arm")
-  var stunlock_poena = loc.stars > 5 & can_stunlock & do_stunlock.Contains("poena")
+  var stunlock_poena = loc.stars > 5 & can_stunlock & C.do_stunlock.Contains("poena")
   ?foe = phase1
     ?Potion.fast_potion_bosses.Contains("xylo")
       Potion.try_drink()
@@ -454,7 +353,7 @@ func fight_hrimnir()
   at_boss = true
   ?is_snowball_near() | (is_boss & foe.distance <= 6 & foe.state = 32 & around(23 + chill_delay()))
     // snowballs
-    ?useable_abilities.Contains("fire_talisman")
+    ?C.useable_abilities.Contains("fire_talisman")
       equip_L("fire talisman")
     soft_block()
   :?draw.GetSymbol(56, 13) = "o" | is_boss & foe.state = 133 // blowing
@@ -552,9 +451,7 @@ func is_poison_near()
   // melee
   ^(draw.GetSymbol(x+1, y-6) = "(")
 
-/********************
-**     #Combat    **
-********************/
+/*===================== COMBAT =====================*/
 
 func regular_fight()
   Tracer.span("fight")
@@ -565,7 +462,7 @@ func regular_fight()
   return auto_melee()
 
 func must_ranged_foe()
-  for enemy: must_ranged_foes
+  for enemy: C.must_ranged_foes
     ?foe = enemy
       return true
 
@@ -575,7 +472,7 @@ func auto_melee()
     return true
   :?can_aoe & foe.distance <= melee_aoe_range
     return melee("aoe")
-  :?low_hp & use_shield_on_low_hp
+  :?low_hp & C.use_shield_on_low_hp
     return melee("def")
   return melee("dps")
 
@@ -597,7 +494,7 @@ func melee(mode)
       return approach()
   ?is(mode, "def")
     auto_equip_L("melee", false)
-    ?use_shield_on_low_hp
+    ?C.use_shield_on_low_hp
       auto_equip_shield()
     auto_equip_R("melee", false)
   :
@@ -626,15 +523,15 @@ func dash_closer()
 func auto_ranged()
   Tracer.span("auto_r")
 
-  ?for_ranged_single_target.Count() > 0 & smite_stacks > 6
+  ?C.for_ranged_single_target.Count() > 0 & smite_stacks > 6
     // NOTE: Will be an issue when multiple staves
     return ranged("staff")
 
   ?use_abilities()
     return true
-  :?can_aoe & for_ranged_aoe.Count() > 0 & foe.distance <= ranged_range
+  :?can_aoe & C.for_ranged_aoe.Count() > 0 & foe.distance <= ranged_range
     return ranged("aoe")
-  :?for_ranged_single_target.Count() > 0
+  :?C.for_ranged_single_target.Count() > 0
     return ranged("single")
   return auto_melee()
 
@@ -645,7 +542,7 @@ func ranged(mode)
 
   ?is(mode,"staff")
     return equip_L("staff")
-  ?!aoe & must_ranged_foe() & for_ranged_single_target.Contains("repeating")
+  ?!aoe & must_ranged_foe() & C.for_ranged_single_target.Contains("repeating")
     return equip_L("repeating")
   ?Unmake.should_unmake()
     ?try_equip_unmake("melee", aoe)
@@ -674,11 +571,11 @@ func auto_melee_miniboss()
   Tracer.span("auto_m_miniboss")
   return disable_r("blade") & disable_r("mask") & disable_r("cinderwisp") & auto_melee()
 
-var can_stunlock = do_stunlock.Count() > 0 & stunlock_weapons.Count() > 0
+var can_stunlock = C.do_stunlock.Count() > 0 & C.stunlock_weapons.Count() > 0
 
 func check_stunlock()
-  ?can_stunlock & foe.id ! "cool_bat" & do_stunlock.Contains("ceiling decorator")
-    // save the stun for the bat
+  ?can_stunlock & foe.id ! "cool_bat" & C.do_stunlock.Contains("ceiling decorator")
+    // NOTE: Save the stun for the bat.
     disable_r("hammer")
 
 func stunlock()
@@ -688,12 +585,11 @@ func stunlock()
     return true
   ?disable_debuffs
     return Potion.try_drink() & melee("dps")
-  /* Now stunlock, and use abilities when
-  it's safe */
+  // NOTE: Now stunlock, and use abilities when it's safe.
   var stunned = foe_debuff("stun")
   ?(can_hammer() & foe.distance <= 17) | is(lock, "hammer")
-    return hammer() // long stun
-  :?(stunned > bardiche_frames + 10) & should_bard() | is(lock, "bardiche")
+    return hammer() // NOTE: Long stun.
+  :?(stunned > C.bardiche_frames + 10) & should_bard() | is(lock, "bardiche")
     return bardiche()
   :?stunned > 10
     ?should_cinder()
@@ -707,15 +603,15 @@ func stunlock()
       return backflip()
     ?can_qs_dash()
       return qs_dash()
-  // default stunlock action
+  // NOTE: Default stunlock action.
   found = false
-  for it : stunlock_weapons
+  for it : C.stunlock_weapons
     ?!found & !(it = excluded_items) & !(it = foe_elem)
       found = it
   ?found
     equip_L(found)
   :
-    equip_L(stunlock_weapons[0])
+    equip_L(C.stunlock_weapons[0])
   found = false
   ?Unmake.should_unmake()
     found = find_unmake_weapon("melee",
@@ -728,9 +624,7 @@ func stunlock()
   :
     auto_equip_R("melee", false)
 
-/**********************
-** #Weapon switching **
-**********************/
+/*===================== WEAPON SWITCHING =====================*/
 
 var _equip_L = false
 func equip_L(it)
@@ -895,9 +789,8 @@ func find_weapon(range, aoe, elem, purpose, allow_2h)
   return false
 
 func get_preferred_types(range, aoe)
-  ?phys_immune |
-  ^(can_aoe & foe = magic_vulnerability)
-    return for_phys_immune
+  ?phys_immune | (can_aoe & foe = magic_vulnerability)
+    return C.for_phys_immune
   var types = C.for_melee_single_target
   ?is(range, "melee")
     ?foe.armor > 0
@@ -909,9 +802,9 @@ func get_preferred_types(range, aoe)
       types = C.for_melee_aoe
   :
     ?aoe
-      types = for_ranged_aoe
+      types = C.for_ranged_aoe
     :
-      types = for_ranged_single_target
+      types = C.for_ranged_single_target
   return types
 
 var excluded_items = ""
@@ -930,8 +823,6 @@ func get_item(ty, elem, purpose)
       return it
   return false
 
-
-
 var only_dot = false
 func can_debuff()
   only_dot = false
@@ -940,14 +831,14 @@ func can_debuff()
   ?is_boss
     ?loc = Rocky // NOTE: Always debuff Scout & Dysan.
       return true
-    ?is(debuff_bosses, "never")
+    ?is(C.debuff_bosses, "never")
       return false
-    ?is(debuff_bosses,"smite") & smite_stacks=0
+    ?is(C.debuff_bosses,"smite") & smite_stacks=0
       ?can_be_debuffed("debuff_dot")
         only_dot = true // NOTE: Keep up the dot.
         return true
       return false
-  ?!is_boss & (is(debuff_non_bosses, "never") | is(debuff_non_bosses,"smite") & smite_stacks=0)
+  ?!is_boss & (is(C.debuff_non_bosses, "never") | is(C.debuff_non_bosses,"smite") & smite_stacks=0)
     return false
   return true
 
@@ -978,12 +869,10 @@ func can_be_debuffed(debuff_uid)
     return false
   ?is(debuff_uid, "debuff_chill")
     var c = foe_debuff("debuff_chill")
-    return c < max_chill_stacks
+    return c < C.max_chill_stacks
   return !foe_debuff(debuff_uid)
 
-/********************
-**    #Abilities   **
-********************/
+/*===================== ABILITIES =====================*/
 
 func get_cd(ability)
   return try_get(cooldowns, ability, 9999)
@@ -1068,8 +957,7 @@ func can_smite()
   ^can_activate()
 
 func should_smite()
-  return (is_boss | foe.count >= smite_threshold
-  ^& foe_ehp <= smite_damage) & can_smite()
+  return (is_boss | foe.count >= C.smite_threshold & foe_ehp <= C.smite_damage) & can_smite()
 
 func smite()
   Tracer.span("smite")
@@ -1078,26 +966,22 @@ func smite()
 
 func smite_at_exact()
   disable_r("blade")
-  ?foe.hp<=smite_damage & get_cd("blade")<=0
+  ?foe.hp <= C.smite_damage & get_cd("blade") <= 0
     return smite()
   return false
 
 func can_hammer()
-  return can_use("hammer") & !phys_immune &
-  ^foe.distance <= 21 & can_activate()
+  return can_use("hammer") & !phys_immune & foe.distance <= 21 & can_activate()
 
 func should_hammer()
   ?!can_hammer()
     return false
-  return is(lock, "hammer") |
-  ^(is_boss | can_aoe & foe.distance<15)
-  ^& (foe.armor > 0 | foe = spawner |
-  ^can_debuff() &
-  ^!(foe = immune_to_stun))
+  return is(lock, "hammer") | (is_boss | can_aoe & foe.distance < 15)
+  ^& (foe.armor > 0 | foe = spawner | can_debuff() & !(foe = immune_to_stun))
 
 func hammer()
   Tracer.span("hammer")
-  set_lock("hammer", hammer_frames)
+  set_lock("hammer", C.heavy_hammer_frames)
   equip_L("heavy hammer")
   return use("hammer")
 
@@ -1108,12 +992,12 @@ func can_bard()
 
 func should_bard()
   return is(lock, "bardiche") | is_boss &
-  ^!aspd_down & (foe_ehp >= (bardiche_dmg * 2)|
-  ^foe_ehp < bardiche_dmg) & can_bard()
+  ^!aspd_down & (foe_ehp >= (C.bardiche_dmg * 2)|
+  ^foe_ehp < C.bardiche_dmg) & can_bard()
 
 func bardiche()
   Tracer.span("bardiche")
-  set_lock("bardiche", bardiche_frames)
+  set_lock("bardiche", C.bardiche_frames)
   equip_L("bardiche")
   return use("bardiche")
 
@@ -1140,11 +1024,11 @@ func can_summon()
 func should_summon()
   return (foe.id ! "poena") & can_summon()
 
-var fire_frames = 20
+
 
 func summon()
   Tracer.span("summon")
-  set_lock("fire_talisman", fire_frames)
+  set_lock("fire_talisman", C.fire_talisman_frames)
   equip_R("fire talisman")
   return use("fire_talisman")
 
@@ -1162,8 +1046,8 @@ func can_cinder()
 func should_cinder()
   return is_boss & can_cinder() &
   ^(summon.GetVar("ignition", 0) >=
-  ^max_ignition_stacks | foe_ehp <=
-  ^max_ignition_stacks * cinderwisp_dmg)
+  ^C.max_ignition_stacks | foe_ehp <=
+  ^C.max_ignition_stacks * C.cinderwisp_dmg)
 
 func cinder()
   Tracer.span("cinder")
@@ -1457,7 +1341,7 @@ var move_r = ["quarterstaff", "bash", "dash"]
 var cooldowns = ["mind", 0]
 var abilities = ["mind", false]
 func _prepare_abilities()
-  for r : useable_abilities
+  for r : C.useable_abilities
     ?!all_abilities.Contains(r)
       panic("Unknown ability: " + r)
     ?!abilities.Contains(r)
@@ -1476,7 +1360,7 @@ func _update_abilities()
     i++
 
 func disable_r(ability)
-  ?useable_abilities.Contains(ability)
+  ?C.useable_abilities.Contains(ability)
     set(abilities, ability, false)
   return true
 
@@ -1520,7 +1404,7 @@ func _prepare_ranges()
   a = C.for_melee_aoe
   ?a.Count() > 0
     melee_aoe_range = get(weapon_ranges,a[0])+1
-  a = for_ranged_aoe
+  a = C.for_ranged_aoe
   ?a.Count() > 0
     ranged_range = get(weapon_ranges, a[0])+1
 
@@ -1559,7 +1443,7 @@ func _update_game_state()
   excluded_items = false
   weak_elem = get_foe_weak_elem()
   disable_debuffs = foe.buffs.count > 0 & (foe_buff("poena_mirror") | foe_buff("buff_protection"))
-  low_hp = hp < (maxhp * low_hp_threshold)
+  low_hp = hp < (maxhp * C.low_hp_threshold)
   foe_ehp = foe.armor + foe.hp
   is_boss = (foe = boss)
   phys_immune = (foe = immune_to_physical)
@@ -1569,7 +1453,7 @@ func _update_game_state()
   // %end_dev%
 
 func prelude()
-  // reset/update dynamic global vars
+  // NOTE: Reset/update dynamic global vars.
   SafeMean.handle()
   _update_game_state()
   _update_my_effects()

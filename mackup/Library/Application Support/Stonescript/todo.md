@@ -1,4 +1,4 @@
 # TODO
 
 - item.right => var itemRight; itemRight = item.right;
-- maxPickPocketBuffs
+- Bardiche before potion.

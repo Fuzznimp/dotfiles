@@ -1,4 +1,4 @@
-// GEAR
+/*===================== GEAR =====================*/
 var ice_staff_di = "ice staff dI+20"
 var aether_runebow_d = "aether crossbow D+18"
 var fire_runebow_d = "fire crossbow D+16"
@@ -34,7 +34,10 @@ var elemental_items=[
     ["ice","D+16","D+13","dI+13"],
     ["poison","D+16","D+13"],
     ["vigor","D+20","D+16","dL+16","dL+13"],
-    ["default","fire sword D+20","vigor sword D+20","aether sword D+16","poison sword D+16","vigor sword D+16"],
+    [
+      "default","fire sword D+20","vigor sword D+20","aether sword D+16",
+      "poison sword D+16","vigor sword D+16"
+    ],
     // ["default","vigor sword dL+14","vigor sword dL+13"],
   ],
   ["shield",
@@ -46,14 +49,63 @@ var elemental_items=[
     ["default","compound+11"],
   ],
 ]
+// NOTE: Highest evade% shield. Used to block big ass attacks.
+var evade_shield = "vigor shield ah+11"
+var stunlock_weapons=["socketed stone hammer +12"]
 
-// GENERAL
+/*==================== GENERAL ====================*/
 var aoe_threshold = 4
+// NOTE: Fraction of HP to consider low. When on low HP, will prioritize `ah` shield and `dL`
+// weapon over foe's elemental weakness. If 0, will never force lifesteal.
+var low_hp_threshold = 1
+// NOTE: Switch to 1h+shield against non-boss foes when `low_hp_threshold` is reached.
+var use_shield_on_low_hp = false
+// NOTE: If true, will use hatchet and shovel.
+var harvesting = false
 
-// MELEE
-var for_melee_single_target = ["sword", "hammer"]
+/*==================== DEBUFF ====================*/
+var max_chill_stacks = 6
+// NOTE: Supported: poena, ceiling decorator, ice elemental.
+var do_stunlock = ["poena", "ceiling decorator"]
+// NOTE: When to debuff foes: "never", "always", or "smite" (only if Smite buff is active).
+var debuff_bosses = "never"
+var debuff_non_bosses = "smite"
+
+/*=================== ABILITIES ===================*/
+// NOTE: If item is not listed here, its `R` ability won't be used.
+var useable_abilities = [
+  "dash","bash","mask","blade","hammer",
+  "fire_talisman","bardiche","quarterstaff",
+  "cinderwisp"
+// "skeleton_arm"
+]
+// NOTE: When to use Cinder ability (if listed in `useable_abilities`). Will use at max_stacks,
+// or if boss's HP is lower than stacks * dmg.
+var max_ignition_stacks = 10
+var cinderwisp_dmg = 96
+var smite_threshold = 7
+var smite_damage = 100
+// NOTE: Enable smiting two screens at once.
+var long_long_smite = true
+// NOTE: Activation frames.
+var heavy_hammer_frames = 14
+var bardiche_frames = 22
+var fire_talisman_frames = 20
+
+/*===================== MELEE =====================*/
+var for_melee_single_target = ["sword","hammer"]
 var for_melee_aoe = ["arm"]
 var melee_range = 5
-// Skulleton arm
 var arm_damage = 56
 var max_pickpocket_stacks = 4
+// NOTE: `dmg * (crit_mult + base_crit_mult)`, script won't use the bardiche ability
+// if non-boss's HP is lower than twice this damage.
+var bardiche_dmg = 52 * (10.8+2)
+
+/*===================== RANGED =====================*/
+// NOTE: Will exclusively use single-target ranged against these enemies.
+var must_ranged_foes = ["wasp","wasp nest","mosquito","huge mosquito"]
+// NOTE: Used for scripted bosses or `ranged_foes`.
+var for_ranged_single_target = ["crossbow","repeating","wand"]
+var for_ranged_aoe = ["staff", "wand"]
+var for_phys_immune = ["staff", "wand"]
