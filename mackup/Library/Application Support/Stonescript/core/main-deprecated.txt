@@ -1080,21 +1080,17 @@ func aac(weapon)
   equip @weapon@
   return weapon
 
-/*********************
-**     #Internals   **
-*********************/
-var elem_types = ["sword", "big sword", "wand",
-"shield", "crossbow", "staff", "hammer"]
-var all_2h_types = ["bardiche", "arm", "blade",
-"heavy hammer", "repeating", "staff",
-"quarterstaff", "shovel", "crossbow"]
-var ranged_2h_types = ["repeating", "crossbow",
-"staff"]
-var al_elems = ["aether", "fire", "ice",
-"poison", "vigor"]
+/*==================== INTERNALS ====================*/
+var elem_types = ["sword", "big sword", "wand","shield", "crossbow", "staff", "hammer"]
+var all_2h_types = [
+  "bardiche", "arm", "blade", "heavy hammer", "repeating",
+  "staff", "quarterstaff", "shovel", "crossbow"
+]
+var ranged_2h_types = ["repeating", "crossbow", "staff"]
+var al_elems = ["aether", "fire", "ice", "poison", "vigor"]
 var aa_st_types = []
 var aa_aoe_types = []
-var all_items = [/*
+var all_items = [/* NOTE:
 hash, [weapon1, weapon2,], hash, [weapon3], ...
 for example:
 sword-aether-stats, [aether sword D],
@@ -1103,15 +1099,15 @@ wand-default, [stone wand + 10],
 */]
 
 func _prepare_items()
-   // [type, [elem, s1, sn], [elem2...]]
+   // NOTE: [type, [elem, s1, sn], [elem2...]]
   for item_type : C.elemental_items
     ?item_type.Count() > 1
       var ty = item_type[0]
-      // for each element
+      // NOTE: For each element..
       for i = 1 .. item_type.Count() - 1
         var suffixes = item_type[i]
         ?suffixes.Count() > 1
-          // suffixes: ["elem", "s1", "sn"]
+          // NOTE: Suffixes: ["elem", "s1", "sn"]
           _categorize_item(ty, suffixes)
   for a : [
   ^[C.for_melee_single_target, aa_st_types],
@@ -1134,20 +1130,17 @@ func _categorize_item(ty, suffixes)
       add_item(hash([ty, "default"]), suffix)
     :
       var purpose = get_purpose(suffix)
-      var full_name = string.Join(" ",
-      ^[elem, ty, suffix])
+      var full_name = string.Join(" ", [elem, ty, suffix])
       var h = hash([ty, elem, purpose])
       add_item(h, full_name)
 
 func hash(parts)
   return string.Join("-", parts)
 
-var elem_mods = ["f", "F", "i", "I",
-"p", "P", "h", "L", "u", "U"]
+var elem_mods = ["f", "F", "i", "I", "p", "P", "h", "L", "u", "U"]
 
 func get_purpose(suffix)
-  ?string.Size(suffix) > 1 &
-  ^elem_mods.Contains(string.Sub(suffix, 1, 1))
+  ?string.Size(suffix) > 1 & elem_mods.Contains(string.Sub(suffix, 1, 1))
     return "mod"
   return "stats"
 
@@ -1203,17 +1196,17 @@ var aspd_down = false
 func _update_my_effects()
   my_buffs.Clear()
   my_debuffs.Clear()
-  // unk.effects are cleared at the end of loop
+  // NOTE: unk.effects are cleared at the end of loop.
   pickpocket_stacks = 0
   smite_stacks = 0
   stunned = false
   aspd_down = false
   for s : [buffs.string, debuffs.string]
-    // format: *:name:count:duration,...
+    // NOTE: Format: *:name:count:duration,...
     var splt = string.Split(s, ":", ",", false)
     var arr_size = splt.Count()
     ?arr_size > 0
-      // iterate over names (2nd field)
+      // NOTE: Iterate over names (2nd field).
       for i = 1 .. arr_size - 3
         _parse_status(splt, i)
         i = i + 3
@@ -1240,11 +1233,10 @@ func _parse_status(splt, i)
     ^!unk_effects.Contains(uid)
       unk_effects.Add(uid)
     return
-  var info = all_statuses[idx] // uid,name,+/-
+  var info = all_statuses[idx] // NOTE: uid,name,+/-
   var num = int.Parse(splt[i+1])
   var dur = int.Parse(splt[i+2])
-  var _name = string.Format(buff_template,
-  ^info[1], num, time.FormatDigital(dur))
+  var _name = string.Format(buff_template, info[1], num, time.FormatDigital(dur))
   ?info[2] = "+"
     my_buffs.Add(_name)
   :
@@ -1272,20 +1264,19 @@ func get_foe_effect(str, uid)
     return 0
   ?is(uid, "adaptive_defense")
     for s:string.Split(str, ":", ",", false)
-      // fuzzy match to get which defense it is
+      // NOTE: Fuzzy match to get which defense it is.
       ?s = "adaptive_defense"
         return string.Split(s, "_", false)[2]
-  // icon:uid:stacks:duration,...
+  // NOTE: icon:uid:stacks:duration,...
   var splt = string.Split(str, ":", ",", false)
   var i = splt.IndexOf(uid)
   ?is(uid, "stun")
-    // duration
+    // NOTE: Duration.
     return int.Parse(splt[i+2])
-  // stacks
+  // NOTE: Stacks.
   return int.Parse(splt[i+1])
 
 var foe_elem = "default"
-
 func get_foe_weak_elem()
   ?foe = aether
     foe_elem = "aether"
@@ -1363,11 +1354,22 @@ func is(s1, s2)
     return false
   return string.Equals(s1, s2)
 
-var weapon_ranges = ["sword", 5, "hammer", 5,
-"quarterstaff", 5, "big sword", 6, "arm", 6,
-"heavy hammer", 7, "bardiche", 9, "staff", 10,
-"blade", 11, "wand", 20, "heavy crossbow", 22,
-"repeating", 22, "crossbow", 22]
+// TODO: Move to config.
+var weapon_ranges = [
+  "sword", 5,
+  "hammer", 5,
+  "quarterstaff", 5,
+  "big sword", 6,
+  "arm", 6,
+  "heavy hammer", 7,
+  "bardiche", 9,
+  "staff", 10,
+  "blade", 11,
+  "wand", 20,
+  "heavy crossbow", 22,
+  "repeating", 22,
+  "crossbow", 22
+]
 var melee_aoe_range = 5
 var ranged_range = 20
 func _prepare_ranges()
@@ -1393,17 +1395,17 @@ func _update_lock()
     lock_timer = 0
 
 var at_boss = false // to disable default fight
-// player status
+// == PLAYER STATUS ==
 var low_hp = false // hp < (maxhp * threshold)
 var can_aoe = false
 var found = false
 var found_type = false
 var weak_elem = "default"
-// abilities
+// == ABILITIES ==
 var lock = false
 var lock_timer = false
 var free_mind = false
-// foe status
+// == FOE STATUS ==
 var foe_ehp = 0 // foe.armor + foe.hp
 var is_boss = false // foe = boss
 var phys_immune = false // immune to physical
@@ -1421,12 +1423,10 @@ func _update_game_state()
   is_boss = (foe = boss)
   phys_immune = (foe = immune_to_physical)
   can_aoe = (foe.count >= C.aoe_threshold)
-  // %start_dev%
   Tracer.spans.Clear()
-  // %end_dev%
 
-func prelude()
-  // NOTE: Reset/update dynamic global vars.
+// NOTE: Reset/update dynamic global vars.
+func handle_dynamic_global_vars()
   SafeMean.handle()
   _update_game_state()
   _update_my_effects()
@@ -1437,13 +1437,13 @@ func panic(e)
   >`20,5,#red,@e@
   loc.Pause()
 
-// %start_dev%
+// TODO: Move this
+// == TRACKING ==
 var errors = []
 func dbg(e)
   ?C.ui_show_debug
     ?!errors.Contains(e)
       errors.Add(e)
-// %end_dev%
 
 var grey = "#7A8F93"
 func draw_ui()
@@ -1490,7 +1490,8 @@ func draw_ui()
       >`@x@,@y+4@,@grey@,Dist: @foe.distance@
       >`@x@,@y+5@,@grey@,Count: @foe.count@
     y = 24
-    // %start_dev%
+
+    // == TRACKING ==
     var frame_time = 0
     for ft:frame_times
       frame_time = frame_time + ft
@@ -1500,7 +1501,7 @@ func draw_ui()
     ?lock
       info = info + ", L: " + lock + " (" + lock_timer + ")"
     >`@x@,@y@,#blue,@info@
-    // %end_dev%
+
     >`@x@,@y+1@,@grey@,@foe@
     var _weapon = " (L)"
     x = screen.w - 10
@@ -1516,22 +1517,21 @@ func draw_ui()
       _weapon = _equip_R + _weapon
     >`@x@,@y+1@,#blue,@_weapon@
 
-    // %start_dev%
     // TODO: Extract
+    // == TRACKING ==
     var ey = 2
     for err : errors
       >`20,@ey@,#red,@err@
       ey++
     ?Tracer.enable_tracer
       Tracer.display_trace()
-    // %end_dev%
 
 func colorize(cd)
   ?cd > 0
     return "red"
   return "green"
 
-// %start_dev%
+// == TRACKING ==
 // NOTE: hp, state, time, chill, dist, L, R.
 var tracked = [-1, -1, -1, -1, -1, "", ""]
 func track_hits()
@@ -1557,7 +1557,7 @@ func track_hits()
   tracked[4] = foe.distance
   tracked[5] = _equip_L
   tracked[6] = _equip_R
-// %end_dev%
+
 
 func reset_loop()
   lock = false
@@ -1569,12 +1569,12 @@ func reset_loop()
   last_state = 0
   dysan_step = -1
 
-// %start_dev%
+// == TRACKING ==
 var start_t = 0
 var frame_times = []
 var index = 0
 start_t = time.ms
-// %end_dev%
+
 ?loc.begin
   equip_L("quest")
   auto_equip_shield()
@@ -1586,14 +1586,14 @@ start_t = time.ms
 :?loc.loop
   Potion.create()
   reset_loop()
-prelude()
+handle_dynamic_global_vars()
 ?ai.enabled & !ai.paused
   AAC.handle()
   progress()
 :
   healwalk()
 draw_ui()
-// %start_dev%
+// == TRACKING ==
 ?C.enable_hit_tracking
   track_hits()
 ?frame_times.Count() < 30
@@ -1603,4 +1603,4 @@ draw_ui()
   index++
   ?index = frame_times.Count()
     index = 0
-// %end_dev%
+
