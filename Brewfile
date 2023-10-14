@@ -27,7 +27,6 @@ brew "neovim"
 brew "nginx"
 brew "openssl@1.1"
 brew "overmind"
-brew "pyenv"
 brew "ripgrep"
 brew "rustup"
 brew "the_silver_searcher"
@@ -62,3 +61,4 @@ mas "Spark", id: 1176895641
 # Manual
 ## OniVim2 https://v2.onivim.io/early-access-portal
 ## Shadow https://shadow.tech/fr/shadow-apps
+## Homerow https://www.homerow.app/
