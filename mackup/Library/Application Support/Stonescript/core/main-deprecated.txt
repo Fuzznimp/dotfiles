@@ -140,6 +140,7 @@ func progress()
   ?loc = rocky
     ?foe.id = "acronian_scout"
       Tracer.span("miniboss")
+      disable_r("hammer")
       return fight_scout()
     return fight_dysan()
 
@@ -885,8 +886,7 @@ func find_weapon(range, aoe, elem, purpose, allow_2h)
         return ty
       found = get_item(ty, elem, purpose)
       ?!found & purpose = "stats"
-        ?C.use_mods_for_dmg
-          found = get_item(ty, elem, "mod")
+        // NOTE: Should probably remove this condition and call right away.
         ?!found
           found = get_item(ty, "default", "")
       ?found
@@ -938,17 +938,16 @@ func can_debuff()
   ?disable_debuffs
     return false
   ?is_boss
+    ?loc = Rocky // NOTE: Always debuff Scout & Dysan.
+      return true
     ?is(debuff_bosses, "never")
       return false
     ?is(debuff_bosses,"smite") & smite_stacks=0
-      ?loc = Rocky // always debuff Scout&Dysan
-        return true
       ?can_be_debuffed("debuff_dot")
-        only_dot = true // keep up the dot
+        only_dot = true // NOTE: Keep up the dot.
         return true
       return false
-  ?!is_boss & (is(debuff_non_bosses, "never") |
-  ^is(debuff_non_bosses,"smite")&smite_stacks=0)
+  ?!is_boss & (is(debuff_non_bosses, "never") | is(debuff_non_bosses,"smite") & smite_stacks=0)
     return false
   return true
 
@@ -968,8 +967,7 @@ func should_debuff()
   ?can_be_debuffed("debuff_damage")
     debuff_elems.Add("poison")
   var c = debuff_elems.Count()
-  ?c > 1 &
-  ^foe = debuff_elems[0]
+  ?c > 1 & foe = debuff_elems[0]
     var move = debuff_elems[0]
     debuff_elems.Emplace(0, debuff_elems[c-1])
     debuff_elems.Emplace(c-1, move)
@@ -1040,7 +1038,7 @@ func qs_dash()
 
 func can_backflip()
   return can_use("mind") & free_mind &
-   // don't jump into the wall
+   // NOTE: Don't jump into the wall.
   ^screen.FromWorldX(pos.x) > 5
 
 func backflip()
