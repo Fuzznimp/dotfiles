@@ -1,0 +1,8 @@
+var C = import Stonescript/core/variables/constants
+
+var errors = []
+
+func handle(e)
+  ?C.ui_show_debug
+    ?!errors.Contains(e)
+      errors.Add(e)

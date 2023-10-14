@@ -1,5 +1,6 @@
 var C = import Stonescript/core/variables/constants
 var Tracer = import Stonescript/observability/tracer
+var Debbuger = import Stonescript/observability/debugger
 var Potion = import Stonescript/core/utils/potion
 var Unmake = import Stonescript/core/utils/unmake
 var SafeMean = import Stonescript/core/utils/safe-mean
@@ -95,7 +96,7 @@ func progress()
     return fight_nagaraja()
 
   :
-    dbg("Fighting unknown boss: " + foe.id)
+    Debugger.handle("Fighting unknown boss: " + foe.id)
     auto_melee_boss()
 
 func healwalk()
@@ -1439,11 +1440,7 @@ func panic(e)
 
 // TODO: Move this
 // == TRACKING ==
-var errors = []
-func dbg(e)
-  ?C.ui_show_debug
-    ?!errors.Contains(e)
-      errors.Add(e)
+
 
 var grey = "#7A8F93"
 func draw_ui()
