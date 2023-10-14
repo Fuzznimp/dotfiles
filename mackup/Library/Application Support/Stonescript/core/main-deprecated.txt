@@ -3,39 +3,30 @@ var Tracer = import Stonescript/observability/tracer
 var Potion = import Stonescript/core/utils/potion
 var Unmake = import Stonescript/core/utils/unmake
 var SafeMean = import Stonescript/core/utils/safe-mean
-
-// TODO: Move debug stuff into its own file.
-var debug = true
-var ui_show_cd = debug
-var ui_show_statuses = debug
-var ui_show_debug = debug
-var enable_hit_tracking = false
+var AAC = import Stonescript/core/utils/aac
 
 /*===================== PROGRESS =====================*/
 func progress()
+  /*===== PICKUP RESOURCES =====*/
   ?pickup.distance < 9
-    // NOTE: Pick resources from the ground.
     return equip_L("star") & equip_R("trisk")
-
+  /*========== SMITE ==========*/
   ?C.long_long_smite & smite_two_screens()
     return true
-
+  /*========= PASSIVE =========*/
   ?healwalk()
-    // NOTE: No enemies nearby.
     return true
-
+  /*======= DODGE EXPLO =======*/
   ?foe = explode
     return avoid_explosion()
-
+  /*======= RESERVE STUN =======*/
   ?loc = caves
     check_stunlock()
-
-  // NOTE: Regular enemies.
+  /*===== REGULAR ENEMIES =====*/
   ?!is_boss & !at_boss
     free_mind = true
     return regular_fight()
-
-  // NOTE: Now handle bosses and minibosses.
+  /*==== MINIBOSSES/BOSSES ====*/
   Tracer.span("boss")
   disable_r("skeleton_arm")
 
@@ -65,8 +56,7 @@ func progress()
     return fight_mushrooms()
 
   :?loc = mushroom & is(foe.id, "epic_snail")
-    return disable_r("hammer") &
-    ^disable_r("bash") & auto_melee_miniboss()
+    return disable_r("hammer") & disable_r("bash") & auto_melee_miniboss()
 
   :?loc = undead_crypt_boss
     return fight_pallas()
@@ -113,8 +103,8 @@ func healwalk()
   ?foe & (foe.distance < 23)
     ?hp < (maxhp / 4) & item.potion ! empty & (item.potion = "healing" | item.potion = "vampiric")
       activate potion
-    return false // start combat instead
-  :?harvesting & harvest.distance < 3 & _harvest()
+    return false // NOTE: Start combat instead.
+  :?C.harvesting & harvest.distance < 3 & _harvest()
     return true
   :?should_summon()
     return equip_L("trisk") & summon()
@@ -125,6 +115,7 @@ func healwalk()
     return equip_L("ouroboros")
   return equip_L("trisk")
 
+// NOTE: `harvest` is a reserved keyword :(.
 func _harvest()
   ?loc = Rocky
     return equip_L("shovel")
@@ -155,7 +146,6 @@ func smite_two_screens()
   return scrolling > 0
 
 /*===================== BOSSES =====================*/
-
 func try_evade()
   Tracer.span("try_evade")
   ?can_mind
@@ -452,7 +442,6 @@ func is_poison_near()
   ^(draw.GetSymbol(x+1, y-6) = "(")
 
 /*===================== COMBAT =====================*/
-
 func regular_fight()
   Tracer.span("fight")
   ?must_ranged_foe()
@@ -476,7 +465,7 @@ func auto_melee()
     return melee("def")
   return melee("dps")
 
-// mode: "dps" | "def" | "aoe"
+// NOTE: mode: "dps" | "def" | "aoe".
 func melee(mode)
   Tracer.span("m_" + mode)
   ?dash_closer()
@@ -507,7 +496,7 @@ func approach()
     range = get(weapon_ranges, found_type) + 1
   ?foe.distance > range
     Tracer.span("approach")
-    // use a shield while walking closer
+    // NOTE: Use a shield while walking closer.
     ?!is_2hander(found_type)
       auto_equip_shield()
   return true
@@ -522,11 +511,9 @@ func dash_closer()
 
 func auto_ranged()
   Tracer.span("auto_r")
-
   ?C.for_ranged_single_target.Count() > 0 & smite_stacks > 6
-    // NOTE: Will be an issue when multiple staves
+    // FIXME: Will be an issue when multiple staves.
     return ranged("staff")
-
   ?use_abilities()
     return true
   :?can_aoe & C.for_ranged_aoe.Count() > 0 & foe.distance <= ranged_range
@@ -535,11 +522,10 @@ func auto_ranged()
     return ranged("single")
   return auto_melee()
 
-// mode: aoe | single | staff
+// NOTE: mode: aoe | single | staff.
 func ranged(mode)
   Tracer.span("r_" + mode)
   var aoe = is(mode, "aoe")
-
   ?is(mode,"staff")
     return equip_L("staff")
   ?!aoe & must_ranged_foe() & C.for_ranged_single_target.Contains("repeating")
@@ -628,8 +614,7 @@ func stunlock()
 
 var _equip_L = false
 func equip_L(it)
-  // sets global flag, so the next `get_item()`
-  // in this frame won't return the same item
+  // NOTE: Sets global flag, so the next `get_item()` in this frame won't return the same item.
   _equip_L = it
   ?is_2hander(it) | is_2hander(found_type)
     return aac(it)
@@ -638,7 +623,7 @@ func equip_L(it)
 
 var _equip_R = false
 func equip_R(it)
-  // for debug
+  // NOTE: For debug.
   _equip_R = it
   ?is_2hander(it) | is_2hander(found_type)
     // NOTE: Will be an issue when multiple staves
@@ -651,8 +636,7 @@ func equip_R(it)
 func is_2hander(ty)
   return ty & all_2h_types.Contains(ty)
 
-// range: "melee" | "ranged"
-// aoe: true/false
+// NOTE: range: "melee" | "ranged", aoe: true/false.
 func auto_equip_L(range, aoe)
   Tracer.span("auto_eq_L")
   found = find_dps_weapon(range, aoe, true)
@@ -660,8 +644,7 @@ func auto_equip_L(range, aoe)
     return equip_L(found)
   return false
 
-// range: "melee" | "ranged"
-// aoe: true/false
+// NOTE: range: "melee" | "ranged", aoe: true/false
 func auto_equip_R(range, aoe)
   Tracer.span("auto_eq_R")
   found = find_dps_weapon(range, aoe, false)
@@ -683,7 +666,7 @@ func auto_equip_shield()
     return equip_R(found)
   return false
 
-// range: "melee" | "ranged" ; aoe: true/false
+// NOTE: range: "melee" | "ranged", aoe: true/false.
 func auto_equip_dps(range, aoe)
   Tracer.span("auto_eq_dps")
   found = find_dps_weapon(range, aoe, true)
@@ -701,14 +684,13 @@ func find_dps_weapon(range, aoe, allow_2h)
   Tracer.span("find_dps_weapon")
   found = false
   ?low_hp
-    // heal on low hp
+    // NOTE: Heal on low hp.
     found = find_weapon(range, aoe,
     ^"vigor", "mod", allow_2h)
   ?!found
-    // default case: match element
-    found = find_weapon(range, aoe,
-    ^weak_elem, "stats", allow_2h)
-  Tracer.span(""+found)
+    // NOTE: Default case: match element.
+    found = find_weapon(range, aoe, weak_elem, "stats", allow_2h)
+  Tracer.span("" + found)
   return found
 
 func try_equip_debuff(range, aoe)
@@ -762,11 +744,9 @@ func try_equip_unmake(range, aoe)
 
 func find_unmake_weapon(range, aoe, allow_2h)
   Tracer.span("find_unmake_wep")
-  found = find_weapon(range, aoe,
-  ^"aether", "mod", allow_2h)
+  found = find_weapon(range, aoe, "aether", "mod", allow_2h)
   ?!found & range = "melee"
-    found = find_weapon("ranged", aoe,
-    ^"aether", "mod", allow_2h)
+    found = find_weapon("ranged", aoe, "aether", "mod", allow_2h)
   return found
 
 func find_weapon(range, aoe, elem, purpose, allow_2h)
@@ -818,8 +798,7 @@ func get_item(ty, elem, purpose)
   ?!items | items.Count() = 0
     return false
   for it : items
-    ?(!_equip_L | !is(it, _equip_L)) &
-    ^(!excluded_items | !(it = excluded_items))
+    ?(!_equip_L | !is(it, _equip_L)) & (!excluded_items | !(it = excluded_items))
       return it
   return false
 
@@ -873,7 +852,6 @@ func can_be_debuffed(debuff_uid)
   return !foe_debuff(debuff_uid)
 
 /*===================== ABILITIES =====================*/
-
 func get_cd(ability)
   return try_get(cooldowns, ability, 9999)
 
@@ -1013,18 +991,13 @@ func mask()
   Tracer.span("mask")
   equip_R("mask")
   return use("mask")
-/*
-  Need to extract `use`, `lock` and `equip_` before.
-*/
+
+// TODO: Need to extract `use`, `lock` and `equip_` before.
 func can_summon()
-  return (summon.GetId() ! "cinderwisp" |
-  ^lock="fire_talisman") &
-  ^can_use("fire_talisman") & can_activate()
+  return (summon.GetId() ! "cinderwisp" | lock="fire_talisman") & can_use("fire_talisman") & can_activate()
 
 func should_summon()
   return (foe.id ! "poena") & can_summon()
-
-
 
 func summon()
   Tracer.span("summon")
@@ -1070,17 +1043,18 @@ func use_abilities()
     return slap()
   return false
 
+// TODO: Remove, as there is now a better way to handle aac.
 var runebow_aac_timer = 0
 func runebow_aac(speed_normal, speed_berserk)
   ?runebow_aac_timer = 0
     equipL wand
     equip crossbow D aether
-
   ?buffs.string = "berserk"
     runebow_aac_timer = (runebow_aac_timer + 1) % speed_berserk
   :
     runebow_aac_timer = (runebow_aac_timer + 1) % speed_normal
 
+// TODO: Remove, as there is now a better way to handle aac.
 var aac_tick = 1
 func aac(weapon)
   Tracer.span("aac_" + weapon)
@@ -1088,8 +1062,7 @@ func aac(weapon)
   equip @weapon@
   ?!ai.idle
     return true
-  ?is(lock, "hammer") |
-  ^is(lock, "bardiche")
+  ?is(lock, "hammer") | is(lock, "bardiche")
     return true
   ?weapon = "repeating" | weapon = C.ice_staff_di
     aac_tick--
@@ -1467,27 +1440,26 @@ func panic(e)
 // %start_dev%
 var errors = []
 func dbg(e)
-  ?ui_show_debug
+  ?C.ui_show_debug
     ?!errors.Contains(e)
       errors.Add(e)
-
 // %end_dev%
 
-var gray = "#7A8F93"
+var grey = "#7A8F93"
 func draw_ui()
   var x = 1
   var y = 23
-  ?ui_show_debug
+  ?C.ui_show_debug
     y = 21
-  ?ui_show_statuses
-    ?ui_show_debug
+  ?C.ui_show_statuses
+    ?C.ui_show_debug
       >`@x@,@y@,#F008B2,? @string.Join(", ", unk_effects)@
       y++
     >`@x@,@y@,#FE6800,- @string.Join(", ", my_debuffs)@
     >`@x@,@y+1@,#00A300,+ @string.Join(", ", my_buffs)@
-    ?!ui_show_debug
-      >`@x@,@y+2@,@gray@,@loc.stars@* @time.FormatDigital(totaltime)@/@time.FormatDigital(loc.averageTime)@
-  ?ui_show_cd
+    ?!C.ui_show_debug
+      >`@x@,@y+2@,@grey@,@loc.stars@* @time.FormatDigital(totaltime)@/@time.FormatDigital(loc.averageTime)@
+  ?C.ui_show_cd
     y = 6
     for r : all_abilities
       ?!move_r.Contains(r) & r!"fire_talisman" & abilities.Contains(r)
@@ -1500,23 +1472,23 @@ func draw_ui()
         y++
     >`@x@,@y@,#@colorize(get_cd("quarterstaff"))@,QS
     ?abilities.Contains("bash")
-      >`@x+2@,@y@,@gray@,/
+      >`@x+2@,@y@,@grey@,/
       >`@x+3@,@y@,#@colorize(get_cd("bash"))@,B
     ?abilities.Contains("dash")
-      >`@x+4@,@y@,@gray@,/
+      >`@x+4@,@y@,@grey@,/
       >`@x+5@,@y@,#@colorize(get_cd("dash"))@,D
-  ?ui_show_debug
+  ?C.ui_show_debug
     x = 1
     y = 15
     ?foe
       ?string.Size(foe.buffs.string) > 0
-        >`@x@,@y@,@gray@,@foe.buffs.string@
-      >`@x@,@y+1@,@gray@,id: @foe.id@
-      >`@x@,@y+2@,@gray@,S: @foe.state@,T: @foe.time@
+        >`@x@,@y@,@grey@,@foe.buffs.string@
+      >`@x@,@y+1@,@grey@,id: @foe.id@
+      >`@x@,@y+2@,@grey@,S: @foe.state@,T: @foe.time@
       var c = foe_debuff("debuff_chill")
-      >`@x@,@y+3@,@gray@,Chill: @c@/@c*7@
-      >`@x@,@y+4@,@gray@,Dist: @foe.distance@
-      >`@x@,@y+5@,@gray@,Count: @foe.count@
+      >`@x@,@y+3@,@grey@,Chill: @c@/@c*7@
+      >`@x@,@y+4@,@grey@,Dist: @foe.distance@
+      >`@x@,@y+5@,@grey@,Count: @foe.count@
     y = 24
     // %start_dev%
     var frame_time = 0
@@ -1529,7 +1501,7 @@ func draw_ui()
       info = info + ", L: " + lock + " (" + lock_timer + ")"
     >`@x@,@y@,#blue,@info@
     // %end_dev%
-    >`@x@,@y+1@,@gray@,@foe@
+    >`@x@,@y+1@,@grey@,@foe@
     var _weapon = " (L)"
     x = screen.w - 10
     y = 23
@@ -1560,7 +1532,7 @@ func colorize(cd)
   return "green"
 
 // %start_dev%
-// hp, state, time, chill, dist, L, R
+// NOTE: hp, state, time, chill, dist, L, R.
 var tracked = [-1, -1, -1, -1, -1, "", ""]
 func track_hits()
   var hp_diff = tracked[0] - hp
@@ -1591,17 +1563,11 @@ func reset_loop()
   lock = false
   lock_timer = 0
   unk_effects.Clear()
-  enable_hit_tracking = false
+  C.enable_hit_tracking = false
   at_boss = false
   naga_step = 0
   last_state = 0
   dysan_step = -1
-
-func handle_aac()
-  ?item.left.state = 3
-    equipL wand *0
-  ?item.right.state = 3
-    equipR shield *0
 
 // %start_dev%
 var start_t = 0
@@ -1622,18 +1588,18 @@ start_t = time.ms
   reset_loop()
 prelude()
 ?ai.enabled & !ai.paused
-  handle_aac()
+  AAC.handle()
   progress()
 :
   healwalk()
 draw_ui()
 // %start_dev%
-?enable_hit_tracking
+?C.enable_hit_tracking
   track_hits()
 ?frame_times.Count() < 30
-  frame_times.Add(time.ms-start_t)
+  frame_times.Add(time.ms - start_t)
 :
-  frame_times.Emplace(index, time.ms-start_t)
+  frame_times.Emplace(index, time.ms - start_t)
   index++
   ?index = frame_times.Count()
     index = 0

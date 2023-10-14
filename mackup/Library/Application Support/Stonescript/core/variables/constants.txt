@@ -109,3 +109,11 @@ var must_ranged_foes = ["wasp","wasp nest","mosquito","huge mosquito"]
 var for_ranged_single_target = ["crossbow","repeating","wand"]
 var for_ranged_aoe = ["staff", "wand"]
 var for_phys_immune = ["staff", "wand"]
+
+/*===================== DEBUG =====================*/
+// TODO: Probably move this into a separate file.
+var debug = true
+var ui_show_cd = debug
+var ui_show_statuses = debug
+var ui_show_debug = debug
+var enable_hit_tracking = true
