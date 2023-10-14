@@ -7,6 +7,7 @@ import Stonescript/skins/pet-skully
 
 import Stonescript/core/main-deprecated
 // import Stonescript/core/main
+// import Stonescript/core/test
 
 // NOTE: Safe mean time.
 // ?loc.averageTime >= 0 & totaltime > loc.averageTime

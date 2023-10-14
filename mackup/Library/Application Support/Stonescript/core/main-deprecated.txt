@@ -4,16 +4,6 @@ var Potion = import Stonescript/core/utils/potion
 var Unmake = import Stonescript/core/utils/unmake
 var SafeMean = import Stonescript/core/utils/safe-mean
 
-/* If this is set to `true`, script will prefer
-to use ranged items from lists below instead of
-melee. */
-var prefer_ranged = false
-
-/* Will prefer ranged weapons only for these
-enemies, but will try to get in melee if they
-are near */
-var prefer_ranged_foes = []
-
 /* Will exclusively use single-target ranged
 against these enemies */
 var must_ranged_foes = ["wasp", "wasp nest",
@@ -104,10 +94,6 @@ var smite_threshold = 7
 var smite_damage = 100
 // Enable smiting two screens at once
 var long_long_smite = true
-
-// These depend on level/enchants of the Arm
-var arm_damage = 56
-var max_pickpocket_stacks = 3
 
 // TODO: Move debug stuff into its own file.
 var debug = true
@@ -571,29 +557,14 @@ func is_poison_near()
 
 func regular_fight()
   Tracer.span("fight")
-
   ?must_ranged_foe()
     return ranged("single")
-
   ?foe = immune_to_ranged | foe = ranged
     return auto_melee()
-
-  ?prefer_ranged_foe() & can_aoe & foe.distance > melee_aoe_range
-    return auto_ranged()
-
-  ?prefer_ranged
-    return (can_backflip() & backflip()) | auto_ranged()
-
-  // by default, use melee
   return auto_melee()
 
 func must_ranged_foe()
   for enemy: must_ranged_foes
-    ?foe = enemy
-      return true
-
-func prefer_ranged_foe()
-  for enemy: prefer_ranged_foes
     ?foe = enemy
       return true
 
@@ -877,8 +848,6 @@ func find_debuff_weapon(range, aoe, elem, allow_2h)
 
 func try_equip_unmake(range, aoe)
   Tracer.span("try_eq_unmake")
-  ?prefer_ranged & foe.distance > C.melee_range
-    range = "ranged"
   found = find_unmake_weapon(range,aoe,true)
   ?!found
     aoe = false
@@ -1062,14 +1031,11 @@ func can_qs_dash()
   ^can_activate()
 
 func should_qs_dash()
-  return (prefer_ranged & foe.distance > 28) |
-  ^(foe.distance > 16 |
-  ^foe.distance < 11 & foe.distance > 5) &
-  ^can_qs_dash()
+  return (foe.distance > 16 | foe.distance < 11 & foe.distance > 5) & can_qs_dash()
 
 func qs_dash()
   Tracer.span("qs_dash")
-  equip_L("quarterstaff")
+  equip_L(C.quarterstaff_dash)
   return use("quarterstaff")
 
 func can_backflip()
@@ -1089,11 +1055,11 @@ func can_slap()
   ^can_activate()
 
 func should_slap()
-  return can_slap() & foe_ehp <= arm_damage
+  return can_slap() & foe_ehp <= C.arm_damage
 
 func slap()
   Tracer.span("slap")
-  ?pickpocket_stacks < max_pickpocket_stacks
+  ?pickpocket_stacks < C.max_pickpocket_stacks
     return aac("arm")
   equip_L("arm")
   return use("skeleton_arm")
@@ -1749,13 +1715,11 @@ func reset_loop()
   last_state = 0
   dysan_step = -1
 
-
 func handle_aac()
-  Tracer.span("handle_aac")
   ?item.left.state = 3
-    equipL ouroboros
+    equipL wand *0
   ?item.right.state = 3
-    equipR stone
+    equipR shield *0
 
 // %start_dev%
 var start_t = 0
@@ -1776,8 +1740,8 @@ start_t = time.ms
   reset_loop()
 prelude()
 ?ai.enabled & !ai.paused
-  progress()
   handle_aac()
+  progress()
 :
   healwalk()
 draw_ui()
