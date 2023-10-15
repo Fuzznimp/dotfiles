@@ -1,0 +1,22 @@
+var Debbuger = import Stonescript/observability/debugger
+
+func try_get(dict, k, default)
+  var idx = dict.IndexOf(k)
+  ?idx = -1
+    return default
+  return dict[idx + 1]
+
+func get(dict, k)
+  var idx = dict.IndexOf(k)
+  ?idx = -1
+    Debugger.panic("Bad dict key: k=" + k)
+  return dict[idx + 1]
+
+func set(dict, k, v)
+  var idx = dict.IndexOf(k)
+  ?idx = -1
+    dict.Add(k)
+    dict.Add(v)
+  :
+    dict[idx + 1] = v
+  return true
