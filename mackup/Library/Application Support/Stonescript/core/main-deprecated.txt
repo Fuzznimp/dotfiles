@@ -1308,7 +1308,7 @@ var abilities = ["mind", false]
 func _prepare_abilities()
   for r : C.useable_abilities
     ?!all_abilities.Contains(r)
-      panic("Unknown ability: " + r)
+      Debugger.panic("Unknown ability: " + r)
     ?!abilities.Contains(r)
       set(cooldowns, r, 0)
       set(abilities, r, false)
@@ -1332,7 +1332,7 @@ func disable_r(ability)
 func get(dict, k)
   var idx = dict.IndexOf(k)
   ?idx = -1
-    panic("Bad dict key: k=" + k)
+    Debugger.panic("Bad dict key: k=" + k)
   return dict[idx + 1]
 
 func try_get(dict, k, default)
@@ -1434,14 +1434,7 @@ func handle_dynamic_global_vars()
   _update_abilities()
   _update_lock()
 
-func panic(e)
-  >`20,5,#red,@e@
-  loc.Pause()
-
-// TODO: Move this
 // == TRACKING ==
-
-
 var grey = "#7A8F93"
 func draw_ui()
   var x = 1
@@ -1514,14 +1507,9 @@ func draw_ui()
       _weapon = _equip_R + _weapon
     >`@x@,@y+1@,#blue,@_weapon@
 
-    // TODO: Extract
     // == TRACKING ==
-    var ey = 2
-    for err : errors
-      >`20,@ey@,#red,@err@
-      ey++
-    ?Tracer.enable_tracer
-      Tracer.display_trace()
+    Debbuger.display(2)
+    Tracer.display()
 
 func colorize(cd)
   ?cd > 0

@@ -1,8 +1,20 @@
 var C = import Stonescript/core/variables/constants
 
+var enable_debugger = true
 var errors = []
 
-func handle(e)
+func handle(error)
   ?C.ui_show_debug
-    ?!errors.Contains(e)
-      errors.Add(e)
+    ?!errors.Contains(error)
+      errors.Add(error)
+
+func display(y)
+  ?!enable_debugger
+    return
+  for err : errors
+    >`20,@ey@,#red,@err@
+    ey++
+
+func panic(e)
+  >`20,5,#red,@e@
+  loc.Pause()

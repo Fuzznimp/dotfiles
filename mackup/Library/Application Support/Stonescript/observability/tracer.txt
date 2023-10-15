@@ -7,7 +7,7 @@ func span(tag)
   ?enable_tracer
     spans.Add(tag)
 
-func display_trace()
+func display()
   ?!enable_tracer
     return
   var trace = string.Break(string.Join(",", spans), block_width)
