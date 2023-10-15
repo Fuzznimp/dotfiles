@@ -58,7 +58,10 @@ func progress()
     return fight_mushrooms()
 
   :?loc = mushroom & is(foe.id, "epic_snail")
-    return disable_r("hammer") & disable_r("bash") & auto_melee_miniboss()
+    disable_r("bardiche")
+    disable_r("hammer")
+    disable_r("bash")
+    return auto_melee_miniboss()
 
   :?loc = undead_crypt_boss
     return fight_pallas()
@@ -292,7 +295,6 @@ func fight_bolesh()
     // ranged("single")
 
 func fight_mushrooms()
-  // thanks to user `fruloo` from the discord!
   var delay = chill_delay()
   ?foe = phase1
     ?Potion.fast_potion_bosses.Contains("mushrooms")
@@ -1298,6 +1300,7 @@ func get_foe_weak_elem()
   foe_elem = "default"
   return "default"
 
+// TODO: Move to constants.
 var all_abilities = [
   "mind", "hammer", "bardiche", "blade",
   "skeleton_arm", "mask", "fire_talisman",

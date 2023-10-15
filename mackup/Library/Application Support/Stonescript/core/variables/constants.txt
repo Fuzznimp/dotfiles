@@ -2,15 +2,16 @@
 var ice_staff_di = "ice staff dI+20"
 var aether_runebow_d = "aether crossbow D+18"
 var fire_runebow_d = "fire crossbow D+16"
-var quarterstaff_dash = "quarterstaff"
 var elemental_items=[
   ["hammer",
     ["aether","D+14","D+13"],
-    ["poison","D+14","D+11"],
+    ["poison","D+16","D+13"],
     ["vigor","D+12","D+11"],
     ["fire","D+12","D+11"],
-    ["ice","D+12","D+11"],
-    ["default","aether hammer D+14","poison hammer D+14"],
+    ["ice","D+14","D+11"],
+    ["default",
+      "poison hammer D+16","aether hammer D+14","ice hammer D+14"
+    ],
   ],
   ["wand",
     ["fire","D+11"],
@@ -34,8 +35,8 @@ var elemental_items=[
     ["ice","D+16","D+13","dI+13"],
     ["poison","D+16","D+13"],
     ["vigor","D+20","D+16","dL+16","dL+13"],
-    [
-      "default","fire sword D+20","vigor sword D+20","aether sword D+16",
+    ["default",
+      "fire sword D+20","vigor sword D+20","aether sword D+16",
       "poison sword D+16","vigor sword D+16"
     ],
     // ["default","vigor sword dL+14","vigor sword dL+13"],
@@ -52,6 +53,7 @@ var elemental_items=[
 // NOTE: Highest evade% shield. Used to block big ass attacks.
 var evade_shield = "vigor shield ah+11"
 var stunlock_weapons=["socketed stone hammer +12"]
+var quarterstaff_dash = "quarterstaff +11"
 
 /*==================== GENERAL ====================*/
 var aoe_threshold = 4
@@ -66,7 +68,7 @@ var harvesting = false
 /*==================== DEBUFF ====================*/
 var max_chill_stacks = 6
 // NOTE: Supported: poena, ceiling decorator, ice elemental.
-var do_stunlock = ["poena", "ceiling decorator"]
+var do_stunlock = ["poena","ceiling decorator"]
 // NOTE: When to debuff foes: "never", "always", or "smite" (only if Smite buff is active).
 var debuff_bosses = "never"
 var debuff_non_bosses = "smite"
@@ -74,10 +76,9 @@ var debuff_non_bosses = "smite"
 /*=================== ABILITIES ===================*/
 // NOTE: If item is not listed here, its `R` ability won't be used.
 var useable_abilities = [
-  "dash","bash","mask","blade","hammer",
-  "fire_talisman","bardiche","quarterstaff",
-  "cinderwisp"
-// "skeleton_arm"
+  "dash","bash","mask","blade","hammer","bardiche",
+  "fire_talisman","quarterstaff","cinderwisp"
+  // "skeleton_arm"
 ]
 // NOTE: When to use Cinder ability (if listed in `useable_abilities`). Will use at max_stacks,
 // or if boss's HP is lower than stacks * dmg.
@@ -100,15 +101,15 @@ var arm_damage = 56
 var max_pickpocket_stacks = 4
 // NOTE: `dmg * (crit_mult + base_crit_mult)`, script won't use the bardiche ability
 // if non-boss's HP is lower than twice this damage.
-var bardiche_dmg = 52 * (10.8+2)
+var bardiche_dmg = 52 * (10.8 + 2)
 
 /*===================== RANGED =====================*/
 // NOTE: Will exclusively use single-target ranged against these enemies.
 var must_ranged_foes = ["wasp","wasp nest","mosquito","huge mosquito"]
 // NOTE: Used for scripted bosses or `ranged_foes`.
 var for_ranged_single_target = ["crossbow","repeating","wand"]
-var for_ranged_aoe = ["staff", "wand"]
-var for_phys_immune = ["staff", "wand"]
+var for_ranged_aoe = ["staff","wand"]
+var for_phys_immune = ["staff","wand"]
 
 /*===================== DEBUG =====================*/
 // TODO: Probably move this into a separate file.
