@@ -1,5 +1,5 @@
-var BFG = import Stonescript/core/utils/abilities/bfg
-var Tracer = import Stonescript/observability/tracer
+var BFG = import Stonescript/core/test/abilities/bfg
+var Tracer = import Stonescript/core/observability/tracer
 
 // TODO: Handle lock.
 func handle()

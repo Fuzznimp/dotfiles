@@ -5,3 +5,4 @@
 - Abilities before potion.
 - Named items with gear hash.
 - Split into more files?
+- Find a better naming than `utils` folder.
