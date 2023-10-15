@@ -6,6 +6,7 @@ var Unmake = import Stonescript/core/logic/unmake
 var SafeMean = import Stonescript/core/logic/safe-mean
 var AAC = import Stonescript/core/logic/aac
 var HashTable = import Stonescript/core/utils/hash-table
+var Colors = import Stonescript/core/utils/colors
 
 /*===================== PROGRESS =====================*/
 func progress()
@@ -297,6 +298,7 @@ func fight_bolesh()
 func fight_mushrooms()
   var delay = chill_delay()
   ?foe = phase1
+    disable_r("bardiche")
     ?Potion.fast_potion_bosses.Contains("mushrooms")
       Potion.try_drink()
     disable_r("skeleton_arm")
@@ -615,7 +617,6 @@ func stunlock()
     auto_equip_R("melee", false)
 
 /*===================== WEAPON SWITCHING =====================*/
-
 var _equip_L = false
 func equip_L(it)
   // NOTE: Sets global flag, so the next `get_item()` in this frame won't return the same item.
@@ -812,6 +813,8 @@ func can_debuff()
   ?disable_debuffs
     return false
   ?is_boss
+    // TODO: Improve this to always use mask. Maybe use location list instead of boolean.
+    // Also add more granular control. The issue is that I always want mask.
     ?loc = Rocky // NOTE: Always debuff Scout & Dysan.
       return true
     ?is(C.debuff_bosses, "never")
@@ -896,8 +899,7 @@ func dash()
   return false
 
 func can_qs_dash()
-  return can_use("quarterstaff") &
-  ^can_activate()
+  return can_use("quarterstaff") & can_activate()
 
 func should_qs_dash()
   return (foe.distance > 16 | foe.distance < 11 & foe.distance > 5) & can_qs_dash()
@@ -934,9 +936,7 @@ func slap()
   return use("skeleton_arm")
 
 func can_smite()
-  return can_use("blade") &
-  ^foe.distance <= 20 & (foe ! pallas) &
-  ^can_activate()
+  return can_use("blade") & foe.distance <= 20 & (foe ! pallas) & can_activate()
 
 func should_smite()
   return (is_boss | foe.count >= C.smite_threshold & foe_ehp <= C.smite_damage) & can_smite()
@@ -968,13 +968,10 @@ func hammer()
   return use("hammer")
 
 func can_bard()
-  return can_use("bardiche") &
-  ^foe.distance <= 9 & !phys_immune &
-  ^can_activate()
+  return can_use("bardiche") & foe.distance <= 9 & !phys_immune & can_activate()
 
 func should_bard()
-  return is(lock, "bardiche") | is_boss &
-  ^!aspd_down & (foe_ehp >= (C.bardiche_dmg * 2)|
+  return is(lock, "bardiche") | is_boss & !aspd_down & (foe_ehp >= (C.bardiche_dmg * 2) |
   ^foe_ehp < C.bardiche_dmg) & can_bard()
 
 func bardiche()
@@ -984,12 +981,10 @@ func bardiche()
   return use("bardiche")
 
 func can_mask()
-  return can_use("mask") &
-  ^(foe ! nagaraja) & can_activate()
+  return can_use("mask") & (foe ! nagaraja) & can_activate()
 
 func should_mask()
-  return can_mask() & is_boss & foe.distance <= C.melee_range
-  ^& !disable_debuffs & can_debuff()
+  return can_mask() & is_boss & foe.distance <= C.melee_range & !disable_debuffs & can_debuff()
 
 func mask()
   Tracer.span("mask")
@@ -1419,7 +1414,6 @@ func handle_dynamic_global_vars()
   _update_lock()
 
 // == TRACKING ==
-var grey = "#7A8F93"
 func draw_ui()
   var x = 1
   var y = 23
@@ -1432,7 +1426,7 @@ func draw_ui()
     >`@x@,@y@,#FE6800,- @string.Join(", ", my_debuffs)@
     >`@x@,@y+1@,#00A300,+ @string.Join(", ", my_buffs)@
     ?!C.ui_show_debug
-      >`@x@,@y+2@,@grey@,@loc.stars@* @time.FormatDigital(totaltime)@/@time.FormatDigital(loc.averageTime)@
+      >`@x@,@y+2@,@Colors.grey@,@loc.stars@* @time.FormatDigital(totaltime)@/@time.FormatDigital(loc.averageTime)@
   ?C.ui_show_cd
     y = 6
     for r : all_abilities
@@ -1442,27 +1436,27 @@ func draw_ui()
           r = "arm"
         :?is(r, "cinderwisp")
           r = "cinder"
-        >`@x@,@y@,#@colorize(cd)@,@string.Capitalize(r)@ @time.FormatDigital(cd)@
+        >`@x@,@y@,#@Colors.cd(cd)@,@string.Capitalize(r)@ @time.FormatDigital(cd)@
         y++
-    >`@x@,@y@,#@colorize(get_cd("quarterstaff"))@,QS
+    >`@x@,@y@,#@Colors.cd(get_cd("quarterstaff"))@,QS
     ?abilities.Contains("bash")
-      >`@x+2@,@y@,@grey@,/
-      >`@x+3@,@y@,#@colorize(get_cd("bash"))@,B
+      >`@x+2@,@y@,@Colors.grey@,/
+      >`@x+3@,@y@,#@Colors.cd(get_cd("bash"))@,B
     ?abilities.Contains("dash")
-      >`@x+4@,@y@,@grey@,/
-      >`@x+5@,@y@,#@colorize(get_cd("dash"))@,D
+      >`@x+4@,@y@,@Colors.grey@,/
+      >`@x+5@,@y@,#@Colors.cd(get_cd("dash"))@,D
   ?C.ui_show_debug
     x = 1
     y = 15
     ?foe
       ?string.Size(foe.buffs.string) > 0
-        >`@x@,@y@,@grey@,@foe.buffs.string@
-      >`@x@,@y+1@,@grey@,id: @foe.id@
-      >`@x@,@y+2@,@grey@,S: @foe.state@,T: @foe.time@
+        >`@x@,@y@,@Colors.grey@,@foe.buffs.string@
+      >`@x@,@y+1@,@Colors.grey@,id: @foe.id@
+      >`@x@,@y+2@,@Colors.grey@,S: @foe.state@,T: @foe.time@
       var c = foe_debuff("debuff_chill")
-      >`@x@,@y+3@,@grey@,Chill: @c@/@c*7@
-      >`@x@,@y+4@,@grey@,Dist: @foe.distance@
-      >`@x@,@y+5@,@grey@,Count: @foe.count@
+      >`@x@,@y+3@,@Colors.grey@,Chill: @c@/@c*7@
+      >`@x@,@y+4@,@Colors.grey@,Dist: @foe.distance@
+      >`@x@,@y+5@,@Colors.grey@,Count: @foe.count@
     y = 24
 
     // == TRACKING ==
@@ -1476,7 +1470,8 @@ func draw_ui()
       info = info + ", L: " + lock + " (" + lock_timer + ")"
     >`@x@,@y@,#blue,@info@
 
-    >`@x@,@y+1@,@grey@,@foe@
+    >`@x@,@y+1@,@Colors.grey@,@foe@
+
     var _weapon = " (L)"
     x = screen.w - 10
     y = 23
@@ -1494,11 +1489,6 @@ func draw_ui()
     // == TRACKING ==
     Debbuger.display(2)
     Tracer.display()
-
-func colorize(cd)
-  ?cd > 0
-    return "red"
-  return "green"
 
 // == TRACKING ==
 // NOTE: hp, state, time, chill, dist, L, R.

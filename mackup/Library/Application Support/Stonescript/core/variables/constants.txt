@@ -5,7 +5,7 @@ var fire_runebow_d = "fire crossbow D+16"
 var elemental_items=[
   ["hammer",
     ["aether","D+14","D+13"],
-    ["poison","D+16","D+13"],
+    ["poison","D+16","D+15"],
     ["vigor","D+12","D+11"],
     ["fire","D+12","D+11"],
     ["ice","D+14","D+11"],
@@ -47,13 +47,14 @@ var elemental_items=[
     ["ice","A+11"],
     ["fire","A+11"],
     ["aether","A+11"],
-    ["default","compound+11"],
+    ["default","compound +11"],
   ],
 ]
 // NOTE: Highest evade% shield. Used to block big ass attacks.
 var evade_shield = "vigor shield ah+11"
-var stunlock_weapons=["socketed stone hammer +12"]
-var quarterstaff_dash = "quarterstaff +11"
+var stunlock_weapons=["stone hammer +11"]
+// FIXME: Can't add +11 to the string.
+var quarterstaff_dash = "quarterstaff"
 
 /*==================== GENERAL ====================*/
 var aoe_threshold = 4
@@ -70,15 +71,15 @@ var max_chill_stacks = 6
 // NOTE: Supported: poena, ceiling decorator, ice elemental.
 var do_stunlock = ["poena","ceiling decorator"]
 // NOTE: When to debuff foes: "never", "always", or "smite" (only if Smite buff is active).
-var debuff_bosses = "never"
+var debuff_bosses = "smite"
 var debuff_non_bosses = "smite"
 
 /*=================== ABILITIES ===================*/
 // NOTE: If item is not listed here, its `R` ability won't be used.
 var useable_abilities = [
-  "dash","bash","mask","blade","hammer","bardiche",
+  "dash","bash","mask","blade","hammer",
   "fire_talisman","quarterstaff","cinderwisp"
-  // "skeleton_arm"
+  // "skeleton_arm", "bardiche"
 ]
 // NOTE: When to use Cinder ability (if listed in `useable_abilities`). Will use at max_stacks,
 // or if boss's HP is lower than stacks * dmg.
@@ -117,4 +118,4 @@ var debug = true
 var ui_show_cd = debug
 var ui_show_statuses = debug
 var ui_show_debug = debug
-var enable_hit_tracking = true
+var enable_hit_tracking = false
