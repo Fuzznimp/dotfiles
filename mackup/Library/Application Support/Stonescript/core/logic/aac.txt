@@ -1,5 +1,7 @@
 /*
-  NOTE: With the newly exposed property `state`, AAC is now way more simple (no more modulos or frame calculations).
+  NOTE: Credit to Ket from the discord for helping me with this.
+
+  With the newly exposed property `state`, AAC is now way more simple (no more modulos or frame calculations).
   There is two way to handle it. The first one, if put at the very bottom of the loop, should be done as follow:
   ```
   ?item.left.state = 3

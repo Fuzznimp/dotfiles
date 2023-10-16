@@ -846,8 +846,8 @@ func should_debuff()
   var c = debuff_elems.Count()
   ?c > 1 & foe = debuff_elems[0]
     var move = debuff_elems[0]
-    debuff_elems.Emplace(0, debuff_elems[c-1])
-    debuff_elems.Emplace(c-1, move)
+    debuff_elems[0] = debuff_elems[c-1]
+    debuff_elems[c-1] = move
   return c > 0
 
 func can_be_debuffed(debuff_uid)
@@ -1459,7 +1459,6 @@ func draw_ui()
       >`@x@,@y+5@,@Colors.grey@,Count: @foe.count@
     y = 24
 
-    // == TRACKING ==
     var frame_time = 0
     for ft:frame_times
       frame_time = frame_time + ft
@@ -1486,7 +1485,6 @@ func draw_ui()
       _weapon = _equip_R + _weapon
     >`@x@,@y+1@,#blue,@_weapon@
 
-    // == TRACKING ==
     Debbuger.display(2)
     Tracer.display()
 
@@ -1517,7 +1515,6 @@ func track_hits()
   tracked[5] = _equip_L
   tracked[6] = _equip_R
 
-
 func reset_loop()
   lock = false
   lock_timer = 0
@@ -1534,6 +1531,7 @@ var frame_times = []
 var index = 0
 start_t = time.ms
 
+/*==================== MAIN LOOP ====================*/
 ?loc.begin
   equip_L("quest")
   auto_equip_shield()
@@ -1545,20 +1543,24 @@ start_t = time.ms
 :?loc.loop
   Potion.create()
   reset_loop()
+
 handle_dynamic_global_vars()
+
 ?ai.enabled & !ai.paused
   AAC.handle()
   progress()
 :
   healwalk()
-draw_ui()
+
 // == TRACKING ==
+draw_ui()
+
 ?C.enable_hit_tracking
   track_hits()
 ?frame_times.Count() < 30
   frame_times.Add(time.ms - start_t)
 :
-  frame_times.Emplace(index, time.ms - start_t)
+  frame_times[index] = (time.ms - start_t)
   index++
   ?index = frame_times.Count()
     index = 0
