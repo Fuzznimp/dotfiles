@@ -1,12 +1,12 @@
-var C = import Stonescript/core/variables/constants
-var Tracer = import Stonescript/observability/tracer
-var Debbuger = import Stonescript/observability/debugger
-var Potion = import Stonescript/core/logic/potion
-var Unmake = import Stonescript/core/logic/unmake
-var SafeMean = import Stonescript/core/logic/safe-mean
 var AAC = import Stonescript/core/logic/aac
-var HashTable = import Stonescript/core/utils/hash-table
+var C = import Stonescript/core/variables/constants
 var Colors = import Stonescript/core/utils/colors
+var Debbuger = import Stonescript/observability/debugger
+var HashTable = import Stonescript/core/utils/hash-table
+var Potion = import Stonescript/core/logic/potion
+var SafeMean = import Stonescript/core/logic/safe-mean
+var Tracer = import Stonescript/observability/tracer
+var Unmake = import Stonescript/core/logic/unmake
 
 /*===================== PROGRESS =====================*/
 func progress()
@@ -672,16 +672,25 @@ func auto_equip_shield()
 // NOTE: range: "melee" | "ranged", aoe: true/false.
 func auto_equip_dps(range, aoe)
   Tracer.span("auto_eq_dps")
-  found = find_dps_weapon(range, aoe, true)
-  ?!found
+  // NOTE: Lucky pot + mask strat.
+  ?lucky_crit
+    Tracer.span("dps_mask")
+    found = find_dps_weapon(range, aoe, true)
+    ?!found
+      return false
+    equip_L(found)
+    equipR mask
+  :
+    found = find_dps_weapon(range, aoe, true)
+    ?!found
+      return false
+    equip_L(found)
+    ?is_2hander(found_type)
+      return found
+    found = find_dps_weapon(range, aoe, false)
+    ?found
+      return equip_R(found)
     return false
-  equip_L(found)
-  ?is_2hander(found_type)
-    return found
-  found = find_dps_weapon(range, aoe, false)
-  ?found
-    return equip_R(found)
-  return false
 
 func find_dps_weapon(range, aoe, allow_2h)
   Tracer.span("find_dps_weapon")
@@ -698,17 +707,25 @@ func find_dps_weapon(range, aoe, allow_2h)
 func try_equip_debuff(range, aoe)
   Tracer.span("try_eq_debuff")
   found = false
-  for elem:debuff_elems
-    found = find_debuff_weapon(range, aoe, elem, !_equip_L)
-    ?found
-      ?!_equip_L
-        equip_L(found)
-        ?is_2hander(found_type)
-          return true
-      :?!_equip_R
-        ?low_hp
-          return auto_equip_R(range, aoe)
-        return equip_R(found)
+  // NOTE: Lucky pot + mask strat.
+  ?lucky_crit
+    Tracer.span("debuff_mask")
+    for elem:debuff_elems
+      found = find_debuff_weapon(range, aoe, elem, false)
+      ?found
+        return equip_L(found)
+  :
+    for elem:debuff_elems
+      found = find_debuff_weapon(range, aoe, elem, !_equip_L)
+      ?found
+        ?!_equip_L
+          equip_L(found)
+          ?is_2hander(found_type)
+            return true
+        :?!_equip_R
+          ?low_hp
+            return auto_equip_R(range, aoe)
+          return equip_R(found)
   ?_equip_L
     ?!_equip_R
       return auto_equip_R(range, aoe)
@@ -1187,6 +1204,7 @@ var pickpocket_stacks = 0
 var smite_stacks = 0
 var stunned = false
 var aspd_down = false
+var lucky_crit = false
 
 func _update_my_effects()
   my_buffs.Clear()
@@ -1196,6 +1214,7 @@ func _update_my_effects()
   smite_stacks = 0
   stunned = false
   aspd_down = false
+  lucky_crit = false
   for s : [buffs.string, debuffs.string]
     // NOTE: Format: *:name:count:duration,...
     var splt = string.Split(s, ":", ",", false)
@@ -1243,6 +1262,8 @@ func _parse_status(splt, i)
     smite_stacks = num
   :?aspd_debuffs.Contains(uid)
     aspd_down = true
+  :?is(uid, "lucky_crit")
+    lucky_crit = true
 
 func foe_buff(uid)
   return get_foe_effect(foe.buffs.string, uid)
