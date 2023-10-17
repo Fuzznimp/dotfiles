@@ -6,8 +6,6 @@
 - Abilities before potion.
 - Named items with gear hash.
 - Split into more files?
-- Find a better naming than `utils` folder.
-- Credits.
 - Double compounds shield.
 - More modularity for debuffs.
 - Upgrades ice debuff weapons.
