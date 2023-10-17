@@ -1,6 +1,8 @@
 # Stonescript
 
-🚧
+Stonescript is a scripting language for [Stone Story RPG](https://store.steampowered.com/app/603390/Stone_Story_RPG/).
+
+You can find the manual [here](https://stonestoryrpg.com/stonescript/manual.html).
 
 ## Credit
 

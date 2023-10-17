@@ -198,22 +198,20 @@ func fight_dysan()
   ?foe = phase1
     disable_r("blade")
     Potion.try_drink()
-    ?(foe.state = 33 & foe.time = 23) |
-    ^(foe.state = 32 & around(hit + delay))
+    ?(foe.state = 33 & foe.time = 23) | (foe.state = 32 & around(hit + delay))
       return soft_block()
   :?foe = phase2
     ?smite_at_exact() | dash_closer() | (foe.state = 33 & use_abilities())
       return true
     Tracer.span("match_element")
-    found = find_weapon("melee",false,weak_elem,"stats","false")
+    found = find_weapon("melee", false, weak_elem, "stats", "false")
     ?found
       equip_L(found)
     ?foe.state = 32 & around(58 + delay)
       return soft_block()
     found = false
     ?should_debuff()
-      found = find_debuff_weapon("melee",
-      ^false, debuff_elems[0], false)
+      found = find_debuff_weapon("melee", false, debuff_elems[0], false)
     ?found
       return equip_R(found)
     return auto_equip_R("melee", false)
@@ -664,7 +662,7 @@ func auto_equip_shield()
   ?low_hp
     found=get_item("shield", "vigor", "mod")
   ?!found
-    found=get_item("shield",weak_elem,"stats")
+    found=get_item("shield", weak_elem, "stats")
   ?!found
     found=get_item("shield", "default", "")
   ?found
@@ -690,8 +688,7 @@ func find_dps_weapon(range, aoe, allow_2h)
   found = false
   ?low_hp
     // NOTE: Heal on low hp.
-    found = find_weapon(range, aoe,
-    ^"vigor", "mod", allow_2h)
+    found = find_weapon(range, aoe, "vigor", "mod", allow_2h)
   ?!found
     // NOTE: Default case: match element.
     found = find_weapon(range, aoe, weak_elem, "stats", allow_2h)
@@ -702,8 +699,7 @@ func try_equip_debuff(range, aoe)
   Tracer.span("try_eq_debuff")
   found = false
   for elem:debuff_elems
-    found = find_debuff_weapon(range, aoe,
-    ^elem, !_equip_L)
+    found = find_debuff_weapon(range, aoe, elem, !_equip_L)
     ?found
       ?!_equip_L
         equip_L(found)
@@ -1228,8 +1224,7 @@ func _parse_status(splt, i)
   var uid = splt[i]
   var idx = status_uids.IndexOf(uid)
   ?idx = -1
-    ?!ignore_statuses.Contains(uid) &
-    ^!unk_effects.Contains(uid)
+    ?!ignore_statuses.Contains(uid) & !unk_effects.Contains(uid)
       unk_effects.Add(uid)
     return
   var info = all_statuses[idx] // NOTE: uid,name,+/-
