@@ -222,29 +222,31 @@ func fight_dysan()
     disable_r("blade")
     weak_elem = "default"
     hit = 20 + math.Max(0, delay-6)
-    // hammer him right as he gets armor
+    // NOTE: Hammer him right as he gets armor.
     ?foe.state=32 & foe.time>hit & dysan_step=0 & foe.distance > 10 & can_hammer()
       return hammer()
-    // don't use element he's guarding against
+    // NOTE: Don't use element he's guarding against.
     var resist = foe_buff("adaptive_defense")
     ?!(low_hp & is(resist, "vigor"))
       excluded_items = resist
-    /* his attack order is cyclical, so we can
-    dodge both the stun and the ray */
+    // NOTE: his attack order is cyclical, so we can dodge both the stun and the ray.
     ?(last_state = 32 & foe.state = 33) | (last_state = 33 & foe.state = 2) | (last_state = 2 & foe.state = 32)
       dysan_step++
     :?(foe.state!32) & (foe.state!33) & (foe.state!2)
       dysan_step = 0
     last_state = foe.state
     ?foe.state = 32 & dysan_step >= 6 & evade_at(hit)
-      // dodge the stun
+      // NOTE: Dodge the stun.
       dysan_step = 0
       return
     :?foe.state=115 & foe.time<=70 & evade_at(70)
-      // dodge the ray, don't dash back into it
+      // NOTE: Dodge the ray, don't dash back into it.
       return set_lock("boss", 7)
     :?foe.state = 32 & (dysan_step < 7) & around(48 + delay)
       return soft_block()
+    // TODO: Improve because it interupt hammer.
+    :?lucky_crit
+      equipR mask
   auto_melee_boss()
 
 func fight_xyloalgia()
@@ -436,17 +438,15 @@ func fight_nagaraja()
 func evade_naga()
   ?can_mind
     naga_step = 0
-    return backflip() // dodge back
+    return backflip() // NOTE: Dodge back.
   :
-    return soft_block() // try to block
+    return soft_block() // NOTE: Try to block.
 
 func is_poison_near()
   var x = screen.FromWorldX(pos.x)
   var y = screen.FromWorldZ(pos.z)
-  // long and mid range
-  return draw.GetSymbol(x+2, y-6) = "(" |
-  // melee
-  ^(draw.GetSymbol(x+1, y-6) = "(")
+  // NOTE:     Long and mid range       |        Melee.
+  return draw.GetSymbol(x+2, y-6) = "(" | (draw.GetSymbol(x+1, y-6) = "(")
 
 /*===================== COMBAT =====================*/
 func regular_fight()
@@ -562,7 +562,11 @@ func auto_melee_boss()
 
 func auto_melee_miniboss()
   Tracer.span("auto_m_miniboss")
-  return disable_r("blade") & disable_r("mask") & disable_r("cinderwisp") & auto_melee()
+  ?foe.id = "acronian_scout"
+    // NOTE: Use mask R.
+    return disable_r("blade") & disable_r("cinderwisp") & auto_melee()
+  :
+    return disable_r("blade") & disable_r("mask") & disable_r("cinderwisp") & auto_melee()
 
 var can_stunlock = C.do_stunlock.Count() > 0 & C.stunlock_weapons.Count() > 0
 
@@ -685,8 +689,8 @@ func auto_equip_dps(range, aoe)
     found = find_dps_weapon(range, aoe, true)
     ?!found
       return false
-    equip_L(found)
     equipR mask
+    equip_L(found)
   :
     found = find_dps_weapon(range, aoe, true)
     ?!found
@@ -720,9 +724,16 @@ func try_equip_debuff(range, aoe)
     for elem:debuff_elems
       found = find_debuff_weapon(range, aoe, elem, false)
       ?found
+        equipR mask
+        // TODO: Probably useless.
+        _equip_R = "mask"
         return equip_L(found)
   :
     for elem:debuff_elems
+      // TODO: Find a way.
+      // ?foe.id ! dysangelos & elem = "poison"
+      //   return true
+      // :
       found = find_debuff_weapon(range, aoe, elem, !_equip_L)
       ?found
         ?!_equip_L
