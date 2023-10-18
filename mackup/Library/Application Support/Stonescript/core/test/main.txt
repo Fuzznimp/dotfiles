@@ -22,7 +22,7 @@ var SafeMean = import Stonescript/core/logic/safe-mean
 // _harvest()
 
 ?loc = rocky
-  ?foe.id = "acronian_scout"
+  ?foe_id = "acronian_scout"
     equipL fire sword D+16
     equipR ice sword D+16
 

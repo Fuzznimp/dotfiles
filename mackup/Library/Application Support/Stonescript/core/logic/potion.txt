@@ -9,13 +9,13 @@ var fast_potion_bosses = ["mushrooms","pallas","bronze"]
 func create()
   ?should_use
     ?loc = Mine
-      brew stone // Strength.
+      brew stone // NOTE: Strength.
     :?loc = Mushroom | loc = Halls | loc = Deadwood | loc = Ridge
-      brew wood + bronze // Berserk.
+      brew wood + bronze // NOTE: Berserk.
     :?loc = Caves | loc = Temple | loc = Rocky
-      brew stone + bronze // Lucky.
+      brew stone + bronze // NOTE: Lucky.
   :?item.potion = empty
-    brew tar + bronze // Vampiric.
+    brew tar + bronze // NOTE: Vampiric.
 
 func try_drink()
   ?loc = bronze_guardian & item.potion = "strength"
