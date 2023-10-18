@@ -624,8 +624,9 @@ func equip_L(it)
   // NOTE: Sets global flag, so the next `get_item()` in this frame won't return the same item.
   _equip_L = it
   ?is_2hander(it) | is_2hander(found_type)
-    return aac(it)
-  equipL @it@
+    equip @it@
+  :
+    equipL @it@
   return it
 
 var _equip_R = false
@@ -633,11 +634,9 @@ func equip_R(it)
   // NOTE: For debug.
   _equip_R = it
   ?is_2hander(it) | is_2hander(found_type)
-    // NOTE: Will be an issue when multiple staves
-    ?is(found_type, "staff")
-      return aac(C.ice_staff_di)
-    return aac(it)
-  equipR @it@
+    equip @it@
+  :
+    equipR @it@
   return it
 
 func is_2hander(ty)
@@ -948,10 +947,7 @@ func backflip()
   return equip_L("mind")
 
 func can_slap()
-  return can_use("skeleton_arm") &
-  ^!(foe_id = "ice_pillar") &
-  ^foe_distance < 7 & !phys_immune &
-  ^can_activate()
+  return can_use("skeleton_arm") & !(foe_id = "ice_pillar") & foe_distance < 7 & !phys_immune & can_activate()
 
 func should_slap()
   return can_slap() & foe_ehp <= C.arm_damage
@@ -959,7 +955,7 @@ func should_slap()
 func slap()
   Tracer.span("slap")
   ?pickpocket_stacks < C.max_pickpocket_stacks
-    return aac("arm")
+    return equip_L("arm")
   equip_L("arm")
   return use("skeleton_arm")
 
@@ -1068,43 +1064,6 @@ func use_abilities()
   ?should_slap()
     return slap()
   return false
-
-// TODO: Remove, as there is now a better way to handle aac.
-var runebow_aac_timer = 0
-func runebow_aac(speed_normal, speed_berserk)
-  ?runebow_aac_timer = 0
-    equipL wand
-    equip crossbow D aether
-  ?buffs.string = "berserk"
-    runebow_aac_timer = (runebow_aac_timer + 1) % speed_berserk
-  :
-    runebow_aac_timer = (runebow_aac_timer + 1) % speed_normal
-
-// TODO: Remove, as there is now a better way to handle aac.
-var aac_tick = 1
-func aac(weapon)
-  Tracer.span("aac_" + weapon)
-  _equip_L = weapon
-  equip @weapon@
-  ?!ai.idle
-    return true
-  ?is(lock, "hammer") | is(lock, "bardiche")
-    return true
-  ?weapon = "repeating" | weapon = C.ice_staff_di
-    aac_tick--
-    ?aac_tick = 0
-      aac_tick = 2
-      equip blade
-      equip @weapon@
-    return weapon
-  ?weapon = C.aether_runebow_d | weapon = C.fire_runebow_d
-    Tracer.span("runebow_aac")
-    runebow_aac(21, 12)
-  ?weapon = "wand" | weapon = "staff"
-    return true
-  equip wand
-  equip @weapon@
-  return weapon
 
 /*==================== INTERNALS ====================*/
 var elem_types = ["sword", "big sword", "wand","shield", "crossbow", "staff", "hammer"]

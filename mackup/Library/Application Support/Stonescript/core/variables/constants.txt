@@ -1,7 +1,4 @@
 /*===================== GEAR =====================*/
-var ice_staff_di = "ice staff dI+20"
-var aether_runebow_d = "aether crossbow D+18"
-var fire_runebow_d = "fire crossbow D+16"
 var elemental_items=[
   ["hammer",
     ["aether","D+14","D+13"],
@@ -19,7 +16,7 @@ var elemental_items=[
   ],
   ["staff",
     ["ice","dI+20"],
-    ["default",ice_staff_di,"The Ghost Slayer! +11"],
+    ["default","ice staff dI+20","The Ghost Slayer! +11"],
   ],
   ["crossbow",
     ["aether","D+18"],
