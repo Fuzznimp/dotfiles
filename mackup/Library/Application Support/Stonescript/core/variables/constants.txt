@@ -32,7 +32,7 @@ var elemental_items=[
   ["sword",
     ["aether","D+16", "D+13","dU+13","dU+11"],
     ["fire","D+20","D+16","dF+13"],
-    ["ice","D+16","D+13","dI+13"],
+    ["ice","D+16","D+13","dI+15"],
     ["poison","D+16","D+13"],
     ["vigor","D+20","D+16","dL+16","dL+13"],
     ["default",

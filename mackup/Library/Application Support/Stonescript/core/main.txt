@@ -209,12 +209,15 @@ func fight_dysan()
       equip_L(found)
     ?foe.state = 32 & around(58 + delay)
       return soft_block()
-    found = false
-    ?should_debuff()
-      found = find_debuff_weapon("melee", false, debuff_elems[0], false)
-    ?found
-      return equip_R(found)
-    return auto_equip_R("melee", false)
+    ?lucky_crit
+      equipR mask
+    :
+      found = false
+      ?should_debuff()
+        found = find_debuff_weapon("melee", false, debuff_elems[0], false)
+      ?found
+        return equip_R(found)
+      return auto_equip_R("melee", false)
   :?foe = phase3
     disable_r("blade")
     weak_elem = "default"
@@ -657,17 +660,21 @@ func auto_equip_R(range, aoe)
 
 func auto_equip_shield()
   Tracer.span("auto_eq_sh")
-  found = false
-  found_type = false
-  ?low_hp
-    found=get_item("shield", "vigor", "mod")
-  ?!found
-    found=get_item("shield", weak_elem, "stats")
-  ?!found
-    found=get_item("shield", "default", "")
-  ?found
-    return equip_R(found)
-  return false
+  ?lucky_crit
+    Tracer.span("shield_mask")
+    equipR mask
+  :
+    found = false
+    found_type = false
+    ?low_hp
+      found=get_item("shield", "vigor", "mod")
+    ?!found
+      found=get_item("shield", weak_elem, "stats")
+    ?!found
+      found=get_item("shield", "default", "")
+    ?found
+      return equip_R(found)
+    return false
 
 // NOTE: range: "melee" | "ranged", aoe: true/false.
 func auto_equip_dps(range, aoe)

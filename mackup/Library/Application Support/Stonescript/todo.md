@@ -9,3 +9,4 @@
 - Double compounds shield.
 - More modularity for debuffs.
 - Upgrades ice debuff weapons.
+- Mask R on scout mini boss.
