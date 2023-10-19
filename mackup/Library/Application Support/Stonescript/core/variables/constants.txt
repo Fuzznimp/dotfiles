@@ -27,10 +27,10 @@ var elemental_items=[
     ["default","aether crossbow D+18","Repeating Crossbow +16"],
   ],
   ["sword",
-    ["aether","D+16", "D+13","dU+13","dU+11"],
+    ["aether","D+16","D+13","dU+13","dU+11"],
     ["fire","D+20","D+16","dF+13"],
     ["ice","D+16","D+13","dI+15"],
-    ["poison","D+16","D+13","dP+12"],
+    ["poison","D+16","D+13","dP+13"],
     ["vigor","D+20","D+16","dL+16","dL+13"],
     ["default",
       "fire sword D+20","vigor sword D+20","aether sword D+16",
@@ -50,8 +50,6 @@ var elemental_items=[
 // NOTE: Highest evade% shield. Used to block big ass attacks.
 var evade_shield = "vigor shield ah+11"
 var stunlock_weapons=["stone hammer +11"]
-// FIXME: Can't add +11 to the string.
-var quarterstaff_dash = "quarterstaff"
 
 /*==================== GENERAL ====================*/
 var aoe_threshold = 4
@@ -70,6 +68,13 @@ var do_stunlock = ["poena","ceiling decorator"]
 // NOTE: When to debuff foes: "never", "always", or "smite" (only if Smite buff is active).
 var debuff_bosses = "smite"
 var debuff_non_bosses = "smite"
+// NOTE: Foe's id.
+var do_debuff_damage = [
+  "dysangelos_bearer",
+  "dysangelos_elementalist",
+  "dysangelos_perfected",
+  // "acronian_scout",
+  ]
 
 /*=================== ABILITIES ===================*/
 // NOTE: If item is not listed here, its `R` ability won't be used.

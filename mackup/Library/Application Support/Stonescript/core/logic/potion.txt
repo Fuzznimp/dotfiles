@@ -10,9 +10,9 @@ func create()
   ?should_use
     ?loc = Mine
       brew stone // NOTE: Strength.
-    :?loc = Mushroom | loc = Halls | loc = Deadwood | loc = Ridge
+    :?loc = Mushroom | loc = Halls | loc = Deadwood | loc = Ridge | loc = Caves
       brew wood + bronze // NOTE: Berserk.
-    :?loc = Caves | loc = Temple | loc = Rocky
+    :?loc = Temple | loc = Rocky
       brew stone + bronze // NOTE: Lucky.
   :?item.potion = empty
     brew tar + bronze // NOTE: Vampiric.

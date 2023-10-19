@@ -117,7 +117,7 @@ func healwalk()
   :?can_qs_dash()
     return qs_dash()
   auto_equip_shield()
-  ?hp < maxhp
+  ?hp < maxhp & !lucky_crit
     return equip_L("ouroboros")
   return equip_L("trisk")
 
@@ -167,7 +167,7 @@ func evade_at(t)
   Tracer.span("evade_at")
   ?foe_time >= t
     return try_evade()
-  ?foe_time < t & get_cd("mind")<=(t-foe_time)
+  ?foe_time < t & get_cd("mind") <= (t - foe_time)
     // NOTE: Abilities that would be interrupted.
     ?foe_time > (t - C.bardiche_frames)
       disable_r("bardiche")
@@ -185,6 +185,7 @@ func around(t)
   return foe_time > (t-2) & foe_time < (t+2)
 
 func fight_scout()
+  lucky_crit = false
   auto_melee_miniboss()
 
 var last_state = 0
@@ -197,20 +198,34 @@ func fight_dysan()
     hit = 22
   ?foe = phase1
     disable_r("blade")
+    disable_r("cinderwisp")
     Potion.try_drink()
     ?(foe_state = 33 & foe_time = 23) | (foe_state = 32 & around(hit + delay))
       return soft_block()
   :?foe = phase2
-    ?smite_at_exact() | dash_closer() | (foe_state = 33 & use_abilities())
+    disable_r("cinderwisp")
+    // FIXME: Not working.
+    // NOTE: If bfg R tight timing works, will switch back to mask during phase 2 => 3 animation.
+    // ?foe_state = 107
+    //   found = "mask"
+    //   return equip_R(found)
+    // ?smite_at_exact() | dash_closer() | (foe_state = 33 & use_abilities())
+    //   return true
+    ?dash_closer()
       return true
     Tracer.span("match_element")
-    found = find_weapon("melee", false, weak_elem, "stats", "false")
-    ?found
-      equip_L(found)
+    found = false
+    ?should_debuff()
+      found = find_debuff_weapon("melee", false, debuff_elems[0], false)
+      ?found
+        return equip_L(found)
+    auto_equip_L("melee", false)
     ?foe_state = 32 & around(58 + delay)
       return soft_block()
     ?lucky_crit
-      equipR mask
+      found = "mask"
+      ?found
+        return equip_R(found)
     :
       found = false
       ?should_debuff()
@@ -220,6 +235,8 @@ func fight_dysan()
       return auto_equip_R("melee", false)
   :?foe = phase3
     disable_r("blade")
+    // NOTE: Prevent healing.
+    low_hp = false
     weak_elem = "default"
     hit = 20 + math.Max(0, delay-6)
     // NOTE: Hammer him right as he gets armor.
@@ -245,7 +262,8 @@ func fight_dysan()
     :?foe_state = 32 & (dysan_step < 7) & around(48 + delay)
       return soft_block()
     :?lucky_crit & !lock // NOTE: Prevent hammer R interuption.
-      equipR mask
+      found = "mask"
+      equip_R(found)
   auto_melee_boss()
 
 func fight_xyloalgia()
@@ -683,10 +701,12 @@ func auto_equip_dps(range, aoe)
   ?lucky_crit
     Tracer.span("dps_mask")
     found = find_dps_weapon(range, aoe, true)
+    // Why +13 instead of +16
     ?!found
       return false
-    equipR mask
     equip_L(found)
+    found = "mask"
+    equip_R(found)
   :
     found = find_dps_weapon(range, aoe, true)
     ?!found
@@ -792,9 +812,7 @@ func find_weapon(range, aoe, elem, purpose, allow_2h)
         return ty
       found = get_item(ty, elem, purpose)
       ?!found & purpose = "stats"
-        // NOTE: Should probably remove this condition and call right away.
-        ?!found
-          found = get_item(ty, "default", "")
+        found = get_item(ty, "default", "")
       ?found
         found_type = ty
         return found
@@ -804,20 +822,24 @@ func get_preferred_types(range, aoe)
   ?phys_immune | (can_aoe & foe = magic_vulnerability)
     return C.for_phys_immune
   var types = C.for_melee_single_target
-  ?is(range, "melee")
-    ?foe_armor > 0
-      ?aoe
-        types = aa_aoe_types
-      :
-        types = aa_st_types
-    :?aoe
-      types = C.for_melee_aoe
+  // NOTE: Remove the use of hammer during Dysan phase 3.
+  ?lucky_crit
+    return types
   :
-    ?aoe
-      types = C.for_ranged_aoe
+    ?is(range, "melee")
+      ?foe_armor > 0
+        ?aoe
+          types = aa_aoe_types
+        :
+          types = aa_st_types
+      :?aoe
+        types = C.for_melee_aoe
     :
-      types = C.for_ranged_single_target
-  return types
+      ?aoe
+        types = C.for_ranged_aoe
+      :
+        types = C.for_ranged_single_target
+    return types
 
 var excluded_items = ""
 func get_item(ty, elem, purpose)
@@ -840,13 +862,11 @@ func can_debuff()
   ?disable_debuffs
     return false
   ?is_boss
-    // TODO: Improve this to always use mask. Maybe use location list instead of boolean.
-    // Also add more granular control. The issue is that I always want mask.
     ?loc = Rocky // NOTE: Always debuff Scout & Dysan.
       return true
     ?is(C.debuff_bosses, "never")
       return false
-    ?is(C.debuff_bosses,"smite") & smite_stacks=0
+    ?is(C.debuff_bosses,"smite") & smite_stacks = 0
       ?can_be_debuffed("debuff_dot")
         only_dot = true // NOTE: Keep up the dot.
         return true
@@ -857,7 +877,6 @@ func can_debuff()
 
 var disable_debuffs = false
 var debuff_elems = []
-
 func should_debuff()
   ?!can_debuff()
     return false
@@ -866,9 +885,11 @@ func should_debuff()
     debuff_elems.Add("fire")
     ?only_dot
       return true
-  ?can_be_debuffed("debuff_chill")
+  // NOTE:                           Don't debuff ice during Dysan p2.
+  ?can_be_debuffed("debuff_chill") & foe_id ! "dysangelos_elementalist"
+  // ?can_be_debuffed("debuff_chill")
     debuff_elems.Add("ice")
-  ?can_be_debuffed("debuff_damage")
+  ?can_be_debuffed("debuff_damage") & C.do_debuff_damage.Contains(foe_id)
     debuff_elems.Add("poison")
   var c = debuff_elems.Count()
   ?c > 1 & foe = debuff_elems[0]
@@ -933,7 +954,7 @@ func should_qs_dash()
 
 func qs_dash()
   Tracer.span("qs_dash")
-  equip_L(C.quarterstaff_dash)
+  equip_L("quarterstaff")
   return use("quarterstaff")
 
 func can_backflip()
@@ -1119,6 +1140,7 @@ func _categorize_item(ty, suffixes)
       var h = hash([ty, elem, purpose])
       add_item(h, full_name)
 
+// TODO: Move to utils.
 func hash(parts)
   return string.Join("-", parts)
 
@@ -1394,13 +1416,13 @@ func _update_game_state()
   found_type = false
   excluded_items = false
   weak_elem = get_foe_weak_elem()
+  foe_id = foe.id
   disable_debuffs = foe.buffs.count > 0 & (foe_buff("poena_mirror") | foe_buff("buff_protection"))
   low_hp = hp < (maxhp * C.low_hp_threshold)
   foe_ehp = foe.armor + foe.hp
   is_boss = (foe = boss)
   phys_immune = (foe = immune_to_physical)
   can_aoe = (foe.count >= C.aoe_threshold)
-  foe_id = foe.id
   foe_state = foe.state
   loc_stars = loc.stars
   foe_distance = foe.distance
