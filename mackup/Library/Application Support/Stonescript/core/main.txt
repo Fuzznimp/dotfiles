@@ -514,6 +514,7 @@ func melee(mode)
     auto_equip_dps("melee", aoe)
   return approach()
 
+// TODO: More aggressive dash.
 func approach()
   var range = 6
   ?found_type
@@ -864,30 +865,34 @@ func can_debuff()
   ?is_boss
     ?loc = Rocky // NOTE: Always debuff Scout & Dysan.
       return true
-    ?is(C.debuff_bosses, "never")
+    ?is(C.debuff_bosses_mode, "never")
       return false
-    ?is(C.debuff_bosses,"smite") & smite_stacks = 0
+    ?is(C.debuff_bosses_mode, "smite") & smite_stacks = 0
       ?can_be_debuffed("debuff_dot")
         only_dot = true // NOTE: Keep up the dot.
         return true
       return false
-  ?!is_boss & (is(C.debuff_non_bosses, "never") | is(C.debuff_non_bosses,"smite") & smite_stacks=0)
+  ?!is_boss & (is(C.debuff_non_bosses_mode, "never")
+  ^| is(C.debuff_non_bosses_mode ,"smite") & smite_stacks = 0)
     return false
   return true
 
 var disable_debuffs = false
 var debuff_elems = []
 func should_debuff()
+  // TODO: Find a scalable way
+  ?foe_id = "skeleton_boss_harder_2"
+    return false
   ?!can_debuff()
     return false
   debuff_elems.Clear()
-  ?can_be_debuffed("debuff_dot")
+  ?can_be_debuffed("debuff_dot") & smite_stacks > 0
     debuff_elems.Add("fire")
     ?only_dot
       return true
+  // TODO: Find a scalable way.
   // NOTE:                           Don't debuff ice during Dysan p2.
   ?can_be_debuffed("debuff_chill") & foe_id ! "dysangelos_elementalist"
-  // ?can_be_debuffed("debuff_chill")
     debuff_elems.Add("ice")
   ?can_be_debuffed("debuff_damage") & C.do_debuff_damage.Contains(foe_id)
     debuff_elems.Add("poison")
@@ -1257,7 +1262,7 @@ func _parse_status(splt, i)
     smite_stacks = num
   :?aspd_debuffs.Contains(uid)
     aspd_down = true
-  :?is(uid, "lucky_crit")
+  :?is(uid, "lucky_crit") & loc = Rocky
     lucky_crit = true
 
 func foe_buff(uid)

@@ -3,7 +3,7 @@ var Tracer = import Stonescript/observability/tracer
 
 var should_use = true
 // TODO: Remove this when done.
-var fast_potion_bosses = ["mushrooms","pallas","bronze"]
+var fast_potion_bosses = ["mushrooms","bronze","pallas"]
 
 // NOTE: `brew` is a reserved keyword :(.
 func create()

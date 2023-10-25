@@ -21,6 +21,7 @@ Big thanks to:
 
 ### Script
 
+- Removed dF from dysan loop.
 - Check why no dash on scout sometimes.
 - Does not keep mask sometimes on Dysan p1 => p2.
 - More modularity for debuffs.

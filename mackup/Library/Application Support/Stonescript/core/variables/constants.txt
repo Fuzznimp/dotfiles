@@ -29,14 +29,14 @@ var elemental_items=[
   ["sword",
     ["aether","D+16","D+13","dU+13","dU+11"],
     ["fire","D+20","D+16","dF+13"],
-    ["ice","D+16","D+13","dI+15"],
+    ["ice","D+16","D+13","dI+16"],
     ["poison","D+16","D+13","dP+13"],
-    ["vigor","D+20","D+16","dL+16","dL+13"],
+    ["vigor","D+21","D+20","dL+20","dL+13"],
     ["default",
-      "fire sword D+20","vigor sword D+20","aether sword D+16",
-      "poison sword D+16","vigor sword D+16"
+      "vigor sword D+21","fire sword D+20","aether sword D+16",
+      "poison sword D+16","vigor sword D+16",
+      "vigor sword dL+16","vigor sword dL+13",
     ],
-    // ["default","vigor sword dL+14","vigor sword dL+13"],
   ],
   ["shield",
     ["vigor","A+11"],
@@ -66,8 +66,8 @@ var max_chill_stacks = 6
 // NOTE: Supported: poena, ceiling decorator, ice elemental.
 var do_stunlock = ["poena","ceiling decorator"]
 // NOTE: When to debuff foes: "never", "always", or "smite" (only if Smite buff is active).
-var debuff_bosses = "smite"
-var debuff_non_bosses = "smite"
+var debuff_bosses_mode = "smite"
+var debuff_non_bosses_mode = "smite"
 // NOTE: Foe's id.
 var do_debuff_damage = [
   "dysangelos_bearer",
@@ -86,7 +86,7 @@ var useable_abilities = [
 // NOTE: When to use Cinder ability (if listed in `useable_abilities`). Will use at max_stacks,
 // or if boss's HP is lower than stacks * dmg.
 var max_ignition_stacks = 10
-var cinderwisp_dmg = 96
+var cinderwisp_dmg = 100
 var smite_threshold = 7
 var smite_damage = 100
 // NOTE: Enable smiting two screens at once.
