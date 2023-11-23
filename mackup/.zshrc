@@ -10,6 +10,10 @@ source ${HOME}/.cargo/env
 
 [ -f ~/.fzf.zsh ] && source  ${HOME}/.zsh
 
+
+# Tells lazydocker where to find the docker socket when using Colima.
+export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
+
 export PATH=/opt/homebrew/bin:$PATH
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'
 
@@ -20,8 +24,6 @@ export PATH=$HOME/.nix-profile/bin:$PATH
 eval "$(direnv hook zsh)"
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# Nix
 
 # Source last
 source ${HOME}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

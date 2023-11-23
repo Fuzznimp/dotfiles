@@ -91,8 +91,7 @@ alias tbs='tmux-bootstrap-sessions'
 # Docker
 alias dk="docker"
 alias dkc="docker compose"
-## FIX: Docker host is not set.
-alias ldk="DOCKER_HOST='unix://$HOME/.colima/docker.sock' tmux display-popup -w 80% -h 80% -d '#{pane_current_path}' 'lazydocker'"
+alias ldk="tmux display-popup -w 80% -h 80% -d '#{pane_current_path}' 'DOCKER_HOST=unix://$HOME/.colima/docker.sock lazydocker'"
 alias docker.cleancontainer="docker ps -a -q | xargs docker rm"
 alias docker.cleanimage="docker images --filter dangling=true -q | xargs docker rmi"
 
@@ -114,6 +113,7 @@ alias cpu="sysctl -n machdep.cpu.brand_string"
 
 # Git
 alias lg="tmux display-popup -w 80% -h 80% -d '#{pane_current_path}' 'lazygit'"
+alias ghd="tmux display-popup -w 80% -h 80% -d '#{pane_current_path}' 'gh dash'"
 alias ghb="gh browse"
 alias gst="git status"
 alias gd="git diff"
@@ -133,6 +133,9 @@ alias update_kitty="curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /d
 # Vim
 alias vi="nvim"
 alias delete.packer="rm -rf ~/.local/share/nvim/site/pack/packer"
+
+# VPN
+alias ts="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
 # Onivim2
 alias oni="/Applications/Onivim2.App/Contents/MacOS/Oni2"
