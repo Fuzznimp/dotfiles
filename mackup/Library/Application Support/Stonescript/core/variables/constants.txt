@@ -27,15 +27,14 @@ var elemental_items=[
     ["default","aether crossbow D+18","Repeating Crossbow +16"],
   ],
   ["sword",
-    ["aether","D+16","D+13","dU+13","dU+11"],
+    ["aether","D+20","D+13","dU+16","dU+13"],
     ["fire","D+20","D+16","dF+13"],
-    ["ice","D+16","D+13","dI+16"],
-    ["poison","D+16","D+13","dP+13"],
-    ["vigor","D+21","D+20","dL+20","dL+13"],
+    ["ice","D+20","D+13","dI+20"],
+    ["poison","D+20","D+13","dP+13"],
+    ["vigor","D+21","D+20","dL+21","dL+16"],
     ["default",
-      "vigor sword D+21","fire sword D+20","aether sword D+16",
-      "poison sword D+16","vigor sword D+16",
-      "vigor sword dL+16","vigor sword dL+13",
+      "vigor sword D+21","fire sword D+20","aether sword D+20",
+      "poison sword D+20", "ice sword D+20", "vigor sword dL+20","vigor sword dL+16",
     ],
   ],
   ["shield",
@@ -47,11 +46,13 @@ var elemental_items=[
     ["default","compound +11"],
   ],
 ]
+
+/*==================== GENERAL ====================*/
 // NOTE: Highest evade% shield. Used to block big ass attacks.
 var evade_shield = "vigor shield ah+11"
 var stunlock_weapons=["stone hammer +11"]
-
-/*==================== GENERAL ====================*/
+// NOTE: QS dash.
+var qs_name="Speed Hack"
 var aoe_threshold = 4
 // NOTE: Fraction of HP to consider low. When on low HP, will prioritize `ah` shield and `dL`
 // weapon over foe's elemental weakness. If 0, will never force lifesteal.
@@ -86,7 +87,7 @@ var useable_abilities = [
 // NOTE: When to use Cinder ability (if listed in `useable_abilities`). Will use at max_stacks,
 // or if boss's HP is lower than stacks * dmg.
 var max_ignition_stacks = 10
-var cinderwisp_dmg = 100
+var cinderwisp_dmg = 124
 var smite_threshold = 7
 var smite_damage = 100
 // NOTE: Enable smiting two screens at once.
@@ -100,7 +101,7 @@ var fire_talisman_frames = 20
 var for_melee_single_target = ["sword","hammer"]
 var for_melee_aoe = ["arm"]
 var melee_range = 5
-var arm_damage = 56
+var arm_damage = 68
 var max_pickpocket_stacks = 4
 // NOTE: `dmg * (crit_mult + base_crit_mult)`, script won't use the bardiche ability
 // if non-boss's HP is lower than twice this damage.

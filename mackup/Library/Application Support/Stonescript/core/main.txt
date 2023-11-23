@@ -642,7 +642,9 @@ var _equip_L = false
 func equip_L(it)
   // NOTE: Sets global flag, so the next `get_item()` in this frame won't return the same item.
   _equip_L = it
-  ?is_2hander(it) | is_2hander(found_type)
+  ?is(it, C.qs_name)
+    equip @it@
+  :?is_2hander(it) | is_2hander(found_type)
     equip @it@
   :
     equipL @it@
@@ -1408,7 +1410,8 @@ var phys_immune = false
 var foe_id = false
 var foe_state = false
 var loc_stars = false
-var foe_distance = false
+// FIXME: Invalid string operation on line 605.
+var foe_distance = 99
 var foe_count = false
 var foe_time = false
 var foe_armor = false
@@ -1490,12 +1493,12 @@ func draw_ui()
       >`@x@,@y+5@,@Colors.grey@,Count: @foe_count@
     y = 24
 
-    var frame_time = 0
+    var frame_time = math.BigNumber(0)
     for ft:frame_times
-      frame_time = frame_time + ft
-    ?frame_time = 0
+      frame_time.Add(ft)
+    ?frame_time = 0 | frame_times.Count() = 0
       return false
-    var info = "ms: " + frame_time/frame_times.Count()
+    var info = "ms: " + frame_time.Div(frame_times.Count()).ToString()
     ?lock
       info = info + ", L: " + lock + " (" + lock_timer + ")"
     >`@x@,@y@,#blue,@info@
@@ -1560,8 +1563,7 @@ func reset_loop()
 var start_t = 0
 var frame_times = []
 var index = 0
-start_t = time.ms
-
+start_t = time.msbn
 /*==================== MAIN LOOP ====================*/
 ?loc.begin
   equip_L("quest")
@@ -1589,10 +1591,9 @@ draw_ui()
 ?C.enable_hit_tracking
   track_hits()
 ?frame_times.Count() < 30
-  frame_times.Add(time.ms - start_t)
+  frame_times.Add((time.msbn).Sub(start_t))
 :
-  frame_times[index] = (time.ms - start_t)
+  frame_times[index] = ((time.msbn).Sub(start_t))
   index++
   ?index = frame_times.Count()
     index = 0
-
