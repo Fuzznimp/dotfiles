@@ -25,7 +25,7 @@ colors:
 
 window:
   padding:
-    x: 2
+    x: 8
     y: 8
   dynamic_padding: true
   decorations: transparent
