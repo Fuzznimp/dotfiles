@@ -16,7 +16,8 @@ var elemental_items=[
   ],
   ["staff",
     ["ice","dI+20"],
-    ["default","ice staff dI+20","The Ghost Slayer! +11"],
+    ["aether","dU+20"],
+    ["default","ice staff dI+20","aether staff dU+20","The Ghost Slayer! +11"],
   ],
   ["crossbow",
     ["aether","D+18"],
@@ -27,14 +28,16 @@ var elemental_items=[
     ["default","aether crossbow D+18","Repeating Crossbow +16"],
   ],
   ["sword",
-    ["aether","D+20","D+13","dU+16","dU+13"],
-    ["fire","D+20","D+16","dF+13"],
+    ["aether","D+20","D+13"],
+    ["fire","D+21","D+20","dF+13"],
     ["ice","D+20","D+13","dI+20"],
     ["poison","D+20","D+13","dP+13"],
-    ["vigor","D+21","D+20","dL+21","dL+16"],
+    // TODO: Use name `BloodSucker` for first +21 to fix not being able to use both.
+    // Probably fixed by now.
+    ["vigor","D+21","D+20","dL+21 BloodSucker","dL+21"],
     ["default",
-      "vigor sword D+21","fire sword D+20","aether sword D+20",
-      "poison sword D+20", "ice sword D+20", "vigor sword dL+20","vigor sword dL+16",
+      "vigor sword D+21","fire sword D+21","aether sword D+20",
+      "poison sword D+20", "ice sword D+20", "BloodSucker", "vigor sword dL+21",
     ],
   ],
   ["shield",
@@ -48,28 +51,30 @@ var elemental_items=[
 ]
 
 /*==================== GENERAL ====================*/
-// NOTE: Highest evade% shield. Used to block big ass attacks.
-var evade_shield = "vigor shield ah+11"
+// Highest evade% shield. Used to block big ass attacks.
+var evade_shield = "vigor shield ah+18"
 var stunlock_weapons=["stone hammer +11"]
-// NOTE: QS dash.
+// QS dash.
 var qs_name="Speed Hack"
 var aoe_threshold = 4
-// NOTE: Fraction of HP to consider low. When on low HP, will prioritize `ah` shield and `dL`
+// Fraction of HP to consider low. When on low HP, will prioritize `ah` shield and `dL`
 // weapon over foe's elemental weakness. If 0, will never force lifesteal.
 var low_hp_threshold = 1
-// NOTE: Switch to 1h+shield against non-boss foes when `low_hp_threshold` is reached.
+// Switch to 1h+shield against non-boss foes when `low_hp_threshold` is reached.
 var use_shield_on_low_hp = false
-// NOTE: If true, will use hatchet and shovel.
+// If true, will use hatchet and shovel.
 var harvesting = false
+// "melee" | "ranged"
+var unmake_range = "ranged"
 
 /*==================== DEBUFF ====================*/
 var max_chill_stacks = 6
-// NOTE: Supported: poena, ceiling decorator, ice elemental.
+// Supported: poena, ceiling decorator, ice elemental.
 var do_stunlock = ["poena","ceiling decorator"]
-// NOTE: When to debuff foes: "never", "always", or "smite" (only if Smite buff is active).
+// When to debuff foes: "never", "always", or "smite" (only if Smite buff is active).
 var debuff_bosses_mode = "smite"
 var debuff_non_bosses_mode = "smite"
-// NOTE: Foe's id.
+// Foe's id.
 var do_debuff_damage = [
   "dysangelos_bearer",
   "dysangelos_elementalist",
@@ -78,21 +83,22 @@ var do_debuff_damage = [
   ]
 
 /*=================== ABILITIES ===================*/
-// NOTE: If item is not listed here, its `R` ability won't be used.
+// If item is not listed here, its `R` ability won't be used.
 var useable_abilities = [
   "dash","bash","mask","blade","hammer",
-  "fire_talisman","quarterstaff","cinderwisp"
-  // "skeleton_arm", "bardiche"
+  "fire_talisman","quarterstaff","cinderwisp",
+  "bardiche"
+  // "skeleton_arm"
 ]
-// NOTE: When to use Cinder ability (if listed in `useable_abilities`). Will use at max_stacks,
+// When to use Cinder ability (if listed in `useable_abilities`). Will use at max_stacks,
 // or if boss's HP is lower than stacks * dmg.
 var max_ignition_stacks = 10
 var cinderwisp_dmg = 124
 var smite_threshold = 7
-var smite_damage = 100
-// NOTE: Enable smiting two screens at once.
+var smite_damage = 105
+// Enable smiting two screens at once.
 var long_long_smite = true
-// NOTE: Activation frames.
+// Activation frames.
 var heavy_hammer_frames = 14
 var bardiche_frames = 22
 var fire_talisman_frames = 20
@@ -102,15 +108,15 @@ var for_melee_single_target = ["sword","hammer"]
 var for_melee_aoe = ["arm"]
 var melee_range = 5
 var arm_damage = 68
-var max_pickpocket_stacks = 4
-// NOTE: `dmg * (crit_mult + base_crit_mult)`, script won't use the bardiche ability
+var max_pickpocket_stacks = 5
+// `dmg * (crit_mult + base_crit_mult)`, script won't use the bardiche ability
 // if non-boss's HP is lower than twice this damage.
-var bardiche_dmg = 52 * (10.8 + 2)
+var bardiche_dmg = 52 * (13.5 + 2)
 
 /*===================== RANGED =====================*/
-// NOTE: Will exclusively use single-target ranged against these enemies.
+// Will exclusively use single-target ranged against these enemies.
 var must_ranged_foes = ["wasp","wasp nest","mosquito","huge mosquito"]
-// NOTE: Used for scripted bosses or `ranged_foes`.
+// Used for scripted bosses or `ranged_foes`.
 var for_ranged_single_target = ["crossbow","repeating","wand"]
 var for_ranged_aoe = ["staff","wand"]
 var for_phys_immune = ["staff","wand"]

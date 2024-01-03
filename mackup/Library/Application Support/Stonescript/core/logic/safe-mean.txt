@@ -1,9 +1,9 @@
-var speedrun = true
-// NOTE: Allows smite stacking.
+var _enable = false
+// Allows smite stacking.
 var extra_frames = 10
 
-// NOTE: `pickup.distance > 20` allows to pick up the chest and leave afterwards if needed.
+// `pickup.distance > 20` allows to pick up the chest and leave afterwards if needed.
 func handle()
-  ?speedrun
+  ?_enable
     ?((loc.averageTime + extra_frames) < totaltime & pickup.distance > 20) & loc.averageTime > 0
       loc.Leave()

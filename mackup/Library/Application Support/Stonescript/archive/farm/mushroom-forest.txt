@@ -53,7 +53,7 @@ func MindDodge()
     equipL mind
     ShieldSwitcher_R()
     ShieldFrames = 3
-  // NOTE: Uncomment when I'll have mask.
+  // Uncomment when I'll have mask.
   // :
   //   ?item.GetCooldown("mask") <= 0 & foe.distance <= 10 & foe = boss
   //     equip mask

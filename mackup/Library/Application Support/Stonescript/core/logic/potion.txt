@@ -5,17 +5,17 @@ var should_use = true
 // TODO: Remove this when done.
 var fast_potion_bosses = ["mushrooms","bronze","pallas"]
 
-// NOTE: `brew` is a reserved keyword :(.
+// `brew` is a reserved keyword :(.
 func create()
   ?should_use
     ?loc = Mine
-      brew stone // NOTE: Strength.
-    :?loc = Mushroom | loc = Halls | loc = Deadwood | loc = Ridge | loc = Caves
-      brew wood + bronze // NOTE: Berserk.
-    :?loc = Temple | loc = Rocky
-      brew stone + bronze // NOTE: Lucky.
+      brew stone // Strength.
+    :?loc = Mushroom | loc = Halls | loc = Deadwood | loc = Caves
+      brew wood + bronze // Berserk.
+    :?loc = Temple | loc = Rocky | loc = Ridge
+      brew stone + bronze // Lucky.
   :?item.potion = empty
-    brew tar + bronze // NOTE: Vampiric.
+    brew tar + bronze // Vampiric.
 
 func try_drink()
   ?loc = bronze_guardian & item.potion = "strength"

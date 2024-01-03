@@ -31,11 +31,11 @@ Abilities.handle()
 Passive.handle()
 Tracer.display_trace()
 
-// NOTE: Update dynamic variables, and clear lists if needed.
+// Update dynamic variables, and clear lists if needed.
 func update_game_state()
   Tracer.spans.Clear()
   // GS.update()
 
 update_game_state()
-// NOTE: Put at the bottom.
+// Put at the bottom.
 AAC.handle()

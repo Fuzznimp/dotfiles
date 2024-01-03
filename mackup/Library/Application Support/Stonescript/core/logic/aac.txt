@@ -1,5 +1,5 @@
 /*
-  NOTE: Credit to Ket from the discord for helping me with this.
+  Credit to Ket from the discord for helping me with this.
 
   With the newly exposed property `state`, AAC is now way more simple (no more modulos or frame calculations).
   There is two way to handle it. The first one, if put at the very bottom of the loop, should be done as follow:
@@ -14,10 +14,10 @@
   While more permissive, it is less efficient as the following one, that should be put a the very top of the loop.
   It assumes the equip logic is set up to re-equip stuff every frame if something has changed instead of
   leaving whatever was equipped last. (i.e. you need to avoid any logic holes where nothing gets equipped that frame,
-  // otherwise you end up with junk in your hand)
+  otherwise you end up with junk in your hand)
 */
 func handle()
   ?item.left.state = 3
-    equipL wand *0 // NOTE: Junk item for the swap.
+    equipL wand *0 // Junk item for the swap.
   ?item.right.state = 3
-    equipR shield *0 // NOTE: Junk item for the swap.
+    equipR shield *0 // Junk item for the swap.
