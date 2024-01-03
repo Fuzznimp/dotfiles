@@ -46,7 +46,7 @@ var elemental_items=[
     ["ice","A+11"],
     ["fire","A+11"],
     ["aether","A+11"],
-    ["default","compound +11"],
+    ["default","compound +12 shiny", "compound +15 golden"],
   ],
 ]
 
@@ -54,6 +54,7 @@ var elemental_items=[
 // Highest evade% shield. Used to block big ass attacks.
 var evade_shield = "vigor shield ah+18"
 var stunlock_weapons=["stone hammer +11"]
+var speed_coumpound_armor_threshold = 14
 // QS dash.
 var qs_name="Speed Hack"
 var aoe_threshold = 4

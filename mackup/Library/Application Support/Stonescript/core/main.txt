@@ -497,7 +497,9 @@ func melee(mode)
     return true
   var aoe = is(mode, "aoe")
   ?Unmake.should_unmake()
+    // >`10,10,should_unmake
     ?try_equip_unmake(C.unmake_range, aoe)
+      // >`11,10,try_equip_unmake
       Tracer.span("unmaking")
       mode = "unmake"
       return approach()
@@ -683,7 +685,7 @@ func auto_equip_R(range, aoe)
 func auto_equip_shield()
   Tracer.span("auto_eq_sh")
   ?lucky_crit
-    Tracer.span("shield_mask")
+    Tracer.span("auto_eq_sh_mask")
     equipR mask
   :
     found = false
@@ -691,7 +693,10 @@ func auto_equip_shield()
     ?low_hp
       found=get_item("shield", "vigor", "mod")
     ?!found
-      found=get_item("shield", weak_elem, "stats")
+      ?is(weak_elem, "default") & player_armor >= C.speed_coumpound_armor_threshold
+        found="compound +15 golden"
+      :
+        found=get_item("shield", weak_elem, "stats")
     ?!found
       found=get_item("shield", "default", "")
     ?found
@@ -1411,11 +1416,11 @@ var phys_immune = false
 var foe_id = false
 var foe_state = false
 var loc_stars = false
-// FIXME: Invalid string operation on line 605.
 var foe_distance = 99
 var foe_count = false
 var foe_time = false
 var foe_armor = false
+var player_armor = 0
 
 // Done because accessing variables in cheaper than accessing properties.
 func _update_game_state()
@@ -1438,6 +1443,7 @@ func _update_game_state()
   foe_count = foe.count
   foe_time = foe.time
   foe_armor = foe.armor
+  player_armor = armor
   Tracer.spans.Clear()
 
 // Reset/update dynamic global vars.

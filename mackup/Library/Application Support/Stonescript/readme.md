@@ -17,13 +17,10 @@ Big thanks to:
 
 ### In game
 
-- Upgrades ice + poison debuff weapons.
-
 ### Script
 
-- Removed dF from dysan loop.
+- Improve unmake logic. Find a way to force unmake staff even at melee range.
 - Check why no dash on scout sometimes.
-- Does not keep mask sometimes on Dysan p1 => p2.
 - More modularity for debuffs.
 - Named items with gear hash.
 - Double compounds shield.
