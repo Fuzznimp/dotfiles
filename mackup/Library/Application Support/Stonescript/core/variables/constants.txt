@@ -1,4 +1,14 @@
 /*===================== GEAR =====================*/
+// To go beyound armor cap.
+var max_armor_compound_shield = "compound +21 golden"
+// To rush to armor cap.
+var speed_armor_compound_shield = "compound +12 shiny"
+// Highest evade% shield. Used to block big ass attacks.
+var evade_shield = "vigor shield ah+21"
+var stunlock_weapons=["stone hammer +11"]
+// QS dash.
+var qs_name="Speed Hack"
+// Gear "hash".
 var elemental_items=[
   ["hammer",
     ["aether","D+14","D+13"],
@@ -44,19 +54,18 @@ var elemental_items=[
     ["vigor","A+11"],
     ["poison","A+11"],
     ["ice","A+11"],
-    ["fire","A+11"],
+    ["fire","A+16"],
     ["aether","A+11"],
-    ["default","compound +12 shiny", "compound +15 golden"],
+    ["default",
+      speed_armor_compound_shield,max_armor_compound_shield,
+      evade_shield
+    ],
   ],
 ]
 
 /*==================== GENERAL ====================*/
-// Highest evade% shield. Used to block big ass attacks.
-var evade_shield = "vigor shield ah+18"
-var stunlock_weapons=["stone hammer +11"]
-var speed_coumpound_armor_threshold = 14
-// QS dash.
-var qs_name="Speed Hack"
+// Threshold for using `max_armor_compound_shield` instead of `speed_armor_compound_shield`.
+var speed_armor_coumpound_threshold = 14
 var aoe_threshold = 4
 // Fraction of HP to consider low. When on low HP, will prioritize `ah` shield and `dL`
 // weapon over foe's elemental weakness. If 0, will never force lifesteal.
@@ -123,7 +132,6 @@ var for_ranged_aoe = ["staff","wand"]
 var for_phys_immune = ["staff","wand"]
 
 /*===================== DEBUG =====================*/
-// TODO: Probably move this into a separate file.
 var debug = true
 var ui_show_cd = debug
 var ui_show_statuses = debug

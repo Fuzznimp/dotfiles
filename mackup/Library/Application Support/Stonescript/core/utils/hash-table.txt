@@ -1,4 +1,4 @@
-var Debbuger = import Stonescript/observability/debugger
+var Debuger = import Stonescript/observability/debugger
 
 func try_get(dict, k, default)
   var idx = dict.IndexOf(k)

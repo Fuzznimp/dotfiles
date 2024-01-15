@@ -1,14 +1,14 @@
 var AAC = import Stonescript/core/logic/aac
 var C = import Stonescript/core/variables/constants
 var Colors = import Stonescript/core/utils/colors
-var Debbuger = import Stonescript/observability/debugger
+var Debuger = import Stonescript/observability/debugger
 var HashTable = import Stonescript/core/utils/hash-table
 var Potion = import Stonescript/core/logic/potion
 var SafeMean = import Stonescript/core/logic/safe-mean
 var Tracer = import Stonescript/observability/tracer
 var Unmake = import Stonescript/core/logic/unmake
 
-/*===================== PROGRESS =====================*/
+/*===================== PROGRESSION =====================*/
 func progress()
   /*===== PICKUP RESOURCES =====*/
   ?pickup.distance < 9
@@ -693,8 +693,8 @@ func auto_equip_shield()
     ?low_hp
       found=get_item("shield", "vigor", "mod")
     ?!found
-      ?is(weak_elem, "default") & player_armor >= C.speed_coumpound_armor_threshold
-        found="compound +15 golden"
+      ?is(weak_elem, "default") & player_armor >= C.speed_armor_coumpound_threshold
+        found=C.max_armor_compound_shield
       :
         found=get_item("shield", weak_elem, "stats")
     ?!found
@@ -1526,7 +1526,7 @@ func draw_ui()
       _weapon = _equip_R + _weapon
     >`@x@,@y+1@,#blue,@_weapon@
 
-    Debbuger.display(2)
+    Debuger.display(2)
     Tracer.display()
 
 // == TRACKING ==

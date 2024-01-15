@@ -7,5 +7,3 @@ import Stonescript/skins/pet-skully
 
 import Stonescript/core/main
 // import Stonescript/core/test/main
-
-// >`13,10,@item.right@
