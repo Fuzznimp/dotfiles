@@ -192,11 +192,5 @@
   "vim.smartRelativeLine": true,
   "editor.cursorSurroundingLines": 20,
   "editor.lineNumbers": "on",
-  "window.zoomLevel": 1,
-  "[shellscript]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
-  },
-  "[properties]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
-  }
+  "window.zoomLevel": 1
 }

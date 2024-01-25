@@ -1,11 +1,11 @@
-update_stack () {
+update_stack() {
   echo "🌀 Starting brew maintenance.."
-  brew update \
-    && brew upgrade \
-    && brew cleanup \
-    && brew doctor \
-    && brew bundle check \
-    && brew bundle cleanup
+  brew update &&
+    brew upgrade &&
+    brew cleanup &&
+    brew doctor &&
+    brew bundle check &&
+    brew bundle cleanup
   echo "🚀 Brew maintenance done!"
 
   echo "🌀 Starting mas maintenance.."
@@ -13,18 +13,18 @@ update_stack () {
   echo "🚀 Mas maintenance done!"
 }
 
-lfcd () {
-    tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        rm -f "$tmp"
-        if [ -d "$dir" ]; then
-            if [ "$dir" != "$(pwd)" ]; then
-                cd "$dir"
-            fi
-        fi
+lfcd() {
+  tmp="$(mktemp)"
+  lf -last-dir-path="$tmp" "$@"
+  if [ -f "$tmp" ]; then
+    dir="$(cat "$tmp")"
+    rm -f "$tmp"
+    if [ -d "$dir" ]; then
+      if [ "$dir" != "$(pwd)" ]; then
+        cd "$dir"
+      fi
     fi
+  fi
 }
 
 function tmux-kill-garbage-sessions() {
@@ -43,6 +43,11 @@ function tmux-kill-garbage-sessions() {
       fi
     done
   fi
+}
+
+function tmux-kill-all() {
+  tmux list-sessions | cut -d: -f1 | xargs -I{} tmux kill-session -t {}
+  echo "All tmux sessions removed."
 }
 
 function tmux-bootstrap-sessions() {
@@ -70,7 +75,7 @@ api_key() {
 }
 
 gclone() {
-	git clone "$1" && cd "$(basename "$1" .git)"
+  git clone "$1" && cd "$(basename "$1" .git)"
 }
 
 mk() {
@@ -90,7 +95,7 @@ wth() {
 _calcram() {
   local sum
   sum=0
-  for i in `ps aux | grep -i "$1" | grep -v "grep" | awk '{print $6}'`; do
+  for i in $(ps aux | grep -i "$1" | grep -v "grep" | awk '{print $6}'); do
     sum=$(($i + $sum))
   done
   sum=$(echo "scale=2; $sum / 1024.0" | bc)
