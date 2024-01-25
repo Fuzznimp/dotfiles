@@ -61,197 +61,206 @@ y = 8
 action = "ToggleFullscreen"
 key = "F11"
 
+# ===== Bridge between tmux and alacritty to use macOS keybinds =====
+# `\u0002` = `C-b` | `\u0002,` = `C-b ,` | `\u0002s` = `C-b s` | etc.
+
+# Rename the current tmux window.
 [[keyboard.bindings]]
 chars = "\u0002,"
 key = "Comma"
 mods = "Command"
 
+# Select a new tmux session for the attached client interactively.
 [[keyboard.bindings]]
 chars = "\u0002s"
 key = "K"
 mods = "Command"
 
+# Session managment
 [[keyboard.bindings]]
 chars = "\u0002F"
 key = "K"
 mods = "Command|Shift"
 
+# Search inside current tmux pane.
 [[keyboard.bindings]]
 chars = "\u0002?"
 key = "F"
 mods = "Command"
 
+# Select window 1-9
 [[keyboard.bindings]]
 chars = "\u00021"
 key = "Key1"
 mods = "Command"
-
 [[keyboard.bindings]]
 chars = "\u00022"
 key = "Key2"
 mods = "Command"
-
 [[keyboard.bindings]]
 chars = "\u00023"
 key = "Key3"
 mods = "Command"
-
 [[keyboard.bindings]]
 chars = "\u00024"
 key = "Key4"
 mods = "Command"
-
 [[keyboard.bindings]]
 chars = "\u00025"
 key = "Key5"
 mods = "Command"
-
 [[keyboard.bindings]]
 chars = "\u00026"
 key = "Key6"
 mods = "Command"
-
 [[keyboard.bindings]]
 chars = "\u00027"
 key = "Key7"
 mods = "Command"
-
 [[keyboard.bindings]]
 chars = "\u00028"
 key = "Key8"
 mods = "Command"
-
 [[keyboard.bindings]]
 chars = "\u00029"
 key = "Key9"
 mods = "Command"
 
+# Move window x axis.
 [[keyboard.bindings]]
 chars = "\u0002p"
 key = "Left"
 mods = "Command|Shift"
-
 [[keyboard.bindings]]
 chars = "\u0002n"
 key = "Right"
 mods = "Command|Shift"
 
+# Create a new tmux window.
 [[keyboard.bindings]]
 chars = "\u0002c"
 key = "T"
 mods = "Command"
 
+# Break the current tmux pane out of the tmux window.
 [[keyboard.bindings]]
 chars = "\u0002!"
 key = "T"
 mods = "Command|Shift"
 
+# Kill the current tmux pane (and window if last pane).
 [[keyboard.bindings]]
 chars = "\u0002x"
 key = "W"
 mods = "Command"
 
+# Toggle the zoom state of the current tmux pane.
 [[keyboard.bindings]]
 chars = "\u0002z"
 key = "Z"
 mods = "Command"
 
+# Switch to last tmux session.
 [[keyboard.bindings]]
 chars = "\u0002L"
 key = "L"
 mods = "Command"
 
+# ??
 [[keyboard.bindings]]
 chars = "\u0002["
 key = "LBracket"
 mods = "Command"
-
+# Change to the previous tmux window.
 [[keyboard.bindings]]
 chars = "\u0002p"
 key = "LBracket"
 mods = "Command|Shift"
 
+# Split the current pane into two, left and right.
 [[keyboard.bindings]]
 chars = "\u0002%"
 key = "D"
 mods = "Command"
-
+# Split the current pane into two, top and bottom.
 [[keyboard.bindings]]
 chars = "\u0002\""
 key = "D"
 mods = "Command|Shift"
 
+# Move between panes.
 [[keyboard.bindings]]
 chars = "\u0002\u001B[D"
 key = "Left"
 mods = "Command"
-
 [[keyboard.bindings]]
 chars = "\u0002\u001B[C"
 key = "Right"
 mods = "Command"
-
 [[keyboard.bindings]]
 chars = "\u0002\u001B[A"
 key = "Up"
 mods = "Command"
-
 [[keyboard.bindings]]
 chars = "\u0002\u001B[B"
 key = "Down"
 mods = "Command"
 
-[[keyboard.bindings]]
-chars = "\u0002p"
-key = "Left"
-mods = "Control|Command"
-
-[[keyboard.bindings]]
-chars = "\u0002n"
-key = "Right"
-mods = "Control|Command"
-
+# Detach the current tmux client.
 [[keyboard.bindings]]
 chars = "\u0002d"
 key = "Q"
 mods = "Command"
 
-[[keyboard.bindings]]
-chars = "\u0002n"
-key = "RBracket"
-mods = "Command|Shift"
-
+## Install tmux plugins.
 [[keyboard.bindings]]
 chars = "\u0002I"
 key = "R"
 mods = "Command|Shift"
 
-[[keyboard.bindings]]
-chars = "\u0002R"
-key = "R"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u0002\u0013"
-key = "S"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u0002\u001BP"
-key = "P"
-mods = "Command"
-
+# Jump whole word.
 [[keyboard.bindings]]
 chars = "\u001BF"
 key = "Right"
 mods = "Alt"
-
 [[keyboard.bindings]]
 chars = "\u001BB"
 key = "Left"
 mods = "Alt"
 
+# Open in nvim.
 [[keyboard.bindings]]
 chars = "\u0002\u0006"
 key = "O"
+mods = "Command"
+
+# Sync tmux panes inputs.
+[[keyboard.bindings]]
+chars = "\u0002\u0019"
+key = "Y"
+mods = "Command"
+
+# == "tmux-plugins/tmux-logging" ==
+# Start/stop log mode.
+[[keyboard.bindings]]
+chars = "\u0002\u001BP"
+key = "P"
+mods = "Command"
+
+# == "fcsonline/tmux-thumbs" ==
+[[keyboard.bindings]]
+chars = "\u0002 "
+key = "C"
+mods = "Command|Shift"
+
+# == 'tmux-plugins/tmux-resurrect ==
+# Reload
+[[keyboard.bindings]]
+chars = "\u0002R"
+key = "R"
+mods = "Command"
+# Save
+[[keyboard.bindings]]
+chars = "\u0002M"
+key = "S"
 mods = "Command"
