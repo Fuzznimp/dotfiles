@@ -27,7 +27,7 @@ lfcd () {
     fi
 }
 
-function kill-tmux-garbage-sessions() {
+function tmux-kill-garbage-sessions() {
   local garbage_sessions=($(tmux list-sessions | awk -F: '!/🌳|🍃/ {print $1}'))
   local current_session=$(tmux display-message -p '#S')
 
