@@ -68,10 +68,6 @@
     "when": "editorTextFocus && !editorReadonly"
   },
   {
-    "key": "alt+cmd+enter",
-    "command": "clever.maximize.toggleWithoutSidebar"
-  },
-  {
     "key": "shift+cmd+backspace",
     "command": "editor.action.deleteLines",
     "when": "textInputFocus && !editorReadonly"
@@ -140,5 +136,23 @@
   {
     "key": "ctrl+.",
     "command": "package-json-upgrade.open-url-command"
+  },
+  {
+    "key": "alt+r",
+    "command": "workbench.action.openRecent"
+  },
+  {
+    "key": "ctrl+r",
+    "command": "-workbench.action.openRecent"
+  },
+  {
+    "key": "alt+cmd+enter",
+    "command": "workbench.action.toggleMaximizeEditorGroup",
+    "when": "maximizedEditorGroup || multipleEditorGroups"
+  },
+  {
+    "key": "cmd+k cmd+m",
+    "command": "-workbench.action.toggleMaximizeEditorGroup",
+    "when": "maximizedEditorGroup || multipleEditorGroups"
   }
 ]

@@ -25,12 +25,12 @@
     "rgba(16,16,16,0.4)",
     "rgba(16,16,16,0.2)"
   ],
-  "zenMode.hideTabs": false,
   "emmet.triggerExpansionOnTab": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "errorLens.excludeBySource": ["cSpell"],
   "terminal.integrated.defaultProfile.osx": "zsh",
   "editor.inlineSuggest.enabled": true,
+  // https://stackoverflow.com/questions/45916181/vs-code-how-to-keep-two-projects-open-in-tabs-instead-of-two-windows/71657525#71657525
   "window.nativeTabs": true,
   "terminal.integrated.env.osx": {
     "FIG_NEW_SESSION": "1"
@@ -121,8 +121,7 @@
   "http.systemCertificates": false,
   "explorer.confirmDelete": false,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-    // "source.sortImports": true
+    "source.fixAll.eslint": "explicit"
   },
   "explorer.confirmDragAndDrop": false,
   // "editor.wordWrap": "wordWrapColumn",
@@ -142,7 +141,6 @@
     "editor.defaultFormatter": "rust-lang.rust-analyzer"
   },
   "githubPullRequests.pullBranch": "never",
-  "workbench.colorTheme": "Gruvbox Material Dark",
   "[lua]": {
     "editor.defaultFormatter": "sumneko.lua"
   },
@@ -164,9 +162,35 @@
     "NOTE"
   ],
   "window.titleBarStyle": "custom",
-  "diffEditor.ignoreTrimWhitespace": false,
+  "apc.electron": {
+    "opacity": 0.9,
+    "transparent": true,
+    "backgroundColor": "#00000000",
+    "vibrancy": "tooltip",
+    "titleBarStyle": "hiddenInset"
+    // "visualEffectState": "active"
+  },
+  // "apc.header": {
+  //   "height": 25,
+  //   "fontSize": 12
+  // },
+  // "apc.listRow": {
+  //   "height": 19,
+  //   "fontSize": 11
+  // },
+  "apc.stylesheet": {
+    "body": {
+      "background-blend-mode": "multiply",
+      "background-repeat": "no-repeat"
+    }
+  },
+  "workbench.colorTheme": "Gruvbox Material Dark",
+  "vim.highlightedyank.enable": true,
+  "vim.sneak": true,
+  "vim.leader": "space",
+  "editor.autoClosingBrackets": "never",
+  "vim.smartRelativeLine": true,
+  "editor.cursorSurroundingLines": 20,
+  "editor.lineNumbers": "on",
   "window.zoomLevel": 1
-  // "window.titleBarStyle": "custom",
-  // "vscode_vibrancy.opacity": 0.0,
-  // "vscode_vibrancy.theme": "Tokyo Night Storm"
 }
