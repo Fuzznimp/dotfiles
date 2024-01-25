@@ -1,5 +1,5 @@
-# Enable Vim mode.
-bindkey -v
+# Remove vim keybindings.
+bindkey -e
 
 # Edit current command line in $EDITOR using Ctrl-f.
 autoload -U edit-command-line

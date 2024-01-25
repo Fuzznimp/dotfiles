@@ -1,5 +1,7 @@
 export HISTFILE=~/.zsh_history
+# Active session
 export HISTFILESIZE=100000
+# History file
 export HISTSIZE=100000
 setopt INC_APPEND_HISTORY
 export HISTTIMEFORMAT="[%F %T] "
