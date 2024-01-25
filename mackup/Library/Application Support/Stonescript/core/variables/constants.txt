@@ -1,3 +1,6 @@
+// TODO:
+// - Big Vigor Sword from event, what to do with it?
+
 /*===================== GEAR =====================*/
 // To go beyound armor cap.
 var max_armor_compound_shield = "compound +21 golden"
@@ -35,7 +38,7 @@ var elemental_items=[
     ["ice","D+11"],
     ["poison","D+11"],
     ["vigor","D+11"],
-    ["default","aether crossbow D+18","Repeating Crossbow +16"],
+    ["default","aether crossbow D+18","Repeating Crossbow +18"],
   ],
   ["sword",
     ["aether","D+20","D+13"],
@@ -54,7 +57,7 @@ var elemental_items=[
     ["vigor","A+11"],
     ["poison","A+11"],
     ["ice","A+11"],
-    ["fire","A+16"],
+    ["fire","A+21"],
     ["aether","A+11"],
     ["default",
       speed_armor_compound_shield,max_armor_compound_shield,

@@ -1,3 +1,4 @@
+# Alacritty migrated to `toml` format.
 colors:
   primary:
     background: "0x202020"

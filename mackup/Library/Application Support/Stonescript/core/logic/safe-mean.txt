@@ -1,4 +1,4 @@
-var _enable = false
+var _enable = true
 // Allows smite stacking.
 var extra_frames = 10
 
