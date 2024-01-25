@@ -1,0 +1,170 @@
+# NOTE: Previous keyboard config when alacritty was using `yml` format.
+# # TODO add tmux-fuzzback
+# key_bindings:
+#   - { key: F11, action: ToggleFullscreen }
+#   # Rename the current tmux window.
+#   - { key: Comma, mods: Command, chars: "\x02," }
+#   # Select a new tmux session for the attached client interactively.
+#   - { key: K, mods: Command, chars: "\x02s" }
+#   # Change to the next tmux window.
+#   - { key: K, mods: Command|Shift, chars: "\x02F" }
+#   # Search inside current tmux pane.
+#   - { key: F, mods: Command, chars: "\x02?" }
+#   # Select window 1-9
+#   - { key: Key1, mods: Command, chars: "\x021" }
+#   - { key: Key2, mods: Command, chars: "\x022" }
+#   - { key: Key3, mods: Command, chars: "\x023" }
+#   - { key: Key4, mods: Command, chars: "\x024" }
+#   - { key: Key5, mods: Command, chars: "\x025" }
+#   - { key: Key6, mods: Command, chars: "\x026" }
+#   - { key: Key7, mods: Command, chars: "\x027" }
+#   - { key: Key8, mods: Command, chars: "\x028" }
+#   - { key: Key9, mods: Command, chars: "\x029" }
+#   # Move window x axis.
+#   - { key: Left, mods: Command|Shift, chars: "\x02p" }
+#   - { key: Right, mods: Command|Shift, chars: "\x02n" }
+#   # Create a new tmux window.
+#   - { key: T, mods: Command, chars: "\x02c" }
+#   # Break the current tmux pane out of the tmux window.
+#   - { key: T, mods: Command|Shift, chars: "\x02!" }
+#   # Kill the current tmux pane (and window if last pane).
+#   - { key: W, mods: Command, chars: "\x02x" }
+#   # Toggle the zoom state of the current tmux pane.
+#   - { key: Z, mods: Command, chars: "\x02z" }
+#   # # Clear buffer.
+#   # - { key: L, mods: Command|Shift, chars: "\f" }
+#   # Switch to last tmux session.
+#   - { key: L, mods: Command, chars: "\x02L" }
+#   - { key: LBracket, mods: Command, chars: "\x02[" }
+#   # Change to the previous tmux window.
+#   - { key: LBracket, mods: Command|Shift, chars: "\x02p" }
+#   # Split the current pane into two, left and right.
+#   - { key: D, mods: Command, chars: "\x02%" }
+#   # Split the current pane into two, top and bottom.
+#   - { key: D, mods: Command|Shift, chars: "\x02\"" }
+#   # Move between panes.
+#   - { key: Left, mods: Command, chars: "\x02\e[D" }
+#   - { key: Right, mods: Command, chars: "\x02\e[C" }
+#   - { key: Up, mods: Command, chars: "\x02\e[A" }
+#   - { key: Down, mods: Command, chars: "\x02\e[B" }
+#   - { key: Left, mods: Control|Command, chars: "\x02p" }
+#   - { key: Right, mods: Control|Command, chars: "\x02n" }
+#   # Switch window place.
+#   # TODO: find the name of the keys.
+#   # - { key: "<", mods: Command|Shift, chars: "\x02\x3C" }
+#   # - { key: ">", mods: Command|Shift, chars: "\x02\x3E" }
+#   # Detach the current tmux client.
+#   - { key: Q, mods: Command, chars: "\x02d" }
+#   # Change to the next tmux window.
+#   - { key: RBracket, mods: Command|Shift, chars: "\x02n" }
+#   # Reload tmux.
+#   - { key: R, mods: Command|Shift, chars: "\x02I" }
+#   # Restore tmux.
+#   - { key: R, mods: Command, chars: "\x02R" }
+#   # Save tmux.
+#   # - { key: S, mods: Command, chars: "\x02S" }
+#   # Sync panes
+#   - { key: S, mods: Command, chars: "\x02\x13" }
+#   # Start/stop log mode.
+#   - { key: P, mods: Command, chars: "\x02\eP" }
+#   # Jump whole word.
+#   - { key: Right, mods: Alt, chars: "\eF" }
+#   - { key: Left, mods: Alt, chars: "\eB" }
+#   # Open urlview.
+#   # - { key: U, mods: Command, chars: "\x02u" }
+#   # FIXME: This is not working.
+#   # Open file with IDE.
+#   - { key: O, mods: Command, chars: "\x02\x06" }
+
+################################################################################
+
+# 02 = ctrl + b
+# 13 = ctrl + s
+# https://www.physics.udel.edu/~watson/scen103/ascii.html
+
+# Key HEX Value
+# • Esc                 1B
+# • F1- F12             F1-FC
+# • Prnt. Scr           00
+# • Scrl Lck            Null
+# • P/B                 00
+# --------------------------------------------------------------------------------
+# • ` ~                 60 75 (60 on capslock)
+# • 1 !                 31 21
+# • 2 @                 32 40
+# • 3 #                 33 23
+# • 4 $                 34 24
+# • 5 %                 35 25
+# • 6 ^                 36 5E
+# • 7 &                 37 26
+# • 8 *                 38 2A
+# • 9 (                 39 28
+# • 0 )                 30 29
+# • - _                 2D 5F
+# • = +                 3D 2B
+# • Insert              E9 (00 on Num lock)
+# • Pgup                E6 (00 on Num lock)
+# • Num Lock            Null
+# • /                   2F
+# • *                   2A
+# • -                   2D
+# --------------------------------------------------------------------------------
+# • Tab                 09
+# • Q q                 51 71
+# • W w                 57 77
+# • E e                 45 65
+# • R r                 52 72
+# • T t                 54 74
+# • Y y                 59 79
+# • U u                 55 75
+# • I i                 49 69
+# • O o                 4F 6F
+# • P p                 50 70
+# • { [                 7B 5B
+# • } ]                 7D 5D
+# • | \                 7C 5C
+# • Del                 7F (00 on Num lock)
+# • End                 E8 (00 on Num lock)
+# • Pg dn               E4 (00 on Num lock)
+# --------------------------------------------------------------------------------
+# • Caps Null
+# • A a                 41 61
+# • S s                 53 73
+# • D d                 44 64
+# • F f                 46 66
+# • G g                 47 67
+# • H h                 48 68
+# • J j                 4A 6A
+# • K k                 4B 6B
+# • L l                 4C 6C
+# • : ;                 3A 3B
+# • " '                 22 27
+# • Enter               0A
+# --------------------------------------------------------------------------------
+# • Shift               Null
+# • Z z                 5A 7A
+# • X x                 58 78
+# • C c                 43 63
+# • V v                 56 76
+# • B b                 42 62
+# • N n                 4E 6E
+# • M m                 4D 6D
+# • < ,                 3C 2C
+# • > .                 3E 2E
+# • ? /                 3F 2F
+# • Up-arrow            E5
+# --------------------------------------------------------------------------------
+# • Ctrl                C1
+# • Alt                 C2
+# • Space               20
+# • Left arrow          E1
+# • Dwn                 E3
+# • Right               E2
+# • .                   2E
+
+# `Key1`, `Key2`, `Key3`, `Key4`, `Key5`, `Key6`, `Key7`, `Key8`, `Key9`, `Key0`, `A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`, `W`, `X`, `Y`
+# │ , `Z`, `Escape`, `F1`, `F2`, `F3`, `F4`, `F5`, `F6`, `F7`, `F8`, `F9`, `F10`, `F11`, `F12`, `F13`, `F14`, `F15`, `F16`, `F17`, `F18`, `F19`, `F20`, `F21`, `F22`, `F23`, `F24`, `Snapshot`, `Scroll`, `Pause`, `Insert`, `Home`, `Delete`, `End`, `PageDown`, `PageUp`, `Left`, `Up`, `Right`, `Down`, `Back`, `Retu
+# │ rn`, `Space`, `Compose`, `Caret`, `Numlock`, `Numpad0`, `Numpad1`, `Numpad2`, `Numpad3`, `Numpad4`, `Numpad5`, `Numpad6`, `Numpad7`, `Numpad8`, `Numpad9`, `NumpadAdd`, `NumpadDivide`, `NumpadDecimal`, `NumpadComma`, `NumpadEnter`, `NumpadEquals`, `NumpadMultiply`, `NumpadSubtract`, `AbntC1`, `AbntC2`, `Apos
+# │ trophe`, `Apps`, `Asterisk`, `At`, `Ax`, `Backslash`, `Calculator`, `Capital`, `Colon`, `Comma`, `Convert`, `Equals`, `Grave`, `Kana`, `Kanji`, `LAlt`, `LBracket`, `LControl`, `LShift`, `LWin`, `Mail`, `MediaSelect`, `MediaStop`, `Minus`, `Mute`, `MyComputer`, `NavigateForward`, `NavigateBackward`, `NextTra
+# │ ck`, `NoConvert`, `OEM102`, `Period`, `PlayPause`, `Plus`, `Power`, `PrevTrack`, `RAlt`, `RBracket`, `RControl`, `RShift`, `RWin`, `Semicolon`, `Slash`, `Sleep`, `Stop`, `Sysrq`, `Tab`, `Underline`, `Unlabeled`, `VolumeDown`, `VolumeUp`, `Wake`, `WebBack`, `WebFavorites`, `WebForward`, `WebHome`, `WebRefres
+# │ h`, `WebSearch`, `WebStop`, `Yen`, `Copy`, `Paste`, `Cut`;
