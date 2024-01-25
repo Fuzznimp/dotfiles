@@ -1,20 +1,25 @@
-# Vim mode
+# Enable Vim mode.
 bindkey -v
-# Edit current command line in $EDITOR using C-f.
-autoload -U edit-command-line;
-zle -N edit-command-line;
-bindkey '^F' edit-command-line
+
+# Edit current command line in $EDITOR using Ctrl-f.
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^F' edit-command-line  # Press Ctrl-f to edit the current command line in $EDITOR.
+
 # Word jumps
-bindkey '^[[1;3D' backward-word
-bindkey '^[[1;3C' forward-word
+bindkey '^[[1;3D' backward-word  # Press Alt + Left Arrow for backward word jump.
+bindkey '^[[1;3C' forward-word   # Press Alt + Right Arrow for forward word jump.
+
 # Delete
-bindkey '^[[3~' delete-char
-# Search history with up/down.
+bindkey '^[[3~' delete-char  # Press Delete key.
+
+# Search history with up/down arrows.
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search
-bindkey "^[[B" down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search  # Press Up Arrow for history search.
+bindkey "^[[B" down-line-or-beginning-search  # Press Down Arrow for history search.
+
 # Autosuggestions using Ctrl-Space.
-bindkey '^ ' autosuggest-accept
+bindkey '^ ' autosuggest-accept  # Press Ctrl-Space for accepting autosuggestions.

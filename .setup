@@ -16,4 +16,3 @@ echo "🔗 Creating $bold_input  .mackup.cfg symlink."
 ln -s ~/workspace/dotfiles/.mackup/.mackup.cfg ~/
 echo "🔗 Creating ${BOLD_OUTPUT}.mackup/${NORMAL_OUTPUT} symlink."
 ln -s ~/workspace/dotfiles/.mackup/.mackup/ ~/.mackup/
-

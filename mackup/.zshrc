@@ -8,8 +8,7 @@ source ${HOME}/workspace/dotfiles/zsh/.functions
 source ${HOME}/workspace/dotfiles/zsh/.keybindings
 source ${HOME}/.cargo/env
 
-[ -f ~/.fzf.zsh ] && source  ${HOME}/.zsh
-
+[ -f ~/.fzf.zsh ] && source ${HOME}/.zsh
 
 # Tells lazydocker where to find the docker socket when using Colima.
 export DOCKER_HOST="unix://$HOME/.colima/docker.sock"

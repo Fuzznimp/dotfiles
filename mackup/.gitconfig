@@ -1,88 +1,88 @@
 [user]
-	email = montaigne.anthony.dev@gmail.com
-	name = Fuzznimp
-	useconfigonly = true
+email = montaigne.anthony.dev@gmail.com
+name = Fuzznimp
+useconfigonly = true
 
 [url "git@github.com:fuzznimp/"]
-	insteadOf = "fuzznimp:"
+insteadOf = "fuzznimp:"
 
 [alias]
-  tags = tag -l
-  branches = branch -a
-  remotes = remote -v
-  hist = log --graph --pretty=format:'%Cred%h%Creset %s%C(yellow)%d%Creset %Cgreen(%cr)%Creset [%an]' --abbrev-commit --date=relative
+tags = tag -l
+branches = branch -a
+remotes = remote -v
+hist = log --graph --pretty=format:'%Cred%h%Creset %s%C(yellow)%d%Creset %Cgreen(%cr)%Creset [%an]' --abbrev-commit --date=relative
 
 [color]
-	diff = true
-	ui = auto
+diff = true
+ui = auto
 
 [color "diff"]
-	whitespace = red
+whitespace = red
 
 [core]
-	editor = nvim
+editor = nvim
 
 [diff]
-  mnemonicPrefix = true
-	renames = true
-	submodule = log
-  tool = vscode
+mnemonicPrefix = true
+renames = true
+submodule = log
+tool = vscode
 
 [difftool]
-	prompt = false
-	editor = code --wait
+prompt = false
+editor = code --wait
 
 [difftool "vscode"]
-  cmd = code --wait --diff $LOCAL $REMOTE
+cmd = code --wait --diff $LOCAL $REMOTE
 
 [log]
-  abbrevCommit = true
-  follow = true
-  decorate = false
+abbrevCommit = true
+follow = true
+decorate = false
 
 [core]
-	excludesfile = ~/.gitignore
-	pager = less -F -X
+excludesfile = ~/.gitignore
+pager = less -F -X
 
 [fetch]
-	prune = true
+prune = true
 
 [grep]
-  break = true
-  heading = true
-	extendRegexp = true
-	lineNumber = true
+break = true
+heading = true
+extendRegexp = true
+lineNumber = true
 
 [init]
-	templateDir = /Users/fuzznimp/.git-templates
-	defaultBranch = main
+templateDir = /Users/fuzznimp/.git-templates
+defaultBranch = main
 
 [merge]
-  ff = false
+ff = false
 
 [mergetool]
-  keepBackup = false
-  keepTemporaries = false
-  writeToTemp = true
-  prompt = false
+keepBackup = false
+keepTemporaries = false
+writeToTemp = true
+prompt = false
 
 [push]
-	default = current
-	
+default = current
+
 [pull]
-	ff = true
+ff = true
 
 [status]
-  submoduleSummary = true
-  showUntrackedFiles = all
+submoduleSummary = true
+showUntrackedFiles = all
 
 [tag]
-  sort = version:refname
+sort = version:refname
 
 [versionsort]
-  prereleaseSuffix = -pre
-  prereleaseSuffix = .pre
-  prereleaseSuffix = -beta
-  prereleaseSuffix = .beta
-  prereleaseSuffix = -rc
-  prereleaseSuffix = .rc
+prereleaseSuffix = -pre
+prereleaseSuffix = .pre
+prereleaseSuffix = -beta
+prereleaseSuffix = .beta
+prereleaseSuffix = -rc
+prereleaseSuffix = .rc

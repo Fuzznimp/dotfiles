@@ -10,7 +10,6 @@ alias aliases="alias | sed 's/=.*//'"
 alias functions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'"
 alias paths="echo -e ${PATH//:/\\n}"
 
-
 # System
 alias ~="cd ~"
 alias /="cd /"
@@ -81,7 +80,7 @@ alias untarr="tar -pxzf $1"
 alias starr="sudo tar -pczf $1 $2"
 
 # fzf
-alias f="fzf --preview 'bat --style=numbers --theme=ansi --color=always --line-range :500 {}' | pbcopy | echo `pbpaste`"
+alias f="fzf --preview 'bat --style=numbers --theme=ansi --color=always --line-range :500 {}' | pbcopy | echo $(pbpaste)"
 
 # tmux
 alias t="tmux -2"
@@ -123,8 +122,8 @@ alias gpo="git push -u origin"
 alias gca="git commit --amend"
 alias gcan="git commit --amend --no-edit"
 alias gl="git log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'"
-alias	gpof="git push origin --force-with-lease"
-alias	gpoff="git push origin --force-with-lease --no-verify"
+alias gpof="git push origin --force-with-lease"
+alias gpoff="git push origin --force-with-lease --no-verify"
 alias gbleach="git branch -vv | grep 'gone'] | awk '{ print $1 }' | xargs git branch -D"
 
 # kitty
