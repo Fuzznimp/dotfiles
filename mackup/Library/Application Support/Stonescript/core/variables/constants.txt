@@ -15,12 +15,12 @@ var qs_name="Speed Hack"
 var elemental_items=[
   ["hammer",
     ["aether","D+14","D+13"],
-    ["poison","D+16","D+15"],
+    ["poison","D+21","D+15"],
     ["vigor","D+12","D+11"],
     ["fire","D+12","D+11"],
     ["ice","D+14","D+11"],
     ["default",
-      "poison hammer D+16","aether hammer D+14","ice hammer D+14"
+      "poison hammer D+21","aether hammer D+14","ice hammer D+14"
     ],
   ],
   ["wand",
@@ -120,8 +120,9 @@ var fire_talisman_frames = 20
 var for_melee_single_target = ["sword","hammer"]
 var for_melee_aoe = ["arm"]
 var melee_range = 5
-var arm_damage = 68
-var max_pickpocket_stacks = 5
+var arm_damage = 80
+// TODO: Check if code is using stacks.
+var max_pickpocket_stacks = 6
 // `dmg * (crit_mult + base_crit_mult)`, script won't use the bardiche ability
 // if non-boss's HP is lower than twice this damage.
 var bardiche_dmg = 52 * (13.5 + 2)

@@ -247,7 +247,7 @@ func fight_dysan()
     var resist = foe_buff("adaptive_defense")
     ?!(low_hp & is(resist, "vigor"))
       excluded_items = resist
-    // his attack order is cyclical, so we can dodge both the stun and the ray.
+    // His attack order is cyclical, so we can dodge both the stun and the ray.
     ?(last_state = 32 & foe_state = 33) | (last_state = 33 & foe_state = 2) | (last_state = 2 & foe_state = 32)
       dysan_step++
     :?(foe_state!32) & (foe_state!33) & (foe_state!2)
@@ -832,6 +832,7 @@ func get_preferred_types(range, aoe)
     return C.for_phys_immune
   var types = C.for_melee_single_target
   // Remove the use of hammer during Dysan phase 3.
+  // TODO: remove this when double +21 elem hammer.
   ?lucky_crit
     return types
   :
