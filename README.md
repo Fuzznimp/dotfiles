@@ -35,19 +35,8 @@ stow . --target="$HOME/"
 - [ ] Extract cspell hash from vscode to global level.
 - [ ] .setup
 
-### Nvchad
-
-- [ ] nvim-tree: improve git symbols.
-- [ ] nvim-tree: mapping.
-- [ ] nvim-ts-rainbow: ~remove from tsx~ create scheme.
-
-### Nvim
-
-- [ ] nav: fix opt + right.
-
 ### brew
 
-- [ ] Cleanup.
 - [ ] Add `brew.sh`. <!-- Install brew, then Brewfile. -->.
 
 ### OS
@@ -56,4 +45,4 @@ stow . --target="$HOME/"
 
 ### zsh
 
-- [ ] Completion highlights.
+- [ ] Fix completion highlights. <!-- options displayed when pressing tab -->
