@@ -1,0 +1,21 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+  "theme": "Atelier Estuary Dark",
+  "vim_mode": true,
+  "relative_line_numbers": true,
+  "ui_font_size": 16,
+  "ui_font_family": "Hack Nerd Font",
+  "buffer_font_size": 15,
+  "buffer_font_family": "Hack Nerd Font",
+  "show_whitespaces": "all",
+  "tabs": {
+    "git_status": true
+  }
+}
