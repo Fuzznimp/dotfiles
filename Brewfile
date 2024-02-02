@@ -64,6 +64,5 @@ mas "Spark", id: 1176895641
 
 # Manual
 ## OniVim2 https://v2.onivim.io/early-access-portal
-## Shadow https://shadow.tech/fr/shadow-apps
 ## Homerow https://www.homerow.app/
 ## gh TUI `gh extension install dlvhdr/gh-dash`
