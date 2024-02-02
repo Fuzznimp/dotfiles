@@ -1,8 +1,8 @@
 export HISTFILE=~/.zsh_history
 # Active session
-export HISTFILESIZE=100000
+export HISTFILESIZE=2000000
 # History file
-export HISTSIZE=100000
+export HISTSIZE=2000000
 setopt INC_APPEND_HISTORY
 export HISTTIMEFORMAT="[%F %T] "
 setopt HIST_FIND_NO_DUPS
