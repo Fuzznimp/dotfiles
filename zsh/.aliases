@@ -72,7 +72,7 @@ alias sen.ui="cd $SENCROP_PATH/sencrop-ui"
 # ls
 # alias ll="tmux display-popup -w 80% -h 80% 'exa --all --long --header --git'"
 alias ll="exa --all --long --header --git"
-alias lt="exa -aT --color=always --group-directories-first --ignore-glob=\"**/node_modules|**/dist|**/.next\""
+alias lt="exa -aT --color=always --group-directories-first --ignore-glob=\"**/node_modules|**/dist|**/.next|**/.git\""
 
 # tar
 alias tarr="tar -pczf $1 $2"

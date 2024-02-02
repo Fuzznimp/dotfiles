@@ -1,0 +1,11 @@
+.git
+.gitignore
+.setup
+Brewfile
+Brewfile.lock.json
+hydra_ascii.txt
+ISSUES.md
+README.md
+archive
+zsh
+.DS_Store

@@ -11,16 +11,20 @@ If you are confused: https://dotfiles.github.io/.
 - hammerspoon
 - lf
 - lazygit
-- mackup
 - brew
 - VSCode
 - ..and many more!
 
 ## Symlinks
 
-After spending more than two years handling the dotfiles paths myself, I finally chose to switch to [mackup](https://github.com/lra/mackup), which is amazing!
+After spending more than two years handling symlinks myself, I wanted to find a tool that would help in that regard. I used [mackup](https://github.com/lra/mackup) for about a year, but wasn't really satisfied by it.
+In the end, I got back to the roots, and I'm using [Stow](https://www.gnu.org/software/stow/).
 
-`.setup` is the entry point for the config setup.
+From this repo:
+
+```sh
+stow . --target="$HOME/"
+```
 
 ## TODO:
 
