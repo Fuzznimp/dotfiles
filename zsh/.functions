@@ -1,3 +1,42 @@
+# ================= tmux =================
+
+tmux-kill-garbage-sessions() {
+  local garbage_sessions=($(tmux list-sessions | awk -F: '!/🌳|🍃/ {print $1}'))
+  local current_session=$(tmux display-message -p '#S')
+
+  if [ ${#garbage_sessions[@]} -eq 0 ]; then
+    echo "No garbage sessions found."
+  else
+    for session in "${garbage_sessions[@]}"; do
+      if [ "$session" != "$current_session" ]; then
+        tmux kill-session -t "$session"
+        echo "Session $session killed."
+      else
+        echo "Skipping current session $session."
+      fi
+    done
+  fi
+}
+
+tmux-kill-all() {
+  tmux list-sessions | cut -d: -f1 | xargs -I{} tmux kill-session -t {}
+  echo "All tmux sessions removed."
+}
+
+tmux-bootstrap-sessions() {
+  tmux new-session -d -s 🍃
+  tmux new-session -d -s 🌳
+  tmux attach-session -t 🌳
+}
+
+tmux-split-layout() {
+  tmux split-window -h
+  tmux split-window -v
+  tmux select-pane -t 1
+}
+
+# ================= System =================
+
 update_stack() {
   echo "🌀 Starting brew maintenance.."
   brew update &&
@@ -25,35 +64,6 @@ lfcd() {
       fi
     fi
   fi
-}
-
-function tmux-kill-garbage-sessions() {
-  local garbage_sessions=($(tmux list-sessions | awk -F: '!/🌳|🍃/ {print $1}'))
-  local current_session=$(tmux display-message -p '#S')
-
-  if [ ${#garbage_sessions[@]} -eq 0 ]; then
-    echo "No garbage sessions found."
-  else
-    for session in "${garbage_sessions[@]}"; do
-      if [ "$session" != "$current_session" ]; then
-        tmux kill-session -t "$session"
-        echo "Session $session killed."
-      else
-        echo "Skipping current session $session."
-      fi
-    done
-  fi
-}
-
-function tmux-kill-all() {
-  tmux list-sessions | cut -d: -f1 | xargs -I{} tmux kill-session -t {}
-  echo "All tmux sessions removed."
-}
-
-function tmux-bootstrap-sessions() {
-  tmux new-session -d -s 🍃
-  tmux new-session -d -s 🌳
-  tmux attach-session -t 🌳
 }
 
 find-exec() {

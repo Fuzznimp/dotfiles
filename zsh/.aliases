@@ -92,6 +92,7 @@ alias f="fzf --preview 'bat --style=numbers --theme=ansi --color=always --line-r
 alias t="tmux -2"
 alias tks="kill-tmux-garbage-sessions \$(tmux list-sessions)"
 alias tbs='tmux-bootstrap-sessions'
+alias t.s="tmux-split-layout"
 
 # Docker
 alias dk="docker"
