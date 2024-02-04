@@ -24,6 +24,7 @@ tmux-kill-all() {
 }
 
 tmux-bootstrap-sessions() {
+  tmux-kill-all
   tmux new-session -d -s 🍃
   tmux new-session -d -s 🌳
   tmux attach-session -t 🌳

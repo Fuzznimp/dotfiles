@@ -2,8 +2,8 @@ source ${HOME}/workspace/dotfiles/zsh/.constants
 source ${HOME}/workspace/dotfiles/zsh/.functions
 
 # Source Shell.
-alias source.zsh="source $DOTFILES_PATH/.zshrc"
-alias source.tmux="tmux source-file $DOTFILES_PATH/.tmux.conf"
+alias s.zsh="source $DOTFILES_PATH/.zshrc"
+alias s.tmux="tmux source-file $DOTFILES_PATH/.tmux.conf"
 
 # List declared aliases, functions, path.
 alias aliases="alias | sed 's/=.*//'"
