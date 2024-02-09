@@ -18,9 +18,9 @@ while true; do
         COLOR="[bg=colour237,fg=colour167]"
     else
         # Green color for 0 total pull requests
-        COLOR="[bg=green,fg=colour237]"
+        COLOR="[bg=colour237,fg=green]"
     fi
 
-    echo -e "#$COLOR   $TOTAL_PR_COUNT"
-    sleep 300  # Sleep for 5 minutes (300 seconds)
+    echo -e "#$COLOR   $TOTAL_PR_COUNT "
+    sleep 5
 done
