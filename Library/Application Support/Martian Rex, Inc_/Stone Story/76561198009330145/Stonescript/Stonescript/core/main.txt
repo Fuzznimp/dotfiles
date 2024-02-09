@@ -670,6 +670,7 @@ func is_2hander(ty)
 func auto_equip_L(range, aoe)
   Tracer.span("auto_eq_L")
   found = find_dps_weapon(range, aoe, true)
+  >`20,20,auto_equip_L: @found@
   ?found
     return equip_L(found)
   return false
@@ -678,6 +679,7 @@ func auto_equip_L(range, aoe)
 func auto_equip_R(range, aoe)
   Tracer.span("auto_eq_R")
   found = find_dps_weapon(range, aoe, false)
+    >`21,21,auto_equip_R: @found@
   ?found
     return equip_R(found)
   return auto_equip_shield()

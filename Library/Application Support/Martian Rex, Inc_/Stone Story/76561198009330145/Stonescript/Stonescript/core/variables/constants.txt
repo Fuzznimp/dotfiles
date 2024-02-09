@@ -14,13 +14,13 @@ var qs_name="Speed Hack"
 // Gear "hash".
 var elemental_items=[
   ["hammer",
-    ["aether","D+14","D+13"],
+    ["aether","D+18","D+13"],
     ["poison","D+21","D+15"],
     ["vigor","D+12","D+11"],
     ["fire","D+12","D+11"],
     ["ice","D+14","D+11"],
     ["default",
-      "poison hammer D+21","aether hammer D+14","ice hammer D+14"
+      "poison hammer D+21","aether hammer D+18","ice hammer D+14"
     ],
   ],
   ["wand",
@@ -35,7 +35,7 @@ var elemental_items=[
   ["crossbow",
     ["aether","D+18"],
     ["fire","D+16"],
-    ["ice","D+11"],
+    ["ice","D+18"],
     ["poison","D+11"],
     ["vigor","D+11"],
     ["default","aether crossbow D+18","Repeating Crossbow +18"],
@@ -45,12 +45,11 @@ var elemental_items=[
     ["fire","D+21","D+20","dF+13"],
     ["ice","D+20","D+13","dI+20"],
     ["poison","D+20","D+13","dP+13"],
-    // TODO: Use name `BloodSucker` for first +21 to fix not being able to use both.
-    // Probably fixed by now.
-    ["vigor","D+21","D+20","dL+21 BloodSucker","dL+21"],
+     // TODO: Use name `BloodSucker` for first +21 to fix not being able to use both.
+    ["vigor","D+21","D+20","BloodSucker","dL+21"],
     ["default",
       "vigor sword D+21","fire sword D+21","aether sword D+20",
-      "poison sword D+20", "ice sword D+20", "BloodSucker", "vigor sword dL+21",
+      "poison sword D+20", "ice sword D+20", "vigor sword BloodSucker", "vigor sword dL+21",
     ],
   ],
   ["shield",
@@ -136,8 +135,7 @@ var for_ranged_aoe = ["staff","wand"]
 var for_phys_immune = ["staff","wand"]
 
 /*===================== DEBUG =====================*/
-var debug = true
-var ui_show_cd = debug
-var ui_show_statuses = debug
-var ui_show_debug = debug
+var ui_show_cd = true
+var ui_show_statuses = true
+var ui_show_debug = true
 var enable_hit_tracking = false
