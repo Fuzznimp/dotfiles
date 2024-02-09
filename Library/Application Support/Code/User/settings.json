@@ -127,7 +127,6 @@
   // "editor.wordWrap": "wordWrapColumn",
   "git.enableSmartCommit": true,
   "git.mergeEditor": true,
-  "window.commandCenter": true,
   "editor.renderWhitespace": "all",
   "editor.cursorStyle": "block",
   "diffEditor.codeLens": true,
@@ -192,5 +191,7 @@
   "vim.smartRelativeLine": true,
   "editor.cursorSurroundingLines": 20,
   "editor.lineNumbers": "on",
-  "window.zoomLevel": 1
+  "window.zoomLevel": 1,
+  "workbench.activityBar.location": "top",
+  "window.commandCenter": false
 }
