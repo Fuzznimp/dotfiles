@@ -833,8 +833,7 @@ func get_preferred_types(range, aoe)
   ?phys_immune | (can_aoe & foe = magic_vulnerability)
     return C.for_phys_immune
   var types = C.for_melee_single_target
-  // Remove the use of hammer during Dysan phase 3.
-  // TODO: remove this when double +21 elem hammer.
+  // Remove the use of hammer during Dysan phase 3 armor because it's less dps than rune sword.
   ?lucky_crit
     return types
   :

@@ -1,5 +1,6 @@
 // TODO:
 // - Big Vigor Sword from event, what to do with it?
+// - Towering shield
 
 /*===================== GEAR =====================*/
 // To go beyound armor cap.
@@ -14,13 +15,13 @@ var qs_name="Speed Hack"
 // Gear "hash".
 var elemental_items=[
   ["hammer",
-    ["aether","D+18","D+13"],
+    ["aether","D+21","D+13"],
     ["poison","D+21","D+15"],
     ["vigor","D+12","D+11"],
     ["fire","D+12","D+11"],
     ["ice","D+14","D+11"],
     ["default",
-      "poison hammer D+21","aether hammer D+18","ice hammer D+14"
+      "poison hammer D+21","aether hammer D+21","ice hammer D+14"
     ],
   ],
   ["wand",
@@ -33,12 +34,12 @@ var elemental_items=[
     ["default","ice staff dI+20","aether staff dU+20","The Ghost Slayer! +11"],
   ],
   ["crossbow",
-    ["aether","D+18"],
+    ["aether","D+21"],
     ["fire","D+16"],
-    ["ice","D+18"],
+    ["ice","D+21"],
     ["poison","D+11"],
     ["vigor","D+11"],
-    ["default","aether crossbow D+18","Repeating Crossbow +18"],
+    ["default","eather crossbow D+21","Repeating Crossbow +18"],
   ],
   ["sword",
     ["aether","D+20","D+13"],

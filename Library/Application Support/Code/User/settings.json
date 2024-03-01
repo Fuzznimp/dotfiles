@@ -193,5 +193,7 @@
   "editor.lineNumbers": "on",
   "window.zoomLevel": 1,
   "workbench.activityBar.location": "top",
-  "window.commandCenter": false
+  "window.commandCenter": false,
+  "inlineChat.mode": "live",
+  "diffEditor.hideUnchangedRegions.enabled": true
 }
