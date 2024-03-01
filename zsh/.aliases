@@ -160,3 +160,9 @@ alias ansic='for code in {000..255}; do print -P -- "$code: %F{$code}Color%f"; d
 
 # GNU Stow
 alias stow.update="stow --adopt . --target='$HOME/'"
+
+# AWS
+alias av.sen="aws-vault exec sencrop --"
+
+# Kikoo
+alias gg="tmux display-popup -w 17% -h 26% -d '#{pane_current_path}' 'curl parrot.live'"
