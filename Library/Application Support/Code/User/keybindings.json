@@ -1,21 +1,5 @@
 [
   {
-    "key": "cmd+[",
-    "command": "block-travel.jumpDown"
-  },
-  {
-    "key": "cmd+shift+]",
-    "command": "block-travel.selectUp"
-  },
-  {
-    "key": "cmd+]",
-    "command": "block-travel.jumpUp"
-  },
-  {
-    "key": "cmd+shift+[",
-    "command": "block-travel.selectDown"
-  },
-  {
     "key": "alt+]",
     "command": "cursorWordPartLeft",
     "when": "editorTextFocus"
@@ -33,16 +17,6 @@
   {
     "key": "shift+alt+]",
     "command": "cursorWordPartRightSelect",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "alt+down",
-    "command": "-block-travel.jumpDown",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "alt+up",
-    "command": "-block-travel.jumpUp",
     "when": "editorTextFocus"
   },
   {
@@ -189,5 +163,93 @@
     "key": "ctrl+shift+g",
     "command": "-workbench.view.scm",
     "when": "workbench.scm.active"
+  },
+  // Vim Motions
+  {
+    "key": "j",
+    "command": "list.focusDown",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "k",
+    "command": "list.focusUp",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+alt+v",
+    "command": "toggleVim"
+  },
+  // File tree
+  {
+    "key": "cmd+b",
+    "command": "workbench.files.action.focusFilesExplorer",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "a",
+    "command": "explorer.newFile",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "r",
+    "command": "renameFile",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "y",
+    "command": "filesExplorer.copy",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "p",
+    "command": "filesExplorer.paste",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "d",
+    "command": "deleteFile",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  // block-travel
+  {
+    "key": "cmd+[",
+    "command": "block-travel.jumpDown"
+  },
+  {
+    "key": "cmd+shift+]",
+    "command": "block-travel.selectUp"
+  },
+  {
+    "key": "cmd+]",
+    "command": "block-travel.jumpUp"
+  },
+  {
+    "key": "cmd+shift+[",
+    "command": "block-travel.selectDown"
+  },
+  {
+    "key": "alt+down",
+    "command": "-block-travel.jumpDown",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+up",
+    "command": "-block-travel.jumpUp",
+    "when": "editorTextFocus"
+  },
+  // Project Manager
+  {
+    "key": "cmd+o",
+    "command": "projectManager.listGitProjects#sideBarGit"
+  },
+  {
+    "key": "cmd+k g",
+    "command": "editor.action.revealDefinition",
+    "when": "editorHasDefinitionProvider && editorTextFocus"
+  },
+  {
+    "key": "f12",
+    "command": "-editor.action.revealDefinition",
+    "when": "editorHasDefinitionProvider && editorTextFocus"
   }
 ]

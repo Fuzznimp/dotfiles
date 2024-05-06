@@ -54,7 +54,7 @@ var elemental_items=[
     ],
   ],
   ["shield",
-    ["vigor","A+11"],
+    ["vigor","A+19"],
     ["poison","A+11"],
     ["ice","A+11"],
     ["fire","A+21"],
