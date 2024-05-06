@@ -250,7 +250,7 @@ mods = "Command"
 # == "fcsonline/tmux-thumbs" ==
 [[keyboard.bindings]]
 chars = "\u0002 "
-key = "C"
+key = "Y"
 mods = "Command|Shift"
 
 # == 'tmux-plugins/tmux-resurrect ==
