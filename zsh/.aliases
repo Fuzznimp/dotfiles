@@ -64,8 +64,9 @@ alias fwl.web="cd $FEWLINES_PATH/website"
 ## Sencrop
 alias sen="cd $SENCROP_PATH"
 alias sen.app="cd $SENCROP_PATH/sencrop-app"
-alias sen.bo="cd $SENCROP_PATH/sencrop-backoffice"
 alias sen.bali="cd $SENCROP_PATH/sencrop-bali-api"
+alias sen.bo="cd $SENCROP_PATH/sencrop-backoffice"
+alias sen.bruno="cd $SENCROP_PATH/bruno-collections"
 alias sen.demeter="cd $SENCROP_PATH/sencrop-demeter-api"
 alias sen.e2e="cd $SENCROP_PATH/sencrop-e2e"
 alias sen.factory="cd $SENCROP_PATH/sencrop-factory"
@@ -74,6 +75,7 @@ alias sen.map="cd $SENCROP_PATH/sencrop-map"
 alias sen.measure="cd $SENCROP_PATH/sencrop-measures-api"
 alias sen.quote="cd $SENCROP_PATH/sencrop-quotator"
 alias sen.ui="cd $SENCROP_PATH/sencrop-ui"
+alias kill.bali="lsof -i :4000 | jc --lsof | jq -r '.[] | select(.command == "node") | .pid' | { read pid; kill -9 "$pid"; }"
 
 # ls
 # alias ll="tmux display-popup -w 80% -h 80% 'exa --all --long --header --git'"
@@ -139,7 +141,6 @@ alias update_kitty="curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /d
 
 # Vim
 alias vi="nvim"
-alias delete.packer="rm -rf ~/.local/share/nvim/site/pack/packer"
 
 # VPN
 alias ts="/Applications/Tailscale.app/Contents/MacOS/Tailscale"

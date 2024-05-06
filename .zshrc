@@ -10,8 +10,6 @@ source ${ZSH_PATH}/.functions
 source ${ZSH_PATH}/.keybindings
 source ${HOME}/.cargo/env
 
-[ -f ~/.fzf.zsh ] && source ${HOME}/.zsh
-
 # Tells lazydocker where to find the docker socket when using Colima.
 export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
 
@@ -20,6 +18,7 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'
 
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
+eval "$(fzf --zsh)"
 
 # Nix
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then

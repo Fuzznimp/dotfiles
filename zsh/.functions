@@ -165,3 +165,17 @@ size() {
       }
       {gsub(/^[0-9]+/, human($1)); print}'
 }
+
+# VsCode/Vim
+toggle_vscode_vim() {
+  local setting="com.microsoft.VSCode ApplePressAndHoldEnabled"
+  local current_value=$(defaults read "$setting")
+
+  if [[ $current_value == "false" ]]; then
+    defaults write "$setting" -bool true
+    echo "VSCode Vim mode is now enabled."
+  else
+    defaults write "$setting" -bool false
+    echo "VSCode Vim mode is now disabled."
+  fi
+}
