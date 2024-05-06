@@ -22,5 +22,6 @@ while true; do
     fi
 
     echo -e "#$COLOR   $TOTAL_PR_COUNT "
-    sleep 5
+
+    sleep 3600
 done
