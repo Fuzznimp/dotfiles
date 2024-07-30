@@ -35,11 +35,13 @@ brew "zoxide"
 brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 brew "zsh"
+brew "zsh-autosuggestions"
+
 tap "FelixKratz/formulae"
 tap "homebrew/cask-fonts"
 tap "jesseduffield/lazygit"
 
-cark "hammerspoon"
+cask "hammerspoon"
 cask "1password"
 cask "alacritty"
 cask "background-music"
@@ -68,3 +70,4 @@ mas "Tailscale", id: 1475387142
 ## gh TUI `gh extension install dlvhdr/gh-dash`
 ## Beekeeper Studio https://www.beekeeperstudio.io/get-community
 ## OniVim2 https://v2.onivim.io/early-access-portal
+## Run `compaudit | xargs chmod g-w`
