@@ -43,24 +43,25 @@ cark "hammerspoon"
 cask "1password"
 cask "alacritty"
 cask "background-music"
+cask "bruno"
 cask "docker"
 cask "dropbox"
 cask "font-hack-nerd-font"
 cask "google-chrome"
 cask "guitar-pro"
-cask "insomnia"
 cask "kitty"
 cask "onyx"
-cask "responsively"
 cask "scroll-reverser"
 cask "slack"
 cask "spotify"
-cask "tableplus"
 cask "vlc"
-cask "wezterm"
+cask "raycast"
 
 mas "Monosnap", id: 540348655
 mas "Spark", id: 1176895641
+mas "Magnet", id: 441258766
+mas "Bitwarden", id: 1352778147
+mas "Tailscale", id: 1475387142
 
 # Manual
 ## Homerow https://www.homerow.app/
