@@ -28,3 +28,4 @@
 # search_mode = "prefix"
 
 enter_accept = true
+store_failed = true

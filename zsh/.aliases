@@ -1,9 +1,9 @@
-source ${HOME}/workspace/dotfiles/zsh/.constants
-source ${HOME}/workspace/dotfiles/zsh/.functions
+source $HOME/workspace/dotfiles/zsh/.constants
+source $HOME/workspace/dotfiles/zsh/.functions
 
 # Source Shell.
 alias s.zsh="source $DOTFILES_PATH/.zshrc"
-alias s.tmux="tmux source-file $DOTFILES_PATH/.tmux.conf"
+alias s.tmux="tmux source-file $DOTFILES_TMUX_PATH/tmux.conf"
 
 # List declared aliases, functions, path.
 alias aliases="alias | sed 's/=.*//'"
@@ -39,7 +39,8 @@ alias conf.kitty="vi $DOTFILES_CONFIG_PATH/kitty/kitty.conf"
 alias conf.tmux="vi $DOTFILES_PATH/.tmux.conf"
 alias conf.lf="vi $DOTFILES_CONFIG_PATH/lf/lfrc"
 alias conf.alacritty="vi $DOTFILES_CONFIG_PATH/alacritty/alacritty.yml"
-alias conf.lg="vi  $DOTFILES_APP_PATH/lazygit/config.yml"
+alias conf.lg="vi $DOTFILES_APP_PATH/lazygit/config.yml"
+alias conf.sesh="vi $DOTFILES_APP_PATH/sesh/sesh.toml"
 alias conf.hammerspoon="vi $DOTFILES_PATH/.hammerspoon"
 
 # Paths
@@ -79,8 +80,8 @@ alias kill.bali="lsof -i :4000 | jc --lsof | jq -r '.[] | select(.command == "no
 
 # ls
 # alias ll="tmux display-popup -w 80% -h 80% 'exa --all --long --header --git'"
-alias ll="exa --all --long --header --git"
-alias lt="exa -aT --color=always --group-directories-first --ignore-glob=\"**/node_modules|**/dist|**/.next|**/.git\""
+alias ll="eza --all --long --header --git"
+alias lt="eza -aT --color=always --group-directories-first --ignore-glob=\"**/node_modules|**/dist|**/.next|**/.git\""
 
 # tar
 alias tarr="tar -pczf $1 $2"
@@ -91,10 +92,15 @@ alias starr="sudo tar -pczf $1 $2"
 alias f="fzf --preview 'bat --style=numbers --theme=ansi --color=always --line-range :500 {}' | pbcopy | echo $(pbpaste)"
 
 # tmux
-alias t="tmux -2"
-alias tks="kill-tmux-garbage-sessions \$(tmux list-sessions)"
-alias tbs='tmux-bootstrap-sessions'
+alias t="tmux"
+alias tks="tmux-kill-all"
+alias tbs="tmux-bootstrap-sessions"
 alias t.s="tmux-split-layout"
+alias tpm.reload="$DOTFILES_TMUX_PATH/plugins/tpm/scripts/install_plugins.sh"
+alias tpm.update="$DOTFILES_TMUX_PATH/plugins/tpm/scripts/update_plugin.sh all"
+alias tpm.source="$DOTFILES_TMUX_PATH/plugins/tpm/scripts/source_plugins.sh"
+alias tpm.clean="$DOTFILES_TMUX_PATH/plugins/tpm/scripts/clean_plugins.sh"
+alias tpm.prompt="$DOTFILES_TMUX_PATH/plugins/tpm/scripts/update_plugin_prompt_handler.sh"
 
 # Docker
 alias dk="docker"
@@ -131,6 +137,10 @@ alias gl="git log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(a
 alias gpof="git push origin --force-with-lease"
 alias gpoff="git push origin --force-with-lease --no-verify"
 alias gbleach="git branch -vv | grep 'gone'] | awk '{ print $1 }' | xargs git branch -D"
+alias gsw="git switch"
+alias gswc="git switch --create"
+alias gss="git stash save"
+
 # Git external tools
 alias lg="tmux display-popup -w 80% -h 80% -d '#{pane_current_path}' 'lazygit'"
 alias ghd="tmux display-popup -w 80% -h 80% -d '#{pane_current_path}' 'gh dash'"
@@ -165,5 +175,9 @@ alias stow.update="stow --adopt . --target='$HOME/'"
 # AWS
 alias av.sen="aws-vault exec sencrop --"
 
+# Terraform
+alias tf="terraform"
+
 # Kikoo
 alias gg="tmux display-popup -w 17% -h 26% -d '#{pane_current_path}' 'curl parrot.live'"
+

@@ -62,7 +62,7 @@ action = "ToggleFullscreen"
 key = "F11"
 
 # ===== Bridge between tmux and alacritty to use macOS keybinds =====
-# `\u0002` = `C-b` | `\u0002,` = `C-b ,` | `\u0002s` = `C-b s` | etc.
+# `\u0002` = `C-b` | `\u0002s` = `C-b s` | etc.
 
 # Rename the current tmux window.
 [[keyboard.bindings]]
@@ -70,9 +70,9 @@ chars = "\u0002,"
 key = "Comma"
 mods = "Command"
 
-# Select a new tmux session for the attached client interactively.
+# Select tmux session using Sesh.
 [[keyboard.bindings]]
-chars = "\u0002s"
+chars = "\u0002K"
 key = "K"
 mods = "Command"
 
@@ -238,7 +238,7 @@ mods = "Command"
 [[keyboard.bindings]]
 chars = "\u0002\u0019"
 key = "Y"
-mods = "Command"
+mods = "Command|Shift"
 
 # == "tmux-plugins/tmux-logging" ==
 # Start/stop log mode.
@@ -250,8 +250,8 @@ mods = "Command"
 # == "fcsonline/tmux-thumbs" ==
 [[keyboard.bindings]]
 chars = "\u0002 "
-key = "Y"
-mods = "Command|Shift"
+key = "y"
+mods = "Command"
 
 # == 'tmux-plugins/tmux-resurrect ==
 # Reload

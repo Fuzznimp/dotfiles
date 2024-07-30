@@ -1,0 +1,18 @@
+[[session]]
+name = "Home 🏡"
+path = "~"
+startup_command = "ll"
+
+[[session]]
+name = "Downloads 📥"
+path = "~/Downloads"
+startup_command = "lf"
+
+[[session]]
+name = "Dotfiles 🔧"
+path = "~/workspace/dotfiles"
+
+[[session]]
+name = "Sencrop app"
+path = "~/workspace/sencrop/sencrop-app"
+script_path = "~/.config/sesh/scripts/sencrop/start-app"

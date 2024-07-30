@@ -36,6 +36,13 @@ tmux-split-layout() {
   tmux select-pane -t 1
 }
 
+tpm() {
+  tpm.update
+  tpm.reload
+  tpm.source
+  tpm.prompt
+}
+
 # ================= System =================
 
 update_stack() {
