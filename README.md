@@ -24,6 +24,7 @@ From this repo:
 
 ```sh
 stow . --target="$HOME/"
+compaudit | xargs chmod g-w
 ```
 
 ## TODO:

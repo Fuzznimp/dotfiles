@@ -178,6 +178,9 @@ alias av.sen="aws-vault exec sencrop --"
 # Terraform
 alias tf="terraform"
 
+# Brew
+alias brew.purge="brew remove --force $(brew list --formula)"
+
 # Kikoo
 alias gg="tmux display-popup -w 17% -h 26% -d '#{pane_current_path}' 'curl parrot.live'"
 

@@ -100,7 +100,6 @@
   "inlineChat.mode": "live",
   "diffEditor.hideUnchangedRegions.enabled": true,
   "zenMode.hideLineNumbers": false,
-  "window.customTitleBarVisibility": "never",
   "diffEditor.ignoreTrimWhitespace": false,
   "editor.foldingImportsByDefault": true,
   // ============= UI =============
@@ -142,10 +141,7 @@
   "projectManager.sortList": "Recent",
   // background
   "background.editorBackgrounds": [],
-  "background.windowBackgrounds": [
-    "/Users/anthonymontaigne/Pictures/V Rising Gothic Vampire Girl Throne.jpg",
-    "Users/anthonymontaigne/Pictures/vrising.jpg"
-  ],
+  "background.windowBackgrounds": ["/Users/fuzznimp/Pictures/vrising.jpg"],
   "background.autoInstall": false,
   "background.backgroundOpacity": [0.95, 0.9, 0.9, 0.9],
   // vim
@@ -216,5 +212,8 @@
     "irricrop",
     "chargebee"
   ],
-  "workbench.editor.wrapTabs": true
+  "workbench.editor.wrapTabs": true,
+  "window.commandCenter": false,
+  "workbench.layoutControl.enabled": false,
+  "window.customTitleBarVisibility": "never"
 }
