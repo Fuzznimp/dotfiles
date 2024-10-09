@@ -39,6 +39,9 @@ family = "Hack Nerd Font"
 [font.normal]
 family = "Hack Nerd Font"
 
+[selection]
+save_to_clipboard = true
+
 [scrolling]
 history = 10000
 multiplier = 3

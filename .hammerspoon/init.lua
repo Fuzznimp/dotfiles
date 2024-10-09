@@ -14,17 +14,17 @@ hs.hotkey.bind({ "⌥" }, "space", function()
 end)
 
 hs.hotkey.bind({ "⌃", "⌥" }, "space", function()
-  local app = hs.appfinder.appFromName("Code")
+  local app = hs.appfinder.appFromName("Cursor")
   if app then
     if not app:mainWindow() then
-      app:selectMenuItem({ "Code", "New OS window" })
+      app:selectMenuItem({ "Cursor", "New OS window" })
     elseif app:isFrontmost() then
       app:hide()
     else
       app:activate()
     end
   else
-    hs.application.launchOrFocus("Code")
+    hs.application.launchOrFocus("Cursor")
   end
 end)
 

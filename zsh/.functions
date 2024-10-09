@@ -78,6 +78,10 @@ find-exec() {
   find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
 }
 
+bat() {
+  tmux display-popup -w 80% -h 80% "bat $@"
+}
+
 # Better find(1)
 ff() {
   find . -iname "*${1:-}*"

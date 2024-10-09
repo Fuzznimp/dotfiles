@@ -25,12 +25,6 @@ alias lfp="tmux display-popup -w 80% -h 80% 'lf'"
 alias pwde="printf '%q\n' '$(pwd)'"
 alias htop="tmux display-popup -w 80% -h 80% 'htop'"
 
-# TODO: Find a way to make this work.
-# function bat() {
-#   tmux display-popup -w 80% -h 80% "bat $@"
-# }
-# alias bat="bat"
-
 # Confs
 alias conf.alias="vi $DOTFILES_ZSH_PATH/.aliases"
 alias conf.function="vi $DOTFILES_ZSH_PATH/.functions"

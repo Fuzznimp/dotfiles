@@ -7,7 +7,7 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "theme": "The Dark Side",
+  "theme": "Gruvbox Material",
   "vim_mode": true,
   "relative_line_numbers": true,
   "ui_font_size": 16,

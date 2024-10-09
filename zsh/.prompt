@@ -98,6 +98,3 @@ common_bg_jobs() {
 setopt PROMPT_SUBST
 
 PROMPT='$(common_host)$(common_current_dir)$(common_bg_jobs)$(common_git_status) $(common_return_status)'
-PROMPT='$(common_host)$(common_current_dir)$(common_bg_jobs)$(common_git_status) $(common_return_status)'
-# PROMPT='$(common_host)$(common_current_dir)$(common_bg_jobs)$(common_return_status)'
-# RPROMPT='$(common_git_status)'

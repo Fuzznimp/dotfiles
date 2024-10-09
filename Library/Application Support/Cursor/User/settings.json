@@ -72,7 +72,9 @@
   "http.systemCertificates": false,
   "explorer.confirmDelete": false,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
+    "source.fixAll.eslint": "explicit",
+    "source.addMissingImports.ts": "always",
+    "source.fixAll.ts": "always"
   },
   "explorer.confirmDragAndDrop": false,
   "editor.renderWhitespace": "all",
@@ -210,7 +212,6 @@
   "workbench.editor.wrapTabs": true,
   "window.commandCenter": false,
   "workbench.layoutControl.enabled": false,
-  "window.customTitleBarVisibility": "never",
   "window.nativeTabs": true,
   "window.titleBarStyle": "native",
   "background.useInvertedOpacity": true
