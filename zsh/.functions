@@ -79,7 +79,7 @@ find-exec() {
 }
 
 bat() {
-  tmux display-popup -w 80% -h 80% "bat $@"
+  tmux display-popup -w 80% -h 80% -d "#{pane_current_path}" "bat $@"
 }
 
 # Better find(1)

@@ -101,7 +101,6 @@
   "diffEditor.hideUnchangedRegions.enabled": true,
   "zenMode.hideLineNumbers": false,
   "diffEditor.ignoreTrimWhitespace": false,
-  "editor.foldingImportsByDefault": true,
   "window.zoomLevel": 1,
   // =========== GitHub ===========
   // Git
@@ -207,7 +206,8 @@
     "solarcrop",
     "soilcrop",
     "irricrop",
-    "chargebee"
+    "chargebee",
+    "agro"
   ],
   "workbench.editor.wrapTabs": true,
   "window.commandCenter": false,
