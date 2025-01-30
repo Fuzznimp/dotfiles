@@ -42,3 +42,16 @@ vim.keymap.set('n', '<leader>td', function()
   vim.g.catppuccin_flavour = "mocha"
   vim.cmd.colorscheme "catppuccin"
 end, { desc = "Set dark theme" })
+
+-- Lazy
+vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+
+-- Mini.files
+vim.keymap.set("n", "<leader>t", function()
+  require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+end, { desc = "Open mini.files (directory of current file)" })
+
+-- Open mini.files at current working directory
+vim.keymap.set("n", "<leader>T", function()
+  require("mini.files").open(vim.loop.cwd(), true)
+end, { desc = "Open mini.files (cwd)" })

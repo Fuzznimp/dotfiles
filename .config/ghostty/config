@@ -1,7 +1,113 @@
-font-family = Hack Nerd Font
+# Shell
+shell-integration = "zsh"
+
+# Font
+font-family = "Hack Nerd Font"
+font-family-bold = "Hack Nerd Font"
+font-family-italic = "Hack Nerd Font"
+font-family-bold-italic = "Hack Nerd Font"
 font-size = 14
+font-thicken = true
 
-background-opacity = 0.9
+# Window
 window-decoration = false
+fullscreen = true
+macos-non-native-fullscreen = true
+background-opacity = 0.9
+window-padding-x = 8
+window-padding-y = 8,4
 
-# macos-option-as-alt = true
+# Colors
+background = "#202020"
+foreground = "#dfbf8e"
+
+# Normal colors
+palette = 0=#665c54
+palette = 1=#ea6962
+palette = 2=#a9b665
+palette = 3=#e78a4e
+palette = 4=#7daea3
+palette = 5=#d3869b
+palette = 6=#89b482
+palette = 7=#dfbf8e
+
+# Bright colors
+palette = 8=#928374
+palette = 9=#ea6962
+palette = 10=#a9b665
+palette = 11=#e3a84e
+palette = 12=#7daea3
+palette = 13=#d3869b
+palette = 14=#89b482
+palette = 15=#dfbf8e
+
+# Scrollback
+scrollback-limit = 10000
+
+# Clipboard
+clipboard-read = allow
+clipboard-write = allow
+
+# Keybindings
+# Select tmux session using Sesh
+keybind = cmd+k=text:\x02K
+# Session management
+keybind = cmd+shift+k=text:\x02F
+# Search inside current tmux pane
+keybind = cmd+f=text:\x02?
+# Rename window
+keybind = cmd+comma=text:\x02,
+# Select window 1-9
+keybind = cmd+1=text:\x021
+keybind = cmd+2=text:\x022
+keybind = cmd+3=text:\x023
+keybind = cmd+4=text:\x024
+keybind = cmd+5=text:\x025
+keybind = cmd+6=text:\x026
+keybind = cmd+7=text:\x027
+keybind = cmd+8=text:\x028
+keybind = cmd+9=text:\x029
+# Move window left
+keybind = cmd+shift+right=text:\x02n
+# Move window right
+keybind = cmd+shift+left=text:\x02p
+# New window
+keybind = cmd+t=text:\x02c
+# Break pane to window
+keybind = cmd+shift+t=text:\x02!
+# Kill pane
+keybind = cmd+w=text:\x02x
+# Toggle zoom
+keybind = cmd+z=text:\x02z
+# Last session
+keybind = cmd+l=text:\x02L
+# Previous window
+keybind = cmd+[=text:\x02[
+# Next window
+keybind = cmd+shift+[=text:\x02p
+# Split vertical
+keybind = cmd+d=text:\x02%
+# Split horizontal
+keybind = cmd+shift+d=text:\x02"
+# Move between panes
+keybind = cmd+right=text:\x02\x1b[C
+keybind = cmd+up=text:\x02\x1b[A
+keybind = cmd+down=text:\x02\x1b[B
+# Install plugins
+keybind = cmd+shift+r=text:\x02I
+# Jump word right
+keybind = alt+right=text:\x1bF
+# Jump word left
+keybind = alt+left=text:\x1bB
+# Open in nvim
+keybind = cmd+o=text:\x02\x06
+# Sync panes
+keybind = cmd+shift+y=text:\x02\x19
+# Toggle logging
+keybind = cmd+p=text:\x02\x1bP
+# Thumbs
+keybind = cmd+y=text:\x02
+# Reload
+keybind = cmd+r=text:\x02R
+# Save
+keybind = cmd+s=text:\x02M

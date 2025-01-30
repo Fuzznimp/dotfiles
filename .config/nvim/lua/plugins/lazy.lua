@@ -16,18 +16,12 @@ vim.opt.rtp:prepend(lazypath)
 vim.o.termguicolors = true
 
 require('lazy').setup({
-  { 'echasnovski/mini.nvim', version = false },
+  {
+    'echasnovski/mini.nvim',
+    version = false,
+  },
 
   'lewis6991/gitsigns.nvim',
-
-  { -- Colorscheme.
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-    config = function()
-      require("plugins.catppuccin")
-    end,
-  },
 
   { -- LSP Support.
     'neovim/nvim-lspconfig',
@@ -78,5 +72,14 @@ require('lazy').setup({
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
     build = ':TSUpdate',
+  },
+
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    config = function()
+      require("plugins.catppuccin")
+    end,
   },
 })

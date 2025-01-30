@@ -1,23 +1,30 @@
+-- "Ghostty", "Alacritty", "Kitty"
+local terminal = "Ghostty"
+-- "Google Chrome", "Arc", "Firefox Developer Edition", "Zen"
+local browser = "Arc"
+-- "Cursor", "Code"
+local ide = "Cursor"
+
 hs.hotkey.bind({ "⌥" }, "space", function()
-  local app = hs.application.get("Alacritty")
+  local app = hs.application.get(terminal)
   if app then
     if not app:mainWindow() then
-      app:selectMenuItem({ "Alacritty", "New OS window" })
+      app:selectMenuItem({ terminal, "New OS window" })
     elseif app:isFrontmost() then
       app:hide()
     else
       app:activate()
     end
   else
-    hs.application.launchOrFocus("Alacritty")
+    hs.application.launchOrFocus(terminal)
   end
 end)
 
 hs.hotkey.bind({ "⌃", "⌥" }, "space", function()
-  local app = hs.appfinder.appFromName("Cursor")
+  local app = hs.appfinder.appFromName(ide)
   if app then
     if not app:mainWindow() then
-      app:selectMenuItem({ "Cursor", "New OS window" })
+      app:selectMenuItem({ ide, "New OS window" })
     elseif app:isFrontmost() then
       app:hide()
     else
@@ -28,23 +35,8 @@ hs.hotkey.bind({ "⌃", "⌥" }, "space", function()
   end
 end)
 
--- hs.hotkey.bind({ "⌃" }, "space", function()
---  local app = hs.appfinder.appFromName("Arc")
---  if app then
---      if not app:mainWindow() then
---          app:selectMenuItem({ "Arc", "New OS window" })
---      elseif app:isFrontmost() then
---          app:hide()
---      else
---          app:activate()
---      end
---  else
---      hs.application.launchOrFocus("Google Chrome")
---  end
--- end)
-
 hs.hotkey.bind({ "⌃", "⌥", "⌘" }, "space", function()
-  local app = hs.appfinder.appFromName("Arc")
+  local app = hs.appfinder.appFromName(browser)
   if app then
     if not app:mainWindow() then
       app:selectMenuItem({ "Arc", "New OS window" })
@@ -57,33 +49,3 @@ hs.hotkey.bind({ "⌃", "⌥", "⌘" }, "space", function()
     hs.application.launchOrFocus("Google Chrome")
   end
 end)
-
--- hs.hotkey.bind({ "⌥", "⌘" }, "space", function()
---  local app = hs.appfinder.appFromName("Arc")
---  if app then
---      if not app:mainWindow() then
---          app:selectMenuItem({ "Arc", "New OS window" })
---      elseif app:isFrontmost() then
---          app:hide()
---      else
---          app:activate()
---      end
---  else
---      hs.application.launchOrFocus("Google Chrome")
---  end
--- end)
-
--- hs.hotkey.bind({ "⌃", "⌥", "⌘" }, "space", function()
---  local app = hs.appfinder.appFromName("Firefox Developer Edition")
---  if app then
---      if not app:mainWindow() then
---          app:selectMenuItem({ "Firefox Developer Edition", "New OS window" })
---      elseif app:isFrontmost() then
---          app:hide()
---      else
---          app:activate()
---      end
---  else
---      hs.application.launchOrFocus("Firefox Developer Edition")
---  end
--- end)
