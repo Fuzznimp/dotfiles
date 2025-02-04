@@ -12,6 +12,7 @@ local chart = {
   pink = "#d3869b",
   red = "#ea6962",
   yellow = "#d8a657",
+  brown = "#8b4513",
 }
 
 require("catppuccin").setup({
@@ -27,6 +28,48 @@ require("catppuccin").setup({
     enabled = false,
     shade = "dark",
     percentage = 0.15,
+  },
+  custom_highlights = {
+    ["@boolean"] = { fg = chart.purple },
+    ["@conditional.ternary.tsx"] = { fg = chart.orange },
+    ["@conditional.tsx"] = { fg = chart.red },
+    ["@constant"] = { fg = chart.fg },
+    ["@constant.builtin.tsx"] = { fg = chart.purple },
+    ["@constant.tsx"] = { fg = chart.fg },
+    ["@constructor.tsx"] = { fg = chart.orange },
+    ["@exception.tsx"] = { fg = chart.red },
+    ["@function"] = { fg = chart.green },
+    ["@include"] = { fg = chart.fg },
+    ["@keyword.operator.tsx"] = { fg = chart.red },
+    ["@keyword.return.tsx"] = { fg = chart.red },
+    ["@keyword"] = { fg = chart.orange },
+    ["@keyword.typescript"] = { fg = chart.red },
+    ["@method.call.tsx"] = { fg = chart.green },
+    ["@number.tsx"] = { fg = chart.purple },
+    ["@operator"] = { fg = chart.orange },
+    ["@property"] = { fg = chart.fg },
+    ["@punctuation.bracket"] = { fg = chart.fg },
+    ["@punctuation.delimiter.tsx"] = { fg = chart.fg },
+    ["@punctuation.special.tsx"] = { fg = chart.orange },
+    ["@string"] = { fg = chart.yellow },
+    ["@tag.attribute.tsx"] = { fg = chart.green },
+    ["@tag.delimiter.tsx"] = { fg = chart.green },
+    ["@type.builtin.tsx"] = { fg = chart.blue },
+    ["@type.tsx"] = { fg = chart.blue },
+    ["@variable"] = { fg = chart.fg },
+    -- Rainbow delimiters
+    ["@RainbowDelimiterRed"] = { fg = chart.brown },
+    ["@RainbowDelimiterGreen"] = { fg = chart.green },
+    ["@RainbowDelimiterOrange"] = { fg = chart.orange },
+    -- TypeScript specific
+    ["@type.typescript"] = { fg = chart.blue },
+    ["@constructor.typescript"] = { fg = chart.pink },
+    ["@variable.typescript"] = { fg = chart.fg },
+    -- Noice
+    ["NoiceCmdlinePopupBorder"] = { fg = chart.orange },
+    ["NoiceCmdlinePopupTitle"] = { fg = chart.orange },
+    ["NoiceCmdlineIcon"] = { fg = chart.orange },
+
   },
   color_overrides = {
     mocha = {

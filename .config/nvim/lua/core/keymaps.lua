@@ -32,17 +32,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- Theme toggling
-vim.keymap.set('n', '<leader>tl', function()
-  vim.g.catppuccin_flavour = "latte"
-  vim.cmd.colorscheme "catppuccin"
-end, { desc = "Set light theme" })
-
-vim.keymap.set('n', '<leader>td', function()
-  vim.g.catppuccin_flavour = "mocha"
-  vim.cmd.colorscheme "catppuccin"
-end, { desc = "Set dark theme" })
-
 -- Lazy
 vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
@@ -55,3 +44,30 @@ end, { desc = "Open mini.files (directory of current file)" })
 vim.keymap.set("n", "<leader>T", function()
   require("mini.files").open(vim.loop.cwd(), true)
 end, { desc = "Open mini.files (cwd)" })
+
+-- Show treesitter highlight group under cursor
+vim.keymap.set("n", "<leader>hi", function()
+  local result = vim.treesitter.get_captures_at_cursor(0)
+  print(vim.inspect(result))
+end, { desc = "Show highlight group under cursor" })
+
+-- Lazygit
+vim.keymap.set("n", "<leader>lg", function()
+  local Terminal = require("snacks.terminal")
+  local lazygit = Terminal:new({
+    cmd = "lazygit",
+    dir = "git_dir",
+    direction = "float",
+    float_opts = {
+      border = "rounded",
+    },
+    on_open = function(term)
+      vim.cmd("startinsert!")
+      vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+    end,
+    on_close = function()
+      vim.cmd("startinsert!")
+    end,
+  })
+  lazygit:toggle()
+end, { desc = "Toggle Lazygit" })

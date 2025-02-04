@@ -3,6 +3,10 @@ require("mini.files").setup({
     preview = true,
     width_preview = 100,
   },
+  options = {
+    -- Don't open automatically
+    use_as_default_explorer = false,
+  },
 })
 
 -- Close mini.files before using Telescope.
