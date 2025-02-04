@@ -50,64 +50,65 @@ clipboard-write = allow
 
 # Keybindings
 # Select tmux session using Sesh
-keybind = cmd+k=text:\x02K
+keybind = "cmd+k=text:\x02K"
 # Session management
-keybind = cmd+shift+k=text:\x02F
+keybind = "cmd+shift+k=text:\x02F"
 # Search inside current tmux pane
-keybind = cmd+f=text:\x02?
+keybind = "cmd+f=text:\x02?"
 # Rename window
-keybind = cmd+comma=text:\x02,
+keybind = "cmd+comma=text:\x02,"
 # Select window 1-9
-keybind = cmd+1=text:\x021
-keybind = cmd+2=text:\x022
-keybind = cmd+3=text:\x023
-keybind = cmd+4=text:\x024
-keybind = cmd+5=text:\x025
-keybind = cmd+6=text:\x026
-keybind = cmd+7=text:\x027
-keybind = cmd+8=text:\x028
-keybind = cmd+9=text:\x029
+keybind = "cmd+1=text:\x021"
+keybind = "cmd+2=text:\x022"
+keybind = "cmd+3=text:\x023"
+keybind = "cmd+4=text:\x024"
+keybind = "cmd+5=text:\x025"
+keybind = "cmd+6=text:\x026"
+keybind = "cmd+7=text:\x027"
+keybind = "cmd+8=text:\x028"
+keybind = "cmd+9=text:\x029"
 # Move window left
-keybind = cmd+shift+right=text:\x02n
+keybind = "cmd+shift+right=text:\x02n"
 # Move window right
-keybind = cmd+shift+left=text:\x02p
+keybind = "cmd+shift+left=text:\x02p"
 # New window
-keybind = cmd+t=text:\x02c
+keybind = "cmd+t=text:\x02c"
 # Break pane to window
-keybind = cmd+shift+t=text:\x02!
+keybind = "cmd+shift+t=text:\x02!"
 # Kill pane
-keybind = cmd+w=text:\x02x
+keybind = "cmd+w=text:\x02x"
 # Toggle zoom
-keybind = cmd+z=text:\x02z
+keybind = "cmd+z=text:\x02z"
 # Last session
-keybind = cmd+l=text:\x02L
+keybind = "cmd+l=text:\x02L"
 # Previous window
-keybind = cmd+[=text:\x02[
+keybind = "cmd+[=text:\x02["
 # Next window
-keybind = cmd+shift+[=text:\x02p
+keybind = "cmd+shift+[=text:\x02p"
 # Split vertical
-keybind = cmd+d=text:\x02%
+keybind = "cmd+d=text:\x02%"
 # Split horizontal
-keybind = cmd+shift+d=text:\x02"
+keybind = "cmd+shift+d=text:\x02"
 # Move between panes
-keybind = cmd+right=text:\x02\x1b[C
-keybind = cmd+up=text:\x02\x1b[A
-keybind = cmd+down=text:\x02\x1b[B
+keybind = "cmd+up=text:\x02\x1b[A"
+keybind = "cmd+down=text:\x02\x1b[B"
+keybind = "cmd+right=text:\x02\x1b[C"
+keybind = "cmd+left=text:\x02\x1b[D"
 # Install plugins
-keybind = cmd+shift+r=text:\x02I
+keybind = "cmd+shift+r=text:\x02I"
 # Jump word right
-keybind = alt+right=text:\x1bF
+keybind = "alt+right=text:\x1bF"
 # Jump word left
-keybind = alt+left=text:\x1bB
+keybind = "alt+left=text:\x1bB"
 # Open in nvim
-keybind = cmd+o=text:\x02\x06
+keybind = "cmd+o=text:\x02\x06"
 # Sync panes
-keybind = cmd+shift+y=text:\x02\x19
+keybind = "cmd+shift+y=text:\x02\x19"
 # Toggle logging
-keybind = cmd+p=text:\x02\x1bP
+keybind = "cmd+p=text:\x02\x1bP"
 # Thumbs
-keybind = cmd+y=text:\x02
+keybind = "cmd+y=text:\x02 "
 # Reload
-keybind = cmd+r=text:\x02R
+keybind = "cmd+r=text:\x02R"
 # Save
-keybind = cmd+s=text:\x02M
+keybind = "cmd+s=text:\x02M"

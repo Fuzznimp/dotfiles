@@ -5,6 +5,17 @@ require("mini.files").setup({
   },
 })
 
+-- Close mini.files before using Telescope.
+vim.api.nvim_create_autocmd("User", {
+  pattern = "TelescopeFindPre",
+  callback = function()
+    local ok, mini_files = pcall(require, "mini.files")
+    if ok then
+      mini_files.close()
+    end
+  end
+})
+
 -- Keymaps
 vim.keymap.set("n", "<leader>t", function()
   require("mini.files").open(vim.api.nvim_buf_get_name(0), true)

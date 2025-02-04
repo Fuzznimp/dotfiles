@@ -31,9 +31,8 @@ compaudit | xargs chmod g-w
 
 ### Global
 
-- [ ] Pimp README
 - [ ] Add global theme object.
-- [ ] Extract cspell hash from vscode to global level.
+- [ ] Extract cspell hash to global level.
 - [ ] .setup
 
 ### brew
@@ -44,6 +43,7 @@ compaudit | xargs chmod g-w
 
 - [ ] Add `osx.sh`. <!-- Dock, shortcuts, etc. -->
 
-### zsh
+### nvim
 
-- [ ] Fix completion highlights. <!-- options displayed when pressing tab -->
+- [ ] Finish colorscheme.
+- [ ] cmp and lsp keybinds
