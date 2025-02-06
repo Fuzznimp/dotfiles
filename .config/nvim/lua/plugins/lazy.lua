@@ -15,7 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Fixes Notify opacity issues.
 vim.o.termguicolors = true
 
-require('lazy').setup({
+require('.config.nvim.lua.lazy').setup({
   {
     'echasnovski/mini.nvim',
     version = false,
