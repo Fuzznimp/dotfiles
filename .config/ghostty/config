@@ -88,7 +88,7 @@ keybind = "cmd+shift+[=text:\x02p"
 # Split vertical
 keybind = "cmd+d=text:\x02%"
 # Split horizontal
-keybind = "cmd+shift+d=text:\x02"
+keybind = "cmd+shift+d=text:\x02\""
 # Move between panes
 keybind = "cmd+up=text:\x02\x1b[A"
 keybind = "cmd+down=text:\x02\x1b[B"
