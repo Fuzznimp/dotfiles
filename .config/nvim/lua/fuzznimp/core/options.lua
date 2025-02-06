@@ -1,14 +1,21 @@
+-- Fonts
 vim.g.have_nerd_font = true
-
--- Make line numbers default
-vim.opt.number = true
-vim.opt.relativenumber = true
 
 -- Enable mouse mode.
 vim.opt.mouse = 'a'
 
--- Don't show the mode, since it's already in the status line
--- vim.opt.showmode = false
+-- Don't show the mode, since it's already in the status line.
+vim.opt.showmode = false
+
+-- Line numbers
+vim.opt.number = true
+vim.opt.relativenumber = true
+
+-- tabs & indentation
+vim.opt.tabstop = 2       -- 2 spaces for tabs (prettier default).
+vim.opt.shiftwidth = 2    -- 2 spaces for indent width.
+vim.opt.expandtab = true  -- Expand tab to spaces.
+vim.opt.autoindent = true -- Copy indent from current line when starting new one.
 
 -- Sync clipboard between OS and Neovim.
 vim.schedule(function()
