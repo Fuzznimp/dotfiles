@@ -180,3 +180,6 @@ alias gg="tmux display-popup -w 17% -h 26% -d '#{pane_current_path}' 'curl parro
 
 # Npm
 alias npmr="npm run"
+
+# Cursor
+alias cs="cursor"
