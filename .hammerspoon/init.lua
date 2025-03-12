@@ -49,3 +49,18 @@ hs.hotkey.bind({ "⌃", "⌥", "⌘" }, "space", function()
     hs.application.launchOrFocus("Google Chrome")
   end
 end)
+
+hs.hotkey.bind({ "⌃", "⌘" }, "space", function()
+  local app = hs.appfinder.appFromName(browser)
+  if app then
+    if not app:mainWindow() then
+      app:selectMenuItem({ "Slack", "New OS window" })
+    elseif app:isFrontmost() then
+      app:hide()
+    else
+      app:activate()
+    end
+  else
+    hs.application.launchOrFocus("Slack")
+  end
+end)
