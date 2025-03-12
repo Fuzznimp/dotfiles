@@ -1,5 +1,5 @@
 [user]
-email = montaigne.anthony.dev@gmail.com
+email = anthony@montaigne.dev
 name = Fuzznimp
 useconfigonly = true
 
@@ -21,6 +21,8 @@ whitespace = red
 
 [core]
 editor = nvim
+excludesfile = ~/.gitignore
+pager = less -F -X
 
 [diff]
 mnemonicPrefix = true
@@ -39,10 +41,6 @@ cmd = code --wait --diff $LOCAL $REMOTE
 abbrevCommit = true
 follow = true
 decorate = false
-
-[core]
-excludesfile = ~/.gitignore
-pager = less -F -X
 
 [fetch]
 prune = true
