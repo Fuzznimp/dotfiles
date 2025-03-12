@@ -214,5 +214,7 @@
   "workbench.layoutControl.enabled": false,
   "window.nativeTabs": true,
   "window.titleBarStyle": "native",
-  "background.useInvertedOpacity": true
+  "background.useInvertedOpacity": true,
+  "workbench.tree.renderIndentGuides": "always",
+  "vsicons.presets.hideExplorerArrows": true
 }
