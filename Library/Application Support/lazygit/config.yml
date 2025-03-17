@@ -2,6 +2,7 @@ gui:
   showIcons: true
   showCommandLog: true
   commandLogSize: 80
+  nerdFontsVersion: 3
   theme:
     activeBorderColor:
       - green

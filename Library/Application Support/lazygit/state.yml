@@ -3,13 +3,15 @@ recentrepos:
     - /Users/fuzznimp/workspace/dotfiles
     - /Users/fuzznimp/workspace/sencrop/sencrop-app
     - /Users/fuzznimp/workspace/sencrop/sencrop-bali-api
+    - /Users/fuzznimp/workspace/sencrop/sencrop-quotator
     - /Users/fuzznimp/workspace/sencrop/bruno-collections
     - /Users/fuzznimp/workspace/sencrop/infrastructure-sencrop
     - /Users/fuzznimp/workspace/sencrop/sencrop-ui
     - /Users/fuzznimp/workspace/scripts/nordicandia-macros
 startuppopupversion: 5
 lastversion: 0.45.2
-customcommandshistory: []
+customcommandshistory:
+    - q
 hidecommandlog: true
 ignorewhitespaceindiffview: false
 diffcontextsize: 3
