@@ -1,6 +1,0 @@
-func cd(cooldown)
-  ?cooldown > 0
-    return "red"
-  return "green"
-
-var grey = "#7A8F93"

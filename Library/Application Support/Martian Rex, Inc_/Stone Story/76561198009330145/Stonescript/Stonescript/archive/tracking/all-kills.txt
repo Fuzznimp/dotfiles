@@ -1,8 +1,0 @@
-var foecount = 0
-var difference = 0
-
-?foe.count < foecount
-  difference = foecount-foe.count
-  storage.Incr("kills", difference)
->`1,24,Kills: @storage.Get("kills")@
-foecount = foe.count

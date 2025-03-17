@@ -1,4 +1,0 @@
-var threshold = 800
-
-func should_unmake()
-  return threshold > 0 & foe ! boss & foe.maxhp >= threshold

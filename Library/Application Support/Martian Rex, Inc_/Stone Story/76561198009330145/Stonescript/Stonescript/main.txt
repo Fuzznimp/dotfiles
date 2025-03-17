@@ -1,8 +1,0 @@
-import Stonescript/tracking/loop-time
-import Stonescript/tracking/red-nosed-scotty
-
-import Stonescript/skins/wavy-scarf
-import Stonescript/skins/shadow
-import Stonescript/skins/pet-skully
-
-import Stonescript/core/main
