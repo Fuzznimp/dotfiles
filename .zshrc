@@ -10,6 +10,8 @@ source ${ZSH_PATH}/.functions
 source ${ZSH_PATH}/.keybindings
 source ${HOME}/.cargo/env
 
+XDG_CONFIG_HOME=$HOME/.config
+
 # Tells lazydocker where to find the docker socket when using Colima.
 export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
 
