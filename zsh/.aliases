@@ -164,7 +164,8 @@ alias week="date +%V"
 alias ansic='for code in {000..255}; do print -P -- "$code: %F{$code}Color%f"; done'
 
 # GNU Stow
-alias stow.update="stow --adopt . --target='$HOME/'"
+alias stow.link="stow --adopt . --target='$HOME/'"
+alias stow.unlink="stow --delete . --target='$HOME/'"
 
 # AWS
 alias av.sen="aws-vault exec sencrop --"
