@@ -4,3 +4,4 @@ node_modules
 *.log
 */tmux/plugins
 */lazygit/state
+Library/Application Support/lazygit/state.yml
