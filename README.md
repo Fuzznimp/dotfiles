@@ -27,10 +27,15 @@ stow . --target="$HOME/"
 compaudit | xargs chmod g-w
 ```
 
+## Key repeat for VimMotions inside cursor
+
+https://stackoverflow.com/questions/33152551/how-can-i-disable-applepressandholdenabled-for-a-specific-application-repeat
+
 ## TODO:
 
 ### Global
 
+- [ ] Automate `ApplePressAndHoldEnabled`.
 - [ ] Add global theme object.
 - [ ] Extract cspell hash to global level.
 - [ ] .setup
