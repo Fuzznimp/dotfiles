@@ -1,0 +1,141 @@
+local chart = {
+  bg = "#202020",
+  bg1 = "#303030",
+  bg2 = "#4e4e4e",
+  bg3 = "#626262",
+  bg4 = "#888888",
+  bg5 = "#a8a8a8",
+  fg = "#d5c4a1",
+  blue = "#7DAEA3",
+  green = "#a9b665",
+  orange = "#e78a4e",
+  pink = "#d3869b",
+  red = "#ea6962",
+  yellow = "#d8a657",
+  brown = "#8b4513",
+}
+
+return {
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    config = function()
+      require("catppuccin").setup({
+        flavour = "mocha",
+        background = {
+          light = "latte",
+          dark = "mocha",
+        },
+        transparent_background = true,
+        show_end_of_buffer = false,
+        term_colors = false,
+        dim_inactive = {
+          enabled = false,
+          shade = "dark",
+          percentage = 0.15,
+        },
+        custom_highlights = {
+          ["@boolean"] = { fg = chart.purple },
+          ["@conditional.ternary.tsx"] = { fg = chart.orange },
+          ["@conditional.tsx"] = { fg = chart.red },
+          ["@constant"] = { fg = chart.fg },
+          ["@constant.builtin.tsx"] = { fg = chart.purple },
+          ["@constant.tsx"] = { fg = chart.fg },
+          ["@constructor.tsx"] = { fg = chart.orange },
+          ["@exception.tsx"] = { fg = chart.red },
+          ["@function"] = { fg = chart.green },
+          ["@include"] = { fg = chart.fg },
+          ["@keyword.operator.tsx"] = { fg = chart.red },
+          ["@keyword.return.tsx"] = { fg = chart.red },
+          ["@keyword"] = { fg = chart.orange },
+          ["@keyword.typescript"] = { fg = chart.red },
+          ["@method.call.tsx"] = { fg = chart.green },
+          ["@number.tsx"] = { fg = chart.purple },
+          ["@operator"] = { fg = chart.orange },
+          ["@property"] = { fg = chart.fg },
+          ["@punctuation.bracket"] = { fg = chart.fg },
+          ["@punctuation.delimiter.tsx"] = { fg = chart.fg },
+          ["@punctuation.special.tsx"] = { fg = chart.orange },
+          ["@string"] = { fg = chart.yellow },
+          ["@tag.attribute.tsx"] = { fg = chart.green },
+          ["@tag.delimiter.tsx"] = { fg = chart.green },
+          ["@type.builtin.tsx"] = { fg = chart.blue },
+          ["@type.tsx"] = { fg = chart.blue },
+          ["@variable"] = { fg = chart.fg },
+          -- Rainbow delimiters
+          ["@RainbowDelimiterRed"] = { fg = chart.brown },
+          ["@RainbowDelimiterGreen"] = { fg = chart.green },
+          ["@RainbowDelimiterOrange"] = { fg = chart.orange },
+          -- TypeScript specific
+          ["@type.typescript"] = { fg = chart.blue },
+          ["@constructor.typescript"] = { fg = chart.pink },
+          ["@variable.typescript"] = { fg = chart.fg },
+          -- Noice
+          ["NoiceCmdlinePopupBorder"] = { fg = chart.orange },
+          ["NoiceCmdlinePopupTitle"] = { fg = chart.orange },
+          ["NoiceCmdlineIcon"] = { fg = chart.orange },
+        },
+        color_overrides = {
+          mocha = {
+            base = chart.bg,
+            mantle = chart.bg1,
+            crust = chart.bg2,
+
+            text = chart.fg,
+            subtext1 = chart.bg5,
+            subtext0 = chart.bg4,
+            overlay2 = chart.bg4,
+            overlay1 = chart.bg3,
+            overlay0 = chart.bg2,
+            surface2 = chart.bg2,
+            surface1 = chart.bg1,
+            surface0 = chart.bg,
+
+            blue = chart.blue,
+            green = chart.green,
+            red = chart.red,
+            yellow = chart.yellow,
+            peach = chart.orange,
+            mauve = chart.pink,
+            pink = chart.pink,
+            flamingo = chart.red,
+            rosewater = chart.red,
+            lavender = chart.blue,
+            sapphire = chart.blue,
+            teal = chart.blue,
+            sky = chart.blue,
+            maroon = chart.red,
+          },
+        },
+        integrations = {
+          cmp = true,
+          gitsigns = true,
+          mason = true,
+          mini = true,
+          telescope = true,
+          treesitter = true,
+          notify = false,
+          native_lsp = {
+            enabled = true,
+            virtual_text = {
+              errors = { "italic" },
+              hints = { "italic" },
+              warnings = { "italic" },
+              information = { "italic" },
+            },
+            underlines = {
+              errors = { "underline" },
+              hints = { "underline" },
+              warnings = { "underline" },
+              information = { "underline" },
+            },
+          },
+        },
+      })
+
+      -- Set colorscheme after options
+      vim.cmd.colorscheme "catppuccin"
+    end,
+  }
+}
