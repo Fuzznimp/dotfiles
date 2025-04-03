@@ -100,10 +100,6 @@
     "command": "package-json-upgrade.open-url-command"
   },
   {
-    "key": "alt+r",
-    "command": "workbench.action.openRecent"
-  },
-  {
     "key": "ctrl+r",
     "command": "-workbench.action.openRecent"
   },
@@ -224,11 +220,6 @@
     "key": "alt+up",
     "command": "-block-travel.jumpUp",
     "when": "editorTextFocus"
-  },
-  // Project Manager
-  {
-    "key": "cmd+o",
-    "command": "projectManager.listGitProjects#sideBarGit"
   },
   {
     "key": "cmd+k g",
@@ -1206,5 +1197,43 @@
   {
     "key": "alt+cmd+s",
     "command": "-saveAll"
+  },
+  // TODO: Organize from here.
+  {
+    "key": "alt+r",
+    "command": "-extension.cssrem.rpx-switch-px"
+  },
+  {
+    "key": "alt+r",
+    "command": "editor.action.refactor",
+    "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+shift+r",
+    "command": "-editor.action.refactor",
+    "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+cmd+e",
+    "command": "-workbench.view.explorer",
+    "when": "viewContainer.workbench.view.explorer.enabled"
+  },
+  {
+    "key": "shift+cmd+e",
+    "command": "editor.action.marker.prev",
+    "when": "editorFocus"
+  },
+  {
+    "key": "shift+alt+f8",
+    "command": "-editor.action.marker.prev",
+    "when": "editorFocus"
+  },
+  {
+    "key": "cmd+i",
+    "command": "composerMode.agent"
+  },
+  {
+    "key": "cmd+i",
+    "command": "composerMode.agent"
   }
 ]

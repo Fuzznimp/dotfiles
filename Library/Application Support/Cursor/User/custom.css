@@ -1,0 +1,6 @@
+.quick-input-widget {
+  transform: translateY(-120px) !important;
+  top: 25% !important;
+  padding: 10px 10px 18px 10px !important;
+  border-radius: 10px !important;
+}
