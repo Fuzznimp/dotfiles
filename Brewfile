@@ -23,6 +23,7 @@ brew "joshmedeski/sesh/sesh"
 brew "jq"
 brew "lazydocker"
 brew "lazygit"
+brew "lf"
 brew "luarocks"
 brew "mas"
 brew "neovim"
@@ -59,8 +60,6 @@ cask "visual-studio-code"
 cask "vlc"
 
 mas "Monosnap", id: 540348655
-mas "Spark", id: 1176895641
-mas "Magnet", id: 441258766
 mas "Bitwarden", id: 1352778147
 mas "Tailscale", id: 1475387142
 
