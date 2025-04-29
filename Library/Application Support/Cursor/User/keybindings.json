@@ -163,6 +163,18 @@
     "key": "ctrl+alt+v",
     "command": "toggleVim"
   },
+  {
+    "key": "j k",
+    "command": "vscode-neovim.escape",
+    "when": "editorTextFocus && neovim.mode == insert",
+    "args": "jk"
+  },
+  {
+    "command": "vscode-neovim.escape",
+    "key": "j j",
+    "when": "editorTextFocus && neovim.mode == insert",
+    "args": "jj"
+  },
   // File tree
   {
     "key": "cmd+b",

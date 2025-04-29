@@ -224,12 +224,13 @@
   // ================= Vitest =================
   "vitest.nodeExecutable": "/nix/store/5k3b4l24qray412x35q95y067ll51rv5-nodejs-18.20.4/bin/node",
   // ================== Nvim ==================
-  "editor.lineNumbers": "relative",
+  // "editor.lineNumbers": "relative",
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
   },
   // ================ Custom CSS and JS ================
   "vscode_custom_css.imports": [
     "file:///Users/fuzznimp/workspace/dotfiles/Library/Application%20Support/Cursor/User/custom.css"
-  ]
+  ],
+  "redhat.telemetry.enabled": false
 }
