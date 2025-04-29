@@ -9,5 +9,5 @@ while true; do
 
     echo -e "#$COLOR 󰡨 #[bg=colour237,fg=colour239]"
 
-    sleep 3600
+    sleep 300
 done
