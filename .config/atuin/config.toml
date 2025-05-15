@@ -23,13 +23,13 @@
 # timezone = "local"
 
 ## enable or disable automatic sync
-# auto_sync = true
+auto_sync = true
 
 ## enable or disable automatic update checks
-# update_check = true
+update_check = true
 
 ## address of the sync server
-# sync_address = "https://api.atuin.sh"
+sync_address = "https://api.atuin.sh"
 
 ## how often to sync history. note that this is only triggered when a command
 ## is ran, so sync intervals may well be longer
@@ -38,18 +38,18 @@
 
 ## which search mode to use
 ## possible values: prefix, fulltext, fuzzy, skim
-# search_mode = "fuzzy"
+search_mode = "prefix"
 
 ## which filter mode to use by default
 ## possible values: "global", "host", "session", "directory", "workspace"
 ## consider using search.filters to customize the enablement and order of filter modes
-# filter_mode = "global"
+filter_mode = "global"
 
 ## With workspace filtering enabled, Atuin will filter for commands executed
 ## in any directory within a git repository tree (default: false).
 ##
 ## To use workspace mode by default when available, set this to true and
-## set filter_mode to "workspace" or leave it unspecified and 
+## set filter_mode to "workspace" or leave it unspecified and
 ## set search.filters to include "workspace" before other filter modes.
 # workspaces = false
 
@@ -65,11 +65,11 @@
 
 ## which style to use
 ## possible values: auto, full, compact
-# style = "auto"
+style = "full"
 
 ## the maximum number of lines the interface should take up
 ## set it to 0 to always go full screen
-# inline_height = 0
+inline_height = 0
 
 ## Invert the UI - put the search bar at the top , Default to `false`
 # invert = false
