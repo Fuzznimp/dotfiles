@@ -1,3 +1,4 @@
+# --- Plugins initialization ---
 if type brew &>/dev/null
 then
   FPATH=$(brew --prefix)/share/zsh/site-functions:${FPATH}
@@ -7,20 +8,28 @@ then
   compinit
 fi
 
-# Do menu-driven completion.
-zstyle ':completion:*' menu single select
+# --- Behavior ---
+zstyle ":completion:*" menu single select
+zstyle ":completion:*" verbose no
+zstyle ":completion:*" group-name ""
 
-# Adds some default color completion.
-# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# --- Formatting ---
+zstyle ":completion:*:descriptions" format "$fg[yellow]%B--- %d%b"
+zstyle ":completion:*:messages" format "%d"
+zstyle ":completion:*:warnings" format "$fg[red]No matches for:$reset_color %d"
+zstyle ":completion:*:corrections" format "%B%d (errors: %e)%b"
+# --- Colors ---
+export LS_COLORS="di=34:ln=36:so=35:pi=33:ex=32:bd=34;46:cd=34;43:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:mi=05;37;41:or=31:*.tar=31:*.tgz=31:*.arc=31:*.arj=31:*.taz=31:*.lha=31:*.lz4=31:*.lzh=31:*.lzma=31:*.tlz=31:*.txz=31:*.tzo=31:*.t7z=31:*.zip=31:*.z=31:*.dz=31:*.gz=31:*.lrz=31:*.lz=31:*.lzo=31:*.xz=31:*.bz2=31:*.bz=31:*.tbz=31:*.tbz2=31:*.tz=31:*.deb=31:*.rpm=31:*.jar=31:*.war=31:*.ear=31:*.sar=31:*.rar=31:*.alz=31:*.ace=31:*.zoo=31:*.cpio=31:*.7z=31:*.rz=31:*.cab=31:*."
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ":completion:*" selected "%F{green}%B"
 
-# Formatting.
-# http://www.masterzen.fr/2009/04/19/in-love-with-zsh-part-one/
-zstyle ':completion:*' verbose no
-zstyle ':completion:*:descriptions' format "$fg[yellow]%B--- %d%b"
-zstyle ':completion:*:messages' format '%d'
-zstyle ':completion:*:warnings' format "$fg[red]No matches for:$reset_color %d"
-zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
-zstyle ':completion:*' group-name ''
+# Some inspiration from http://www.masterzen.fr/2009/04/19/in-love-with-zsh-part-one/
 
-# Set the current target font color to green and italic.
-zstyle ':completion:*' sselected '%F{green}%B'
+# TODO: Finish setting up fzf-tab colors
+# # https://github.com/Aloxaf/fzf-tab?tab=readme-ov-file
+# source "${HOME}/workspace/dotfiles/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh"
+# # Ensure colors match by using FZF_DEFAULT_OPTS.
+# zstyle ":fzf-tab:*" use-fzf-default-opts yes
+# zstyle ":fzf-tab:*" fzf-command ftb-tmux-popup
+# # zstyle ":fzf-tab:complete:cd:*" fzf-preview "eza -1 --color=always $realpath"
+# zstyle ":fzf-tab:complete:cd:*" popup-pad 30 0

@@ -82,6 +82,31 @@ bat() {
   tmux display-popup -w 80% -h 80% -d "#{pane_current_path}" "bat $@"
 }
 
+lg() {
+  tmux display-popup -E -w 80% -h 80% -d "#{pane_current_path}" "lazygit"
+}
+
+ld() {
+  tmux display-popup -E -w 80% -h 80% -d "#{pane_current_path}" "lazydocker"
+}
+
+ghd() {
+  tmux display-popup -E -w 80% -h 80% -d "#{pane_current_path}" "gh dash"
+}
+
+y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
+e() {
+  tmux display-popup -E -w 80% -h 80% 'yazi'
+}
+
 # Better find(1)
 ff() {
   find . -iname "*${1:-}*"
