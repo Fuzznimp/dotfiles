@@ -1,7 +1,8 @@
 *.DS_Store
-node_modules
 .env*
 *.log
 */tmux/plugins
+*/zsh/plugins
 */lazygit/state
 Library/Application Support/lazygit/state.yml
+fzf-tab
