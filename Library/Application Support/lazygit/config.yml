@@ -1,8 +1,8 @@
 gui:
   showIcons: true
   showCommandLog: true
-  commandLogSize: 80
-  nerdFontsVersion: 3
+  commandLogSize: 8
+  nerdFontsVersion: "3"
   theme:
     activeBorderColor:
       - green
@@ -10,6 +10,6 @@ gui:
     inactiveBorderColor:
       - black
 os:
-  open: "code -rg {{filename}}"
+  open: "cursor -rg {{filename}}"
 git:
   branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --"
