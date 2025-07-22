@@ -45,6 +45,10 @@ tpm() {
 
 # ================= System =================
 
+libreoffice() {
+  "/Applications/LibreOffice.app/Contents/MacOS/soffice" "$@"
+}
+
 update_stack() {
   echo "🌀 Starting brew maintenance.."
   brew update &&
@@ -83,7 +87,7 @@ bat() {
 }
 
 lg() {
-  tmux display-popup -E -w 80% -h 80% -d "#{pane_current_path}" "lazygit"
+  tmux display-popup -E -w 90% -h 90% -d "#{pane_current_path}" "lazygit"
 }
 
 ld() {

@@ -1,10 +1,15 @@
+# yaml-language-server: $schema=https://dlvhdr.github.io/gh-dash/configuration/gh-dash/schema.json
 prSections:
-  - title: Needs My Review
+  - title: Review
     filters: is:open review-requested:@me
-  - title: My Pull Requests
+  - title: Mine
     filters: is:open author:@me
   - title: Involved
     filters: is:open involves:@me -author:@me
+  - title: All
+    filters: is:open
+  - title: Past mine
+    filters: is:closed author:@me
 issuesSections:
   - title: My Issues
     filters: is:open author:@me
@@ -12,13 +17,16 @@ issuesSections:
     filters: is:open assignee:@me
   - title: Involved
     filters: is:open involves:@me -author:@me
+pager:
+  diff: "diffnav"
 defaults:
+  view: prs
+  refetchIntervalMinutes: 5
   preview:
     open: true
     width: 100
   prsLimit: 20
   issuesLimit: 20
-  view: prs
   layout:
     prs:
       updatedAt:
@@ -45,14 +53,26 @@ defaults:
       assignees:
         width: 20
         hidden: true
-  refetchIntervalMinutes: 5
 keybindings:
   issues: []
   prs: []
 repoPaths: {}
 theme:
   ui:
+    sectionsShowCount: true
     table:
-      showSeparator: true
-pager:
-  diff: ""
+      compact: true
+  colors:
+    text:
+      primary: "#d5c4a1"
+      secondary: "#a8a8a8"
+      inverted: "#202020"
+      faint: "#626262"
+      warning: "#e78a4e"
+      success: "#a9b665"
+    background:
+      selected: "#303030"
+    border:
+      primary: "#4e4e4e"
+      secondary: "#626262"
+      faint: "#888888"

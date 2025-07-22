@@ -50,3 +50,14 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+
+-- Cursor configuration
+vim.opt.guicursor = "n:block,i:ver25"
+
+-- Map delete operations to black hole register by default.
+vim.keymap.set("n", "d", '"_d', { noremap = true })
+vim.keymap.set("n", "D", '"_D', { noremap = true })
+-- vim.keymap.set("v", "d", '"_d', { noremap = true })
+-- vim.keymap.set("v", "D", '"_D', { noremap = true })
+-- vim.keymap.set("n", "x", '"_x', { noremap = true })
+-- vim.keymap.set("n", "X", '"_X', { noremap = true })
