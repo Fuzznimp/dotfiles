@@ -3,6 +3,10 @@ font-family = "Hack Nerd Font"
 font-family-bold = "Hack Nerd Font"
 font-family-italic = "Hack Nerd Font"
 font-family-bold-italic = "Hack Nerd Font"
+# font-family = "Terminess Nerd Font"
+# font-family-bold = "Terminess Nerd Font"
+# font-family-italic = "Terminess Nerd Font"
+# font-family-bold-italic = "Terminess Nerd Font"
 font-size = 14
 font-thicken = true
 

@@ -100,6 +100,9 @@ alias ldk="tmux display-popup -w 80% -h 80% -d '#{pane_current_path}' 'DOCKER_HO
 alias docker.cleancontainer="docker ps -a -q | xargs docker rm"
 alias docker.cleanimage="docker images --filter dangling=true -q | xargs docker rmi"
 
+# DB
+alias lsq="lazysql --config $HOME/.config/lazysql/config.toml"
+
 # Overmind
 alias hv="hivemind"
 alias ov="overmind"

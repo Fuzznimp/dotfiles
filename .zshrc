@@ -28,6 +28,8 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
 fi
 # End Nix
 
+export PATH="$HOME/.local/bin:$PATH"
+
 export PATH=$HOME/.nix-profile/bin:$PATH
 eval "$(direnv hook zsh)"
 

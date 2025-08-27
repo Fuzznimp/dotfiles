@@ -1,0 +1,61 @@
+# If you want to make sidebar border display just set it same as sidebar background color
+
+# Code syntax highlight theme (you can go to https://github.com/alecthomas/chroma/blob/master/styles to find one you like)
+code_syntax_highlight = "custom"
+
+# ========= Border =========
+file_panel_border = "#4e4e4e"
+sidebar_border = "#202020"
+footer_border = "#4e4e4e"
+
+# ========= Border Active =========
+file_panel_border_active = "#7DAEA3"
+sidebar_border_active = "#e78a4e"
+footer_border_active = "#a9b665"
+modal_border_active = "#626262"
+
+# ========= Background (bg) =========
+full_screen_bg = "#202020"
+file_panel_bg = "#202020"
+sidebar_bg = "#202020"
+footer_bg = "#202020"
+modal_bg = "#202020"
+
+# ========= Foreground (fg) =========
+full_screen_fg = "#d5c4a1"
+file_panel_fg = "#d5c4a1"
+sidebar_fg = "#d5c4a1"
+footer_fg = "#d5c4a1"
+modal_fg = "#d5c4a1"
+
+# ========= Special Color =========
+cursor = "#d8a657"
+correct = "#a9b665"
+error = "#ea6962"
+hint = "#7DAEA3"
+cancel = "#d3869b"
+# Gradient color can only have two color!
+gradient_color = ["#7DAEA3", "#d8a657"]
+
+# ========= File Panel Special Items =========
+file_panel_top_directory_icon = "#a9b665"
+file_panel_top_path = "#7DAEA3"
+file_panel_item_selected_fg = "#d5c4a1"
+file_panel_item_selected_bg = "#303030"
+
+# ========= Sidebar Special Items =========
+sidebar_title = "#d8a657"
+sidebar_item_selected_fg = "#d5c4a1"
+sidebar_item_selected_bg = "#303030"
+sidebar_divider = "#626262"
+
+# ========= Modal Special Items =========
+modal_cancel_fg = "#202020"
+modal_cancel_bg = "#d3869b"
+
+modal_confirm_fg = "#202020"
+modal_confirm_bg = "#7DAEA3"
+
+# ========= Help Menu =========
+help_menu_hotkey = "#7DAEA3"
+help_menu_title = "#d3869b"

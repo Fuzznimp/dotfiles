@@ -1247,5 +1247,10 @@
   {
     "key": "cmd+i",
     "command": "composerMode.agent"
+  },
+  {
+    "key": "cmd+d cmd+b",
+    "command": "-dbcode.connections.view.focus",
+    "when": "editorHasMultipleSelections && !editorTextFocus && !terminalFocusInAny || editorHasSelection && !editorTextFocus && !terminalFocusInAny || !editorHasMultipleSelections && !editorHasSelection && !terminalFocusInAny"
   }
 ]

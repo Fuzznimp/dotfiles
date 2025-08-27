@@ -1,7 +1,9 @@
 {
   // =========== Core Settings ===========
   "editor.fontFamily": "Hack Nerd Font",
+  // "editor.fontFamily": "Terminess Nerd Font",
   "editor.fontWeight": "500",
+  // "editor.fontSize": 14,
   "editor.fontLigatures": false,
   "editor.tabSize": 2,
   "editor.formatOnSave": true,
@@ -30,7 +32,6 @@
   "explorer.confirmDragAndDrop": false,
   "extensions.ignoreRecommendations": true,
   "gruvboxMaterial.darkContrast": "hard",
-  "inlineChat.mode": "live",
   "presentationMode.zoomLevel": 4,
   "svgPreview.autoOpen": false,
   "vsicons.presets.hideExplorerArrows": true,
@@ -145,7 +146,10 @@
   ],
   // Background
   "background.editorBackgrounds": [],
-  "background.windowBackgrounds": ["/Users/fuzznimp/Pictures/vrising.jpg"],
+  "background.windowBackgrounds": [
+    "/Users/fuzznimp/Pictures/vrising.jpg",
+    "/Users/fuzznimp/Documents/midgar.jpg"
+  ],
   "background.autoInstall": false,
   "background.backgroundOpacity": [0.95, 0.9, 0.9, 0.9],
   "background.useInvertedOpacity": true,
@@ -212,11 +216,16 @@
     "sigfox",
     "soilcrop",
     "solarcrop",
-    "demeter"
+    "demeter",
+    "geofolia",
+    "bali",
+    "meteus",
+    "actinothermal",
+    "decitrait",
+    "raincrop"
   ],
   // ========== Diff Editor Settings ==========
   "diffEditor.codeLens": true,
-  "diffEditor.hideUnchangedRegions.enabled": true,
   "diffEditor.ignoreTrimWhitespace": false,
   // =========== Security & Network ===========
   "http.systemCertificates": false,
@@ -232,5 +241,19 @@
   "vscode_custom_css.imports": [
     "file:///Users/fuzznimp/workspace/dotfiles/Library/Application%20Support/Cursor/User/custom.css"
   ],
-  "redhat.telemetry.enabled": false
+  "redhat.telemetry.enabled": false,
+  "gitlens.views.scm.grouped.views": {
+    "commits": true,
+    "branches": true,
+    "remotes": true,
+    "stashes": false,
+    "tags": true,
+    "worktrees": true,
+    "contributors": true,
+    "repositories": false,
+    "searchAndCompare": false,
+    "launchpad": false
+  },
+  "debug.javascript.autoAttachFilter": "disabled",
+  "diffEditor.hideUnchangedRegions.enabled": true
 }
