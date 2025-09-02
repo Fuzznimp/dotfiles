@@ -13,3 +13,7 @@ export SENCROP_PATH="~/workspace/sencrop"
 
 # Use nvim as $EDITOR.
 export VISUAL=nvim
+
+## https://github.com/achristmascarl/rainfrog
+export RAINFROG_CONFIG=~/.config/rainfrog
+export RAINFROG_FAVORITES=~/.config/rainfrog/favorites

@@ -222,7 +222,8 @@
     "meteus",
     "actinothermal",
     "decitrait",
-    "raincrop"
+    "raincrop",
+    "preproduction"
   ],
   // ========== Diff Editor Settings ==========
   "diffEditor.codeLens": true,
