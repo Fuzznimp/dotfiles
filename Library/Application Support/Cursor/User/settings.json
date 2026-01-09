@@ -233,11 +233,6 @@
   "security.workspace.trust.untrustedFiles": "open",
   // ================= Vitest =================
   "vitest.nodeExecutable": "/nix/store/5k3b4l24qray412x35q95y067ll51rv5-nodejs-18.20.4/bin/node",
-  // ================== Nvim ==================
-  // "editor.lineNumbers": "relative",
-  "extensions.experimental.affinity": {
-    "asvetliakov.vscode-neovim": 1
-  },
   // ================ Custom CSS and JS ================
   "vscode_custom_css.imports": [
     "file:///Users/fuzznimp/workspace/dotfiles/Library/Application%20Support/Cursor/User/custom.css"
@@ -256,5 +251,15 @@
     "launchpad": false
   },
   "debug.javascript.autoAttachFilter": "disabled",
-  "diffEditor.hideUnchangedRegions.enabled": true
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "explorer.confirmPasteNative": false
 }

@@ -11,14 +11,14 @@ bindkey '^[[1;3D' backward-word  # Press Alt + Left Arrow for backward word jump
 bindkey '^[[1;3C' forward-word   # Press Alt + Right Arrow for forward word jump.
 
 # Delete
-bindkey '^[[3~' delete-char  # Press Delete key.
+bindkey '^[[3~' delete-char # Press Delete key.
 
 # Search history with up/down arrows.
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search  # Press Up Arrow for history search.
+bindkey "^[[A" up-line-or-beginning-search    # Press Up Arrow for history search.
 bindkey "^[[B" down-line-or-beginning-search  # Press Down Arrow for history search.
 
 # Autosuggestions using Ctrl-Space.

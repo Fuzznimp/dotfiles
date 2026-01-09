@@ -101,7 +101,7 @@ alias docker.cleancontainer="docker ps -a -q | xargs docker rm"
 alias docker.cleanimage="docker images --filter dangling=true -q | xargs docker rmi"
 
 # DB
-alias lsq="lazysql --config $HOME/.config/lazysql/config.toml"
+alias rf="rainfrog"
 
 # Overmind
 alias hv="hivemind"
@@ -179,6 +179,7 @@ alias gg="tmux display-popup -w 17% -h 26% -d '#{pane_current_path}' 'curl parro
 
 # Npm
 alias npmr="npm run"
+alias npmrt="npm run type"
 
 # Cursor
 alias c="cursor"
