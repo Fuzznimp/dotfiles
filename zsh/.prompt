@@ -98,3 +98,11 @@ common_bg_jobs() {
 setopt PROMPT_SUBST
 
 PROMPT='$(common_host)$(common_current_dir)$(common_bg_jobs)$(common_git_status) $(common_return_status)'
+# Execution time
+RPROMPT='%F{240}%*%f'
+
+TMOUT=1
+
+TRAPALRM() {
+  zle reset-prompt
+}
