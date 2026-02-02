@@ -99,9 +99,9 @@ setopt PROMPT_SUBST
 
 PROMPT='$(common_host)$(common_current_dir)$(common_bg_jobs)$(common_git_status) $(common_return_status)'
 # Execution time
-RPROMPT='%F{240}%*%f'
+RPROMPT='%F{240}%D{%H:%M}%f'
 
-TMOUT=1
+TMOUT=60
 
 TRAPALRM() {
   zle reset-prompt
