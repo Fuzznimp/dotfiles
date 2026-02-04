@@ -9,6 +9,10 @@ gui:
       - bold
     inactiveBorderColor:
       - black
+    selectedLineBgColor:
+      - "#303030"
+    optionsTextColor:
+      - "#e78a4e"
 os:
   open: "cursor -rg {{filename}}"
 git:
