@@ -1,0 +1,23 @@
+// Zed keymap
+// See https://zed.dev/docs/key-bindings for documentation
+[
+  {
+    "context": "Editor",
+    "bindings": {
+      // Delete current line (replaces shift+cmd+k from Cursor)
+      "shift-cmd-backspace": "editor::DeleteLine",
+      // Rename symbol
+      "cmd-shift-r": "editor::Rename",
+      // Go to references
+      "cmd-r": "editor::FindAllReferences",
+      // Next / prev diagnostic (replaces cmd+e / shift+cmd+e)
+      "cmd-e": "editor::GoToDiagnostic",
+      // Select all occurrences (replaces shift+cmd+d)
+      "shift-cmd-d": "editor::SelectAllMatches",
+      // Refactor / code actions (replaces alt+r)
+      "alt-r": "editor::ToggleCodeActions",
+      // Focus file tree from editor (replaces cmd+b when editorTextFocus)
+      "cmd-b": "project_panel::ToggleFocus",
+    },
+  },
+]

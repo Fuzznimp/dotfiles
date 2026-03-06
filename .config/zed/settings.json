@@ -7,32 +7,100 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "theme": "Gruvbox Material",
-  "vim_mode": true,
-  "relative_line_numbers": true,
+  "gutter": {
+    "min_line_number_digits": 2,
+  },
+  "colorize_brackets": true,
+  "use_system_path_prompts": false,
+  "which_key": {
+    "delay_ms": 1001,
+    "enabled": true,
+  },
+  "base_keymap": "Cursor",
+  "cursor_shape": "block",
+  "use_system_window_tabs": true,
+  "icon_theme": "VSCode Icons for Zed (Dark NestJS)",
+  "theme": "Eargasm",
+  "vim_mode": false,
+  "relative_line_numbers": "enabled",
   "ui_font_size": 16,
   "ui_font_family": "Hack Nerd Font",
   "buffer_font_size": 15,
   "buffer_font_family": "Hack Nerd Font",
+  "buffer_font_weight": 500,
   "show_whitespaces": "all",
+  "tab_size": 2,
+  "hard_tabs": false,
+  "format_on_save": "on",
+  "ensure_final_newline_on_save": true,
+  "remove_trailing_whitespace_on_save": true,
+  "use_autoclose": false,
+  "vertical_scroll_margin": 20,
   "tabs": {
-    "git_status": true
+    "git_status": true,
   },
-  "experimental.theme_overrides": {
-    "background.appearance": "blurred",
-    "background": "#4c464290",
-    "editor.background": "#00000030",
-    "editor.gutter.background": "#00000030",
-    "tab_bar.background": "#00000030",
-    "terminal.background": "#00000030",
-    "toolbar.background": "#00000030",
-    "tab.active_background": "#28282820",
-    "tab.inactive_background": "#00000000",
-    "status_bar.background": "#00000030",
-    "title_bar.background": "#00000030",
-    "panel.background": "#00000030",
-    "border.variant": "#00000000",
-    "scrollbar.track.border": "#00000000",
-    "editor.active_line.background": "#00000000"
-  }
+  "git": {
+    "git_gutter": "tracked_files",
+  },
+  "languages": {
+    "TypeScript": {
+      "code_actions_on_format": {
+        "source.addMissingImports": true,
+        "source.fixAll.eslint": true,
+      },
+    },
+    "TSX": {
+      "code_actions_on_format": {
+        "source.addMissingImports": true,
+        "source.fixAll.eslint": true,
+      },
+    },
+    "JavaScript": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true,
+      },
+    },
+  },
+  "project_panel": {
+    "default_width": 100,
+    "dock": "left",
+    "entry_spacing": "comfortable",
+    "indent_size": 10,
+    "auto_reveal_entries": true,
+    "auto_fold_dirs": false,
+    "bold_folder_labels": false,
+    "drag_and_drop": true,
+    "scrollbar": {
+      "show": "never",
+    },
+    "hide_root": true,
+    "sticky_scroll": true,
+    "show_diagnostics": "all",
+    "indent_guides": {
+      "show": "never",
+    },
+    "sort_mode": "directories_first",
+    "starts_open": true,
+    "auto_open": {
+      "on_create": true,
+      "on_paste": true,
+      "on_drop": true,
+    },
+  },
+  "outline_panel": {
+    "default_width": 300,
+    "dock": "right",
+    "file_icons": true,
+    "folder_icons": true,
+    "git_status": true,
+    "indent_size": 20,
+    "auto_reveal_entries": true,
+    "auto_fold_dirs": false,
+    "indent_guides": {
+      "show": "never",
+    },
+    "scrollbar": {
+      "show": null,
+    },
+  },
 }
