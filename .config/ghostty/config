@@ -10,6 +10,9 @@ font-family-bold-italic = "Hack Nerd Font"
 font-size = 14
 font-thicken = true
 
+# # https://ghostty.org/docs/config/reference#macos-option-as-alt
+# macos-option-as-alt = true
+
 # Window
 window-decoration = false
 fullscreen = true
@@ -58,16 +61,28 @@ keybind = "cmd+shift+k=text:\x02F"
 keybind = "cmd+f=text:\x02?"
 # Rename window
 keybind = "cmd+comma=text:\x02,"
+# TODO: Fix this, still dunno how..
+# https://github.com/ghostty-org/ghostty/discussions/3447 said the fix works, but not for me.
 # Select window 1-9
-keybind = "cmd+1=text:\x021"
-keybind = "cmd+2=text:\x022"
-keybind = "cmd+3=text:\x023"
-keybind = "cmd+4=text:\x024"
-keybind = "cmd+5=text:\x025"
-keybind = "cmd+6=text:\x026"
-keybind = "cmd+7=text:\x027"
-keybind = "cmd+8=text:\x028"
-keybind = "cmd+9=text:\x029"
+# keybind = "cmd+one=text:\x021"
+# keybind = "cmd+two=text:\x022"
+# keybind = "cmd+three=text:\x023"
+# keybind = "cmd+four=text:\x024"
+# keybind = "cmd+five=text:\x025"
+# keybind = "cmd+six=text:\x026"
+# keybind = "cmd+seven=text:\x027"
+# keybind = "cmd+eight=text:\x028"
+# keybind = "cmd+nine=text:\x029"
+# Select window 1-9 (using cmd+shift+ to avoid macOS conflicts)
+keybind = "cmd+shift+1=text:\x021"
+keybind = "cmd+shift+2=text:\x022"
+keybind = "cmd+shift+3=text:\x023"
+keybind = "cmd+shift+4=text:\x024"
+keybind = "cmd+shift+5=text:\x025"
+keybind = "cmd+shift+6=text:\x026"
+keybind = "cmd+shift+7=text:\x027"
+keybind = "cmd+shift+8=text:\x028"
+keybind = "cmd+shift+9=text:\x029"
 # Move window left
 keybind = "cmd+shift+right=text:\x02n"
 # Move window right

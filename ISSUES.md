@@ -1,5 +1,3 @@
-## Issues..
+# Issues
 
-.. that needs to be tackle manually for now.
-
-- Term truecolor: https://github.com/tmux/tmux/issues/321.
+- [ ] https://github.com/ghostty-org/ghostty/discussions/3447 said the fix works, but not for me.

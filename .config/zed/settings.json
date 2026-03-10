@@ -7,16 +7,43 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "vim": {
+    "toggle_relative_line_numbers": true,
+  },
+  "git_panel": {
+    "tree_view": true,
+  },
+  "diagnostics": {
+    "inline": {
+      "enabled": true,
+    },
+  },
+  "agent": {
+    "default_model": {
+      "effort": "high",
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4-6",
+      "enable_thinking": true,
+    },
+    "favorite_models": [
+      {
+        "provider": "zed.dev",
+        "model": "claude-sonnet-4-6",
+        "enable_thinking": false,
+      },
+    ],
+    "model_parameters": [],
+  },
   "gutter": {
-    "min_line_number_digits": 2,
+    "min_line_number_digits": 3,
+    "folds": false,
   },
   "colorize_brackets": true,
-  "use_system_path_prompts": false,
   "which_key": {
     "delay_ms": 1001,
     "enabled": true,
   },
-  "base_keymap": "Cursor",
+  "base_keymap": "VSCode",
   "cursor_shape": "block",
   "use_system_window_tabs": true,
   "icon_theme": "VSCode Icons for Zed (Dark NestJS)",
@@ -40,6 +67,9 @@
     "git_status": true,
   },
   "git": {
+    "inline_blame": {
+      "show_commit_summary": true,
+    },
     "git_gutter": "tracked_files",
   },
   "languages": {
@@ -102,5 +132,13 @@
     "scrollbar": {
       "show": null,
     },
+  },
+  "seed_search_query_from_cursor": "never",
+  "lsp_document_colors": "inlay",
+  "extend_comment_on_newline": false,
+  "confirm_quit": true,
+
+  "edit_predictions": {
+    "provider": "zed",
   },
 }

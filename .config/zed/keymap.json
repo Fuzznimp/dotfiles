@@ -1,23 +1,54 @@
 // Zed keymap
 // See https://zed.dev/docs/key-bindings for documentation
 [
+  // ─── Global ───────────────────────────────────────────────────
+  {
+    "bindings": {
+      "cmd-l": "agent::Toggle",
+      "cmd-g": "git_panel::Toggle",
+      "cmd-b": "project_panel::Toggle",
+      "cmd-k p": "workspace::CopyPath",
+      "cmd-k cmd-p": "editor::CopyPermalinkToLine",
+    },
+  },
+  // ─── Workspace ────────────────────────────────────────────────
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-shift-l": "terminal_panel::Toggle",
+    },
+  },
+  // ─── Editor ───────────────────────────────────────────────────
   {
     "context": "Editor",
     "bindings": {
-      // Delete current line (replaces shift+cmd+k from Cursor)
       "shift-cmd-backspace": "editor::DeleteLine",
-      // Rename symbol
       "cmd-shift-r": "editor::Rename",
-      // Go to references
       "cmd-r": "editor::FindAllReferences",
-      // Next / prev diagnostic (replaces cmd+e / shift+cmd+e)
       "cmd-e": "editor::GoToDiagnostic",
-      // Select all occurrences (replaces shift+cmd+d)
       "shift-cmd-d": "editor::SelectAllMatches",
-      // Refactor / code actions (replaces alt+r)
       "alt-r": "editor::ToggleCodeActions",
-      // Focus file tree from editor (replaces cmd+b when editorTextFocus)
       "cmd-b": "project_panel::ToggleFocus",
+    },
+  },
+  // ─── Project Panel ────────────────────────────────────────────
+  {
+    "context": "ProjectPanel && !editing",
+    "bindings": {
+      // Focus editor
+      "escape": "workspace::ActivateNextPane",
+      // Vim navigation
+      "j": "menu::SelectNext",
+      "k": "menu::SelectPrevious",
+      "h": "project_panel::CollapseSelectedEntry",
+      "l": "project_panel::ExpandSelectedEntry",
+      // File operations
+      "a": "project_panel::NewFile",
+      "d": "project_panel::Delete",
+      "x": "project_panel::Cut",
+      "c": "project_panel::Copy",
+      "p": "project_panel::Paste",
+      "q": "project_panel::CollapseAllEntries",
     },
   },
 ]

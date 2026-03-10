@@ -1,16 +1,16 @@
 source $HOME/workspace/dotfiles/zsh/.constants
 source $HOME/workspace/dotfiles/zsh/.functions
 
-# Source Shell.
+# ─── Shell ──────────────────────────────────────────────────────────
+
 alias s.zsh="source $DOTFILES_PATH/.zshrc"
 alias s.tmux="tmux source-file $DOTFILES_TMUX_PATH/tmux.conf"
-
-# List declared aliases, functions, path.
 alias aliases="alias | sed 's/=.*//'"
 alias functions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'"
 alias paths="echo -e ${PATH//:/\\n}"
 
-# System
+# ─── System ─────────────────────────────────────────────────────────
+
 alias ~="cd ~"
 alias /="cd /"
 alias ..="cd .."
@@ -23,7 +23,8 @@ alias src="source .env.development"
 alias pwde="printf '%q\n' '$(pwd)'"
 alias btop="tmux display-popup -w 80% -h 80% 'btop'"
 
-# Confs
+# ─── Confs ──────────────────────────────────────────────────────────
+
 alias conf.alias="vi $DOTFILES_ZSH_PATH/.aliases"
 alias conf.function="vi $DOTFILES_ZSH_PATH/.functions"
 alias conf.zsh="vi $DOTFILES_PATH/.zshrc"
@@ -34,13 +35,15 @@ alias conf.lg="vi $DOTFILES_APP_PATH/lazygit/config.yml"
 alias conf.sesh="vi $DOTFILES_APP_PATH/sesh/sesh.toml"
 alias conf.hammerspoon="vi $DOTFILES_PATH/.hammerspoon"
 
-# Paths
+# ─── Paths ──────────────────────────────────────────────────────────
+
 alias j="z"
 alias ji="zi"
 alias dotfiles="cd $DOTFILES_PATH"
 alias wks="cd $WORKSPACE_PATH"
 
-# Work
+# ─── Work ───────────────────────────────────────────────────────────
+
 ## Fewlines
 alias fwl="cd $FEWLINES_PATH"
 alias fwl.account="cd $FEWLINES_PATH/connect-account"
@@ -69,20 +72,23 @@ alias sen.quote="cd $SENCROP_PATH/sencrop-quotator"
 alias sen.ui="cd $SENCROP_PATH/sencrop-ui"
 alias kill.bali="lsof -i :4000 | jc --lsof | jq -r '.[] | select(.command == "node") | .pid' | { read pid; kill -9 "$pid"; }"
 
-# ls
-# alias ll="tmux display-popup -w 80% -h 80% 'exa --all --long --header --git'"
+# ─── ls ─────────────────────────────────────────────────────────────
+
 alias ll="eza --all --long --header --git"
 alias lt="eza -aT --color=always --group-directories-first --ignore-glob=\"**/node_modules|**/dist|**/.next|**/.git\""
 
-# tar
+# ─── tar ────────────────────────────────────────────────────────────
+
 alias tarr="tar -pczf $1 $2"
 alias untarr="tar -pxzf $1"
 alias starr="sudo tar -pczf $1 $2"
 
-# fzf
+# ─── fzf ────────────────────────────────────────────────────────────
+
 alias f="fzf --tmux 80% --style full --preview 'bat --style=numbers --theme=ansi --color=always --line-range :500 {}' | pbcopy | echo $(pbpaste)"
 
-# tmux
+# ─── tmux ───────────────────────────────────────────────────────────
+
 alias t="tmux"
 alias tks="tmux-kill-all"
 alias tbs="tmux-bootstrap-sessions"
@@ -93,33 +99,21 @@ alias tpm.source="$DOTFILES_TMUX_PATH/plugins/tpm/scripts/source_plugins.sh"
 alias tpm.clean="$DOTFILES_TMUX_PATH/plugins/tpm/scripts/clean_plugins.sh"
 alias tpm.prompt="$DOTFILES_TMUX_PATH/plugins/tpm/scripts/update_plugin_prompt_handler.sh"
 
-# Docker
+# ─── Docker ─────────────────────────────────────────────────────────
+
 alias dk="docker"
 alias dkc="docker compose"
 alias ldk="tmux display-popup -w 80% -h 80% -d '#{pane_current_path}' 'DOCKER_HOST=unix://$HOME/.colima/docker.sock lazydocker'"
 alias docker.cleancontainer="docker ps -a -q | xargs docker rm"
 alias docker.cleanimage="docker images --filter dangling=true -q | xargs docker rmi"
 
-# DB
-alias rf="rainfrog"
+# ─── Colima ─────────────────────────────────────────────────────────
 
-# Overmind
-alias hv="hivemind"
-alias ov="overmind"
+alias col.s="colima start --mount-type 9p --memory 4"
+alias col.k="colima stop"
 
-# AWS
-alias ddb="aws dynamodb"
+# ─── git ────────────────────────────────────────────────────────────
 
-# Mac
-alias cask="brew cask"
-alias delete.ds="find . -type f -name '*.DS_Store' -ls -delete"
-alias delete.ad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
-alias desktopshow="defaults write com.apple.finder CreateDesktop -bool true && killfinder"
-alias desktophide="defaults write com.apple.finder CreateDesktop -bool false && killfinder"
-alias displays="system_profiler SPDisplaysDataType"
-alias cpu="sysctl -n machdep.cpu.brand_string"
-
-# Git
 alias gst="git status"
 alias gd="git diff"
 alias ga="git add"
@@ -134,56 +128,59 @@ alias gbleach="git branch -vv | grep 'gone'] | awk '{ print $1 }' | xargs git br
 alias gsw="git switch"
 alias gswc="git switch --create"
 alias gss="git stash save"
-
-# Git external tools
 alias ghb="gh browse"
 
-# kitty
-alias update_kitty="curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin"
+# ─── AWS ────────────────────────────────────────────────────────────
 
-# Vim
-alias vi="nvim"
+alias ddb="aws dynamodb"
+alias av.sen="aws-vault exec sencrop --"
 
-# VPN
-alias ts="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+# ─── Network ────────────────────────────────────────────────────────
 
-# Onivim2
-alias oni="/Applications/Onivim2.App/Contents/MacOS/Oni2"
-
-# Network
 alias nets="lsof -i"
 alias ip="curl -s ipinfo.io | jq -r '.ip'"
 alias ipl="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 alias wip="curl ifconfig.co"
 alias speedtest="curl -o /dev/null http://ovh.net/files/100Mio.dat"
 
-# Misc
-alias week="date +%V"
-alias ansic='for code in {000..255}; do print -P -- "$code: %F{$code}Color%f"; done'
+# ─── MacOS ──────────────────────────────────────────────────────────
 
-# GNU Stow
+alias cask="brew cask"
+alias delete.ds="find . -type f -name '*.DS_Store' -ls -delete"
+alias delete.ad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
+alias desktopshow="defaults write com.apple.finder CreateDesktop -bool true && killfinder"
+alias desktophide="defaults write com.apple.finder CreateDesktop -bool false && killfinder"
+alias displays="system_profiler SPDisplaysDataType"
+alias cpu="sysctl -n machdep.cpu.brand_string"
+
+# ─── stow ───────────────────────────────────────────────────────────
+
 alias stow.link="stow --adopt . --target='$HOME/'"
 alias stow.unlink="stow --delete . --target='$HOME/'"
 
-# AWS
-alias av.sen="aws-vault exec sencrop --"
+# ─── Tools ──────────────────────────────────────────────────────────
 
-# Terraform
+alias vi="nvim"
+alias c="zed"
+alias rf="rainfrog"
+alias hv="hivemind"
+alias ov="overmind"
 alias tf="terraform"
+alias ts="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+alias oni="/Applications/Onivim2.App/Contents/MacOS/Oni2"
+alias update_kitty="curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin"
 
-# Brew
-alias brew.purge="brew remove --force $(brew list --formula)"
+# ─── Npm ────────────────────────────────────────────────────────────
 
-# Kikoo
-alias gg="tmux display-popup -w 17% -h 26% -d '#{pane_current_path}' 'curl parrot.live'"
-
-# Npm
 alias npmr="npm run"
 alias npmrt="npm run type"
 
-# Cursor
-alias c="cursor"
+# ─── Brew ───────────────────────────────────────────────────────────
 
-# Colima
-alias col.s="colima start --mount-type 9p --memory 4"
-alias col.k="colima stop"
+alias brew.purge="brew remove --force $(brew list --formula)"
+
+# ─── Misc ───────────────────────────────────────────────────────────
+
+alias week="date +%V"
+alias ansic='for code in {000..255}; do print -P -- "$code: %F{$code}Color%f"; done'
+alias gg="tmux display-popup -w 17% -h 26% -d '#{pane_current_path}' 'curl parrot.live'"

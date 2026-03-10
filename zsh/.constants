@@ -1,4 +1,5 @@
-# System.
+# ─── System ──────────────────────────────────────────────
+
 export WORKSPACE_PATH="~/workspace"
 export DOTFILES_PATH="$WORKSPACE_PATH/dotfiles"
 export DOTFILES_ZSH_PATH="$WORKSPACE_PATH/dotfiles/zsh"
@@ -7,9 +8,12 @@ export DOTFILES_APP_PATH="$DOTFILES_PATH/Library/Application\ Support"
 export DOTFILES_CONFIG_PATH="$DOTFILES_PATH/.config"
 export DOTFILES_TMUX_PATH="$DOTFILES_CONFIG_PATH/tmux"
 
-# Work.
+# ─── Work ────────────────────────────────────────────────
+
 export FEWLINES_PATH="~/workspace/fewlines"
 export SENCROP_PATH="~/workspace/sencrop"
+
+# ─── Misc ────────────────────────────────────────────────
 
 # Use nvim as $EDITOR.
 export VISUAL=nvim

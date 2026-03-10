@@ -1,4 +1,6 @@
-# ================= tmux =================
+source $HOME/workspace/dotfiles/zsh/.constants
+
+# ─── tmux ───────────────────────────────────────────────────
 
 tmux-kill-garbage-sessions() {
   local garbage_sessions=($(tmux list-sessions | awk -F: '!/🌳|🍃/ {print $1}'))
@@ -43,45 +45,6 @@ tpm() {
   tpm.prompt
 }
 
-# ================= System =================
-
-libreoffice() {
-  "/Applications/LibreOffice.app/Contents/MacOS/soffice" "$@"
-}
-
-update_stack() {
-  echo "🌀 Starting brew maintenance.."
-  brew update &&
-    brew upgrade &&
-    brew cleanup &&
-    brew doctor &&
-    brew bundle check &&
-    brew bundle cleanup
-  echo "🚀 Brew maintenance done!"
-
-  echo "🌀 Starting mas maintenance.."
-  mas upgrade
-  echo "🚀 Mas maintenance done!"
-}
-
-lfcd() {
-  tmp="$(mktemp)"
-  lf -last-dir-path="$tmp" "$@"
-  if [ -f "$tmp" ]; then
-    dir="$(cat "$tmp")"
-    rm -f "$tmp"
-    if [ -d "$dir" ]; then
-      if [ "$dir" != "$(pwd)" ]; then
-        cd "$dir"
-      fi
-    fi
-  fi
-}
-
-find-exec() {
-  find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
-}
-
 bat() {
   tmux display-popup -w 80% -h 80% -d "#{pane_current_path}" "bat $@"
 }
@@ -98,6 +61,72 @@ ghd() {
   tmux display-popup -E -w 80% -h 80% -d "#{pane_current_path}" "gh dash"
 }
 
+
+# ─── stow ───────────────────────────────────────────────────
+
+stow.up() {
+  cd $DOTFILES_PATH
+  stow --no-folding . --target="$HOME/" --adopt
+}
+
+stow.down() {
+  cd $DOTFILES_PATH
+  stow --delete . --target="$HOME/"
+}
+
+# ─── System ──────────────────────────────────────────────────
+
+update_stack() {
+  echo "🌀 Starting brew maintenance.."
+  brew update &&
+    brew upgrade &&
+    brew cleanup &&
+    brew doctor &&
+    brew bundle check &&
+    brew bundle cleanup
+  echo "🚀 Brew maintenance done!"
+
+  echo "🌀 Starting mas maintenance.."
+  mas upgrade
+  echo "🚀 Mas maintenance done!"
+}
+
+find-exec() {
+  find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
+}
+
+# Better find(1)
+ff() {
+  find . -iname "*${1:-}*"
+}
+
+api_key() {
+  size=${1:-16}
+  openssl rand -hex ${size}
+}
+
+port_in_use() {
+  local port=${1:?"you should set a port"}
+  lsof -n -i:${port} | grep LISTEN
+}
+
+
+# ─── File System ──────────────────────────────────────────────
+
+lfcd() {
+  tmp="$(mktemp)"
+  lf -last-dir-path="$tmp" "$@"
+  if [ -f "$tmp" ]; then
+    dir="$(cat "$tmp")"
+    rm -f "$tmp"
+    if [ -d "$dir" ]; then
+      if [ "$dir" != "$(pwd)" ]; then
+        cd "$dir"
+      fi
+    fi
+  fi
+}
+
 y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
   yazi "$@" --cwd-file="$tmp"
@@ -107,115 +136,22 @@ y() {
 	rm -f -- "$tmp"
 }
 
-e() {
-  tmux display-popup -E -w 80% -h 80% 'yazi'
-}
-
-# Better find(1)
-ff() {
-  find . -iname "*${1:-}*"
-}
-
-uuid() {
-  uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '\n' | pbcopy
-}
-
-api_key() {
-  size=${1:-16}
-  openssl rand -hex ${size}
-}
-
-gclone() {
-  git clone "$1" && cd "$(basename "$1" .git)"
-}
-
 mk() {
   mkdir -p "$@" && cd "$@"
 }
 
-port_in_use() {
-  local port=${1:?"you should set a port"}
-  lsof -n -i:${port} | grep LISTEN
+# ─── git ──────────────────────────────────────────────
+gclone() {
+  git clone "$1" && cd "$(basename "$1" .git)"
 }
+
+# ─── Misc ──────────────────────────────────────────────
 
 wth() {
   city=${1:?"Choose a city"}
   curl "wttr.in/${city}"
 }
 
-_calcram() {
-  local sum
-  sum=0
-  for i in $(ps aux | grep -i "$1" | grep -v "grep" | awk '{print $6}'); do
-    sum=$(($i + $sum))
-  done
-  sum=$(echo "scale=2; $sum / 1024.0" | bc)
-  echo $sum
-}
-
-# Show how much RAM application uses.
-# $ ram safari
-# # => safari uses 154.69 MBs of RAM
-ram() {
-  local sum
-  local app="$1"
-  if [ -z "$app" ]; then
-    echo "First argument - pattern to grep from processes"
-    return 0
-  fi
-
-  sum=$(_calcram $app)
-  if [[ $sum != "0" ]]; then
-    echo "${fg[blue]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM"
-  else
-    echo "No active processes matching pattern '${fg[blue]}${app}${reset_color}'"
-  fi
-}
-
-# Same, but tracks RAM usage in realtime. Will run until you stop it.
-# $ rams safari
-rams() {
-  local sum
-  local app="$1"
-  if [ -z "$app" ]; then
-    echo "First argument - pattern to grep from processes"
-    return 0
-  fi
-
-  while true; do
-    sum=$(_calcram $app)
-    if [[ $sum != "0" ]]; then
-      echo -en "${fg[blue]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM\r"
-    else
-      echo -en "No active processes matching pattern '${fg[blue]}${app}${reset_color}'\r"
-    fi
-    sleep 1
-  done
-}
-
-# $ size dir1 file2.js
-size() {
-  # du -scBM | sort -n
-  du -shck "$@" | sort -rn | awk '
-      function human(x) {
-          s="kMGTEPYZ";
-          while (x>=1000 && length(s)>1)
-              {x/=1024; s=substr(s,2)}
-          return int(x+0.5) substr(s,1,1)
-      }
-      {gsub(/^[0-9]+/, human($1)); print}'
-}
-
-# VsCode/Vim
-toggle_vscode_vim() {
-  local setting="com.microsoft.VSCode ApplePressAndHoldEnabled"
-  local current_value=$(defaults read "$setting")
-
-  if [[ $current_value == "false" ]]; then
-    defaults write "$setting" -bool true
-    echo "VSCode Vim mode is now enabled."
-  else
-    defaults write "$setting" -bool false
-    echo "VSCode Vim mode is now disabled."
-  fi
+uuid() {
+  uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '\n' | pbcopy
 }

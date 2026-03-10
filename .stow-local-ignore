@@ -1,3 +1,4 @@
+.DS_Store
 .git
 .gitignore
 .setup
@@ -7,6 +8,4 @@ hydra_ascii.txt
 ISSUES.md
 README.md
 archive
-zsh
-.DS_Store
 custom.css
