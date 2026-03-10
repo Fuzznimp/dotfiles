@@ -1,6 +1,6 @@
 # ─── System ──────────────────────────────────────────────
 
-export WORKSPACE_PATH="~/workspace"
+export WORKSPACE_PATH="$HOME/workspace"
 export DOTFILES_PATH="$WORKSPACE_PATH/dotfiles"
 export DOTFILES_ZSH_PATH="$WORKSPACE_PATH/dotfiles/zsh"
 export DOTFILES_NVIM_PATH="$DOTFILES_PATH/nvim"
@@ -10,8 +10,8 @@ export DOTFILES_TMUX_PATH="$DOTFILES_CONFIG_PATH/tmux"
 
 # ─── Work ────────────────────────────────────────────────
 
-export FEWLINES_PATH="~/workspace/fewlines"
-export SENCROP_PATH="~/workspace/sencrop"
+export FEWLINES_PATH="$HOME/workspace/fewlines"
+export SENCROP_PATH="$HOME/workspace/sencrop"
 
 # ─── Misc ────────────────────────────────────────────────
 

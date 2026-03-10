@@ -72,7 +72,10 @@ https://stackoverflow.com/questions/33152551/how-can-i-disable-applepressandhold
 
 ---
 
-## TODO
+## Bootstrap
 
-- [ ] `brew.sh` — install Homebrew, then run Brewfile
-- [ ] `osx.sh` — apply macOS defaults (Dock, shortcuts, etc.)
+On a fresh Mac, after cloning the repo:
+
+```sh
+./scripts/bootstrap.sh
+```

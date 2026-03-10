@@ -65,13 +65,11 @@ ghd() {
 # ─── stow ───────────────────────────────────────────────────
 
 stow.up() {
-  cd $DOTFILES_PATH
-  stow --no-folding . --target="$HOME/" --adopt
+  (cd $DOTFILES_PATH && stow --no-folding . --target="$HOME/" --adopt)
 }
 
 stow.down() {
-  cd $DOTFILES_PATH
-  stow --delete . --target="$HOME/"
+  (cd $DOTFILES_PATH && stow --delete . --target="$HOME/")
 }
 
 # ─── System ──────────────────────────────────────────────────

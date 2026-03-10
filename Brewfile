@@ -43,22 +43,16 @@ brew "zsh-syntax-highlighting"
 brew "zsh"
 
 cask "1password"
-cask "aerospace"
-cask "alacritty"
-cask "arc"
 cask "bruno"
 cask "docker"
 cask "font-hack-nerd-font"
 cask "ghostty"
 cask "guitar-pro"
-cask "hammerspoon"
-cask "kitty"
+cask "karabiner-elements"
 cask "onyx"
 cask "raycast"
 cask "scroll-reverser"
 cask "slack"
-cask "spotify"
-cask "visual-studio-code"
 cask "vlc"
 
 mas "Monosnap", id: 540348655
@@ -69,5 +63,4 @@ mas "Tailscale", id: 1475387142
 ## Homerow https://www.homerow.app/
 ## gh TUI `gh extension install dlvhdr/gh-dash`
 ## Beekeeper Studio https://www.beekeeperstudio.io/get-community
-## OniVim2 https://v2.onivim.io/early-access-portal
 ## Run `compaudit | xargs chmod g-w`
