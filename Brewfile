@@ -1,4 +1,3 @@
-# tap "FelixKratz/formulae"
 tap "jesseduffield/lazygit"
 tap "jesseduffield/lazydocker"
 tap "jakehilborn/jakehilborn"

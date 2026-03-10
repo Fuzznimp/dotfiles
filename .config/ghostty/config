@@ -14,6 +14,8 @@ font-thicken = true
 # macos-option-as-alt = true
 
 # Window
+background-image = ~/.config/ghostty/hydra.png
+background-image-opacity = 0.15
 window-decoration = false
 fullscreen = true
 macos-non-native-fullscreen = true
