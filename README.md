@@ -4,28 +4,16 @@
 
 ## Stack
 
-### Shell
-
 - [zsh](https://www.zsh.org/) — shell
+- [tmux](https://github.com/tmux/tmux) — terminal multiplexer
+- [Ghostty](https://ghostty.org/) — terminal emulator
 - [atuin](https://atuin.sh/) — shell history
 - [fzf](https://github.com/junegunn/fzf) — fuzzy finder
 - [zoxide](https://github.com/ajeetdsouza/zoxide) — smarter `cd`
-
-### Terminal
-
-- [Ghostty](https://ghostty.org/) — terminal emulator
-- [tmux](https://github.com/tmux/tmux) — terminal multiplexer
-- [sesh](https://github.com/joshmedeski/sesh) — session manager
-
-### Editor
-
-- [Neovim](https://neovim.io/) — primary editor
-- [Zed](https://zed.dev/) — secondary editor
-- [Helix](https://helix-editor.com/) — occasional use
-- [Cursor](https://cursor.sh/) — AI editor
-
-### Tools
-
+- [Zed](https://zed.dev/) — primary editor
+- [Neovim](https://neovim.io/) — secondary editor
+- [Raycast](https://www.raycast.com/) — app launcher / productivity
+- [Hammerspoon](https://www.hammerspoon.org/) — macOS automation
 - [lazygit](https://github.com/jesseduffield/lazygit) — git TUI
 - [gh-dash](https://github.com/dlvhdr/gh-dash) — GitHub dashboard
 - [rainfrog](https://github.com/achristmascarl/rainfrog) — database TUI
@@ -34,10 +22,17 @@
 - [bat](https://github.com/sharkdp/bat) — better `cat`
 - [btop](https://github.com/aristocratseffect/btop) — system monitor
 - [eza](https://github.com/eza-community/eza) — better `ls`
-
-### Package management
-
 - [Homebrew](https://brew.sh/) — packages (see `Brewfile`)
+
+---
+
+## Bootstrap
+
+On a fresh Mac, after cloning the repo:
+
+```sh
+./scripts/bootstrap.sh
+```
 
 ---
 
@@ -69,13 +64,3 @@ The `archive/` folder contains configs that are no longer in use but kept for re
 To enable key repeat inside editors (e.g. Cursor, VS Code):
 
 https://stackoverflow.com/questions/33152551/how-can-i-disable-applepressandholdenabled-for-a-specific-application-repeat
-
----
-
-## Bootstrap
-
-On a fresh Mac, after cloning the repo:
-
-```sh
-./scripts/bootstrap.sh
-```

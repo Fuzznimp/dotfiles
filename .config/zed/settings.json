@@ -19,8 +19,9 @@
     },
   },
   "agent": {
+    "default_profile": "ask",
     "default_model": {
-      "effort": "high",
+      "effort": "max",
       "provider": "zed.dev",
       "model": "claude-sonnet-4-6",
       "enable_thinking": true,
@@ -137,7 +138,9 @@
   "lsp_document_colors": "inlay",
   "extend_comment_on_newline": false,
   "confirm_quit": true,
-
+  "terminal": {
+    "default_height": 1200,
+  },
   "edit_predictions": {
     "provider": "zed",
   },

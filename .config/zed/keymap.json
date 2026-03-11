@@ -5,17 +5,12 @@
   {
     "bindings": {
       "cmd-l": "agent::Toggle",
+      "cmd-shift-l": "terminal_panel::Toggle",
       "cmd-g": "git_panel::Toggle",
       "cmd-b": "project_panel::Toggle",
       "cmd-k p": "workspace::CopyPath",
       "cmd-k cmd-p": "editor::CopyPermalinkToLine",
-    },
-  },
-  // ─── Workspace ────────────────────────────────────────────────
-  {
-    "context": "Workspace",
-    "bindings": {
-      "cmd-shift-l": "terminal_panel::Toggle",
+      "cmd-alt-enter": "workspace::ToggleZoom",
     },
   },
   // ─── Editor ───────────────────────────────────────────────────
@@ -29,6 +24,31 @@
       "shift-cmd-d": "editor::SelectAllMatches",
       "alt-r": "editor::ToggleCodeActions",
       "cmd-b": "project_panel::ToggleFocus",
+    },
+  },
+  // ─── Pane ─────────────────────────────────────────────────────
+  {
+    "context": "Pane",
+    "bindings": {
+      "cmd-1": ["pane::ActivateItem", 0],
+      "cmd-2": ["pane::ActivateItem", 1],
+      "cmd-3": ["pane::ActivateItem", 2],
+      "cmd-4": ["pane::ActivateItem", 3],
+      "cmd-5": ["pane::ActivateItem", 4],
+      "cmd-6": ["pane::ActivateItem", 5],
+      "cmd-7": ["pane::ActivateItem", 6],
+      "cmd-8": ["pane::ActivateItem", 7],
+      "cmd-9": ["pane::ActivateItem", 8],
+    },
+  },
+  // ─── Workspace ────────────────────────────────────────────────
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
     },
   },
   // ─── Project Panel ────────────────────────────────────────────

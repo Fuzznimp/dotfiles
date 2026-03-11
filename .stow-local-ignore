@@ -1,11 +1,10 @@
 .DS_Store
 .git
 .gitignore
-.setup
 Brewfile
 Brewfile.lock.json
-hydra_ascii.txt
 ISSUES.md
 README.md
 archive
-custom.css
+ascii
+scripts
