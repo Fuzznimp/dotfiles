@@ -45,10 +45,10 @@
   {
     "context": "Workspace",
     "bindings": {
-      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
-      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
     },
   },
   // ─── Project Panel ────────────────────────────────────────────
@@ -61,7 +61,7 @@
       "j": "menu::SelectNext",
       "k": "menu::SelectPrevious",
       "h": "project_panel::CollapseSelectedEntry",
-      "l": "project_panel::ExpandSelectedEntry",
+      "l": "project_panel::Open",
       // File operations
       "a": "project_panel::NewFile",
       "d": "project_panel::Delete",

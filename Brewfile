@@ -53,6 +53,7 @@ cask "raycast"
 cask "scroll-reverser"
 cask "slack"
 cask "vlc"
+cask "ytmdesktop-youtube-music"
 
 mas "Monosnap", id: 540348655
 mas "Bitwarden", id: 1352778147
