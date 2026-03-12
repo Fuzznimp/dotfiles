@@ -7,6 +7,25 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        },
+        "javascript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        }
+      },
+      "enable_lsp_tasks": true
+    }
+  },
+  "helix_mode": false,
+  "double_click_in_multibuffer": "open",
   "vim": {
     "toggle_relative_line_numbers": true,
   },
@@ -21,7 +40,7 @@
   "agent": {
     "default_profile": "ask",
     "default_model": {
-      "effort": "max",
+      "effort": "high",
       "provider": "zed.dev",
       "model": "claude-sonnet-4-6",
       "enable_thinking": true,
@@ -50,7 +69,7 @@
   "icon_theme": "VSCode Icons for Zed (Dark NestJS)",
   "theme": "Eargasm",
   "vim_mode": false,
-  "relative_line_numbers": "enabled",
+  "relative_line_numbers": "disabled",
   "ui_font_size": 16,
   "ui_font_family": "Hack Nerd Font",
   "buffer_font_size": 15,
