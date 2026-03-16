@@ -89,6 +89,7 @@
   "vertical_scroll_margin": 20,
   "tabs": {
     "git_status": true,
+    "file_icons": true,
   },
   "git": {
     "inline_blame": {
@@ -98,15 +99,25 @@
   },
   "languages": {
     "TypeScript": {
+      "formatter": {
+        "external": {
+          "command": "node_modules/.bin/oxfmt",
+          "arguments": ["--stdin-filepath", "{buffer_path}"],
+        },
+      },
       "code_actions_on_format": {
         "source.addMissingImports": true,
-        "source.fixAll.eslint": true,
       },
     },
     "TSX": {
+      "formatter": {
+        "external": {
+          "command": "node_modules/.bin/oxfmt",
+          "arguments": ["--stdin-filepath", "{buffer_path}"],
+        },
+      },
       "code_actions_on_format": {
         "source.addMissingImports": true,
-        "source.fixAll.eslint": true,
       },
     },
     "JavaScript": {
