@@ -14,7 +14,7 @@ gui:
     optionsTextColor:
       - "#e78a4e"
 os:
-  open: "cursor -rg {{filename}}"
-  openDirInEditor: "cursor {{dir}}"
+  open: "zed {{filename}}"
+  openDirInEditor: "zed {{dir}}"
 git:
   branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --"
