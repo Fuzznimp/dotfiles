@@ -51,6 +51,7 @@ clipboard-read = allow
 clipboard-write = allow
 
 # Keybindings
+macos-option-as-alt = true
 # Select tmux session using Sesh
 keybind = "cmd+k=text:\x02K"
 # Session management
@@ -97,6 +98,8 @@ keybind = "cmd+l=text:\x02L"
 keybind = "cmd+[=text:\x02["
 # Next window
 keybind = "cmd+shift+[=text:\x02p"
+# Pane manager
+keybind = "cmd+backslash=text:\x02|"
 # Split vertical
 keybind = "cmd+d=text:\x02%"
 # Split horizontal
