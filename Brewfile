@@ -55,11 +55,11 @@ cask "slack"
 cask "vlc"
 cask "ytmdesktop-youtube-music"
 
-mas "Monosnap", id: 540348655
 mas "Bitwarden", id: 1352778147
 mas "Tailscale", id: 1475387142
 
 # Manual
+## CleanShotX: https://cleanshot.com/
 ## Homerow https://www.homerow.app/
 ## gh TUI `gh extension install dlvhdr/gh-dash`
 ## Beekeeper Studio https://www.beekeeperstudio.io/get-community
