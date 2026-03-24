@@ -16,5 +16,8 @@ gui:
 os:
   open: "zed {{filename}}"
   openDirInEditor: "zed {{dir}}"
+keybinding:
+  universal:
+    focusMainView: '6'
 git:
   branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --"
