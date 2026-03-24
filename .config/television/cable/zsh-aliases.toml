@@ -1,0 +1,17 @@
+[metadata]
+name = "zsh-aliases"
+description = "Browse zsh aliases"
+
+[source]
+command = "zsh -c 'source ~/workspace/dotfiles/zsh/.aliases && alias | sort'"
+output = "{split:=:0}"
+
+[preview]
+command = "grep \"^alias {split:=:0}=\" ~/workspace/dotfiles/zsh/.aliases"
+
+[ui.preview_panel]
+size = 50
+
+[keybindings]
+j = "select_next_entry"
+k = "select_prev_entry"

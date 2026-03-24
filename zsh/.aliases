@@ -5,9 +5,9 @@ source $HOME/workspace/dotfiles/zsh/.functions
 
 alias s.zsh="source $DOTFILES_PATH/.zshrc"
 alias s.tmux="tmux source-file $DOTFILES_TMUX_PATH/tmux.conf"
-alias aliases="alias | sed 's/=.*//'"
-alias functions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'"
-alias paths="echo -e ${PATH//:/\\n}"
+alias paths="tmux display-popup -E -w 70% -h 80% -d '#{pane_current_path}' 'tv shell-paths'"
+alias aliases="tmux display-popup -E -w 70% -h 80% -d '#{pane_current_path}' 'tv zsh-aliases'"
+alias functions="tmux display-popup -E -w 70% -h 80% -d '#{pane_current_path}' 'tv zsh-functions'"
 
 # ─── System ─────────────────────────────────────────────────────────
 

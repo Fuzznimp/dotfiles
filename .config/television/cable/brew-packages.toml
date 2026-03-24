@@ -1,0 +1,39 @@
+[metadata]
+name = "brew-packages"
+description = "List and manage Homebrew packages"
+requirements = ["brew"]
+
+[source]
+command = [
+  "{ brew list --formula --versions | awk '{printf \"%-30s %-15s formula\\n\", $1, $2}'; brew list --cask --versions | awk '{printf \"%-30s %-15s cask\\n\", $1, $2}'; }",
+  "{ brew formulae | awk '{printf \"%-30s formula\\n\", $1}'; brew casks | awk '{printf \"%-30s cask\\n\", $1}'; }",
+]
+output = "{}"
+
+[ui]
+layout = "portrait"
+
+[ui.preview_panel]
+hidden = true
+
+[keybindings]
+ctrl-h = "cycle_sources"
+ctrl-l = "cycle_sources"
+ctrl-i = "actions:install"
+ctrl-u = "actions:upgrade"
+ctrl-d = "actions:uninstall"
+
+[actions.install]
+description = "Install the selected package"
+command = "brew install $(echo '{}' | awk '{print $1}')"
+mode = "execute"
+
+[actions.upgrade]
+description = "Upgrade the selected package"
+command = "brew upgrade $(echo '{}' | awk '{print $1}')"
+mode = "execute"
+
+[actions.uninstall]
+description = "Uninstall the selected package"
+command = "brew uninstall $(echo '{}' | awk '{print $1}')"
+mode = "execute"

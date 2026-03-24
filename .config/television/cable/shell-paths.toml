@@ -1,0 +1,16 @@
+[metadata]
+name = "shell-paths"
+description = "Browse PATH entries"
+
+[source]
+command = "echo $PATH | tr ':' '\n' | sort"
+
+[preview]
+command = "ls -la '{}'"
+
+[ui.preview_panel]
+size = 50
+
+[keybindings]
+j = "select_next_entry"
+k = "select_prev_entry"

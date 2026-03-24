@@ -1,0 +1,17 @@
+[metadata]
+name = "zsh-functions"
+description = "Browse zsh functions"
+
+[source]
+command = "grep -E '^[a-z_][a-z_-]*\\(\\)' ~/workspace/dotfiles/zsh/.functions | sed 's/().*//'"
+output = "{}"
+
+[preview]
+command = "sed -n '/^{}()/,/^}/p' ~/workspace/dotfiles/zsh/.functions"
+
+[ui.preview_panel]
+size = 50
+
+[keybindings]
+j = "select_next_entry"
+k = "select_prev_entry"

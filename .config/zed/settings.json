@@ -7,6 +7,7 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "agent_servers": {},
   "lsp": {
     "vtsls": {
       "settings": {
@@ -41,17 +42,10 @@
     "default_profile": "ask",
     "default_model": {
       "effort": "high",
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4-6",
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-6-latest",
       "enable_thinking": true,
     },
-    "favorite_models": [
-      {
-        "provider": "zed.dev",
-        "model": "claude-sonnet-4-6",
-        "enable_thinking": false,
-      },
-    ],
     "model_parameters": [],
   },
   "gutter": {

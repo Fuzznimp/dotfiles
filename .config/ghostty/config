@@ -100,6 +100,10 @@ keybind = "cmd+[=text:\x02["
 keybind = "cmd+shift+[=text:\x02p"
 # Pane manager
 keybind = "cmd+backslash=text:\x02|"
+# Lazygit
+keybind = "cmd+g=text:\x02G"
+# Brew packages
+keybind = "cmd+b=text:\x02B"
 # Split vertical
 keybind = "cmd+d=text:\x02%"
 # Split horizontal
