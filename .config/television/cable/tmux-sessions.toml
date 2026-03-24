@@ -18,11 +18,6 @@ hidden = true
 j = "select_next_entry"
 k = "select_prev_entry"
 
-[actions.attach]
-description = "Attach to the selected session"
-command = "tmux attach-session -t '{split:\t:0}'"
-mode = "execute"
-
 [actions.kill]
 description = "Kill the selected session"
 command = "tmux kill-session -t '{split:\t:0}'"

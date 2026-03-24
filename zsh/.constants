@@ -1,6 +1,7 @@
 # ─── System ──────────────────────────────────────────────
 
 export WORKSPACE_PATH="$HOME/workspace"
+export SCRIPTS_PATH="$WORKSPACE_PATH/scripts"
 export DOTFILES_PATH="$WORKSPACE_PATH/dotfiles"
 export DOTFILES_ZSH_PATH="$WORKSPACE_PATH/dotfiles/zsh"
 export DOTFILES_NVIM_PATH="$DOTFILES_PATH/nvim"
