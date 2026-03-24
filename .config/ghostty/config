@@ -54,6 +54,8 @@ clipboard-write = allow
 macos-option-as-alt = true
 # Select tmux session using Sesh
 keybind = "cmd+k=text:\x02K"
+# Clear buffer history
+keybind = "cmd+n=text:\x02N"
 # Session management
 keybind = "cmd+shift+k=text:\x02F"
 # Search inside current tmux pane
