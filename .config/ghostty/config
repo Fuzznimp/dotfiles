@@ -104,6 +104,8 @@ keybind = "cmd+shift+[=text:\x02p"
 keybind = "cmd+backslash=text:\x02|"
 # Lazygit
 keybind = "cmd+g=text:\x02G"
+# gh-dash
+keybind = "cmd+shift+g=text:\x02D"
 # Brew packages
 keybind = "cmd+b=text:\x02B"
 # Split vertical

@@ -17,6 +17,8 @@
   {
     "context": "Editor",
     "bindings": {
+      "cmd-[": "editor::Fold",
+      "cmd-]": "editor::UnfoldLines",
       "shift-cmd-backspace": "editor::DeleteLine",
       "cmd-shift-r": "editor::Rename",
       "cmd-r": "editor::FindAllReferences",

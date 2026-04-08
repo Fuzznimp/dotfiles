@@ -7,6 +7,7 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "show_completions_on_input": false,
   "agent_servers": {},
   "lsp": {
     "vtsls": {
@@ -161,6 +162,9 @@
     "scrollbar": {
       "show": null,
     },
+  },
+  "scrollbar": {
+    "git_diff": false,
   },
   "seed_search_query_from_cursor": "never",
   "lsp_document_colors": "inlay",
