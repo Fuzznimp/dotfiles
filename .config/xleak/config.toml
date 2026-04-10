@@ -1,0 +1,9 @@
+[theme]
+default = "Default"
+
+[ui]
+max_rows = 50
+column_width = 30
+
+[keybindings]
+profile = "vim"
