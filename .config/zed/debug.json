@@ -1,0 +1,22 @@
+[
+  {
+    "adapter": "JavaScript",
+    "label": "Launch bali (production)",
+    "type": "node",
+    "request": "launch",
+    "program": "$ZED_WORKTREE_ROOT/dist/main.js",
+    "runtimeArgs": ["-r", "dotenv/config"],
+    "args": ["dotenv_config_path=.env.production"],
+    "skipFiles": ["<node_internals>/**"],
+  },
+  {
+    "adapter": "JavaScript",
+    "label": "Launch bali (preprod)",
+    "type": "node",
+    "request": "launch",
+    "runtimeExecutable": "npm",
+    "runtimeArgs": ["run", "start:staging:debug"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "skipFiles": ["<node_internals>/**"],
+  },
+]
