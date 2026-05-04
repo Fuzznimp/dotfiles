@@ -155,7 +155,8 @@ alias cpu="sysctl -n machdep.cpu.brand_string"
 
 # ─── stow ───────────────────────────────────────────────────────────
 
-alias stow.link="stow --adopt . --target='$HOME/'"
+# The `--no-folding` flag is used so that Zed's config hotreloading works correctly.
+alias stow.link="stow --no-folding --adopt . --target='$HOME/'"
 alias stow.unlink="stow --delete . --target='$HOME/'"
 
 # ─── Tools ──────────────────────────────────────────────────────────
