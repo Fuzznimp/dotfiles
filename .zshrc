@@ -16,6 +16,7 @@ XDG_CONFIG_HOME=$HOME/.config
 export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
 
 export PATH=/opt/homebrew/bin:$PATH
+export PATH="$HOME/go/bin:$PATH"
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'
 
 eval "$(zoxide init zsh)"
