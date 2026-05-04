@@ -29,6 +29,7 @@ brew "ncdu"
 brew "neovim"
 brew "ory/tap/cli"
 brew "rainfrog"
+brew "rtk" # setup: rtk init -g
 brew "ripgrep"
 brew "rustup"
 brew "stow"
