@@ -7,8 +7,9 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "cli_default_open_behavior": "new_window",
   "collaboration_panel": {
-    "dock": "left"
+    "dock": null,
   },
   "show_completions_on_input": false,
   "agent_servers": {},
@@ -44,7 +45,7 @@
     },
   },
   "agent": {
-    "dock": "right",
+    "dock": null,
     "default_profile": "ask",
     "default_model": {
       "effort": "high",
