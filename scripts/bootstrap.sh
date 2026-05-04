@@ -7,15 +7,21 @@ set -e
 
 DOTFILES_PATH="$(cd "$(dirname "$0")" && pwd)"
 
-echo "🚀 Starting bootstrap..."
+echo "🚀 Starting bootstrap.."
 
 # ─── Homebrew + packages ─────────────────────────────────────────────
 
 "$DOTFILES_PATH/scripts/brew.sh"
 
+# ─── Tools ───────────────────────────────────────────────────────────
+
+echo "🔧 Installing dotfiles manager.."
+go install github.com/cushycush/store/v2/cmd/store@latest
+echo "✅ Dotfiles manager installed."
+
 # ─── Dotfiles symlinks ───────────────────────────────────────────────
 
-echo "🔗 Stowing dotfiles..."
+echo "🔗 Stowing dotfiles.."
 stow --no-folding . --target="$HOME/" --adopt
 compaudit | xargs chmod g-w
 echo "✅ Symlinks done."
@@ -23,7 +29,7 @@ echo "✅ Symlinks done."
 # ─── Default shell ───────────────────────────────────────────────────
 
 if [ "$SHELL" != "/bin/zsh" ]; then
-  echo "🐚 Setting zsh as default shell..."
+  echo "🐚 Setting zsh as default shell.."
   chsh -s /bin/zsh
 fi
 

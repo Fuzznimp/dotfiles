@@ -90,6 +90,10 @@ update_stack() {
   echo "🌀 Starting mas maintenance.."
   mas upgrade
   echo "🚀 Mas maintenance done!"
+
+  echo "🌀 Updating dotfiles manager.."
+  go install github.com/cushycush/store/v2/cmd/store@latest
+  echo "🚀 Dotfiles manager updated!"
 }
 
 find-exec() {
