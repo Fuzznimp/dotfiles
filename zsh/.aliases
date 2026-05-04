@@ -162,6 +162,8 @@ alias stow.unlink="stow --delete . --target='$HOME/'"
 
 alias vi="nvim"
 alias c="zed"
+alias llm="claude"
+alias llmr="claude -r"
 alias rf="rainfrog"
 alias hv="hivemind"
 alias ov="overmind"
