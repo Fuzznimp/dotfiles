@@ -73,4 +73,12 @@
       "q": "project_panel::CollapseAllEntries",
     },
   },
+  // ─── Vim ───────────────────────────────────────────────────────
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "j k": "vim::NormalBefore",
+      "k j": "vim::NormalBefore",
+    },
+  },
 ]

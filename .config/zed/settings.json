@@ -36,6 +36,7 @@
     "toggle_relative_line_numbers": true,
   },
   "git_panel": {
+    "sort_by_path": true,
     "dock": "left",
     "tree_view": true,
   },
@@ -70,6 +71,7 @@
   "inline_code_actions": false,
   "base_keymap": "VSCode",
   "cursor_shape": "block",
+  "cursor_blink": false,
   "use_system_window_tabs": true,
   "icon_theme": "VSCode Icons for Zed (Dark NestJS)",
   "theme": "Eargasm",
@@ -128,7 +130,6 @@
     },
   },
   "project_panel": {
-    "default_width": 100,
     "dock": "left",
     "entry_spacing": "comfortable",
     "indent_size": 10,
@@ -146,7 +147,7 @@
       "show": "never",
     },
     "sort_mode": "directories_first",
-    "starts_open": true,
+    "starts_open": false,
     "auto_open": {
       "on_create": true,
       "on_paste": true,
@@ -170,6 +171,7 @@
     },
   },
   "scrollbar": {
+    "show": "auto",
     "git_diff": false,
   },
   "seed_search_query_from_cursor": "never",
