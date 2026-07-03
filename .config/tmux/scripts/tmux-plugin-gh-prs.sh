@@ -1,18 +1,15 @@
 #!/bin/bash
-
-WORKSPACE_DIR="$HOME/workspace/sencrop"
+# tmux status segment: count of open PRs across the sencrop org where I'm a
+# requested reviewer. One org-wide search call (covers repos not cloned locally).
 
 while true; do
-    TOTAL_PR_COUNT=0
+    COUNT=$(gh search prs --review-requested=@me --state=open --owner=sencrop \
+        --json number --jq 'length' 2>/dev/null)
 
-    for REPO_PATH in "$WORKSPACE_DIR"/*; do
-        REPO_NAME=$(basename "$REPO_PATH")
+    # Fall back to 0 if gh failed (offline / unauthed / non-numeric).
+    [[ "$COUNT" =~ ^[0-9]+$ ]] || COUNT=0
 
-        PR_COUNT=$(gh pr list --repo "sencrop/$REPO_NAME" --search "user-review-requested:@me" --state=open --json number | jq length)
-        TOTAL_PR_COUNT=$((TOTAL_PR_COUNT + PR_COUNT))
-    done
-
-    if [ "$TOTAL_PR_COUNT" -gt 0 ]; then
+    if [ "$COUNT" -gt 0 ]; then
         # Red color for >0 total pull requests
         COLOR="[bg=colour237,fg=colour167]"
     else
@@ -20,7 +17,7 @@ while true; do
         COLOR="[bg=colour237,fg=green]"
     fi
 
-    echo -e "#$COLOR   $TOTAL_PR_COUNT "
+    echo -e "#$COLOR   $COUNT "
 
     sleep 300
 done
