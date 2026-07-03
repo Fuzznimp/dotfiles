@@ -21,3 +21,11 @@ keybinding:
     focusMainView: '6'
 git:
   branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --"
+customCommands:
+  # Override 'o' (open PR): script sets title from first commit + Overview/Demo body,
+  # opens browser prefilled.
+  - key: "o"
+    context: "localBranches"
+    description: "Create PR using custom script"
+    command: "$HOME/workspace/dotfiles/scripts/gh-pr-create.sh"
+    output: terminal
