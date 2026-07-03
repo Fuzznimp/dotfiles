@@ -3,9 +3,6 @@
 export WORKSPACE_PATH="$HOME/workspace"
 export SCRIPTS_PATH="$WORKSPACE_PATH/scripts"
 export DOTFILES_PATH="$WORKSPACE_PATH/dotfiles"
-export DOTFILES_ZSH_PATH="$WORKSPACE_PATH/dotfiles/zsh"
-export DOTFILES_NVIM_PATH="$DOTFILES_PATH/nvim"
-export DOTFILES_APP_PATH="$DOTFILES_PATH/Library/Application\ Support"
 export DOTFILES_CONFIG_PATH="$DOTFILES_PATH/.config"
 export DOTFILES_TMUX_PATH="$DOTFILES_CONFIG_PATH/tmux"
 

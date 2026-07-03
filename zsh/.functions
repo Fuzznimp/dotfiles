@@ -90,10 +90,6 @@ update_stack() {
   echo "🌀 Starting mas maintenance.."
   mas upgrade
   echo "🚀 Mas maintenance done!"
-
-  echo "🌀 Updating dotfiles manager.."
-  go install github.com/cushycush/store/v2/cmd/store@latest
-  echo "🚀 Dotfiles manager updated!"
 }
 
 find-exec() {
@@ -148,6 +144,15 @@ mk() {
 # ─── git ──────────────────────────────────────────────
 gclone() {
   git clone "$1" && cd "$(basename "$1" .git)"
+}
+
+# ─── fzf ──────────────────────────────────────────────
+
+f() {
+  local sel
+  sel=$(fzf --tmux 80% --style full --preview 'bat --style=numbers --theme=ansi --color=always --line-range :500 {}') || return
+  printf '%s' "$sel" | pbcopy
+  echo "$sel"
 }
 
 # ─── Misc ──────────────────────────────────────────────

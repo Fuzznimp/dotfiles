@@ -3,7 +3,6 @@
 WORKSPACE_DIR="$HOME/workspace/sencrop"
 
 while true; do
-    PR_COUNT=$(gh pr list -S "user-review-requested:@me" | jq length)
     TOTAL_PR_COUNT=0
 
     for REPO_PATH in "$WORKSPACE_DIR"/*; do

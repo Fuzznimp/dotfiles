@@ -56,8 +56,6 @@ macos-option-as-alt = true
 keybind = "cmd+k=text:\x02K"
 # Clear buffer history
 keybind = "cmd+n=text:\x02N"
-# Session management
-keybind = "cmd+shift+k=text:\x02F"
 # Search inside current tmux pane
 keybind = "cmd+f=text:\x02?"
 # Rename window
@@ -125,12 +123,10 @@ keybind = "cmd+shift+r=text:\x02I"
 keybind = "alt+right=text:\x1bF"
 # Jump word left
 keybind = "alt+left=text:\x1bB"
-# Open in nvim
-keybind = "cmd+o=text:\x02\x06"
 # Sync panes
-keybind = "cmd+shift+y=text:\x02\x19"
+keybind = "cmd+shift+y=text:\x19"
 # Toggle logging
-keybind = "cmd+p=text:\x02\x1bP"
+keybind = "cmd+p=text:\x02P"
 # Reload
 keybind = "cmd+r=text:\x02R"
 # Save

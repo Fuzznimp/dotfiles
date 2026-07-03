@@ -23,18 +23,6 @@ alias src="source .env.development"
 alias pwde="printf '%q\n' '$(pwd)'"
 alias btop="tmux display-popup -w 80% -h 80% 'btop'"
 
-# ─── Confs ──────────────────────────────────────────────────────────
-
-alias conf.alias="vi $DOTFILES_ZSH_PATH/.aliases"
-alias conf.function="vi $DOTFILES_ZSH_PATH/.functions"
-alias conf.zsh="vi $DOTFILES_PATH/.zshrc"
-alias conf.kitty="vi $DOTFILES_CONFIG_PATH/kitty/kitty.conf"
-alias conf.tmux="vi $DOTFILES_PATH/.tmux.conf"
-alias conf.alacritty="vi $DOTFILES_CONFIG_PATH/alacritty/alacritty.yml"
-alias conf.lg="vi $DOTFILES_APP_PATH/lazygit/config.yml"
-alias conf.sesh="vi $DOTFILES_APP_PATH/sesh/sesh.toml"
-alias conf.hammerspoon="vi $DOTFILES_PATH/.hammerspoon"
-
 # ─── Paths ──────────────────────────────────────────────────────────
 
 alias j="z"
@@ -77,16 +65,6 @@ alias kill.bali="lsof -i :4000 | jc --lsof | jq -r '.[] | select(.command == "no
 alias ll="eza --all --long --header --git"
 alias lt="eza -aT --color=always --group-directories-first --ignore-glob=\"**/node_modules|**/dist|**/.next|**/.git\""
 
-# ─── tar ────────────────────────────────────────────────────────────
-
-alias tarr="tar -pczf $1 $2"
-alias untarr="tar -pxzf $1"
-alias starr="sudo tar -pczf $1 $2"
-
-# ─── fzf ────────────────────────────────────────────────────────────
-
-alias f="fzf --tmux 80% --style full --preview 'bat --style=numbers --theme=ansi --color=always --line-range :500 {}' | pbcopy | echo $(pbpaste)"
-
 # ─── tmux ───────────────────────────────────────────────────────────
 
 alias t="tmux"
@@ -124,7 +102,7 @@ alias gcan="git commit --amend --no-edit"
 alias gl="git log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'"
 alias gpof="git push origin --force-with-lease"
 alias gpoff="git push origin --force-with-lease --no-verify"
-alias gbleach="git branch -vv | grep 'gone'] | awk '{ print $1 }' | xargs git branch -D"
+alias gbleach="git branch -vv | grep '\[gone\]' | awk '{ print \$1 }' | xargs git branch -D"
 alias gsw="git switch"
 alias gswc="git switch --create"
 alias gss="git stash save"
@@ -145,7 +123,6 @@ alias speedtest="curl -o /dev/null http://ovh.net/files/100Mio.dat"
 
 # ─── MacOS ──────────────────────────────────────────────────────────
 
-alias cask="brew cask"
 alias delete.ds="find . -type f -name '*.DS_Store' -ls -delete"
 alias delete.ad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
 alias desktopshow="defaults write com.apple.finder CreateDesktop -bool true && killfinder"

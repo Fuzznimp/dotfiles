@@ -22,20 +22,12 @@ whitespace = red
 [core]
 editor = nvim
 excludesfile = ~/.gitignore
-pager = less -F -X
+pager = less -F
 
 [diff]
 mnemonicPrefix = true
 renames = true
 submodule = log
-tool = vscode
-
-[difftool]
-prompt = false
-editor = code --wait
-
-[difftool "vscode"]
-cmd = code --wait --diff $LOCAL $REMOTE
 
 [log]
 abbrevCommit = true
@@ -52,7 +44,7 @@ extendRegexp = true
 lineNumber = true
 
 [init]
-templateDir = /Users/fuzznimp/.git-templates
+templateDir = ~/.git-templates
 defaultBranch = main
 
 [merge]

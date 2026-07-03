@@ -18,9 +18,9 @@
 - [gh-dash](https://github.com/dlvhdr/gh-dash) — GitHub dashboard
 - [rainfrog](https://github.com/achristmascarl/rainfrog) — database TUI
 - [superfile](https://github.com/yorukot/superfile) — file manager TUI
-- [yazi](https://github.com/zdharma/yazi) — file manager TUI
+- [yazi](https://github.com/sxyazi/yazi) — file manager TUI
 - [bat](https://github.com/sharkdp/bat) — better `cat`
-- [btop](https://github.com/aristocratseffect/btop) — system monitor
+- [btop](https://github.com/aristocratos/btop) — system monitor
 - [eza](https://github.com/eza-community/eza) — better `ls`
 - [Homebrew](https://brew.sh/) — packages (see `Brewfile`)
 
@@ -61,6 +61,6 @@ The `archive/` folder contains configs that are no longer in use but kept for re
 
 ### Key repeat for Vim motions
 
-To enable key repeat inside editors (e.g. Cursor, VS Code):
+To enable key repeat inside GUIs:
 
 https://stackoverflow.com/questions/33152551/how-can-i-disable-applepressandholdenabled-for-a-specific-application-repeat
