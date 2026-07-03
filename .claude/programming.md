@@ -47,3 +47,18 @@ function doThing({ input, options }: { input: string; options: Options }): Resul
 // no
 function doThing(input: string, options: Options): Result { ... }
 ```
+
+## Comments
+
+Only write comments that add non-obvious information: units, rationale, gotchas, edge cases. Do not restate what the name already says.
+
+Comments describe what the code is and why it exists, never how it changed. Do not narrate edit history: no "now that...", "changed from...", "previously...", "no longer needed", "moved here". That context means nothing to a future reader and belongs in git history, not the source. Keep comment density matching the surrounding code.
+
+```ts
+// yes
+const ttl = 900; // seconds
+
+// no
+const ttl = 900; // refresh interval time to live
+const ttl = 900; // hardcoded now that we removed the config option
+```
