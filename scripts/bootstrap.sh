@@ -5,7 +5,7 @@
 
 set -e
 
-DOTFILES_PATH="$(cd "$(dirname "$0")" && pwd)"
+DOTFILES_PATH="$(cd "$(dirname "$0")/.." && pwd)"
 
 echo "🚀 Starting bootstrap.."
 
@@ -13,17 +13,14 @@ echo "🚀 Starting bootstrap.."
 
 "$DOTFILES_PATH/scripts/brew.sh"
 
-# ─── Tools ───────────────────────────────────────────────────────────
-
-echo "🔧 Installing dotfiles manager.."
-go install github.com/cushycush/store/v2/cmd/store@latest
-echo "✅ Dotfiles manager installed."
+# Put brew (and brew-installed tools like stow) on PATH for this script.
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # ─── Dotfiles symlinks ───────────────────────────────────────────────
 
 echo "🔗 Stowing dotfiles.."
-stow --no-folding . --target="$HOME/" --adopt
-compaudit | xargs chmod g-w
+stow --no-folding . --target="$HOME/"
+zsh -c 'compaudit | xargs chmod g-w'
 echo "✅ Symlinks done."
 
 # ─── Default shell ───────────────────────────────────────────────────
