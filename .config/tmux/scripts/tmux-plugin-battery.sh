@@ -13,13 +13,13 @@ percentage="$(echo "$raw" | grep -Eo '[0-9]+%' | head -1 | tr -d '%')"
 
 # State: charging / charged / discharging.
 if echo "$raw" | grep -q "AC Power"; then
-    if [ "$percentage" -ge 100 ] || echo "$raw" | grep -qi "charged"; then
-        state="charged"
-    else
-        state="charging"
-    fi
+  if [ "$percentage" -ge 100 ] || echo "$raw" | grep -qi "charged"; then
+    state="charged"
+  else
+    state="charging"
+  fi
 else
-    state="discharging"
+  state="discharging"
 fi
 
 # Icon: charging bolt, else fill tier by 10% steps (nerd font, material design).
@@ -38,11 +38,11 @@ else icon="󰁺"; fi
 
 # Color: red when low and unplugged, green when charged/charging, else default.
 if [ "$state" = "discharging" ] && [ "$percentage" -le 20 ]; then
-    color="colour167"
+  color="colour167"
 elif [ "$state" != "discharging" ]; then
-    color="green"
+  color="green"
 else
-    color="colour246"
+  color="colour246"
 fi
 
 echo -e "#[fg=$color] $icon $percentage% #[fg=colour246]"
