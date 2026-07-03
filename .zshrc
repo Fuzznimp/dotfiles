@@ -8,20 +8,17 @@ source ${ZSH_PATH}/.completion
 source ${ZSH_PATH}/.aliases
 source ${ZSH_PATH}/.functions
 source ${ZSH_PATH}/.keybindings
-source ${HOME}/.cargo/env
 
-XDG_CONFIG_HOME=$HOME/.config
+export XDG_CONFIG_HOME=$HOME/.config
 
 # Tells lazydocker where to find the docker socket when using Colima.
 export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
 
-export PATH=/opt/homebrew/bin:$PATH
-export PATH="$HOME/go/bin:$PATH"
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 
-eval "$(zoxide init zsh)"
-eval "$(atuin init zsh)"
-eval "$(fzf --zsh)"
+command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
+command -v atuin >/dev/null && eval "$(atuin init zsh)"
+command -v fzf >/dev/null && eval "$(fzf --zsh)"
 
 # Nix
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
@@ -29,12 +26,9 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
 fi
 # End Nix
 
-export PATH="$HOME/.local/bin:$PATH"
+command -v direnv >/dev/null && eval "$(direnv hook zsh)"
 
-export PATH=$HOME/.nix-profile/bin:$PATH
-eval "$(direnv hook zsh)"
-
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Source last
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
