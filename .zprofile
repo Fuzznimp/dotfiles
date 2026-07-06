@@ -1,8 +1,12 @@
 # Login-shell environment. Runs once per login shell (new terminals + tmux panes).
 # PATH lives here, not .zshrc, so it does not re-prepend on nested interactive shells.
 
-# Homebrew: puts /opt/homebrew/{bin,sbin} on PATH, sets MANPATH/INFOPATH.
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Homebrew: puts brew's bin/sbin on PATH, sets MANPATH/INFOPATH.
+if [[ "$(uname)" == "Darwin" ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ "$(uname)" == "Linux" ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
 # Collapse duplicate PATH entries.
 typeset -U path PATH

@@ -28,7 +28,13 @@ fi
 
 command -v direnv >/dev/null && eval "$(direnv hook zsh)"
 
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [[ "$(uname)" == "Darwin" ]]; then
+  BREW_SHARE="/opt/homebrew/share"
+elif [[ "$(uname)" == "Linux" ]]; then
+  BREW_SHARE="/home/linuxbrew/.linuxbrew/share"
+fi
+
+source "$BREW_SHARE/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # Source last
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source "$BREW_SHARE/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
