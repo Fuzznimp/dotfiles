@@ -1,0 +1,135 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": [],
+    "copyFormatting": "none",
+    "copyOnSelect": false,
+    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+    "keybindings":
+    [
+        { "keys": "ctrl+k", "command": { "action": "sendInput", "input": "\u0002K" } },
+        { "keys": "ctrl+n", "command": { "action": "sendInput", "input": "\u0002N" } },
+        { "keys": "ctrl+f", "command": { "action": "sendInput", "input": "\u0002?" } },
+        { "keys": "ctrl+,", "command": { "action": "sendInput", "input": "\u0002," } },
+        { "keys": "ctrl+1", "command": { "action": "sendInput", "input": "\u00021" } },
+        { "keys": "ctrl+2", "command": { "action": "sendInput", "input": "\u00022" } },
+        { "keys": "ctrl+3", "command": { "action": "sendInput", "input": "\u00023" } },
+        { "keys": "ctrl+4", "command": { "action": "sendInput", "input": "\u00024" } },
+        { "keys": "ctrl+5", "command": { "action": "sendInput", "input": "\u00025" } },
+        { "keys": "ctrl+6", "command": { "action": "sendInput", "input": "\u00026" } },
+        { "keys": "ctrl+7", "command": { "action": "sendInput", "input": "\u00027" } },
+        { "keys": "ctrl+8", "command": { "action": "sendInput", "input": "\u00028" } },
+        { "keys": "ctrl+9", "command": { "action": "sendInput", "input": "\u00029" } },
+        { "keys": "ctrl+t", "command": { "action": "sendInput", "input": "\u0002c" } },
+        { "keys": "ctrl+w", "command": { "action": "sendInput", "input": "\u0002x" } },
+        { "keys": "ctrl+z", "command": { "action": "sendInput", "input": "\u0002z" } },
+        { "keys": "ctrl+y", "command": { "action": "sendInput", "input": "\u0002Y" } },
+        { "keys": "ctrl+l", "command": { "action": "sendInput", "input": "\u0002L" } },
+        { "keys": "ctrl+[", "command": { "action": "sendInput", "input": "\u0002[" } },
+        { "keys": "ctrl+\\", "command": { "action": "sendInput", "input": "\u0002|" } },
+        { "keys": "ctrl+g", "command": { "action": "sendInput", "input": "\u0002G" } },
+        { "keys": "ctrl+b", "command": { "action": "sendInput", "input": "\u0002B" } },
+        { "keys": "ctrl+d", "command": { "action": "sendInput", "input": "\u0002%" } },
+        { "keys": "ctrl+p", "command": { "action": "sendInput", "input": "\u0002P" } },
+        { "keys": "ctrl+r", "command": { "action": "sendInput", "input": "\u0002R" } },
+        { "keys": "ctrl+s", "command": { "action": "sendInput", "input": "\u0002M" } },
+        { "keys": "ctrl+up", "command": { "action": "sendInput", "input": "\u0002\u001b[A" } },
+        { "keys": "ctrl+down", "command": { "action": "sendInput", "input": "\u0002\u001b[B" } },
+        { "keys": "ctrl+right", "command": { "action": "sendInput", "input": "\u0002\u001b[C" } },
+        { "keys": "ctrl+left", "command": { "action": "sendInput", "input": "\u0002\u001b[D" } },
+        { "keys": "ctrl+shift+right", "command": { "action": "sendInput", "input": "\u0002n" } },
+        { "keys": "ctrl+shift+left", "command": { "action": "sendInput", "input": "\u0002p" } },
+        { "keys": "ctrl+shift+t", "command": { "action": "sendInput", "input": "\u0002!" } },
+        { "keys": "ctrl+shift+[", "command": { "action": "sendInput", "input": "\u0002p" } },
+        { "keys": "ctrl+shift+g", "command": { "action": "sendInput", "input": "\u0002D" } },
+        { "keys": "ctrl+shift+d", "command": { "action": "sendInput", "input": "\u0002\"" } },
+        { "keys": "ctrl+shift+r", "command": { "action": "sendInput", "input": "\u0002I" } },
+        { "keys": "ctrl+shift+y", "command": { "action": "sendInput", "input": "\u0019" } },
+        { "keys": "alt+right", "command": { "action": "sendInput", "input": "\u001bF" } },
+        { "keys": "alt+left", "command": { "action": "sendInput", "input": "\u001bB" } },
+        { "id": "Terminal.CopyToClipboard", "keys": "ctrl+c" },
+        { "id": "Terminal.PasteFromClipboard", "keys": "ctrl+v" },
+        { "id": "Terminal.FindText", "keys": "ctrl+shift+f" },
+        { "id": "Terminal.DuplicatePaneAuto", "keys": "alt+shift+d" },
+        { "id": "Terminal.ToggleFullscreen", "keys": "f11" }
+    ],
+    "launchMode": "fullscreen",
+    "newTabMenu":
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
+    "profiles":
+    {
+        "defaults":
+        {
+            "backgroundImage": "C:\\Users\\monta\\Documents\\wallpapers\\background\\hydra.png",
+            "backgroundImageOpacity": 0.15,
+            "backgroundImageStretchMode": "uniformToFill",
+            "colorScheme": "Eargasm",
+            "font":
+            {
+                "face": "Hack Nerd Font",
+                "size": 12,
+                "weight": "bold"
+            },
+            "opacity": 90,
+            "useAcrylic": false
+        },
+        "list":
+        [
+            {
+                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": false,
+                "name": "Windows PowerShell"
+            },
+            {
+                "commandline": "%SystemRoot%\\System32\\cmd.exe",
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "hidden": false,
+                "name": "Command Prompt"
+            },
+            {
+                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+                "hidden": false,
+                "name": "Azure Cloud Shell",
+                "source": "Windows.Terminal.Azure"
+            },
+            {
+                "guid": "{fc827cab-4aa6-597e-bc55-6386b585f918}",
+                "hidden": false,
+                "name": "Debian",
+                "source": "Microsoft.WSL"
+            }
+        ]
+    },
+    "schemes":
+    [
+        {
+            "background": "#202020",
+            "black": "#665C54",
+            "blue": "#7DAEA3",
+            "brightBlack": "#928374",
+            "brightBlue": "#7DAEA3",
+            "brightCyan": "#89B482",
+            "brightGreen": "#A9B665",
+            "brightPurple": "#D3869B",
+            "brightRed": "#EA6962",
+            "brightWhite": "#DFBF8E",
+            "brightYellow": "#E3A84E",
+            "cursorColor": "#DFBF8E",
+            "cyan": "#89B482",
+            "foreground": "#DFBF8E",
+            "green": "#A9B665",
+            "name": "Eargasm",
+            "purple": "#D3869B",
+            "red": "#EA6962",
+            "selectionBackground": "#665C54",
+            "white": "#DFBF8E",
+            "yellow": "#E78A4E"
+        }
+    ],
+    "themes": []
+}

@@ -11,8 +11,9 @@ source ${ZSH_PATH}/.keybindings
 
 export XDG_CONFIG_HOME=$HOME/.config
 
-# Tells lazydocker where to find the docker socket when using Colima.
-export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
+# Tells lazydocker where to find the docker socket when using Colima (macOS).
+# On WSL2, Docker Desktop provides the default socket, so leave DOCKER_HOST unset.
+[[ $OS == macos ]] && export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 
@@ -28,11 +29,8 @@ fi
 
 command -v direnv >/dev/null && eval "$(direnv hook zsh)"
 
-if [[ "$(uname)" == "Darwin" ]]; then
-  BREW_SHARE="/opt/homebrew/share"
-elif [[ "$(uname)" == "Linux" ]]; then
-  BREW_SHARE="/home/linuxbrew/.linuxbrew/share"
-fi
+# $HOMEBREW_PREFIX is exported by `brew shellenv` in .zprofile (macOS or Linux).
+BREW_SHARE="$HOMEBREW_PREFIX/share"
 
 source "$BREW_SHARE/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
