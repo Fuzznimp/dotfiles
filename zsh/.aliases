@@ -87,7 +87,7 @@ alias docker.cleanimage="docker images --filter dangling=true -q | xargs docker 
 
 # ─── Colima ─────────────────────────────────────────────────────────
 
-alias col.s="colima start --mount-type 9p --memory 4"
+alias col.s="colima start --vm-type vz --mount-type virtiofs --memory 4"
 alias col.k="colima stop"
 
 # ─── git ────────────────────────────────────────────────────────────
