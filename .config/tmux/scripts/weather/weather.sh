@@ -30,9 +30,9 @@ beaufort() {
   }'
 }
 
-clima() {
+weather() {
   NOW=$(date +%s)
-  LAST_UPDATE_TIME=$(get_tmux_option @clima_last_update_time)
+  LAST_UPDATE_TIME=$(get_tmux_option @weather_last_update_time)
   MOD=$((NOW - LAST_UPDATE_TIME))
   SYMBOL=$(symbol "$UNIT")
   if [ -z "$LAST_UPDATE_TIME" ] || [ "$MOD" -ge "$TTL" ]; then
@@ -46,14 +46,14 @@ clima() {
       WIND_MS=$(echo "$WEATHER" | jq .wind.speed)
       WIND_KMH=$(awk -v speed="$WIND_MS" 'BEGIN { printf "%.0f", speed * 3.6 }')
 
-      CLIMA="$ICON$TEMP ($FEELS_LIKE) ${WIND_KMH}km/h ($(beaufort "$WIND_MS"))"
+      WEATHER_VALUE="$ICON$TEMP ($FEELS_LIKE ) ${WIND_KMH}km/h ($(beaufort "$WIND_MS"))"
 
-      set_tmux_option "@clima_last_update_time" "$NOW"
-      set_tmux_option "@clima_current_value" "$CLIMA"
+      set_tmux_option "@weather_last_update_time" "$NOW"
+      set_tmux_option "@weather_current_value" "$WEATHER_VALUE"
     fi
   fi
 
-  echo -n "$(get_tmux_option "@clima_current_value")"
+  echo -n "$(get_tmux_option "@weather_current_value")"
 }
 
-clima
+weather
