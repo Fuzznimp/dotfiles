@@ -54,6 +54,8 @@ Only write comments that add non-obvious information: units, rationale, gotchas,
 
 Comments describe what the code is and why it exists, never how it changed. Do not narrate edit history: no "now that...", "changed from...", "previously...", "no longer needed", "moved here". That context means nothing to a future reader and belongs in git history, not the source. Keep comment density matching the surrounding code.
 
+Don't reference task names, PR or issue numbers.
+
 ```ts
 // yes
 const ttl = 900; // seconds
