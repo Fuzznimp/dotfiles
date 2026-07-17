@@ -14,11 +14,11 @@ gui:
     optionsTextColor:
       - "#e78a4e"
 os:
-  open: "zed {{filename}}"
+  open: "zed -- {{filename}}"
   openDirInEditor: "zed {{dir}}"
 keybinding:
   universal:
-    focusMainView: '6'
+    focusMainView: "6"
 git:
   branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --"
 customCommands:
