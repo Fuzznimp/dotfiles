@@ -36,7 +36,7 @@
     "toggle_relative_line_numbers": true,
   },
   "git_panel": {
-    "sort_by_path": true,
+    "sort_by": "path",
     "dock": "left",
     "tree_view": true,
   },
