@@ -28,4 +28,4 @@ customCommands:
     context: "localBranches"
     description: "Create PR using custom script"
     command: "$HOME/workspace/dotfiles/scripts/gh-pr-create.sh"
-    output: terminal
+    output: log
