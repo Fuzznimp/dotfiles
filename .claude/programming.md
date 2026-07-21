@@ -1,5 +1,11 @@
 # Programming Rules
 
+## Never guess, always verify
+
+Never guess: not APIs, signatures, types, file paths, config keys, command flags, nor whether something exists. Read the source, run the check, or consult the docs first. If you cannot verify, say so plainly instead of asserting.
+
+State claims at the confidence you actually have. "X does Y" means you confirmed it. If not, say "likely" or verify before speaking.
+
 ## TypeScript
 
 ### Function declarations over `const`

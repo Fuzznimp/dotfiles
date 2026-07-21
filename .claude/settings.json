@@ -1,8 +1,8 @@
 {
-  "model": "opus[1m]",
   "env": {
     "CLAUDE_CODE_DISABLE_MOUSE": "1"
   },
+  "model": "opus[1m]",
   "hooks": {
     "PreToolUse": [
       {
@@ -47,5 +47,6 @@
       }
     }
   },
-  "tui": "fullscreen"
+  "tui": "fullscreen",
+  "autoMemoryEnabled": true
 }
