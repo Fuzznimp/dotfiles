@@ -6,6 +6,22 @@ Never guess: not APIs, signatures, types, file paths, config keys, command flags
 
 State claims at the confidence you actually have. "X does Y" means you confirmed it. If not, say "likely" or verify before speaking.
 
+## Moving files
+
+When a file needs to move or be renamed, actually move it. Use `mv` (or `git mv` inside a repo, to keep history). Never recreate the file at the new path and delete the old one, and never write a copy and leave the original behind.
+
+Move first, then edit contents in place at the new path if needed. Same rule for directories.
+
+```sh
+# yes
+git mv src/old/thing.ts src/new/thing.ts
+
+# no
+# Write src/new/thing.ts with the same content, then rm src/old/thing.ts
+```
+
+After the move, update references (imports, config keys, docs) pointing at the old path.
+
 ## TypeScript
 
 ### Function declarations over `const`

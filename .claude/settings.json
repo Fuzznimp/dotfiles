@@ -37,7 +37,8 @@
     ]
   },
   "enabledPlugins": {
-    "context-mode@context-mode": true
+    "context-mode@context-mode": true,
+    "gopls-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "context-mode": {
@@ -47,6 +48,9 @@
       }
     }
   },
-  "tui": "fullscreen",
-  "autoMemoryEnabled": true
+  "promptSuggestionEnabled": false,
+  "awaySummaryEnabled": false,
+  "tui": "default",
+  "autoMemoryEnabled": true,
+  "remoteControlAtStartup": false
 }

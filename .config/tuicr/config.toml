@@ -1,0 +1,4 @@
+theme = "eargasm"
+
+# Ghostty runs a background image at 0.9 opacity; let it show through.
+transparent_background = true

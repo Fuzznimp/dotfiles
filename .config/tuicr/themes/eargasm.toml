@@ -1,0 +1,53 @@
+# Palette mirrors the ghostty config (.config/ghostty/config).
+# Keys ghostty has no equivalent for (surface greys, diff backgrounds) are derived:
+# greys lifted off background, diff backgrounds are palette green/red scaled down.
+panel_bg = "#202020"
+bg_highlight = "#2d2d2d"
+fg_primary = "#dfbf8e"
+fg_secondary = "#928374"
+fg_dim = "#665c54"
+
+diff_add = "#a9b665"
+diff_add_bg = "#2f331c"
+diff_del = "#ea6962"
+diff_del_bg = "#411d1b"
+diff_context = "#dfbf8e"
+diff_hunk_header = "#7daea3"
+expanded_context_fg = "#665c54"
+
+# Word-level highlights: same hues, lighter scaling so they read on top of the line background.
+syntax_add_bg = "#4c522d"
+syntax_del_bg = "#692f2c"
+
+file_added = "#a9b665"
+file_modified = "#e3a84e"
+file_deleted = "#ea6962"
+file_renamed = "#d3869b"
+
+reviewed = "#a9b665"
+pending = "#e3a84e"
+
+comment_note = "#7daea3"
+comment_suggestion = "#89b482"
+comment_issue = "#ea6962"
+comment_praise = "#a9b665"
+
+border_focused = "#e78a4e"
+border_unfocused = "#665c54"
+status_bar_bg = "#2d2d2d"
+cursor_color = "#dfbf8e"
+cursor_line_bg = "#2a2a2a"
+branch_name = "#d3869b"
+help_indicator = "#928374"
+
+message_info_fg = "#202020"
+message_info_bg = "#7daea3"
+message_warning_fg = "#202020"
+message_warning_bg = "#e3a84e"
+message_error_fg = "#202020"
+message_error_bg = "#ea6962"
+update_badge_fg = "#202020"
+update_badge_bg = "#e78a4e"
+
+mode_fg = "#202020"
+mode_bg = "#e78a4e"
