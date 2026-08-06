@@ -47,6 +47,7 @@
         { "keys": "ctrl+shift+y", "command": { "action": "sendInput", "input": "\u0019" } },
         { "keys": "alt+right", "command": { "action": "sendInput", "input": "\u001bF" } },
         { "keys": "alt+left", "command": { "action": "sendInput", "input": "\u001bB" } },
+        { "keys": "ctrl+q", "command": { "action": "closeWindow" } },
         { "id": "Terminal.CopyToClipboard", "keys": "ctrl+c" },
         { "id": "Terminal.PasteFromClipboard", "keys": "ctrl+v" },
         { "id": "Terminal.FindText", "keys": "ctrl+shift+f" },
