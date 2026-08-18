@@ -30,6 +30,10 @@ if [ "$SHELL" != "/bin/zsh" ]; then
   chsh -s /bin/zsh
 fi
 
+# ─── Go tools ────────────────────────────────────────────────────────
+
+"$DOTFILES_PATH/scripts/tools.sh"
+
 # ─── macOS defaults ──────────────────────────────────────────────────
 
 "$DOTFILES_PATH/scripts/osx.sh"
