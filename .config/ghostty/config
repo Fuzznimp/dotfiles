@@ -57,7 +57,7 @@ keybind = "cmd+k=text:\x02K"
 # Clear buffer history
 keybind = "cmd+n=text:\x02N"
 # Search inside current tmux pane
-keybind = "cmd+f=text:\x02?"
+keybind = "cmd+f=text:\x02F"
 # Rename window
 keybind = "cmd+comma=text:\x02,"
 # Select tmux window 1-9

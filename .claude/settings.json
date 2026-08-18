@@ -3,6 +3,9 @@
     "CLAUDE_CODE_DISABLE_MOUSE": "1"
   },
   "model": "opus[1m]",
+  "permissions": {
+    "defaultMode": "manual"
+  },
   "hooks": {
     "PreToolUse": [
       {

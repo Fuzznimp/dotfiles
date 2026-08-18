@@ -39,7 +39,6 @@ brew "rainfrog"
 brew "rtk" # setup: rtk init -g
 brew "ripgrep"
 brew "rustup"
-brew "shellcheck"
 brew "stow"
 brew "superfile"
 brew "television"
