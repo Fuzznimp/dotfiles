@@ -1,6 +1,6 @@
 -- ─── Disable system shortcuts ─────────────────────────────────────────
 
--- Cmd+H hides the window, Cmd+Shift+Q logs out — both too easy to hit by accident
+-- Cmd+H hides the window, Cmd+Shift+Q logs out, both too easy to hit by accident
 hs.hotkey.bind({ "cmd" }, "h", function() end)
 hs.hotkey.bind({ "cmd", "shift" }, "q", function() end)
 

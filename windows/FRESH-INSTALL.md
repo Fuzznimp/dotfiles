@@ -2,7 +2,7 @@
 
 Rebuild WSL2 + Debian + dotfiles from scratch. Run top to bottom.
 
-Env target: Windows 11 + WSL2 + Debian 13 (trixie) + linuxbrew + zsh + tmux. No GUI tools (see [Docker](#8-docker-optional)).
+Env target: Windows 11 + WSL2 + Debian 13 (trixie) + linuxbrew + zsh + tmux. No GUI tools (see [Docker](#11-docker-optional)).
 
 > Replace `monta` with your Windows username where it appears.
 
@@ -10,10 +10,10 @@ Env target: Windows 11 + WSL2 + Debian 13 (trixie) + linuxbrew + zsh + tmux. No 
 
 ## 0. Windows side (do first)
 
-- **Windows Terminal** — preinstalled on Win11. Else Microsoft Store.
-- **Hack Nerd Font** — WT renders with a *Windows* font, not a Linux one. Download from <https://www.nerdfonts.com/font-downloads> (Hack), select all `.ttf`, right-click -> **Install for all users**.
-- **Wallpaper** — WT `settings.json` points at `C:\Users\monta\Documents\wallpapers\background\hydra.png`. Create folder + drop image there, or edit the path later (source copy: `.config/ghostty/hydra.png` in this repo).
-- **Developer Mode** (optional) — Settings -> System -> For developers. Only needed if you later want symlinks.
+- **Windows Terminal**: preinstalled on Win11. Else Microsoft Store.
+- **Hack Nerd Font**: WT renders with a *Windows* font, not a Linux one. Download from <https://www.nerdfonts.com/font-downloads> (Hack), select all `.ttf`, right-click -> **Install for all users**.
+- **Wallpaper**: WT `settings.json` points at `C:\Users\monta\Documents\wallpapers\background\hydra.png`. Create folder + drop image there, or edit the path later (source copy: `.config/ghostty/hydra.png` in this repo).
+- **Developer Mode** (optional): Settings -> System -> For developers. Only needed if you later want symlinks.
 
 ---
 
@@ -50,8 +50,10 @@ Then from PowerShell: `wsl --shutdown` and reopen Debian.
 ## 3. Debian base packages + zsh
 
 ```bash
-sudo apt update && sudo apt install -y build-essential procps curl file git zsh stow
+sudo apt update && sudo apt install -y build-essential procps curl file git zsh stow wslu
 ```
+
+`wslu` provides `wslview`, which `tmux-gh-prs` uses to open a PR in the Windows browser.
 
 Set zsh as login shell:
 
@@ -69,7 +71,7 @@ Log out/in (close + reopen Debian tab) so zsh takes over.
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-`.zprofile` already runs `brew shellenv` for `/home/linuxbrew/.linuxbrew` on Linux — no manual PATH edit needed once dotfiles are stowed (step 5). To use brew *before* stow, run the `eval` line the installer prints.
+`.zprofile` already runs `brew shellenv` for `/home/linuxbrew/.linuxbrew` on Linux, no manual PATH edit needed once dotfiles are stowed (step 5). To use brew *before* stow, run the `eval` line the installer prints.
 
 ---
 
@@ -90,7 +92,7 @@ Symlinks created: `.zshenv .zprofile .zshrc .gitconfig`, `zsh/*`, `.config/*`. O
 
 ## 6. Brew tools
 
-⚠️ `brew bundle` will **fail on Linux** — the `Brewfile` has macOS `cask`/`mas` lines (ghostty, hammerspoon, 1password...). Install the Linux-relevant formulae directly:
+⚠️ `brew bundle` will **fail on Linux**. The `Brewfile` has macOS `cask`/`mas` lines (ghostty, hammerspoon, 1password...). Install the Linux-relevant formulae directly:
 
 ```bash
 brew install \
@@ -100,13 +102,13 @@ brew install \
   lazygit lazydocker rainfrog
 ```
 
-Skip macOS-only ones: `colima`, `displayplacer`, `mas`, `cowsay` (opt). Some taps (`codeburn`, `xleak`, `tmux-snaglord`, `rtk`) — add per-tap if wanted.
+Skip macOS-only ones: `colima`, `displayplacer`, `mas`, `cowsay` (opt). Some taps (`codeburn`, `xleak`, `tmux-snaglord`, `rtk`) -> add per-tap if wanted.
 
 ---
 
 ## 7. Rust (rustup)
 
-Homebrew's rustup is **keg-only** — no `~/.cargo/env`, shims live in `$HOMEBREW_PREFIX/opt/rustup/bin`, which `.zprofile` already adds to PATH. Just init a toolchain:
+Homebrew's rustup is **keg-only**, so no `~/.cargo/env`, shims live in `$HOMEBREW_PREFIX/opt/rustup/bin`, which `.zprofile` already adds to PATH. Just init a toolchain:
 
 ```bash
 rustup default stable
@@ -126,11 +128,35 @@ git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 
 Start tmux, then install plugins: **`ctrl+shift+r`** (= `prefix + I`).
 
-> macOS-only plugins/scripts degrade quietly on Linux: `tmux-nowplaying-macos`, `colima-status`, `battery`. Status bar shows blanks — cosmetic.
+> macOS-only plugins/scripts degrade quietly on Linux: `tmux-nowplaying-macos`, `colima-status`, `battery`. Status bar shows blanks, cosmetic only.
 
 ---
 
-## 9. Windows Terminal config
+## 9. Own Go tools
+
+The tmux popups and the `gcm` alias are separate Go repos, cloned and built by:
+
+```bash
+~/workspace/dotfiles/scripts/tools.sh
+```
+
+Portable, same script macOS uses. Needs `go` (step 6) and `gh`. Run `gh auth login`
+first so clones use ssh, otherwise it falls back to https. Rerun any time to pull
+and rebuild.
+
+Builds `tmux-pane-manager`, `tmux-yoink`, `tmux-gh-prs`, `tmux-weather`,
+`git-commit-wizard` into `~/workspace/scripts/<name>/`.
+
+`tmux-weather` needs an OpenWeatherMap key, and `.env` is gitignored so it is not
+in the repo:
+
+```bash
+echo 'OWM_API_KEY=<your-key>' > ~/workspace/dotfiles/.config/tmux/scripts/weather/.env
+```
+
+---
+
+## 10. Windows Terminal config
 
 No symlink (cross-FS symlinks flaky). Keep repo + live in sync manually.
 
@@ -145,14 +171,14 @@ Notes:
 - **Ctrl = Cmd.** All tmux shortcuts are `sendInput` binds that type `prefix (0x02) + key`. Ctrl reclaimed from native EOF/suspend/clear/etc. by choice.
 - Binds MUST live in the **`keybindings`** array. `keys` inside `actions` = **ignored** by this WT version -> keys fall through (e.g. `ctrl+d` = EOF, closes pane).
 - Control bytes stored as JSON `\u` escapes (`0x02` = `C-b` prefix, `0x1b` = ESC, `0x19` = `C-y`). Raw bytes = invalid JSON.
-- If binds don't apply after copy: fully **quit WT** (close all windows) and reopen — live reload doesn't always re-register `keybindings`.
+- If binds don't apply after copy: fully **quit WT** (close all windows) and reopen. Live reload doesn't always re-register `keybindings`.
 - Update the `backgroundImage` path + Debian distro `guid` if they differ on the new box.
 
 Sync direction going forward: edit repo -> `cp` to live, OR edit in WT -> `cp` live back to repo. Commit repo.
 
 ---
 
-## 10. Docker (optional)
+## 11. Docker (optional)
 
 No Docker Desktop (GUI). WSL2 *is* a Linux VM -> run engine natively (Colima not needed, it'd nest a VM).
 
@@ -172,7 +198,7 @@ systemd (step 2) auto-starts `dockerd`. Uses default `/var/run/docker.sock` -> l
 
 ---
 
-## 11. macOS-only leftovers (informational)
+## 12. macOS-only leftovers (informational)
 
 Live in the repo, inert or absent on Windows:
 - `Brewfile` casks + `mas`, `.hammerspoon/`, `Library/`, `.config/ghostty` (WT used instead), `.config/raycast`.

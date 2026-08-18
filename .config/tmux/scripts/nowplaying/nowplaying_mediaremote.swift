@@ -38,5 +38,5 @@ if let info = nowPlayingInfo,
    let title = info["kMRMediaRemoteNowPlayingInfoTitle"] as? String,
    let playbackRate = info["kMRMediaRemoteNowPlayingInfoPlaybackRate"] as? Double,
    playbackRate == 1.0 {
-    print("\(artist) - \(title)")
+    print("\(artist) · \(title)")
 }

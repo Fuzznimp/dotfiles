@@ -3,6 +3,9 @@
 # Self-contained replacement for tmux-battery -> no upstream breaking changes.
 # Prints once and exits; tmux re-runs it every status-interval.
 
+# pmset is macOS-only; elsewhere render nothing instead of leaking stderr.
+command -v pmset >/dev/null 2>&1 || exit 0
+
 raw="$(pmset -g batt)"
 
 # No battery (desktop Mac) -> render nothing.

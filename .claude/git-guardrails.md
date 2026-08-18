@@ -1,6 +1,6 @@
 # Git Guardrails
 
-Never run these git commands — the user handles them:
+Never run these git commands, the user handles them:
 
 - `git push` (any variant, including `--force` / `--force-with-lease`)
 - `git reset --hard`
