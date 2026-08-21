@@ -6,6 +6,23 @@ Never guess: not APIs, signatures, types, file paths, config keys, command flags
 
 State claims at the confidence you actually have. "X does Y" means you confirmed it. If not, say "likely" or verify before speaking.
 
+## Always label code blocks with their path
+
+Every code block showing code that lives in a file gets the path above it, relative to the repo root, with the line number when known. Diffs and excerpts included. Without it the reader has to guess which file changed.
+
+Bare filenames (`computation.service.ts`) are not enough: the same name appears in many folders. Give the full path from the repo root.
+
+````
+`src/core/growing-degree-days-indicator/computation.service.ts:243`
+
+```diff
+-    // old line
++    // new line
+```
+````
+
+Exception: snippets that belong to no file (throwaway examples, illustrations of a rule, shell commands).
+
 ## Moving files
 
 When a file needs to move or be renamed, actually move it. Use `mv` (or `git mv` inside a repo, to keep history). Never recreate the file at the new path and delete the old one, and never write a copy and leave the original behind.
