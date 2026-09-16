@@ -39,6 +39,22 @@ git mv src/old/thing.ts src/new/thing.ts
 
 After the move, update references (imports, config keys, docs) pointing at the old path.
 
+## Generated files
+
+Never hand-edit a generated file. Its content is an output: the next generator run overwrites the edit, so the change silently disappears and the file stops matching its source.
+
+Check before editing any file that could be an output, and check the top of the file, not the region being edited. Signals: a banner (`@generated`, `auto-generated`, `DO NOT EDIT`, `Do not make direct changes to the file`), a `.gen.*` / `.d.ts` name, a `migrations/` folder, a lockfile.
+
+When the content needs to change, change the source and run the generator (usually an npm script, e.g. `sdk:*`, `generate:*`, `drizzle-kit generate`).
+
+When the generator cannot produce the change yet, **stop and ask**. Do not patch the output to move on. The usual case: types generated from a deployed service, where the API change is merged locally but not deployed yet, so the generator would still emit the old shape. That blocks a type check, and a failing type check is the correct state to report:
+
+- say which generated file is stale and why
+- say what unblocks it (deploy then regenerate, or regenerate against a local instance)
+- let the person decide
+
+A flagged hand-patch is still a hand-patch. Announcing it afterwards does not authorize it.
+
 ## TypeScript
 
 ### Function declarations over `const`
@@ -85,6 +101,35 @@ function doThing({ input, options }: { input: string; options: Options }): Resul
 
 // no
 function doThing(input: string, options: Options): Result { ... }
+```
+
+### Inline small local types
+
+A small type that is used once and not exported stays inline at the use site. Naming it (`type Props`, `type Params`, `type Options`) only moves the same shape a few lines away and adds an indirection the reader has to follow.
+
+Extract and name it when it earns a name:
+
+- it is exported, or referenced more than once
+- it is recursive, or a union/discriminated union
+- it is big enough that inlining buries the signature (roughly past 3-4 fields, or it no longer reads at a glance)
+
+```tsx
+// yes
+const PageHeader = ({ getPageData }: { getPageData: GetPageDataApi }) => { ... };
+
+// no
+type Props = {
+  getPageData: GetPageDataApi;
+};
+const PageHeader = ({ getPageData }: Props) => { ... };
+```
+
+```ts
+// yes
+function computeSubtitle({ ownerName, fieldName }: { ownerName: string; fieldName: string }): string { ... }
+
+// yes, earns its name: exported and reused
+export type PageContextValue = { ... };
 ```
 
 ## Comments

@@ -99,10 +99,49 @@ brew install \
   atuin bat btop eza fd fzf gawk gh go gum htop jq luarocks ncdu neovim \
   ripgrep rustup sesh stow superfile television tldr tmux yazi yq zoxide \
   zsh-autosuggestions zsh-completions zsh-syntax-highlighting \
-  lazygit lazydocker rainfrog
+  lazygit lazydocker rainfrog rtk
 ```
 
-Skip macOS-only ones: `colima`, `displayplacer`, `mas`, `cowsay` (opt). Some taps (`codeburn`, `xleak`, `tmux-snaglord`, `rtk`) -> add per-tap if wanted.
+Skip macOS-only ones: `colima`, `displayplacer`, `mas`, `cowsay` (opt). Tapped formulae (`codeburn`, `xleak`, `tmux-snaglord`) -> add per-tap if wanted.
+
+### rtk is not optional
+
+`rtk` is in `homebrew/core` (no tap). It is only bottled for `arm64` macOS, so linuxbrew
+compiles it from source and pulls the `rust` formula as a build dep. Expect a long build.
+
+It must be installed: `.claude/settings.json` registers a `PreToolUse` hook running
+`rtk hook claude` on every `Bash` call, and that file is symlinked into `~/.claude`.
+Without the binary, every tool call raises a hook error.
+
+If the source build is a problem, grab a release binary from
+<https://github.com/rtk-ai/rtk/releases> and put it on `PATH` instead.
+
+Then run the setup step the `Brewfile` notes:
+
+```bash
+rtk init -g --auto-patch
+```
+
+That writes `~/.claude/RTK.md`, appends `@RTK.md` to `~/.claude/CLAUDE.md`, and patches the
+hook into `settings.json` (already there, so it reports "hook already present").
+
+**Fix the import path afterwards.** `~/.claude/CLAUDE.md` is a symlink into this repo, and
+Claude Code resolves `@` imports against the *real* file's directory. A bare `@RTK.md` would
+look for `.claude/RTK.md` in the repo and silently find nothing. Edit `.claude/CLAUDE.md` so
+the line rtk added reads:
+
+```
+@~/.claude/RTK.md
+```
+
+`RTK.md` itself is generated per machine and stays in `~/.claude`, unversioned.
+
+rtk greps for the literal `@RTK.md`, so with the tilde form `rtk init --show` will keep
+claiming "exists but rtk not configured", and every future `rtk init -g` re-appends a bare
+`@RTK.md` line. Delete the duplicate each time.
+
+Verify: `command -v rtk && rtk --version`, then start a session and confirm the RTK
+instructions are in context (`rtk gain` should be mentioned).
 
 ---
 

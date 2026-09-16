@@ -3,3 +3,5 @@
 @git-guardrails.md
 @tmux-guardrails.md
 @programming.md
+
+@~/.claude/RTK.md
