@@ -27,7 +27,7 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
 fi
 # End Nix
 
-command -v direnv >/dev/null && eval "$(direnv hook zsh)"
+command -v devenv >/dev/null && eval "$(devenv hook zsh -- --no-reload)"
 
 # $HOMEBREW_PREFIX is exported by `brew shellenv` in .zprofile (macOS or Linux).
 BREW_SHARE="$HOMEBREW_PREFIX/share"
