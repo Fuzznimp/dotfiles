@@ -23,6 +23,22 @@ Bare filenames (`computation.service.ts`) are not enough: the same name appears 
 
 Exception: snippets that belong to no file (throwaway examples, illustrations of a rule, shell commands).
 
+## Keep work splittable into commits
+
+When a task spans independent layers (domain logic, persistence, API surface, UI, docs), keep those layers separable: no layer's change should depend on an unrelated layer's edit to compile or pass tests.
+
+At the end, state the split: one group per layer, listing its files, in an order where each group builds and passes on its own. That is what makes it stageable one commit at a time.
+
+```
+1. domain status    src/core/x/models/x.model.ts, src/core/x/utils/status.util.ts (+ tests)
+2. refresh blocking src/core/x/repositories/x.repository.ts, src/core/x/commands/refresh/handler.ts (+ tests)
+3. API exposure     src/controllers/.../response.dto.ts, .../util.ts (+ itests)
+```
+
+Tests ship with the layer they cover, never as a group of their own. A pure refactor (rename, move, extraction) that a feature needs is its own group, before the feature.
+
+This is about how the work is shaped and reported. Staging and committing stays the user's, per the git guardrails: do not run `git add` or `git commit`, and do not ask whether to.
+
 ## Moving files
 
 When a file needs to move or be renamed, actually move it. Use `mv` (or `git mv` inside a repo, to keep history). Never recreate the file at the new path and delete the old one, and never write a copy and leave the original behind.
