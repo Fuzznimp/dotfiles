@@ -10,8 +10,12 @@ Never run these git commands, the user handles them:
 
 If a task genuinely needs one of these, stop and ask the user to run it themselves. Do not work around this by aliasing, scripting, or invoking git through another tool.
 
-## Never suggest versioning steps
+## Ask before rewriting history
 
-The user owns commits, branches, tags, PRs, and pushes. Do not offer them as next steps, do not ask whether to commit or push, do not remind the user that changes are uncommitted. No "next: your call on committing", no "want me to commit this?", no "don't forget to push".
+Never run `git commit --amend`, `git rebase` (any form, `--exec` included), `git commit --fixup`/`--squash` followed by autosquash, or anything else that rewrites existing commits, without the user's explicit go for that specific rewrite. Propose it, explain why, wait.
 
-State what changed and whether it works. Stop there. If the user wants a commit, they ask.
+## Commits
+
+Commit finished work yourself, without being asked: once the change is done and the checks pass (lint, types, tests), commit it, one commit per group from the split (see programming.md). Conventional commit messages, no AI attribution line. Report the commit hashes.
+
+Do not commit unverified or half-done work. The user owns pushes, tags and PRs: do not offer them as next steps, do not remind the user to push.

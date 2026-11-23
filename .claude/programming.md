@@ -37,7 +37,7 @@ At the end, state the split: one group per layer, listing its files, in an order
 
 Tests ship with the layer they cover, never as a group of their own. A pure refactor (rename, move, extraction) that a feature needs is its own group, before the feature.
 
-This is about how the work is shaped and reported. Staging and committing stays the user's, per the git guardrails: do not run `git add` or `git commit`, and do not ask whether to.
+Once the work is verified, commit each group in that order, per the git guardrails.
 
 ## Moving files
 
