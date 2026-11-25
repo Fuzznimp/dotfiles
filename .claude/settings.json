@@ -13,6 +13,21 @@
           {
             "type": "command",
             "command": "rtk hook claude"
+          },
+          {
+            "type": "command",
+            "command": "node \"/Users/fuzznimp/workspace/dotfiles/.claude/hooks/check-comments.mjs\" commit"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/Users/fuzznimp/workspace/dotfiles/.claude/hooks/check-comments.mjs\" edit"
           }
         ]
       }

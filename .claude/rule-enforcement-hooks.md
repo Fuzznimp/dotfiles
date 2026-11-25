@@ -1,5 +1,14 @@
 # Enforcing programming.md at write time
 
+## Implemented: comments
+
+`hooks/check-comments.mjs`, wired in `settings.json`:
+
+- `PostToolUse` on `Write|Edit|MultiEdit` (`check-comments.mjs edit`): lists the comments the edit added to a JS/TS file (`.d.ts` and `node_modules` skipped, lint directives ignored) with the "Comments" checklist of `programming.md`, fed back to Claude as a blocking review. Only comments new to that edit, so a kept comment is not flagged again.
+- `PreToolUse` on `Bash` (`check-comments.mjs commit`): denies a `git commit` whose staged diff adds comments (whole diff vs `HEAD` plus untracked files when the same command runs `git add`), listing them with file and line. Rerunning with `COMMENTS_REVIEWED=1 git commit …` lets it through. Catches comments written by shell scripts, which bypass `Write`/`Edit`.
+
+The other checks below are still to do.
+
 ## Problem
 
 Claude follows `programming.md` when it reads it, then drifts back to its own defaults as soon as it writes a file. The rules are loaded once at session start (and restated each turn by the `UserPromptSubmit` hook), but the moment of failure is the `Write`/`Edit` call, where nothing re-checks them.
