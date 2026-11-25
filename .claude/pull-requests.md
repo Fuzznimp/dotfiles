@@ -23,9 +23,12 @@ UI: <url>
 
 ---
 
-## Details for 🤖
+<details>
+<summary><b>Details for 🤖</b></summary>
 
 <free-form, written for an AI reviewer>
+
+</details>
 ```
 
 AI;DR is for humans: short, plain words. "Details for 🤖" is read by an AI (reviewer, future agent): make it as useful as possible for that reader, in whatever shape fits (prose, sub-headings, tables, code blocks, bullets). Aim for what lets it review or continue the work without re-deriving anything:
@@ -43,5 +46,6 @@ AI;DR is for humans: short, plain words. "Details for 🤖" is read by an AI (re
 - Links are plain lines, never bullets, one per line. `### Context`: `Figma: <url>` (the design frame the work implements), `Ticket: <url>` (Notion, Linear…). `### Related PRs`: one line per other repo (`Bali: <url>`, `App: <url>`, `UI: <url>`). Include a link only when it applies: a URL you were given or found in the session, never a guessed one. Drop a sub-section with no link.
 - `### Demo` is left empty: the user fills it (screenshots, Storybook links). Include it when the PR changes something visible.
 - `---` (blank line above and below) separates the human part from "Details for 🤖".
+- "Details for 🤖" is a collapsed `<details>` block, its title in `<summary>` (no `##` heading). Keep a blank line after `<summary>` and before `</details>`, or GitHub does not render the markdown inside. Sub-headings inside start at `###`.
 - Title: conventional commit. No AI attribution line.
 - When updating an existing description, fetch the live body first and keep the user's edits.
