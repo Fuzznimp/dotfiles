@@ -28,6 +28,8 @@ AI;DR is for humans: short, plain words. Details is read by an AI (reviewer, fut
 - What was deliberately left out, kept as is, or diverges from the design, and why.
 - How it was verified (tests, commands, manual checks).
 
+## Rules
+
 - Link lines go after the bullets as plain lines, never as bullets, one per line, in this order: `Figma: <url>` (the design frame the work implements), `Ticket: <url>` (Notion, Linear…), then related PRs (`Bali: <url>`, `App: <url>`, `UI: <url>`). Include each only when it applies: a URL you were given or found in the session, never a guessed one. Omit a line with no URL.
 - `### Demo` sits inside AI;DR, left empty: the user fills it (screenshots, Storybook links). Include it when the PR changes something visible.
 - Title: conventional commit. No AI attribution line.
