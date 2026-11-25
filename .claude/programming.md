@@ -148,6 +148,22 @@ function computeSubtitle({ ownerName, fieldName }: { ownerName: string; fieldNam
 export type PageContextValue = { ... };
 ```
 
+### Early return for guard cases
+
+Handle the empty, null or error case with an early `return` at the top, then write the main path unindented. A ternary wrapping the whole return hides the main path in a branch.
+
+```tsx
+// yes
+if (tip === null) return null;
+
+return <Container>…</Container>;
+
+// no
+return tip === null ? null : <Container>…</Container>;
+```
+
+A "ternary, never `&&`" rule is about conditionals inside JSX (`{x ? <A /> : null}`), not about the whole return.
+
 ## Comments
 
 Only write comments that add non-obvious information: rationale, gotchas, edge cases. Do not restate what the name already says.
