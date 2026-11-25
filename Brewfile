@@ -61,7 +61,6 @@ cask "font-hack-nerd-font"
 cask "ghostty"
 cask "hammerspoon"
 cask "raycast"
-cask "scroll-reverser"
 cask "slack"
 cask "vlc"
 
@@ -69,6 +68,7 @@ mas "Bitwarden", id: 1352778147
 mas "Tailscale", id: 1475387142
 
 # Manual
+## Vorssaint: https://vorssaint.com/
 ## CleanShotX: https://cleanshot.com/
 ## Homerow https://www.homerow.app/
 ## gh TUI `gh extension install dlvhdr/gh-dash`
