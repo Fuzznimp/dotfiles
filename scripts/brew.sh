@@ -20,4 +20,7 @@ brew bundle --file="$REPO_ROOT/Brewfile"
 echo "🔌 Installing gh-dash extension..."
 gh extension install dlvhdr/gh-dash 2>/dev/null || echo "  gh-dash already installed, skipping."
 
+echo "🧩 Generating zsh completions..."
+tuios completion zsh > "$(brew --prefix)/share/zsh-completions/_tuios"
+
 echo "✅ Brew setup done."

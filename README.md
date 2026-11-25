@@ -50,6 +50,9 @@ otherwise they fall back to https.
 
 Rerunning is safe: `scripts/tools.sh` pulls and rebuilds existing checkouts.
 
+`scripts/brew.sh` also generates zsh completions for tools that don't ship
+them with brew (`tuios`). Rerun it after upgrading those tools.
+
 ---
 
 ## Symlinks
